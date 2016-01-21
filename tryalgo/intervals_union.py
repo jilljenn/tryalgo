@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+# Union of intervals
+# jill-jenn vie et christoph durr - 2014-2015
+
+
+# snip{
+def union_intervalles(S):
+    """Union of intervals
+
+    :param S: list of pairs (low, high) defining intervals [low, high)
+    :returns: ordered list of disjoint intervals with the same union as S
+    :complexity: O(n log n)
+    """
+    E = [(low, -1) for (low, high) in S]
+    E += [(high, +1) for (low, high) in S]
+    nb_open = 0
+    last = None
+    retval = []
+    for x, _dir in sorted(E):
+        if _dir == -1:
+            if nb_open == 0:
+                last = x
+            nb_open += 1
+        else:
+            nb_open -= 1
+            if nb_open == 0:
+                retval.append((last, x))
+    return retval
+# snip}
+
+
+if __name__ == "__main__":
+    L = [(2, 3), (4, 6), (1, 5), (6, 7), (8, 10)]
+    assert union_intervalles(L) == [(1, 7), (8, 10)]
