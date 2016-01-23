@@ -22,8 +22,7 @@ def dijkstra(graph, weight, source=0, target=None):
        :complexity: `O(|V| + |E|log|V|)`
     """
     n = len(graph)
-    assert min((weight[u][v] for u in range(n) for v in graph[u]),
-               default=0) >= 0
+    assert all(weight[u][v] for u in range(n) for v in graph[u])
     prec = [None] * n
     black = [False] * n
     dist = [float('inf')] * n
