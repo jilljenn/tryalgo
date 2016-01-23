@@ -2,10 +2,8 @@
 # Solving Sudoku
 # jill-jenn vie et christoph durr - 2014-2015
 
-try:
-    from dancing_links import dancing_links
-except ImportError:
-    from . dancing_links import dancing_links
+from tryalgo.dancing_links import dancing_links
+
 
 __all__ = ["sudoku"]
 

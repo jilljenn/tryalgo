@@ -4,10 +4,7 @@
 
 import random
 from collections import deque
-try:
-    from graph import read_graph, write_graph
-except ImportError:
-    from . graph import read_graph, write_graph
+from tryalgo.graph import write_graph
 
 
 # snip{ eulerian_tour_undirected

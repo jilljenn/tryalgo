@@ -5,11 +5,12 @@
 
 # snip{
 def knapsack(p, v, cmax):
-    """Knapsack
+    """Knapsack problem: select maximum value set of items if total size not more than capacity
 
     :param p: table with size of items
     :param v: table with value of items
     :param cmax: capacity of bag
+    :requires: number of items non-zero
     :returns: value optimal solution, list of item indexes in solution
     :complexity: O(n * cmax), for n = number of items
     """
@@ -41,6 +42,16 @@ def knapsack(p, v, cmax):
 
 
 def knapsack2(p, v, cmax):
+    """Knapsack problem: select maximum value set of items if total size not more than capacity.
+    alternative implementation with same behavior.
+
+    :param p: table with size of items
+    :param v: table with value of items
+    :param cmax: capacity of bag
+    :requires: number of items non-zero
+    :returns: value optimal solution, list of item indexes in solution
+    :complexity: O(n * cmax), for n = number of items
+    """
     n = len(p)
     # Plus grande valeur obtenable avec objets ≤ i et capacité c
     pgv = [[0] * (cmax + 1) for _ in range(n)]

@@ -2,18 +2,13 @@
 # bi-connected components, cut vertices and cut cut-nodes
 # jill-jenn vie et christoph durr - 2015
 
-try:
-    from graph import write_graph
-except ImportError:
-    from . graph import write_graph
-
 
 # snip{
 # pour faciliter la lecture les variables sont sans préfixe dfs_
 def cut_nodes_edges(graph):
     """Bi-connected components
 
-    :param graph: adjacency list
+    :param graph: adjacency list. Cannot be adjacency dictionnary.
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)`
     """

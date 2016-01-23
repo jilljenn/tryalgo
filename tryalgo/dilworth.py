@@ -2,12 +2,7 @@
 # Decompose DAG into a minimum number of chains
 # jill-jenn vie et christoph durr - 2015
 
-try:
-    from graph import read_graph, write_graph
-    from bipartite_matching import max_bipartite_matching
-except ImportError:
-    from . graph import read_graph, write_graph
-    from . bipartite_matching import max_bipartite_matching
+from tryalgo.bipartite_matching import max_bipartite_matching
 
 
 # snip{

@@ -3,10 +3,7 @@
 # plus grand rectangle monochromatique
 # jill-jenn vie et christoph durr - 2014-2015
 
-try:
-    from rectangles_from_histogram import rectangles_from_histogram
-except ImportError:
-    from . rectangles_from_histogram import rectangles_from_histogram
+from tryalgo.rectangles_from_histogram import rectangles_from_histogram
 
 
 # snip{

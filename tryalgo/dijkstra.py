@@ -2,12 +2,6 @@
 # Shortest paths by Dijkstra
 # jill-jênn vie et christoph dürr - 2015
 
-try:
-    from graph import read_graph, write_graph
-    from our_heap import OurHeap
-except ImportError:
-    from . graph import read_graph, write_graph
-    from . our_heap import OurHeap
 
 # snip{
 from heapq import heappop, heappush
@@ -50,12 +44,11 @@ def dijkstra(graph, weight, source=0, target=None):
     return dist, prec
 # snip}
 
-'''
+
 # snip{ dijkstra_update_heap
-from our_heap import OurHeap
+from tryalgo.our_heap import OurHeap
 
 # snip}
-'''
 
 
 # snip{ dijkstra_update_heap
@@ -74,8 +67,7 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
        :complexity: `O(|V| + |E|log|V|)`
     """
     n = len(graph)
-    assert min((weight[u][v] for u in range(n) for v in graph[u]),
-               default=0) >= 0
+    assert all(weight[u][v] for u in range(n) for v in graph[u])
     prec = [None] * n
     dist = [float('inf')] * n
     dist[source] = 0

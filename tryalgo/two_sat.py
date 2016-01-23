@@ -4,10 +4,7 @@
 
 from random import randint
 from sys import path
-try:
-    from strongly_connected_components import tarjan
-except ImportError:
-    from . strongly_connected_components import tarjan
+from tryalgo.strongly_connected_components import tarjan
 
 
 # snip{

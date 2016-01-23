@@ -3,11 +3,6 @@
 # jill-jênn vie et christoph dürr - 2014-2015
 
 # part d'un code de David Eppstein
-try:
-    from rabin_karp import rabin_karp_matching
-except ImportError:
-    from . rabin_karp import rabin_karp_matching
-
 from time import time
 from random import randint
 

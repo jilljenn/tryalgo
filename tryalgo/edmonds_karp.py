@@ -3,12 +3,7 @@
 # jill-jenn vie et christoph durr - 2015
 
 from collections import deque
-try:
-    from graph import read_graph, write_graph, \
-                      add_reverse_arcs, make_flow_labels
-except ImportError:
-    from . graph import read_graph, write_graph, \
-                        add_reverse_arcs, make_flow_labels
+from tryalgo.graph import add_reverse_arcs
 
 
 # snip{

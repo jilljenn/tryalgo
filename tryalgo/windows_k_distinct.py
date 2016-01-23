@@ -5,31 +5,28 @@
 
 # snip{
 def windows_k_distinct(x, k):
-    """Largest window containing k distinct elements
+    """Find all largest windows containing exactly k distinct elements
 
-    :param x: list
-    :yields: one largest interval [i, j] with this property
+    :param x: list or string
+    :param k: positive integer
+    :yields: largest intervals [i, j) with len(set(x[i:j])) == k
     :complexity: `O(|x|)`
     """
-    i = 0
+    i = 0                               # indices de l'intervalle
     j = 0
-    nb_occ = {xi: 0 for xi in x}
-    dist = 0                    # dist := nb z tel que nb_occ[z] > 0
-    max_length = 0
-    largest_pair = None
-    while j < len(x) or (j == len(x) and dist >= k):
-        if j < len(x) and (dist < k or (dist == k and nb_occ[x[j]] > 0)):
-            if nb_occ[x[j]] == 0:
-                dist += 1
-            nb_occ[x[j]] += 1
-            j += 1
-        else:
-            nb_occ[x[i]] -= 1
-            if nb_occ[x[i]] == 0:
+    occ = {xi: 0 for xi in x}           # nombre d'occurrences en x[i:j]
+    dist = 0                            # éléments distincts en x[i:j]
+    while j < len(x):
+        while dist == k:                # déplacer début intervalle
+            occ[x[i]] -= 1              # mettre à jour compteurs
+            if occ[x[i]] == 0:
                 dist -= 1
             i += 1
-        if dist == k and j - i > max_length:
-            max_length = j - i
-            largest_pair = (i, j)
-    return largest_pair
+        while j < len(x) and (dist < k or occ[x[j]]):
+            if occ[x[j]] == 0:          # mettre à jour compteurs
+                dist += 1
+            occ[x[j]] += 1
+            j += 1                      # déplacer fin intervalle
+        if dist == k:
+            yield (i, j)                # un intervalle détecté
 # snip}

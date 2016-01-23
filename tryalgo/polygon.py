@@ -4,7 +4,7 @@
 # jill-jenn vie et christoph durr - 2014-2015
 
 
-# snip{
+# snip{ area
 def area(p):
     """Area of a polygone
 
@@ -17,6 +17,47 @@ def area(p):
     for i in range(len(p)):
         A += p[i - 1][0] * p[i][1] - p[i][0] * p[i - 1][1]
     return A / 2.
+# snip}
+
+
+from tryalgo.range_minimum_query import RangeMinQuery
+
+# snip{ is_simple
+def is_simple(polygon):
+    """Test if a rectilinear polygon is is_simple
+
+    :param polygon: list of points as (x,y) pairs along the closed polygon
+    :returns: True if the segements do not intersect
+    :complexity: O(n log n) for n=len(polygon)
+    """
+    if len(set(polygon)) < len(polygon):
+        return False    # enlever si on accepte les intersections de points
+    n = len(polygon)
+    order = list(range(n))
+    order.sort(key=lambda i: polygon[i])         # ordre lexicographique
+    rank_to_y = list(set(p[1] for p in polygon))
+    rank_to_y.sort()
+    y_to_rank = {rank_to_y[i]: i for i in range(len(rank_to_y))}
+    S = RangeMinQuery([False] * len(rank_to_y))  # structure balayage
+    for i in order:
+        x, y = polygon[i]
+        rank = y_to_rank[y]
+        #                                    -- type de point
+        right_x = max(polygon[i - 1][0], polygon[(i + 1) % n][0])
+        left   = x < right_x
+        top_y = max(polygon[i - 1][1], polygon[(i + 1) % n][1])
+        bottom = y < top_y
+        if left:                    # il ne faut pas encore y dans S
+            if S[rank]:
+                return False
+            S[rank] = True          # ajouter y à S
+        else:
+            S[rank] = False         # enlever y de S
+        if bottom:
+            hi = y_to_rank[top_y]   # vérifier S entre rank + 1 et hi - 1
+            if hi - rank >= 2 and S.range_min(rank + 1, hi):
+                return False
+    return True
 # snip}
 
 

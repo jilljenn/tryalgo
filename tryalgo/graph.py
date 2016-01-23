@@ -184,6 +184,28 @@ def weight_to_graph(weight):
     return graph
 
 
+def graph_weight_to_sparse(graph, weight=None):
+    """Transforms the weighted adjacency list representation of a graph into
+    the adjacency dictionnary representation"""
+    if weight:
+        return [{v:weight[u][v] for v in graph[u]} for u in range(len(graph))]
+    else:
+        return [{v:None for v in graph[u]} for u in range(len(graph))]
+
+
+def sparse_to_graph_weight(sparse):
+    """Transforms the adjacency dictionnary representation of a graph into
+    the weighted adjacency list representation"""
+    V = range(len(sparse))
+    graph = [[] for _ in V]
+    weight = [[None for v in V] for u in V]
+    for u in V:
+        for v in sparse[u]:
+            graph[u].append(v)
+            weight[u][v] = sparse[u][v]
+    return graph, weight
+
+
 def extract_path(prec, v):
     """extracts a path in form of vertex list from source to vertex v
        given a precedence table prec leading to the source"""

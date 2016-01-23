@@ -3,10 +3,6 @@
 # jill-jenn vie et christoph durr - 2014-2015
 
 from collections import deque
-try:
-    from graph import read_graph, write_graph
-except ImportError:
-    from . graph import read_graph, write_graph
 
 
 # snip{
@@ -44,14 +40,3 @@ def dist01(graph, weight, source=0, target=None):
     return dist, prec
 # snip}
 
-
-if __name__ == '__main__':
-    for testfile in ['guw_40']:
-        fullpath = "../../data/%s.txt" % testfile
-        graph, weight = read_graph(fullpath, directed=False, weighted=True)
-        dist, prec = dist01(graph, weight)
-        arc_mark = set((prec[u], u) for u in range(len(graph)))
-        arc_mark |= set((u, prec[u]) for u in range(len(graph)))
-        write_graph("../../data/dist01_%s.dot" % testfile, graph,
-                    directed=False, arc_label=weight,
-                    node_label=dist, arc_mark=arc_mark)
