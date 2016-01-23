@@ -4,13 +4,14 @@ import unittest
 import random
 from collections import deque
 
-from tryalgo.graph import write_graph, extract_path, make_flow_labels, weight_to_graph, tree_adj_to_prec, tree_prec_to_adj
+from tryalgo.graph import write_graph, extract_path, make_flow_labels
+from tryalgo.graph import weight_to_graph, tree_adj_to_prec, tree_prec_to_adj, graph_weight_to_sparse
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm import inv
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
 from tryalgo.bellman_ford import bellman_ford
-from tryalgo.knapsack import knapsack
+from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges
@@ -56,7 +57,7 @@ from tryalgo.min_mean_cycle import min_mean_cycle
 from tryalgo.next_permutation import next_permutation
 from tryalgo.our_heap import OurHeap
 from tryalgo.our_queue import OurQueue
-from tryalgo.polygon import area
+from tryalgo.polygon import area, is_simple
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.rabin_karp import rabin_karp_factor
 from tryalgo.range_minimum_query import RangeMinQuery
@@ -167,35 +168,42 @@ class TestTryalgo(unittest.TestCase):
 
     def test_bellman_ford(self):
         for title, graph, weight, has_circuit, shortest_path in self.L_dir:
-            dist, prec, detect = bellman_ford(graph, weight)
-            self.assertEqual(has_circuit, detect)
-            if not has_circuit:
-                target = len(graph) - 1
-                if shortest_path is not None:
-                    path = extract_path(prec, target)
-                    self.assertEqual(path, shortest_path)
-                else:
-                    self.assertEqual(dist[target], float('inf'))
+            sparse = graph_weight_to_sparse(graph, weight)
+            for g,w in [(graph, weight), (sparse, sparse)]:
+                dist, prec, detect = bellman_ford(g, w)
+                self.assertEqual(has_circuit, detect)
+                if not has_circuit:
+                    target = len(graph) - 1
+                    if shortest_path is not None:
+                        path = extract_path(prec, target)
+                        self.assertEqual(path, shortest_path)
+                    else:
+                        self.assertEqual(dist[target], float('inf'))
 
 
     def test_bfs(self):
         # graphe complet plus un sommet isolé
         n = 7
-        G = [[j for j in range(n) if j != i] for i in range(n)]   # graphe complet
-        G.append([])                                              # sommet isolé
-        self.assertEqual(bfs(G), ([0] + [1] * (n-1) + [float('inf')],
-                                  [None] +  [0] * (n-1) + [None]))
-
+        G1 = [[j for j in range(n) if j != i] for i in range(n)]   # graphe complet
+        G1.append([])                                              # sommet isolé
+        A1 = ([0] + [1] * (n-1) + [float('inf')],
+                                  [None] +  [0] * (n-1) + [None])
         # arbre binaire complet
-        A = [[], [2, 3]] + [[2 * i, 2 * i + 1, i // 2] for i in range(2, 8)] + \
-            [[i // 2] for i in range(8, 16)]
-        self.assertEqual(bfs(A, 1), ([float('inf'), 0, 1, 1, 2, 2, 2, 2,
+        G2 = [[], [2, 3]] + [[2 * i, 2 * i + 1, i // 2] for i in range(2, 8)] + \
+             [[i // 2] for i in range(8, 16)]
+        A2 = ([float('inf'), 0, 1, 1, 2, 2, 2, 2,
                                                   3, 3, 3, 3, 3, 3, 3, 3],
                                      [None, None, 1, 1, 2, 2, 3, 3, 4,
-                                                  4, 5, 5, 6, 6, 7, 7]))
-        self.assertEqual(bfs([[]]), ([0], [None]))
-        self.assertEqual(bfs([[], []]), ([0, float('inf')], [None, None]))
-        self.assertEqual(bfs([[1], [0]]), ([0, 1], [None, 0]))
+                                                  4, 5, 5, 6, 6, 7, 7])
+        # list of graph, source, answer tuples
+        L = [(G1, 0, A1), (G2, 1, A2),
+             ([[]], 0, ([0], [None])),
+             ([[], []], 0, ([0, float('inf')], [None, None])),
+             ([[1], [0]], 0, ([0, 1], [None, 0]))]
+        for graph, source, answer in L:
+            V = range(len(graph))
+            for g in [graph, graph_weight_to_sparse(graph)]:
+                self.assertEqual(bfs(g, source), answer)
 
 
     def test_cut_nodes_edges(self):
@@ -206,8 +214,10 @@ class TestTryalgo(unittest.TestCase):
                   [2, 3, 5, 6],
                   [0, 1, 3, 4],
                   [3, 4]]
+            A0 = ([], [])
             G1 = [[], [2, 4], [1, 3, 5], [2, 4, 5], [3, 1], [2, 3, 6, 7], [5, 7, 8],
                   [5, 6, 8], [6, 7, 9], [8, 10, 11], [9, 11], [9, 10]]
+            A1 = ([5, 8, 9], [(8, 9)])
             G2 = [[2, 5],
                   [3, 8],
                   [0, 3, 5],
@@ -217,13 +227,15 @@ class TestTryalgo(unittest.TestCase):
                   [3, 8],
                   [4],
                   [1, 3, 6]]
-            self.assertEqual( cut_nodes_edges(G0) , ([], []))
-            self.assertEqual( cut_nodes_edges(G1), ([5, 8, 9], [(8, 9)]))
-            self.assertEqual( cut_nodes_edges(G2), ([2, 3], [(2, 3), (4, 7)]))
-            self.assertEqual( cut_nodes_edges([[]]), ([], []))
-            self.assertEqual( cut_nodes_edges([[1], [0]]), ([], [(0, 1)]))
-            self.assertEqual( cut_nodes_edges([[1], [0, 2], [1]]), ([1], [(0, 1), (1, 2)]))
-            self.assertEqual( cut_nodes_edges([[1, 2], [0, 2], [0, 1, 3], [2]]), ([2], [(2, 3)]))
+            A2 = ([2, 3], [(2, 3), (4, 7)])
+            G3 = [[1, 2], [0, 2], [0, 1, 3], [2]]
+            A3 = ([2], [(2, 3)])
+            L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3),
+                 ([[]], ([], [])),
+                 ([[1], [0]], ([], [(0, 1)])),
+                 ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
+            for graph, answer in L:
+                self.assertEqual( cut_nodes_edges(graph), answer)
             # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
             #     cut_nodes, cut_edges = cut_nodes_edges(G)
             #     write_graph("biconnexes_%s.dot" % name, G,
@@ -662,8 +674,9 @@ XXXXX#...#
              ([2], [42], 1, 0),
              # ([], [], 0, 0),
              ([1], [42], 0, 0)]
-        for p, v, cmax, opt in L:
-            self.assertEqual(knapsack(p, v, cmax)[0], opt)
+        for f in [knapsack, knapsack2]:
+            for p, v, cmax, opt in L:
+                self.assertEqual(knapsack(p, v, cmax)[0], opt)
 
 
     def test_knuth_morris_pratt_border(self):
@@ -846,9 +859,52 @@ XXXXX#...#
                 if q1:
                     self.assertEqual( q1.popleft() , q2.pop() )
 
-    def test_pick(self):
+    def test_polygon_area(self):
         self.assertEqual( area([(1, 0), (2, 3), (2, 4), (0, 3)]) , 4 )
         self.assertEqual( area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1 )
+
+
+    def test_polygon_is_simple(self):
+        # +---+
+        # |   |
+        # +---+
+        self.assertTrue( is_simple([(0, 0), (0, 1), (1, 1), (1, 0)]) )
+        # +-------+
+        # |       |
+        # +---+   |
+        #     |   |
+        # +---+   |
+        # |       |
+        # +-------+
+        self.assertTrue( is_simple([(0, 0), (0, 1), (1, 1), (1, 2), (0, 2), (0, 3), (2, 3), (2, 0)]) )
+        # +-------+
+        # |       |
+        # +-------+
+        #         |
+        # +-------+
+        # |       |
+        # +-------+
+        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (0, 2), (0, 3), (2, 3), (2, 0)]) )
+        #     +---+
+        #     |   |
+        # +---+---+
+        # |   |
+        # +---+
+        self.assertFalse( is_simple([(0, 0), (0, 1), (1, 1), (1, 2), (2, 2), (2, 1), (1, 1), (1, 0)]) )
+        #     +---+
+        #     |   |
+        # +---+---+---+
+        # |           |
+        # +-----------+
+        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (1, 2), (1, 1), (3, 1), (3, 0)]) )
+        # +---+
+        # |   |
+        # +-------+
+        #     |   |
+        # +-------+
+        # |   |
+        # +---+
+        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (0, 2), (0, 3), (1, 3), (1, 0)]) )
 
 
     def test_predictive_text(self):
@@ -941,7 +997,10 @@ XXXXX#...#
                     #     continue
                     if i > k:
                         i, k = k, i
-                    self.assertEqual(S.range_min(i, k), min(T[i:k], default=float('inf')))
+                    if i == k:
+                        self.assertEqual(S.range_min(i, k), float('inf'))
+                    else:
+                        self.assertEqual(S.range_min(i, k), min(T[i:k]))
                 else:
                     S[i] = k
                     T[i] = k
@@ -1056,7 +1115,7 @@ XXXXX#...#
             for j in range(n):
                 self.assertEqual(sorted(G[n * i + di][n * j + dj] for di in range(n) for dj in range(n)), all_terms)
 
-    def test_three_partition(self):   
+    def test_three_partition(self):
         self.assertEqual(three_partition([5, 5, 3, 2]), (1, 2, 12))
         self.assertEqual(three_partition([1, 4, 5, 3, 2]), (3, 4, 24))
         self.assertEqual(three_partition([10, 2, 3]), None)
@@ -1130,10 +1189,12 @@ XXXXX#...#
     def test_windows_k_distinct(self):
         L = [("abbaca", 2), ("abbaca", 1), ("abbabacccabaabaccacab", 2)]
         for x, k in L:
-            answer = max(map(len, [x[i:j] for i in range(len(x)) for j in range(i + 1, len(x) + 1) if len(set(x[i:j])) == k]))
-            i, j = windows_k_distinct(x, k)
-            self.assertEqual(len(set(x[i:j])), k)
-            self.assertEqual(j - i, answer)
+            for i, j in windows_k_distinct(x, k):
+                self.assertEqual(len(set(x[i:j])), k)
+                if i>0:
+                    self.assertFalse(len(set(x[i-1:j])) == k)
+                if j<len(x):
+                    self.assertFalse(len(set(x[i:j+1])) == k)
 
 if __name__ == '__main__':
     unittest.main()
