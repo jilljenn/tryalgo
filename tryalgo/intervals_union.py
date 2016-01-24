@@ -4,7 +4,7 @@
 
 
 # snip{
-def union_intervalles(S):
+def intervals_union(S):
     """Union of intervals
 
     :param S: list of pairs (low, high) defining intervals [low, high)
@@ -28,7 +28,3 @@ def union_intervalles(S):
     return retval
 # snip}
 
-
-if __name__ == "__main__":
-    L = [(2, 3), (4, 6), (1, 5), (6, 7), (8, 10)]
-    assert union_intervalles(L) == [(1, 7), (8, 10)]

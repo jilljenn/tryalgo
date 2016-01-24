@@ -9,7 +9,7 @@ class RangeMinQuery:
     """Range minimum query
 
     maintains a table t, can read/write items t[i],
-    and query range_min(i,k) = min{ t[i], t[i + 1], ..., t[i + k - 1]}
+    and query range_min(i,k) = min{ t[i], t[i + 1], ..., t[k - 1]}
     :complexity: all operations in O(log n), for n = len(t)
     """
     def __init__(self, t, INF=float('inf')):

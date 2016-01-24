@@ -30,33 +30,36 @@ def is_simple(polygon):
     :returns: True if the segements do not intersect
     :complexity: O(n log n) for n=len(polygon)
     """
-    if len(set(polygon)) < len(polygon):
-        return False    # enlever si on accepte les intersections de points
     n = len(polygon)
     order = list(range(n))
     order.sort(key=lambda i: polygon[i])         # ordre lexicographique
     rank_to_y = list(set(p[1] for p in polygon))
     rank_to_y.sort()
     y_to_rank = {rank_to_y[i]: i for i in range(len(rank_to_y))}
-    S = RangeMinQuery([False] * len(rank_to_y))  # structure balayage
+    last = None
+    S = RangeMinQuery([0] * len(rank_to_y))      # structure balayage
     for i in order:
+        if last and polygon[last] == polygon[i]:
+            return False              # intersections sur des points
         x, y = polygon[i]
         rank = y_to_rank[y]
-        #                                    -- type de point
+        #                             -- type de point
         right_x = max(polygon[i - 1][0], polygon[(i + 1) % n][0])
         left   = x < right_x
-        top_y = max(polygon[i - 1][1], polygon[(i + 1) % n][1])
-        bottom = y < top_y
-        if left:                    # il ne faut pas encore y dans S
+        below_y = min(polygon[i - 1][1], polygon[(i + 1) % n][1])
+        high = y > below_y
+        if left:                      # il ne faut pas encore y dans S
             if S[rank]:
-                return False
-            S[rank] = True          # ajouter y à S
+                return False          # inters. entre deux segm. horiz.
+            S[rank] = -1              # ajouter y à S
         else:
-            S[rank] = False         # enlever y de S
-        if bottom:
-            hi = y_to_rank[top_y]   # vérifier S entre rank + 1 et hi - 1
-            if hi - rank >= 2 and S.range_min(rank + 1, hi):
-                return False
+            S[rank] = 0               # enlever y de S
+        if high:
+            lo = y_to_rank[below_y]   # vérifier S entre lo + 1 et rank - 1
+            if (below_y != polygon[last][1] or
+                rank - lo >= 2 and S.range_min(lo + 1, rank)):
+                return False          # inters. entre segm. horiz. et vertic.
+        last = i                      # mémoriser pour prochaine itération
     return True
 # snip}
 

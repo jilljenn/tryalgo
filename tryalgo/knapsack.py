@@ -81,15 +81,4 @@ def knapsack2(p, v, cmax):
         chosen.append(cursor[0])
     return pgv[n - 1][cmax], chosen
 
-if __name__ == '__main__':
-    # poids, valeur, capacité, optimum
-    for f in [knapsack, knapsack2]:
-        L = [([580, 1616, 1906, 1942, 50, 294],
-              [874, 620, 345, 269, 360, 470], 2000, 1704),
-             ([2, 3, 5], [6, 4, 2], 9, 10),
-             ([5, 4, 3, 2, 1], [30, 19, 20, 10, 20], 10, 70),
-             ([3, 3, 2, 2, 2], [40, 40, 10, 20, 30], 7, 90),
-             ([2], [42], 1, 0),
-             ([1], [42], 0, 0)]
-        for p, v, cmax, opt in L:
-            assert f(p, v, cmax)[0] == opt
+
