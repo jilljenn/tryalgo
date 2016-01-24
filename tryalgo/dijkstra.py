@@ -22,7 +22,7 @@ def dijkstra(graph, weight, source=0, target=None):
        :complexity: `O(|V| + |E|log|V|)`
     """
     n = len(graph)
-    assert all(weight[u][v] for u in range(n) for v in graph[u])
+    assert all(weight[u][v] >= 0 for u in range(n) for v in graph[u])
     prec = [None] * n
     black = [False] * n
     dist = [float('inf')] * n
@@ -66,7 +66,7 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
        :complexity: `O(|V| + |E|log|V|)`
     """
     n = len(graph)
-    assert all(weight[u][v] for u in range(n) for v in graph[u])
+    assert all(weight[u][v] >= 0 for u in range(n) for v in graph[u])
     prec = [None] * n
     dist = [float('inf')] * n
     dist[source] = 0
