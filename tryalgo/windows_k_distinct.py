@@ -13,7 +13,6 @@ def windows_k_distinct(x, k):
     :complexity: `O(|x|)`
     """
     dist, i, j = 0, 0, 0                # dist = |{x[i],..,x[j-1]}|
-    j = 0
     occ = {xi: 0 for xi in x}           # nombre d'occurrences en x[i:j]
     while j < len(x):
         while dist == k:                # déplacer début intervalle
