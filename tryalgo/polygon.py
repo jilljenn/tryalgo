@@ -36,11 +36,8 @@ def is_simple(polygon):
     rank_to_y = list(set(p[1] for p in polygon))
     rank_to_y.sort()
     y_to_rank = {rank_to_y[i]: i for i in range(len(rank_to_y))}
-    last = None
     S = RangeMinQuery([0] * len(rank_to_y))      # structure balayage
     for i in order:
-        if last and polygon[last] == polygon[i]:
-            return False              # intersections sur des points
         x, y = polygon[i]
         rank = y_to_rank[y]
         #                             -- type de point
@@ -56,10 +53,10 @@ def is_simple(polygon):
             S[rank] = 0               # enlever y de S
         if high:
             lo = y_to_rank[below_y]   # vérifier S entre lo + 1 et rank - 1
-            if (below_y != polygon[last][1] or
+            if (below_y != last_y or last_y == y or
                 rank - lo >= 2 and S.range_min(lo + 1, rank)):
                 return False          # inters. entre segm. horiz. et vertic.
-        last = i                      # mémoriser pour prochaine itération
+        last_y = y                    # mémoriser pour prochaine itération
     return True
 # snip}
 
