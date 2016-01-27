@@ -15,11 +15,11 @@ def all_subsets(n, card):
 
 
 def arithm_expr_target(x, target):
-    """Create arithmetic expression approaching target value
+    """ Create arithmetic expression approaching target value
 
     :param x: allowed constants
     :param target: target value
-    :returns: string in form "expression=value"
+    :returns: string in form 'expression=value'
     :complexity: huge
     """
     n = len(x)
@@ -41,7 +41,7 @@ def arithm_expr_target(x, target):
                             expr[S][vL + vR] = "(%s+%s)" % (eL, eR)
                             expr[S][vL - vR] = "(%s-%s)" % (eL, eR)
                             expr[S][vL * vR] = "(%s*%s)" % (eL, eR)
-                            if vR != 0 and vR % vR == 0:
+                            if vR != 0 and vL % vR == 0:
                                 expr[S][vL // vR] = "(%s/%s)" % (eL, eR)
     # chercher expression la plus proche du but
     for dist in range(target + 1):
