@@ -13,7 +13,7 @@ def _augment(graph, capacity, flow, source, target):
     n = len(graph)
     A = [0] * n               # A[v]=cap.res.min sur chemin source-v
     augm_path = [None] * n    # None = sommet pas encore visité
-    Q = deque()             # parcours BFS
+    Q = deque()               # parcours BFS
     Q.append(source)
     augm_path[source] = source
     A[source] = float('inf')
@@ -23,7 +23,7 @@ def _augment(graph, capacity, flow, source, target):
             cuv = capacity[u][v]
             residual = cuv - flow[u][v]
             if residual > 0 and augm_path[v] is None:
-                augm_path[v] = u  # stocker prédécesseur
+                augm_path[v] = u    # stocker prédécesseur
                 A[v] = min(A[u], residual)
                 if v == target:
                     break
@@ -35,8 +35,8 @@ def _augment(graph, capacity, flow, source, target):
 def edmonds_karp(graph, capacity, source, target):
     """Maxmum flow by Edmonds-Karp
 
-    :param graph: adjacency list
-    :param capacity: matrix
+    :param graph: adjacency list or adjacency dictionnary of a directed graph
+    :param capacity: matrix or adjacency dictionnary
     :param int source: vertex
     :param int target: vertex
     :returns: flow matrix, flow value

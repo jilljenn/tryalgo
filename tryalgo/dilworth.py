@@ -9,7 +9,7 @@ from tryalgo.bipartite_matching import max_bipartite_matching
 def dilworth(graph):
     """Decompose a DAG into a minimum number of chains by Dilworth
 
-    :param graph: adjacency list of a directed graph
+    :param graph: adjacency list or adjacency dictionnary of a directed graph
     :assumes: graph is acyclic
     :returns: table giving for each vertex the number of its chains
     :complexity: same as matching

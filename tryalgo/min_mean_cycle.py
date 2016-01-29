@@ -7,11 +7,11 @@
 def min_mean_cycle(graph, weight, start=0):
     """Minimum mean cycle by Karp
 
-    :param graph: adjacency list, directed graph
-    :param weight: matrix
+    :param graph: adjacency list or adjacency dictionnary of a directed graph
+    :param weight: matrix or adjacency dictionnary
     :param int start: vertex that should be contained in cycle
     :returns: cycle as vertex list, average arc weights
-             or None if there is no cycle from start
+              or None if there is no cycle from start
     :complexity:  `O(|V|*|E|)`
     """
     INF = float('inf')

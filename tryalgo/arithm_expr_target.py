@@ -38,9 +38,10 @@ def arithm_expr_target(x, target):
                             eL = expr[L][vL]
                             eR = expr[R][vR]
                             expr[S][vL] = eL
-                            expr[S][vL + vR] = "(%s+%s)" % (eL, eR)
                             expr[S][vL - vR] = "(%s-%s)" % (eL, eR)
-                            expr[S][vL * vR] = "(%s*%s)" % (eL, eR)
+                            if L < R:   # break symmetry
+                                expr[S][vL + vR] = "(%s+%s)" % (eL, eR)
+                                expr[S][vL * vR] = "(%s*%s)" % (eL, eR)
                             if vR != 0 and vL % vR == 0:
                                 expr[S][vL // vR] = "(%s/%s)" % (eL, eR)
     # chercher expression la plus proche du but

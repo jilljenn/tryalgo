@@ -8,7 +8,7 @@
 def cut_nodes_edges(graph):
     """Bi-connected components
 
-    :param graph: adjacency list. Cannot be adjacency dictionnary.
+    :param graph: adjacency list of an undirected graph. Cannot be adjacency dictionnary.
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)`
     """

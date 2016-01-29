@@ -5,7 +5,8 @@ import random
 from collections import deque
 
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
-from tryalgo.graph import weight_to_graph, tree_adj_to_prec, tree_prec_to_adj, graph_weight_to_sparse
+from tryalgo.graph import weight_to_graph, tree_adj_to_prec, tree_prec_to_adj
+from tryalgo.graph import graph_weight_to_sparse, sparse_to_graph_weight
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm import inv
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
@@ -43,6 +44,7 @@ from tryalgo.interval_cover import interval_cover
 from tryalgo.intervals_union import intervals_union
 from tryalgo.knuth_morris_pratt_border import maximum_border_length, powerstring_by_border
 from tryalgo.knuth_morris_pratt import knuth_morris_pratt
+from tryalgo.kruskal import kruskal
 from tryalgo.kuhn_munkres_n4 import kuhn_munkres as kuhn_munkres_n4
 from tryalgo.kuhn_munkres    import kuhn_munkres as kuhn_munkres_n3
 from tryalgo.rabin_karp import rabin_karp_matching
@@ -114,10 +116,12 @@ class TestTryalgo(unittest.TestCase):
             self.assertEqual(arithm_expr_eval(cell, expr), val)
 
     def test_arithm_expr_target(self):
-        L = [([3, 100, 8, 8, 10, 6], 683, "(((6*((8+8)+100))-10)-3)=683" ),
-         ([3, 75, 2, 4, 1, 1],   997, "(((1+(4*3))*(2+75))-1)=1000")]
+        L = [([3, 100, 8, 8, 10, 6], 683, 683 ),
+         ([3, 75, 2, 4, 1, 1],   997, 1000)]
         for vals, target, res in L:
-            self.assertEqual(arithm_expr_target(vals, target), res)
+            answer = arithm_expr_target(vals, target)
+            closest = int(answer[ answer.find('=')+1: ])
+            self.assertEqual(closest, res)
 
 
     graph_undir_1 = [[1,3], [0,1,2], [1,5], [0,4,6], [3,5,7], [2,4,8], [3,7], [4,6,8], [5,7]]
@@ -238,6 +242,7 @@ class TestTryalgo(unittest.TestCase):
                  ([[1], [0]], ([], [(0, 1)])),
                  ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
             for graph, answer in L:
+                # for g in [graph, graph_weight_to_sparse(graph)]:
                 self.assertEqual( cut_nodes_edges(graph), answer)
             # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
             #     cut_nodes, cut_edges = cut_nodes_edges(G)
@@ -325,7 +330,11 @@ class TestTryalgo(unittest.TestCase):
             n = len(graph)
             seen = [False] * n
             dfs(graph, start, seen)
-            return [node for node in range(n) if seen[node]]
+            retval = [node for node in range(n) if seen[node]]
+            seen = [False] * n
+            dfs(graph_weight_to_sparse(graph), start, seen)
+            self.assertEqual(retval, [node for node in range(n) if seen[node]])
+            return retval
 
         n = 100000
         G = [[v for v in range(u + 1, min(u + 10, n))] for u in range(n)]
@@ -356,6 +365,8 @@ class TestTryalgo(unittest.TestCase):
             self.assertEqual( reachable([[1], [2], []], 1, f), [1, 2] )
             self.assertEqual( reachable([[1, 5], [2, 3, 5], [3], [4, 5], [5], []], 2, f), [2, 3, 4, 5] )
 
+
+    def test_dfs_grid(self):
         inTextGrid = """\
 ##########
 .....#...#
@@ -384,16 +395,23 @@ XXXXX#...#
         dfs_grid(grid, 1, 0)
         self.assertEqual( str(grid), str(out) )
 
-        self.assertEqual( find_cycle([]), None )
-        self.assertEqual( find_cycle([[]]), None )
-        self.assertEqual( find_cycle([[], []]), None )
-        self.assertEqual( find_cycle([[1], [0]]), None )
-        self.assertEqual( find_cycle([[], [2], [1]]), None )
-        self.assertEqual( set(find_cycle([[1, 2], [0, 2], [0, 1]])), {1,2,0} )
-        # directed graph could generate infinite loop
-        self.assertEqual( find_cycle([[1, 2], [0], [0], [2, 4], [3]]) , [2, 3] )
-        self.assertEqual( find_cycle([[1, 2], [0], [0]]), None )
-        self.assertEqual( find_cycle([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]]), [4, 5, 3] )
+    def test_find_cycle(self):
+        L = [ ([], None),
+              ([[]], None),
+              ([[], []], None),
+              ([[1], [0]], None),
+              ([[], [2], [1]], None),
+              ([[1, 2], [0, 2], [0, 1]], {0,1,2}),
+              ([[1, 2], [0], [0], [2, 4], [3]], [2, 3]),
+              ([[1, 2], [0], [0]], None),
+              ([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]], [4, 5, 3]) ]
+        for graph, result in L:
+            for g in [graph, graph_weight_to_sparse(graph)]:
+                answer = find_cycle(g)
+                if isinstance(result, set):
+                    self.assertEqual(set(answer), result)
+                else:
+                    self.assertEqual(answer, result)
 
 
     def test_dijkstra(self):
@@ -425,16 +443,18 @@ XXXXX#...#
             ]
         for f in [dijkstra, dijkstra_update_heap]:
             for title, graph, weight, shortest_path in L_dir:
-                source = 0
-                target = len(graph)-1
-                dist, prec = f(graph, weight, source, target)
-                path = extract_path(prec, target)
-                if shortest_path is None:
-                    self.assertFalse(path[0] == source)
-                else:
-                    self.assertEqual(path, shortest_path)
-                    val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
-                    self.assertEqual(dist[target], val)
+                sparse = graph_weight_to_sparse(graph, weight)
+                for g, w in [(graph, weight), (sparse, sparse)]:
+                    source = 0
+                    target = len(g)-1
+                    dist, prec = f(g, w, source, target)
+                    path = extract_path(prec, target)
+                    if shortest_path is None:
+                        self.assertFalse(path[0] == source)
+                    else:
+                        self.assertEqual(path, shortest_path)
+                        val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
+                        self.assertEqual(dist[target], val)
 
 
     def test_dilworth(self):
@@ -447,7 +467,8 @@ XXXXX#...#
              [8],
              [],
              []]
-        self.assertEqual(set(dilworth(G)), {0,1,2})
+        for graph in [G, graph_weight_to_sparse(G)]:
+            self.assertEqual(set(dilworth(graph)), {0,1,2})
         # write_graph(dotfile="dilworth.dot", graph=G, directed=True, node_label=p)
 
 
@@ -478,10 +499,12 @@ XXXXX#...#
                   [_, _, _, _, _, _, 99, _, _, _, 0, 10],
                   [_, _, _, _, _, _, _, 15, 3, 7, 10, 0]]
         for f in [dinic, edmonds_karp, ford_fulkerson]:
-            flow_matr, flow_val = f(graph, capacity, 0, 11)
-            self.assertEqual(flow_val, 35)
-            labels = make_flow_labels(graph, flow_matr, capacity)
-            # write_graph("dinic.dot", graph, directed=True, arc_label=labels)
+            sparse = graph_weight_to_sparse(graph, capacity)
+            for g, w in [(graph, capacity), (sparse, sparse)]:
+                flow_matr, flow_val = f(g, w, 0, 11)
+                self.assertEqual(flow_val, 35)
+                labels = make_flow_labels(g, flow_matr, w)
+                # write_graph("dinic.dot", graph, directed=True, arc_label=labels)
 
 
     def test_dist_grid(self):
@@ -527,6 +550,7 @@ XXXXX#...#
                   [[1, 2], [0, 2], [3], [1]],
                   [[1], [2], [3], [4, 5], [3, 6], [4], [0]]]
         for g in graphs:
+            # for g in [graph, graph_weight_to_sparse(graph)]:
             self.assertTrue(is_eulerian_tour(g, eulerian_tour_directed(g)))
 
 
@@ -594,7 +618,7 @@ XXXXX#...#
                   [ 0, 0, 1, _, _, _, _, _, _],  # 1
                   [ _, 1, _, _, _, 1, _, _, _],  # 2
                   [ 0, _, _, _, 1, _, 0, _, _],  # 3
-                  [ _, _, _, 1, _, 5, _, 0, _],  # 4
+                  [ _, _, _, 1, _, 1, _, 0, _],  # 4
                   [ _, _, 1, _, 1, _, _, _, 0],  # 5
                   [ _, _, _, 0, _, _, _, 0, _],  # 6
                   [ _, _, _, _, 0, _, 0, _, _],  # 7
@@ -612,17 +636,19 @@ XXXXX#...#
                 [[ _, _],
                  [ _, _]], None),
             ]
-        for title, graph, weight, shortest_path in L_dir:
-            source = 0
-            target = len(graph) - 1
-            dist, prec = dist01(graph, weight, source, target)
-            path = extract_path(prec, target)
-            if shortest_path is None:
-                self.assertFalse(path[0] == source)
-            else:
-                self.assertEqual(path, shortest_path)
-                val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
-                self.assertEqual(dist[target], val)
+        for title, g, w, shortest_path in L_dir:
+            sparse = graph_weight_to_sparse(g, w)
+            for graph, weight in [(g, w), (sparse, sparse)]:
+                source = 0
+                target = len(graph) - 1
+                dist, prec = dist01(graph, weight, source, target)
+                path = extract_path(prec, target)
+                if shortest_path is None:
+                    self.assertFalse(path[0] == source)
+                else:
+                    self.assertEqual(path, shortest_path)
+                    val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
+                    self.assertEqual(dist[target], val)
 
 
     def test_huffman(self):
@@ -694,6 +720,14 @@ XXXXX#...#
                          [0, 0, 0, 1, 0, 1, 2, 3, 2, 3, 2, 3, 1, 2, 3, 2, 0])
         self.assertEqual( powerstring_by_border("ababab"), 3)
         self.assertEqual( powerstring_by_border("abaab"), 1)
+
+
+    def test_kruskal(self):
+        # from http://www.ics.uci.edu/~eppstein/PADS/MinimumSpanningTree.py
+        sparse = [{1:11,2:13,3:12}, {0:11,3:14}, {0:13,3:10}, {0:12,1:14,2:10}]
+        tree = [(2, 3), (0, 1), (0, 3)]
+        for graph, weight in [(sparse, sparse), sparse_to_graph_weight(sparse)]:
+            self.assertEqual(kruskal(graph, weight), tree)
 
 
     def test_knuth_morris_pratt(self):
@@ -876,8 +910,11 @@ XXXXX#...#
         A2 = ([1], -8)
         A3 = None
 
-        for weight, answ in [(W0, A0), (W1, A1), (W2, A2), (W3, A3)]:
-            self.assertEqual( min_mean_cycle(weight_to_graph(weight), weight), answ)
+        for w, answ in [(W0, A0), (W1, A1), (W2, A2), (W3, A3)]:
+            g = weight_to_graph(w)
+            sparse = graph_weight_to_sparse(g, w)
+            for graph, weight in [(g, w), (sparse, sparse)]:
+                self.assertEqual( min_mean_cycle(graph, weight), answ)
 
 
     def test_next_permutation(self):
@@ -1004,17 +1041,6 @@ XXXXX#...#
         self.assertFalse( is_simple([(0, 3), (0, 2), (2, 2), (2, 1), (3, 1), (3, 0), (1, 0), (1, 3)]) )
 
 
-    def test_predictive_text(self):
-        dico = [("another", 5),  ("contest", 6),  ("follow", 3),
-                ("give", 13),  ("integer", 6),  ("new", 14),  ("program", 4)]
-        prop = predictive_text(dico)
-        A = ""
-        for seq in ["7764726", "639", "468", "2668437", "7777"]:
-            for i in range(len(seq)):
-                A += propose(prop, seq[:i + 1]) + " "
-        self.assertEqual( A, "p pr pro prog progr progra program n ne new g "\
-                    "in int c co con cont anoth anothe another p pr None None ")
-
 
     def test_tree_adj_to_prec(self):
         graph = [[1], [0, 2, 9], [1, 3, 5], [2, 4], [3], [2, 6, 7, 8],
@@ -1024,8 +1050,6 @@ XXXXX#...#
         self.assertEqual( tree_prec_to_adj(prec) , graph )
         cycle = [[1, 2], [0, 2], [0, 1]]
         tree_adj_to_prec(cycle)  # test that there is no infinite loop
-
-
 
 
     def test_our_heap(self):
@@ -1059,15 +1083,16 @@ XXXXX#...#
         self.assertEqual(area([(1, 0), (2, 3), (2, 4), (0, 3)]), 4)
         self.assertEqual(area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1)
 
+
     def test_predictive_text(self):
         dico = [("another", 5),  ("contest", 6),  ("follow", 3),
-            ("give", 13),  ("integer", 6),  ("new", 14),  ("program", 4)]
+                ("give", 13),  ("integer", 6),  ("new", 14),  ("program", 4)]
         prop = predictive_text(dico)
         A = ""
         for seq in ["7764726", "639", "468", "2668437", "7777"]:
             for i in range(len(seq)):
                 A += propose(prop, seq[:i + 1]) + " "
-        self.assertEqual(A, "p pr pro prog progr progra program n ne new g "\
+        self.assertEqual( A, "p pr pro prog progr progra program n ne new g "\
                     "in int c co con cont anoth anothe another p pr None None ")
 
     def test_rabin_karp(self):
@@ -1143,6 +1168,7 @@ XXXXX#...#
     def test_strongly_connected_components(self):
         def check(f, G, b):
             a = f(G)
+            # self.assertEqual(a, f(graph_weight_to_sparse(G)))
             # print("sccp(%s)=%s" % (G, a))
             n = len(b)
             C = [None] * n
@@ -1218,16 +1244,17 @@ XXXXX#...#
         self.assertEqual(three_partition([10, 2, 3]), None)
 
     def test_topological_order(self):
+        n = 100
+        G = [[v for v in range(u + 1, min(u + 10, n))] for u in range(n)]
+        L = [([], []),
+             ([[]], [0]),
+             ([[], [0]], [1, 0]),
+             ([[1], []], [0, 1]),
+             ([[1, 5], [2, 3, 5], [3], [4, 5], [5], []],  [0, 1, 2, 3, 4, 5]),
+             (G, list(range(n))  ) ]
         for f in [topological_order_dfs, topological_order]:
-            self.assertEqual(f([]), [])
-            self.assertEqual(f([[]]), [0])
-            self.assertEqual(f([[], [0]]), [1, 0])
-            self.assertEqual(f([[1], []]), [0, 1])
-            self.assertEqual(f([[1, 5], [2, 3, 5], [3], [4, 5], [5], []]),
-                    [0, 1, 2, 3, 4, 5])
-            n = 100
-            G = [[v for v in range(u + 1, min(u + 10, n))] for u in range(n)]
-            self.assertEqual(f(G), list(range(n)))
+            for graph, result in L:
+                self.assertEqual(f(graph), result)
 
     def test_trie(self):
         T = Trie(["as", "porc", "pore", "pre", "pres", "pret"])

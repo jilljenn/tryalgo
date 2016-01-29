@@ -10,7 +10,7 @@ from heapq import heappop, heappush
 def dijkstra(graph, weight, source=0, target=None):
     """single source shortest paths by Dijkstra
 
-       :param graph: adjacency list
+       :param graph: adjacency list or adjacency dictionnary of a directed graph
        :param weight: matrix
        :assumes: weights are non-negative
        :param source: source vertex
@@ -55,7 +55,7 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
     """single source shortest paths by Dijkstra
        with a heap implementing item updates
 
-       :param graph: adjacency list
+       :param graph: adjacency list or adjacency dictionnary of a directed graph
        :param weight: matrix
        :assumes: weights are non-negatif and weights are infinite for non edges
        :param source: source vertex

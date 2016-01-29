@@ -9,8 +9,8 @@ from collections import deque
 def dist01(graph, weight, source=0, target=None):
     """Shortest path in a 0,1 weighted graph
 
-    :param graph: adjacency list
-    :param weight: matrix
+    :param graph: adjacency list or adjacency dictionnary of a directed graph
+    :param weight: matrix or adjacency dictionnary
     :param int source: vertex
     :param target: exploration stops once distance to target is found
     :returns: distance table, predecessor table
