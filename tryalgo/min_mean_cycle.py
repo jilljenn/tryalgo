@@ -7,8 +7,8 @@
 def min_mean_cycle(graph, weight, start=0):
     """Minimum mean cycle by Karp
 
-    :param graph: adjacency list or adjacency dictionnary of a directed graph
-    :param weight: matrix or adjacency dictionnary
+    :param graph: adjacency list or adjacency dictionary of a directed graph
+    :param weight: matrix or adjacency dictionary
     :param int start: vertex that should be contained in cycle
     :returns: cycle as vertex list, average arc weights
               or None if there is no cycle from start

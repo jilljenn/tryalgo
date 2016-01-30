@@ -7,7 +7,7 @@
 def dfs_recursive(graph, node, seen):
     """DFS, recursive implementation
 
-    :param graph: adjacency list or adjacency dictionnary of a directed graph
+    :param graph: adjacency list or adjacency dictionary of a directed graph
     :param node: to start graph exploration
     :param seen: boolean table, will be set true for the connected component
           containing node.
@@ -24,7 +24,7 @@ def dfs_recursive(graph, node, seen):
 def dfs_iterative(graph, start, seen):
     """DFS, iterative implementation
 
-    :param graph: adjacency list or adjacency dictionnary of a directed graph
+    :param graph: adjacency list or adjacency dictionary of a directed graph
     :param node: to start graph exploration
     :param seen: boolean table, will be set true for the connected component
           containing node.
@@ -79,7 +79,7 @@ def dfs_grid(grid, i, j, mark='X', free='.'):
 def find_cycle(graph):
   """find a cycle in an undirected graph
 
-  :param graph: adjacency list or adjacency dictionnary of an undirected graph
+  :param graph: adjacency list or adjacency dictionary of an undirected graph
   :returns: list of vertices in a cycle or None
   :complexity: `O(|V|+|E|)`
   """

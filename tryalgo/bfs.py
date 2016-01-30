@@ -9,7 +9,7 @@ from collections import deque
 def bfs(graph, start=0):
     """Shortest path in unweighted graph by BFS
 
-       :param graph: adjacency list or adjacency dictionnary of a directed graph
+       :param graph: adjacency list or adjacency dictionary of a directed graph
        :param start: source vertex
        :returns: distance table, precedence table
        :complexity: `O(|V|+|E|)`

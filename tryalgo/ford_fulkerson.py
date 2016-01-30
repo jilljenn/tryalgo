@@ -27,8 +27,8 @@ def _augment(graph, capacity, flow, val, u, target, visit):
 def ford_fulkerson(graph, capacity, s, t):
     """Maximum flow by Ford-Fulkerson
 
-    :param graph: adjacency list or adjacency dictionnary
-    :param capacity: matrix or adjacency dictionnary
+    :param graph: adjacency list or adjacency dictionary
+    :param capacity: matrix or adjacency dictionary
     :param int s: source vertex
     :param int t: target vertex
 

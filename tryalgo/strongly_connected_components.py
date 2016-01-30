@@ -10,7 +10,7 @@ __all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
 def tarjan_recursif(graph):
     """Strongly connected components by Tarjan, recursive implementation
 
-    :param graph: adjacency list, cannot be adjacency dictionnary
+    :param graph: adjacency list, cannot be adjacency dictionary
     :returns: list of lists for each component
     :complexity: linear
     """
@@ -54,7 +54,7 @@ def tarjan_recursif(graph):
 def tarjan(graph):
     """Strongly connected components by Tarjan, iterative implementation
 
-    :param graph: adjacency list, cannot be adjacency dictionnary
+    :param graph: adjacency list, cannot be adjacency dictionary
     :returns: list of lists for each component
     :complexity: linear
     """
@@ -139,7 +139,7 @@ def reverse(graph):
 def kosaraju(graph):
     """Strongly connected components by Kusaraju
 
-    :param graph: adjacency list, cannot be adjacency dictionnary
+    :param graph: adjacency list, cannot be adjacency dictionary
     :returns: list of lists for each component
     :complexity: linear
     """

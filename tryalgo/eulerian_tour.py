@@ -11,7 +11,7 @@ from tryalgo.graph import write_graph
 def eulerian_tour_undirected(graph):
     """Eulerian tour on an undirected graph
 
-       :param graph: adjacency list of an undirected graph, cannot be adjacency dictionnary
+       :param graph: adjacency list of an undirected graph, cannot be adjacency dictionary
        :assumes: graph is eulerian
        :returns: eulerian cycle as a vertex list
        :complexity: `O(|V|+|E|)`

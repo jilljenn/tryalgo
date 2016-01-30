@@ -1,0 +1,1330 @@
+---
+- chapter: anagrams
+  name:  Anagram Groups
+  order: 2
+  links:
+    - http://poj.org/problem?id=2408
+    - http://acm.tju.edu.cn/toj/showp1340.html
+
+- chapter: anagrams
+  name:  Anagram checker
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=84
+
+- chapter: expr_eval
+  name:  Boolean Expression
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2185.html
+
+- chapter: expr_eval
+  name:  Spreadsheet
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=132
+    - http://acm.tju.edu.cn/toj/showp1751.html
+
+- chapter: expr_eval
+  name:  Cells
+  order: 2
+  links:
+    - http://www.spoj.com/problems/IPCELLS/
+
+- chapter: bellman_ford
+  name:  Negative Cycles
+  order: 2
+  links:
+    - http://www.spoj.com/problems/NEGCYC/
+
+- chapter: bellman_ford
+  name:  Roads in Berland
+  order: 2
+  links:
+    - http://www.spoj.com/problems/CT25C/
+
+- chapter: BFS
+  name:  Hike on a Graph
+  order: 2
+  links:
+    - http://www.spoj.com/problems/HIKE/
+
+- chapter: biconnected_components
+  name:  The Key Stations
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2189.html
+
+- chapter: binary_search
+  name:  Fill the cisterns
+  order: 2
+  links:
+    - http://www.spoj.com/problems/CISTFILL/
+
+- chapter: binary_search
+  name:  Egg Drop
+  order: 2
+  links:
+    - https://code.google.com/codejam/contest/32003/dashboard#s=p2
+
+- chapter: maximum_flow
+  name:  Crime Wave
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=504
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=3585
+
+- chapter: bipartite_matching
+  name:  Dungeon of Death
+  order: 2
+  links:
+    - http://www.spoj.com/problems/QUEST4/
+
+- chapter: bipartite_matching
+  name:  Muddy Fields
+  order: 2
+  links:
+    - http://www.spoj.com/problems/MUDDY/
+
+- chapter: backtracking
+  name:  Mirror Maze
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=194
+
+- chapter: connected_components
+  name:  The Ant
+  order: 2
+  links:
+    - http://www.spoj.com/problems/ANTTT/
+
+- chapter: data_1d
+  name:  Unique Encryption Keys
+  order: 2
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3892
+
+- chapter: DFS
+  name:  Playing Boogle
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2258
+
+- chapter: DFS
+  name:  Mine
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2194.html
+
+- chapter: dijkstra
+  name:  War
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp3410.html
+
+- chapter: dijkstra
+  name:  Dragon Maze
+  order: 2
+  links:
+    - https://code.google.com/codejam/contest/2929486/dashboard#s=p3
+
+- chapter: dilworth
+  name:  Stock Charts
+  order: 2
+  links:
+    - https://code.google.com/codejam/contest/204113/dashboard#s=p2
+
+- chapter: dilworth
+  name:  Taxi  Cab Scheme
+  order: 2
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=1127
+    - http://poj.org/problem?id=2060
+
+- chapter: dinic
+  name:  Maximum Flow
+  order: 2
+  links:
+    - http://www.spoj.com/A12/problems/FLOW/
+
+- chapter: dinic
+  name:  Fast Maximum Flow
+  order: 2
+  links:
+    - http://www.spoj.com/problems/FASTFLOW/
+
+- chapter: graph01
+  name:  Finding Nemo
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1091.html
+    - http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2210
+
+- chapter: dist_grid
+  name:  A Famous Grid
+  order: 2
+  links:
+    - http://www.spoj.com/problems/SPIRALGR/
+
+- chapter: reading
+  name:  Enormous Input Test
+  order: 2
+  links:
+    - http://www.spoj.com/problems/INTEST/
+
+- chapter: eratosthene
+  name:  The Spiral of Primes
+  order: 2
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=79&page=show_problem&problem=121
+
+- chapter: eulerian_tour
+  name:  Goldbach graphs
+  order: 2
+  links:
+    - http://www.spoj.com/problems/GOLDG/
+
+- chapter: eulerian_tour
+  name:  Free Tour
+  order: 2
+  links:
+    - http://www.spoj.com/problems/FTOUR/
+
+- chapter: fast_exponentiation
+  name:  Modex
+  order: 2
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3671
+
+- chapter: fast_exponentiation
+  name:  Tiling a Grid With Dominoes
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp3011.html
+    - http://www.spoj.com/problems/GNY07H/
+
+- chapter: gale_shapley
+  name:  Stable Marriage Problem
+  order: 2
+  links:
+    - http://www.spoj.com/problems/STABLEMP/
+
+- chapter: gauss_jordan
+  name:  Ars Longa
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3491
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=18&page=show_problem&problem=1564
+
+- chapter: greedy
+  name:  Minimum Scalar Product
+  order: 2
+  links:
+    - https://code.google.com/codejam/contest/32016/dashboard
+
+- chapter: greedy
+  name:  Minimal Coverage
+  order: 2
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=961
+
+- chapter: huffman
+  name:  Huffman Trees
+  order: 2
+  links:
+    - http://poj.org/problem?id=1261
+
+- chapter: huffman
+  name:  Variable Radix Huffman Encoding
+  order: 2
+  links:
+    - http://www.spoj.com/problems/VHUFFM/
+
+- chapter: intervals_cover
+  name:  Radar Installation
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1115.html
+
+- chapter: BFS
+  name:  Traffic Jam
+  order: 2
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=2501
+    - http://acm.tju.edu.cn/toj/showp2272.html
+
+- chapter: BFS
+  name:  Ricochet Robots
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=861&page=show_problem&problem=4746
+
+- chapter: k-sum
+  name:  4 Values whose Sum is 0
+  order: 2
+  links:
+    - http://poj.org/problem?id=2785
+
+- chapter: knuth_morris_pratt
+  name:  Find the maximal product of string prefixes
+  order: 2
+  links:
+    - https://codility.com/programmers/challenges/carbo2013
+
+- chapter: knuth_morris_pratt
+  name: A Needle in the Haystack
+  order: 2
+  links:
+    - http://www.spoj.com/problems/NHAY/
+
+- chapter: kruskal
+  name:  Networking
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1676.html
+
+- chapter: kuhn_munkres
+  name:  Selfish Cities
+  order: 2
+  links:
+    - http://www.spoj.com/problems/SCITIES/
+
+- chapter: levenshtein
+  name:  The Separator in Grid
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1098.html
+
+- chapter: levenshtein
+  name:  Edit distance
+  order: 2
+  links:
+    - http://www.spoj.com/problems/EDIST/
+
+- chapter: levenshtein
+  name:  Advanced Edit Distance
+  order: 2
+  links:
+    - http://www.spoj.com/problems/ADVEDIST/
+
+- chapter: longest_common_subsequence
+  name:  Common Subsequence
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1683.html
+
+- chapter: longest_common_subsequence
+  name:  Longest Common Subsequence
+  order: 2
+  links:
+    - http://www.spoj.com/problems/LCS0/
+
+- chapter: longest_increasing_subsequence
+  name:  Easy Longest Increasing Subsequence
+  order: 2
+  links:
+    - http://www.spoj.com/problems/ELIS/
+
+- chapter: lowest_common_ancestor
+  name: City Driving
+  order: 2
+  links:
+    - http://cs.stanford.edu/group/acm/slpclive/problems/C.pdf
+    - http://cs.stanford.edu/group/acm/SLPC2011/
+
+- chapter: manacher
+  name:  Longest Palindrome
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2092
+
+- chapter: manacher
+  name:  Casting Spells
+  order: 2
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2976
+
+- chapter: matrix_chain_mult
+  name:  Mixtures
+  order: 2
+  links:
+    - http://www.spoj.com/problems/MIXTURES/
+
+- chapter: matrix_chain_mult
+  name:  The safe secret
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4750
+
+- chapter: matrix_chain_mult
+  name:  Optimal Array Multiplication Sequence
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2118.html
+
+- chapter: matrix_chain_mult
+  name:  Sweet and Sour Rock
+  order: 2
+  links:
+    - http://www.spoj.com/problems/ROCK/
+
+- chapter: min_mean_cycle
+  name:  Word Rings
+  order: 2
+  links:
+    - http://www.spoj.com/problems/WORDRING/
+
+- chapter: next_permutation
+  name:  GREAT+SWERC=PORTO
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=24&page=show_problem&problem=4742
+
+- chapter: next_permutation
+  name:  Anagram
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=131
+
+- chapter: shortest_path_variants
+  name:  Heavy Cargo
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1172.html
+
+- chapter: shortest_path_variants
+  name:  Almost the shortest route
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2459.html
+
+- chapter: longest_path_in_a_tree
+  name:  Labyrinth
+  order: 2
+  links:
+    - http://www.spoj.com/problems/LABYR1/
+    - http://acm.tju.edu.cn/toj/showp1056.html
+
+- chapter: longest_path_in_a_tree
+  name:  Longest path in a tree
+  order: 2
+  links:
+    - http://www.spoj.com/problems/PT07Z/
+
+- chapter: powerstring
+  name:  Power strings
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1239
+
+- chapter: powerstring
+  name:  Period
+  order: 2
+  links:
+    - http://www.spoj.com/problems/PERIOD/
+
+- chapter: predictive_text
+  name:  T9
+  order: 2
+  links:
+    - http://poj.org/problem?id=1451
+
+- chapter: range_minimum_query
+  name:  Tetris
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2885.html
+
+- chapter: rectangles_from_histogram
+  name:  Largest Rectangle in a Histogram
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1800.html
+
+- chapter: strongly_connected_components
+  name:  Capital City
+  order: 2
+  links:
+    - http://www.spoj.com/problems/CAPCITY/
+
+- chapter: structures
+  name:  Encryption
+  order: 2
+  links:
+    - http://www.spoj.com/problems/ACM_0036/
+
+- chapter: structures
+  name:  Phone List
+  order: 2
+  links:
+    - http://www.spoj.com/problems/PHONELST/
+
+- chapter: structures
+  name:  A concrete ad_hoc
+  order: 2
+  solution: |
+            Complexité constante par opération.
+            - probléme sur les lignes indépendant du problème sur les colonnes
+            - maintenir la permuation, mais aussi son inverse
+            - travailler en interne avec des indices débutant à 0
+            - rajouter 1 lors de l'affichage
+  links:
+    - http://www.spoj.com/problems/ACS/
+
+- chapter: structures
+  name:  Havannah
+  order: 2
+  links:
+    - https://code.google.com/codejam/contest/1835486/dashboard#s=p1
+
+- chapter: subsetsum
+  name:  Boat Burglary
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp4095.html
+
+- chapter: backtracking
+  name:  Sudoku (9x9)
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp1851.html
+    - http://www.spoj.com/problems/EASUDOKU/
+
+- chapter: backtracking
+  name:  Sudoku (16x16)
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2546.html
+    - http://www.spoj.com/problems/SUDOKU/
+
+- chapter: sweepline
+  name:  Retour vers le futur
+  order: 2
+  links:
+    - https://prologin.org/train/2012/semifinal/retour_vers_le_futur
+
+- chapter: topological_order
+  name:  Ordering Tasks
+  order: 2
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1246
+
+- chapter: topological_order
+  name:  Rare Order
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=136
+
+- chapter: topological_order
+  name:  Project File Dependencies
+  order: 2
+  links:
+    - http://www.spoj.com/problems/PFDEP/
+
+- chapter: traveling_salesman
+  name:  Collecting Beepers
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2696.html
+
+- chapter: sorting
+  name:  Disk Tree
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2364.html
+
+- chapter: sorting
+  name:  I am Lord Voldemort
+  order: 2
+  links:
+    - http://acm.tju.edu.cn/toj/showp2782.html
+
+- chapter: trie
+  name:  Spell checker
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=612
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1873
+
+- chapter: two_sat
+  name:  Manhattan
+  order: 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1260
+
+- chapter: two_sat
+  name:  Soldiers on Parade
+  order: 2
+  links:
+    - http://www.spoj.com/problems/SOPARADE/
+
+- chapter: union_disjoint_rectangles
+  name:  City Park
+  order: 2
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=657&page=show_problem&problem=4901
+
+- chapter: greedy
+  name: Flags
+  solution: https://codility.com/media/train/solution-flags.pdf
+  links:
+    - https://codility.com/demo/take-sample-test/flags
+
+- chapter: dijkstra
+  name: Hydrogenium
+  solution: https://codility.com/media/train/solution-flags.pdf
+  links:
+    - https://codility.com/programmers/challenges/hydrogenium2013
+
+- chapter: longest path
+  name: Ascending paths
+  solution: |
+            complexity(mlogm+n)
+            generate two arcs for each edge
+            compute for each arc (u,v) the longest ascending path ending at it,
+            by maximizing over all arcs entering u
+            status: timeout on big instances, but I think limit is set to tight
+  links:
+    - https://codility.com/demo/take-sample-test/magnesium2014/
+
+- chapter: binary_search
+  name:  SpeedCameras
+  solution: |
+            G[u] = voisins de u
+            0 = racine, oriente le graphe et génère notion de sous-arbre
+            d[u] = plus long chemin dans le sous-arbre de u à une feuille
+            cut(u,up,L) = plus petit nombre d'arêtes qu'il faut couper
+            dans le sous-arbre enraciné en u, (père = up)
+            pour qu'aucun chemin ne soit de longueur plus que L.
+            solution(A,B,K) = plus petit L tel que cut(0,None, L) <= K
+
+            cut: dynamic_programming par sommets en temps O(nlogn), mais O(n) est possible
+            solution: recherche dichotomique en O(logn)
+            complexité: O(n log^2 n)
+  links:
+    - https://codility.com/programmers/challenges/calcium2015
+
+- chapter: greedy
+  name: Prefix Suffix Set
+  links:
+    - http://codility.com/cert/start/beryllium2013/
+
+- chapter: ad_hoc
+  name: Dr Who - music sheets
+  broken:
+  solution: |
+            détecter en temps linéaire les hauteur des lignes
+            avec un balayage sur et entre les lignes détecter les notes pleines et vides
+  links:
+    - http://www.codingame.com/ide/?target=clogin&id=19287564c6d6347c80b4bcdc910980d74b45a0#!test:211501:true:http%253A%252F%252Fwww.codingame.com%252Fcg%252F%253Ftarget%253Dlanguage%2526id%253D2%2523!challengehub%253A19287564c6d6347c80b4bcdc910980d74b45a0
+
+- chapter: decoding
+  order: 1
+  name: Problem 3467
+  solution: |
+            convertir les caractères en nombres et sommer
+  links:
+    - http://acm.tju.edu.cn/toj/showp3467.html
+
+- chapter: greedy
+  name: ABCD
+  solution: |
+            greedy avec une seule lecture.
+            Se débrouiller pour que dans les fenêtes de forme [2*i,2*i+1] on trouve toutes les 4 lettres.
+            Donc les deux lettres du haut définissent ceux du bas, et la lettre précédente du bas détermine
+            l'ordre. Ceci est stocké dans le dictionnaire T par un précalcul.
+            complexité O(N)
+
+            MAUVAIS ALGORITHME: de gauche à droite, placer parmi les lettres possible celle qui a
+            le plus grand nombre d'occurence restants (et lexicographiquement la plus petite
+            en cas d'égalité)
+
+            CONTRE EXEMPLE
+            C A B D
+            A B C ?
+  links:
+    - http://www.spoj.pl/problems/ABCD/
+
+- chapter: binary_search
+  name: AggressiveCows
+  links:
+    - http://www.spoj.com/problems/AGGRCOW/
+
+- chapter: dynamic_programming
+  name:  Airbus vs. Boeing
+  solution: |
+            We want to remove a minimal number of edges to turn a forest in a
+            graph that can be drawn without crossings as a bipartite
+            graph. These graphs are called caterpillars. A caterpillar is a tree
+            where the longest path has only leafs attached to it.
+
+            our notation for caterpillars:
+
+            a-node : has two neighbors of degree>1
+            b-node : has degree>1 and one neighbor of degree>1
+            c-node : has degree=1
+
+            c--b--a--a--a--b--c
+              / \    |    /|\
+             c   c   c   c c c
+
+            DFS fixes an orientation of the trees.
+            Tv := subtree with root v
+            p[v] = parent node of v in the tree
+
+            in the following asum, bsum, csum refers to the sum over sons of v
+            and k to the number of sons
+            the type of the father is without taking into accounts Tv
+
+            D[v] = max where v has no father to connect to
+
+            C[v] = max where v has a degree 0 father
+
+            B[b] = max where v has a type B father
+
+            A[v] = max where v has a type A father,
+                   (or a B father, but v can only be a leaf of its father)
+
+            let CD0 be the maximum of c[u]-d[u] among all sons u of v
+            let BA0 be the same for b[u]-a[u]
+            let BA1 be the second maximum value of this difference
+
+            then
+
+            D[v] = 0 of v has no son, otherwise
+                 = max{ dsum,     -- do not connect to sons
+                        dsum+CD0, -- become leaf of a single son
+                        asum,     -- become a star
+                        asum+BA0, -- let one son to become B
+                        asum+BA1} -- let two sons become B
+
+            C[v] = max{ D[v],       -- don't connect to father, otherwise...
+                        1+asum,     -- become star
+                        1+asum+BA0, -- become B
+                        1+asum+BA0+BA1 }  -- become A with two B sons
+
+            B[v] = max{ D[v],       -- don't connect to father, otherwise...
+                        1+asum,     -- become B (father becomes A)
+                        1+asum+BA0 } -- become A with one B son
+
+            A[v] = max{ D[v],       -- don't connect to father
+                        1+dsum }    -- become leaf of its father
+
+            Complexity is O(N log N) but could be made linear.
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=16&page=show_problem&problem=2962
+
+- chapter: dijkstra
+  name: Almost the shortest route
+  order: 2
+  solution: |
+            d1[i] = distance de 1 a i
+            dN[i] = distance de i a N
+            opt = d1[N] (==dN[1])
+
+            afficher road (u,v, len)
+            seulement si d1[u] + len + dN[v] <= opt+K
+  links:
+    - http://acm.tju.edu.cn/toj/showp2459.html
+
+- chapter: ad_hoc
+  name: Advanced ASCII Cubes
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp2323.html
+    - http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=2438
+
+
+- chapter: ad_hoc
+  name: Australian Voting
+  links:
+    - http://acm.tju.edu.cn/toj/showp1299.html
+
+- chapter: ad_hoc
+  name: Babel Towers
+  links:
+    - http://acm.tju.edu.cn/toj/showp2499.html
+
+- chapter: pattern matching
+  name: Barcode of Judgment
+  links:
+    - http://livearchive.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2699
+
+- chapter: stack
+  name: Binary Trees
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp2801.html
+
+- chapter: dynamic_programming
+  name: Blocks
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1500
+
+- chapter: ad_hoc
+  name: Blood Type
+  links:
+    - http://acm.tju.edu.cn/toj/showp3268.html
+
+- chapter: dynamic_programming
+  name: Brackets sequence
+  links:
+    - http://acm.tju.edu.cn/toj/showp3268.html
+
+- chapter: DFS
+  name: Caterpillar
+  links:
+    - http://acm.tju.edu.cn/toj/showp2561.html
+
+- chapter: expr_eval
+  name: Compile Error
+  links:
+    - http://www.spoj.com/problems/CE/
+
+- chapter: backtracking
+  name: Channel Allocation
+  links:
+    - http://acm.tju.edu.cn/toj/showp1077.html
+
+- chapter: geometry
+  name: Chocolate Chip Cookies
+  links:
+    - http://acm.tju.edu.cn/toj/showp1300.html
+
+- chapter: dynamic_programming
+  name: Chopstick
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1212
+
+- chapter: ad_hoc
+  name: City hall
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp1090.html
+
+- chapter: greedy
+  name: Color A Tree
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp1096.html
+
+- chapter: ad_hoc
+  name: Common Item
+  links:
+    - http://acm.tju.edu.cn/toj/showp3108.html
+
+- chapter: sorting
+  name: Common Permutation
+  links:
+    - http://acm.tju.edu.cn/toj/showp3108.html
+
+- chapter: maximum_matching
+  name: Councilling
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1452
+
+- chapter: maximum_matching
+  name: Courses
+  links:
+    - http://acm.tju.edu.cn/toj/showp1050.html
+
+- chapter: dynamic_programming
+  name: Cow Solitaire
+  links:
+    - http://acm.tju.edu.cn/toj/showp2827.html
+
+- chapter: decoding
+  name: Crazy Search
+  links:
+    - http://acm.tju.edu.cn/toj/showp1663.html
+
+- chapter: permutation
+  name: Crypto Columns
+  links:
+    - http://acm.tju.edu.cn/toj/showp1530.html
+
+- chapter: ad_hoc
+  name: Cryptoquote
+  links:
+    - http://acm.tju.edu.cn/toj/showp3151.html
+
+- chapter: dijkstra
+  name: Dirt
+  links:
+    - http://acm.tju.edu.cn/toj/showp3342.html
+
+- chapter: geometry
+  name: Divide the land
+  links:
+    - http://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=2695
+
+- chapter: ad_hoc
+  name: DNA Sorting
+  links:
+    - http://acm.tju.edu.cn/toj/showp1127.html
+
+- chapter: maximum_flow
+  name: Down Went the Titanic
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=25&page=show_problem&problem=2375
+
+- chapter: floyd_warshall
+  name: Edgetown's Traffic Jams
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=278&page=show_problem&problem=3741
+
+- chapter: sorting
+  name: Editor Nottobad
+  order: 1
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1543
+
+- chapter: longest_path_in_a_dag
+  name: Edit Step Ladders
+  links:
+    - http://acm.tju.edu.cn/toj/showp1352.html
+
+- chapter: greedy
+  name: Enter the dragon
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&category=395&page=show_problem&problem=2978
+
+- chapter: ad_hoc
+  name: European railroad tracks
+  links:
+    - http://acm.tju.edu.cn/toj/showp2136.html
+
+- chapter: string
+  name: Excessive Space Remover
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=279&page=show_problem&problem=3847
+
+- chapter: arithmetic
+  name: Factorvisors
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1080
+
+- chapter: greedy
+  name: Feel Good
+  links:
+    - http://acm.tju.edu.cn/toj/showp2333.html
+
+- chapter: string
+  name: File Fragmentation
+  order: 1
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1073
+
+- chapter: rectangle_max_sum
+  name: Finding Seats
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1933
+
+- chapter: prim
+  name: Freckles
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=975
+
+- chapter: ad_hoc
+  name: Giant Screen
+  links:
+    - http://acm.tju.edu.cn/toj/showp3135.html
+
+- chapter: longuest_common_subsequence
+  name: Greatest Common Increasing Subsequence
+  links:
+    - http://acm.tju.edu.cn/toj/showp2707.html
+    - http://acm.pku.edu.cn/JudgeOnline/problem?id=2127
+
+- chapter: bellman_ford
+  name: Haunted graveyard
+  links:
+    - http://www.spoj.pl/problems/GRAVEYRD/
+
+- chapter: union_find
+  name: Heavy Transportation
+  links:
+    - http://poj.org/problem?id=1797
+    - http://acm.tju.edu.cn/toj/showp1713.html
+
+- chapter: convex_hull
+  name: Herding Frosh
+  links:
+    - http://acm.tju.edu.cn/toj/showp1215.html
+
+- chapter: binomial_coefficients
+  name: Hexagonal Routes
+  links:
+    - http://acm.tju.edu.cn/toj/showp2270.html
+
+- chapter: greedy
+  name: Homework
+  links:
+    - http://acm.tju.edu.cn/toj/showp2780.html
+
+- chapter: ad_hoc
+  name: Huffman Trees
+  links:
+    - http://acm.tju.edu.cn/toj/showp1497.html
+    - http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1564
+
+- chapter: string
+  name: I18n
+  broken:
+  links:
+    - http://acmicpc-live-archive.uva.es/nuevoportal/data/problem.php?p=4051
+
+- chapter: dictionary
+  name: Incidental Points
+  links:
+    - http://acm.tju.edu.cn/toj/showp3044.html
+
+- chapter: stack
+  name: Insults
+  order: 1
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=2982
+
+- chapter: ad_hoc
+  name: Interpreter
+  links:
+    - http://acm.tju.edu.cn/toj/showp1357.html
+
+- chapter: decoding
+  name: IPNetworks
+  links:
+    - http://acm.tju.edu.cn/toj/showp2336.html
+
+- chapter: longest_increasing_subsequence
+  name: Is Bigger Smarter?
+  links:
+    - http://acm.tju.edu.cn/toj/showp1216.html
+
+- chapter: string
+  name: Java vs C++
+  links:
+    - http://acm.tju.edu.cn/toj/showp2674.html
+
+- chapter: BFS
+  name: Kisu Pari Na 2
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=25&page=show_problem&problem=3868
+
+- chapter: BFS
+  name: Knight Moves
+  links:
+    - http://poj.org/problem?id=1915
+
+- chapter: ad_hoc
+  name: Knights In The Zombie Land
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=278&page=show_problem&problem=3758
+
+- chapter: longest_path_in_a_tree
+  name: Labyrinth
+  links:
+    - http://acm.tju.edu.cn/toj/showp1056.html
+
+- chapter: finite_automata
+  name: Language recognition
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3402
+
+- chapter: greatest_monochromatic_rectangle
+  name: Largest Submatrix of All 1’s
+  links:
+    - http://acm.pku.edu.cn/JudgeOnline/problem?id=3494
+    - http://poj.org/problem?id=3494
+
+- chapter: ad_hoc
+  name: LC Display
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp1031.html
+
+- chapter: sweepline
+  name: Line Segments
+  links:
+    - http://acm.tju.edu.cn/toj/showp1703.html
+
+- chapter: longest_increasing_subsequence
+  name: Longest Ordered Subsequence
+  links:
+    - http://acm.tju.edu.cn/toj/showp1765.html
+
+- chapter: dijkstra
+  name: Low Cost Air Travel
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1562
+
+- chapter: maximum_interval_intersection
+  name: Magic Sticks Again
+  links:
+    - http://acm.tju.edu.cn/toj/showp2179.html
+
+- chapter: combinatoire
+  name: Make it Manhattan
+  links:
+    - http://acm.tju.edu.cn/toj/showp2519.html
+
+- chapter: expr_eval
+  name: Matrix Chain Multiplication
+  links:
+    - http://poj.org/problem?id=2246
+
+- chapter: ad_hoc
+  name: Matrix Swapping II
+  links:
+    - http://acm.tju.edu.cn/toj/showp3306.html
+
+- chapter: DFS
+  name: Mine
+  links:
+    - http://acm.tju.edu.cn/toj/showp2194.html
+
+- chapter: ad_hoc
+  name: Mine Sweeper
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp1330.html
+
+- chapter: backtracking
+  name: minimal length addition chain
+  links:
+    - http://codility.com/cert/start/rho2012/
+
+- chapter: binary_tree
+  name: France'98
+  links:
+    - http://www.informatik.uni-ulm.de/acm/Locals/1998/html/france98.html
+    - http://www.informatik.uni-ulm.de/acm/Locals/1998/
+
+- chapter: geometry
+  name: November Rain
+  order: 3
+  links:
+    - http://poj.org/problem?id=1765
+    - http://acm.tju.edu.cn/toj/showp1879.html
+
+- chapter: greedy
+  order: 1
+  name: Novice41
+  links:
+    - http://www.spoj.pl/problems/NOVICE41/
+
+- chapter: grid
+  name: Number Steps
+  links:
+    - http://acm.tju.edu.cn/toj/showp1233.html
+
+- chapter: prefix_tree
+  name: Phone Numbers
+  links:
+    - http://poj.org/problem?id=1732
+
+- chapter: median
+  name: Pizza Delivery
+  links:
+    - http://acm.tju.edu.cn/toj/showp2418.html
+    - http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=3082
+
+- chapter: bipartite_vertex_cover
+  name: Playground
+  links:
+    - http://acm.tju.edu.cn/toj/showp2799.html
+
+- chapter: ad_hoc
+  name: Poker Hands
+  order: 3
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1256
+
+- chapter: DFS
+  name: Poor Wenwen
+  links:
+    - http://acm.tju.edu.cn/toj/showp2244.html
+
+- chapter: union_rectangles
+  name: Rectangles
+  links:
+    - http://acm.tju.edu.cn/toj/showp1049.html
+
+- chapter: sweepline
+  name: Rectilinear polygon
+  links:
+    - http://acm.tju.edu.cn/toj/showp2477.html
+
+- chapter: two_sat
+  name: Seminar Room
+  links:
+    - http://acm.tju.edu.cn/toj/showp2506.html
+
+- chapter: geometry
+  name: Shrinking Polygons
+  links:
+    - https://icpcarchive.ecs.baylor.edu/index.php?option=onlinejudge&page=show_problem&problem=2221
+
+- chapter: expr_eval
+  name: Simplified Lambda-evaluations
+  links:
+    - http://acm.tju.edu.cn/toj/showp2700.html
+
+- chapter: sweepline
+  name: The Skyline Problem
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=41
+
+- chapter: grid
+  name: Spiral of Numbers
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=844
+
+- chapter: longest_path_in_a_dag
+  name: Stacking Boxes
+  links:
+    - https://uva.onlinejudge.org/index.php?option=onlinejudge&Itemid=8&page=show_problem&problem=39
+
+- chapter: suffix_tree
+  name: Stammering Aliens
+  links:
+    - http://www.spoj.com/problems/STAMMER/
+
+- chapter: floyd_warshall
+  name: Stockbroker Grapevine
+  links:
+    - http://acm.tju.edu.cn/toj/showp1075.html
+
+- chapter: expr_eval
+  name: Strange Expression
+  order: 3
+  links:
+    - http://acm.tju.edu.cn/toj/showp2882.html
+
+- chapter: biconnected_components
+  name: Street Directions
+  links:
+    - http://acm.tju.edu.cn/toj/showp1125.html
+
+- chapter: DFS
+  name: The Die Is Cast
+  links:
+    - http://acm.tju.edu.cn/toj/showp1605.html
+
+- chapter: dijkstra
+  name: The K-th City
+  links:
+    - http://acm.tju.edu.cn/toj/showp2870.html
+
+- chapter: backtracking
+  name: The Triangle Game
+  links:
+    - http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemId=697
+
+- chapter: ad_hoc
+  name: The Trip
+  links:
+    - http://acm.tju.edu.cn/toj/showp1301.html
+
+- chapter: ad_hoc
+  name: Total flow
+  links:
+    - http://acm.tju.edu.cn/toj/showp3172.html
+
+- chapter: dynamic_programming
+  name: To The Max
+  links:
+    - http://acm.tju.edu.cn/toj/showp1564.html
+
+- chapter: segment_tree
+  name: Ultra Quick-Sort
+  links:
+    - http://acm.tju.edu.cn/toj/showp1455.html
+
+- chapter: sorting
+  name: Walk
+  order: 1
+  links:
+    - http://acm.tju.edu.cn/toj/showp3038.html
+
+- chapter: sweepline
+  name: Weird Advertisement
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=25&page=show_problem&problem=3134
+
+- chapter: sorting
+  name: What's Cryptanalysis?
+  links:
+    - https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=949
+
+- chapter: dilworth
+  name: Wooden sticks
+  links:
+    - http://poj.org/problem?id=1065
+    - http://acm.tju.edu.cn/toj/showp1469.html
+
+- chapter: floyd_warshall
+  name: Word Ladders
+  links:
+    - http://acm.tju.edu.cn/toj/showp2925.html
+
+- chapter: dynamic_programming
+  name: A Digging Problem
+  links:
+    - http://code.google.com/codejam/contest/204113/dashboard#s=p1
+
+- chapter: ad_hoc
+  name: X-Express
+  links:
+    - http://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=11&page=show_problem&problem=921
+
+- chapter: random
+  name: Aerobics
+  links:
+    - https://code.google.com/codejam/contest/1842485/dashboard#s=p1
+
+- chapter: greedy
+  name: Airport Walkways
+  links:
+    - https://code.google.com/codejam/contest/1150486/dashboard#s=p0
+
+- chapter: expr_eval
+  name: Alien Language
+  links:
+    - https://code.google.com/codejam/contest/90101/dashboard#s=p0
+
+- chapter: decoding
+  name: Alien Numbers
+  links:
+    - https://code.google.com/codejam/contest/32003/dashboard#s=p0
+
+- chapter: decoding
+  name: All your base
+  links:
+    - https://code.google.com/codejam/contest/189252/dashboard#s=p0
+
+- chapter: grid
+  name: Always Turn Left
+  links:
+    - https://code.google.com/codejam/contest/32003/dashboard#s=p1
+
+- chapter: simulation
+  name: Bot Trust
+  links:
+    - https://code.google.com/codejam/contest/975485/dashboard#s=p0
+
+- chapter: dynamic_programming
+  name: Bribe the Prisoners
+  links:
+    - https://code.google.com/codejam/contest/189252/dashboard#s=p2
+
+- chapter: ad_hoc
+  name: Bullseye
+  links:
+    - https://code.google.com/codejam/contest/2418487/dashboard#s=p0
+
+- chapter: geometry
+  name: Center of Mass
+  order: 1
+  links:
+    - https://code.google.com/codejam/contest/189252/dashboard#s=p1
+

@@ -1,14 +1,14 @@
 Content of the library
 ----------------------
 
-The main purpose of this library is to present easy to implement algorithms.  So priority was put on simplicity and readability, rather than on efficiency for example.  For example even though Dijkstra's shortest path algorithm has the best worst case time complexity when implemented with a Fibonacci heap, we choose simpler implementations, which have worse but still acceptable time complexities.
+The main purpose of this library is to present easy-to-implement-algorithms.  So priority was put on simplicity and readability, rather than on efficiency for example.  For example even though Dijkstra's shortest path algorithm has the best worst case time complexity when implemented with a Fibonacci heap, we choose simpler implementations, which have worse but still acceptable time complexities.
 
 The content of `our library <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__ is organized by problem classes as follows.
 
 Basic algorithms and data structures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We illustrate how to read from standard input and write to standard output, using Freivald's test, see `freivalds <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__.  Given n by n matrices A,B,C the goal is to decide whether AB=C.  A naïve test would have a time complexity of :math:`O(n^3)`.  But `Freivald's test <https://en.wikipedia.org/wiki/Freivalds'_algorithm>`_, generates a random vector x and tests in time :math:`O(n^2)` if :math:`ABx=Cx`.  It can be shown that the probability that the tests fails to detect difference in AB and in C is negligibly small.
+We illustrate how to read from standard input and write to standard output, using Freivald's test, see `freivalds <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__.  Given n by n matrices A,B,C the goal is to decide whether AB=C.  A naive test would have a time complexity of :math:`O(n^3)`.  But `Freivald's test <https://en.wikipedia.org/wiki/Freivalds'_algorithm>`_, generates a random vector x and tests in time :math:`O(n^2)` if :math:`ABx=Cx`.  It can be shown that the probability that the tests fails to detect difference in AB and in C is negligibly small.
 
 An simple implementation of a first-in-first-out queue is presented in `our_queue <tryalgo/tryalgo.html#module-tryalgo.our_queue>`__, as well as of a heap in `our_heap <tryalgo/tryalgo.html#module-tryalgo.our_heap>`__.
 
@@ -28,7 +28,7 @@ In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illu
 Strings
 ~~~~~~~
 
-A word x is an `anagram <https://en.wikipedia.org/wiki/Anagram>`_ of a word y, if the letters of x can be permuted to form y.  In `anagrams <tryalgo/tryalgo.html#module-tryalgo.anagrams>`__ we show how to detect all anagrams in a given list of words.
+A word x is an `anagram <https://en.wikipedia.org/wiki/Anagram>`_ of a word y, if the letters of x can be permuted to form y.  In `anagrams <tryalgo/tryalgo.html#module-tryalgo.anagrams>`__ we show how to detect all anagrams among a given list of words.
 
 The generation of mobile phone which existed before the smart phones had the possibility to type text messages with the keys 2 to 9, using a letter to digit mapping printed on the keys.  The phone predicted which was the most likely word that the user wants to type using a frequency augmented dictionary of words.  In `predictive_text <tryalgo/tryalgo.html#module-tryalgo.predictive_text>`__ we show how this can be done efficiently.
 
@@ -62,17 +62,18 @@ The other problem consists in finding a smallest hitting set for a given set of 
 Graphs
 ~~~~~~
 
-For this library we decided to encode graph mostly as adjacent lists. This means that a graph on n vertices is encoded as a list of n elements, where the i-th element is the adjacency list of the i-th vertex.  Labels on edges or on vertices are stored in separate matrices or lists.
+For this library we decided to encode graphs using in two different manners, at your convenience.
+In the `adjacency list` a graph on n vertices is encoded as a list of n elements, where the i-th element is the adjacency list of the i-th vertex.  Labels on edges or on vertices are stored in separate matrices or lists.  In contrast in the `adjacency dictionary` a graph is encoded as a list of n dictionary, such that the keys of the i-th dictionary are the neighbors of the i-th vertex, and the values are the attached edge weights.  Undirected graphs are represented as directed graphs by duplicating each edge into two opposite facing arcs.  The function documentations specify if both representations can be passed as arguments, or only if the function accepts only adjacency lists.
 
 We use several representations for trees.  A tree can be represented as an adjacency table, as a graph.  In case the tree is rooted, it can be represented in form of a node structure that contains references to descendant nodes, or in form of an antecedent table, storing at index i the antecedent vertex of the i-th vertex in the tree, using `None` for the root.
 
-In `graph <tryalgo/tryalgo.html#module-tryalgo.graph>`__ we provide several helper functions to read a graph from a file, or to write it in a file in the `DOT format <http://www.graphviz.org/>`_.  This module contains also functions to convert between different tree representations.
+In `graph <tryalgo/tryalgo.html#module-tryalgo.graph>`__ we provide several helper functions to read a graph from a file, or to write it into a file in the `DOT format <http://www.graphviz.org/>`_.  This module contains also functions to convert between different tree representations and between graph representations.
 
 Important operations on graphs are explorations along the edges, for examples to detect connected components, or shortest paths.  The depth first search is implemented in `dfs <tryalgo/tryalgo.html#module-tryalgo.dfs>`__, and illustrated in its iterative and recursive form, as well as the special case of exploring grids.  The breadth-first search is implemented in `bfs <tryalgo/tryalgo.html#module-tryalgo.bfs>`__.
 
 The problem of detecting the connected components in a graph is best solved using Kruskal's algorithm, see `kruskal <tryalgo/tryalgo.html#module-tryalgo.kruskal>`__.
 
-A cut vertex is a vertex which removal splits a connected components.  A cut edge is defined similarly.  Detecting cut vertices and cut edges is important in order to determine `biconnected components <https://en.wikipedia.org/wiki/Biconnected_component>`_, which are particular vertex sets such that each pair of vertices is connected with two vertex disjoint paths.  These sets are important for communication networks.  A subtle modification of the depth first search permits to detect these cut vertices and cut edges, see `biconnected_components <tryalgo/tryalgo.html#module-tryalgo.biconnected_components>`__.
+A cut vertex is a vertex which removal splits a connected components.  A cut edge is defined similarly.  Detecting cut vertices and cut edges is important in order to determine `biconnected components <https://en.wikipedia.org/wiki/Biconnected_component>`_, which are particular vertex sets such that each pair of vertices is connected by two vertex disjoint paths.  These sets are important for communication networks.  A subtle modification of the depth first search permits to detect these cut vertices and cut edges, see `biconnected_components <tryalgo/tryalgo.html#module-tryalgo.biconnected_components>`__.
 
 For directed graphs there are two important problems.  The first one is the `topological sorting <https://en.wikipedia.org/wiki/Topological_sorting>`_, which consists in ordering the vertices, such that every arc points only from left to right, see `topological_order <tryalgo/tryalgo.html#module-tryalgo.topological_order>`__.
 
@@ -133,7 +134,7 @@ A classical example of a problem solved by the greedy algorithm is the problem o
 
 Another example, which is as classical and famous, is the problem of constructing a `minimum weight spanning tree <https://en.wikipedia.org/wiki/Minimum_spanning_tree>`_ for a given edge weighted connected graph.  It is solved with the greedy Kruskal's algorithm, see `kruskal <tryalgo/tryalgo.html#module-tryalgo.kruskal>`__.
 
-The lowest common ancestor problem consists of building a datastructure that stores a rooted tree and can answer efficiently queries of the form: "Which vertex is the closest common ancestor to two given vertices".  The most elegant solution consists in a reduction to the minimum range query problem, see `lowest_common_ancestor <tryalgo/tryalgo.html#module-tryalgo.lowest_common_ancestor>`__.
+The lowest common ancestor problem consists of building a data structure that stores a rooted tree and can answer efficiently queries of the form: "Which vertex is the closest common ancestor to two given vertices".  The most elegant solution consists in a reduction to the minimum range query problem, see `lowest_common_ancestor <tryalgo/tryalgo.html#module-tryalgo.lowest_common_ancestor>`__.
 
 
 Sets
@@ -147,7 +148,7 @@ In the coin change problem, we are given a collection of coins of n different va
 Geometry
 ~~~~~~~~
 
-A very classical problem in computational geometry is the computation of the convex hull of a given point set in the Euclidean space. Generally Graham's algorithm is presented in text books.  For this library we made the choice of Andrew's sweepline algorithm, which has the advantage of avoiding trigonometric operations, see `convex_hull <tryalgo/tryalgo.html#module-tryalgo.convex_hull>`__.
+A very classical problem in computational geometry is the computation of the convex hull of a given point set in the Euclidean space. Generally text books present Graham's algorithm.  But for this library we made the choice of Andrew's sweepline algorithm, which has the advantage of avoiding trigonometric operations, see `convex_hull <tryalgo/tryalgo.html#module-tryalgo.convex_hull>`__.  (With some work Graham's algorithm can also be implemented without trigonometric operations, but it is a bit more tricky than Andrew's algorithm.)
 
 Another not less classical problem is the problem of determining a closest pair among a given point set.  It can be solved in time O(n log n) with a sweep line algorithm or using a divide and conquer approach.  In this library we present a randomized very simple algorithm with an expected linear running time, see `closest_points <tryalgo/tryalgo.html#module-tryalgo.closest_points>`__.
 
@@ -165,7 +166,7 @@ Arithmetic
 
 Prime numbers are best generated with Eratosthene's method, see `eratosthene <tryalgo/tryalgo.html#module-tryalgo.eratosthene>`__.
 
-The library contains functions to compute the greatest common divisor (GCD in english or PGCD in french), to compute the Bezout coefficients and the binomial coefficients, see `arithm <tryalgo/tryalgo.html#module-tryalgo.arithm>`__.
+The library contains functions to compute the greatest common divisor (GCD in english or PGCD in french), to compute the Bezot coefficients and the binomial coefficients, see `arithm <tryalgo/tryalgo.html#module-tryalgo.arithm>`__.
 
 Fast exponentiation is a very powerful technique, which applies also to exponentiation of matrices, see `fast_exponentiation <tryalgo/tryalgo.html#module-tryalgo.fast_exponentiation>`__.
 
@@ -181,6 +182,12 @@ Backtracking
 
 Sometimes all our known techniques fail on some problems, and then we need to attack it with brute force and backtracking.  This technique is illustrated in `laser_mirrors <tryalgo/tryalgo.html#module-tryalgo.laser_mirrors>`__ on a problem consisting of a grid containing in some cells two sided mirrors which can be oriented at angles 45 or 225 degrees.  The goal is to find an orientation which permits to orient the trajectory of a laser beam entering at a specific position on the left border of the grid, so it reaches a specific position on the right side of the grid.
 
-The Rolce-Royce of backtracking algorithms is the dancing link algorithm, which solves quite efficiently the NP-hard problem /exact set cover/.  It is implemented in `dancing_links <tryalgo/tryalgo.html#module-tryalgo.dancing_links>`__ and is illustrated on the classical Sudoku problem in `sudoku <tryalgo/tryalgo.html#module-tryalgo.sudoku>`__.
+The Rolls-Royce of backtracking algorithms is the dancing link algorithm, which solves quite efficiently the NP-hard problem /exact set cover/.  It is implemented in `dancing_links <tryalgo/tryalgo.html#module-tryalgo.dancing_links>`__ and is illustrated on the classical Sudoku problem in `sudoku <tryalgo/tryalgo.html#module-tryalgo.sudoku>`__.
 
 Finally a useful procedure is :py:func:`next_permutation` which takes as input a table of size n containing a permutation of the integers 1 to n and puts them in the lexicographically next permutation order, see `next_permutation <tryalgo/tryalgo.html#module-tryalgo.next_permutation>`__.
+
+
+Last words
+~~~~~~~~~~
+
+We hope that you find the library instructive and useful.  If you miss some functionality, let us know, and you might want to have a look at `PADS <http://www.ics.uci.edu/~eppstein/PADS/>`__ and `NetworkX <https://pypi.python.org/pypi/networkx/>`__.

@@ -52,7 +52,7 @@ Now suppose you want to compute shortest paths in the following graph from the s
    :width: 400 px
 
 
-First we need to encode the graph with a an adjacency list data structure :code:`graph`, where :code:`graph[u]` is the list of neighboring vertices of vertex u.  The edge weights are encoded simply in a squared matrix.::
+First we need to encode the graph. For example we could use an adjacency list data structure :code:`graph`, where :code:`graph[u]` is the list of neighboring vertices of vertex u.  The edge weights are encoded simply in a squared matrix.::
 
     graph = [[1, 3],
              [0, 2, 3],
@@ -83,7 +83,7 @@ First we need to encode the graph with a an adjacency list data structure :code:
                [_, _, _, _, _, _, _, _, _, 1, _, _]] #11
 
 
-The shortest path can be computing with Dijkstra's algorithm.  Our implementation returns the table of distances from the source and a predecessor table describing the shortest path tree.::
+The shortest path can be computed with Dijkstra's algorithm.  Our implementation returns the table of distances from the source and a predecessor table describing the shortest path tree.::
 
     from tryalgo.dijkstra import dijkstra
 
@@ -95,7 +95,7 @@ The shortest path can be computing with Dijkstra's algorithm.  Our implementatio
 
 which will print for target vertex 10 the distance 9 and the shortest path 10 7 4 2 1  0 (in reverse order).
 
-If your graph is sparse (contains few arcs), then you might want to represent it using dictionnaries.  Formally the sparse graph representation is a list of dictionnaries :code:`sparse` such that :code:`v` belongs to :code:`sparse[u]` if there is an arc (u,v) and the weight is the  value :code:`sparse[u][v]` of the dictionnary.  For example the above graph would be represented as.::
+If your graph is sparse (contains few arcs), then you might want to represent it using an adjacency dictionary.  Formally the sparse graph representation is a list of dictionaries :code:`sparse` such that :code:`v` belongs to :code:`sparse[u]` if there is an arc (u,v) and the weight is the  value :code:`sparse[u][v]` of the dictionary.  For example the above graph would be represented as.::
 
     [{1: 1, 3: 4},
      {0: 1, 2: 1, 3: 3},
@@ -110,8 +110,10 @@ If your graph is sparse (contains few arcs), then you might want to represent it
      {7: 3, 8: 2},
      {9: 1}]
 
-This data structure encodes both the graph and the arc weights, and hence it is possible to invoque the function as.::
+This data structure encodes both the graph and the arc weights, and hence it is possible to invoke the function as.::
 
     dist, prec = dijkstra(sparse, sparse, source=0)
+
+Many of our implementations of graph algorithms accept both data structures, the adjacency list or the adjacency dictionary, and this is specified in the individual function documentations.
 
 .. include:: content.rst
