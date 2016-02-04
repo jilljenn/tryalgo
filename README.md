@@ -9,11 +9,14 @@ By Christoph Dürr and Jill-Jênn Vie.
 
     pip3 install tryalgo
 
+## Demo: [TryAlgo in Paris](http://nbviewer.jupyter.org/github/jilljenn/tryalgo/blob/master/examples/TryAlgo%20Maps%20in%20Paris.ipynb)
+
+<a href="http://nbviewer.jupyter.org/github/jilljenn/tryalgo/blob/master/examples/TryAlgo%20Maps%20in%20Paris.ipynb"><img src="http://tryalgo.org/static/paris.png" /></a>
+
 ## Usage
 
 **Dynamic programming** some example with coin change:
 
-    import tryalgo
     from tryalgo.subsetsum import coin_change
 
     print(coin_change([3, 5, 11], 29))  # True because 29 = 6*3 + 0*5 + 1*11
@@ -21,3 +24,7 @@ By Christoph Dürr and Jill-Jênn Vie.
 ## Documentation
 
 http://docs.tryalgo.org
+
+## Found a bug?
+
+Please [drop an issue](/jilljenn/tryalgo/issues/)!
