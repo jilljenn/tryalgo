@@ -8,28 +8,38 @@
 Welcome to tryalgo's documentation!
 ===================================
 
-.. toctree::
-   :maxdepth: 2
+This Python library implements various algorithms and data structures such as graph, string and computational geometry problems.
 
-This Python library implements different classical and original algorithm and data-structures covering graph problems, string problems and computational geometry problems for example.
+Proofs of correctness of these algorithms are available in the French language book: `Programmation efficace : les 128 algorithmes qu'il faut avoir compris et codés en Python au cours de sa vie <http://www.editions-ellipses.fr/product_info.php?products_id=10829>`_.
 
 * :ref:`genindex`
 * :ref:`modindex`
+* `GitHub Project <https://github.com/jilljenn/tryalgo>`_
 
 
 Installation
 ------------
 
-There are two possibilities to install the library. Either download the `tar.gz <https://pypi.python.org/pypi/tryalgo/>`_ file and decompress it on your hard drive.  The library consists of a directory named tryalgo containing several Python files (the modules).  Or install it with the pip command::
+With PIP
+::::::::
+
+You can install the tryalgo package using pip: ::
 
     $ pip3 install tryalgo
 
+From PyPI
+:::::::::
 
-First steps with the library
-----------------------------
+Download the `tar.gz file from PyPI <https://pypi.python.org/pypi/tryalgo/>`_ and extract it.  The library consists of a directory named `tryalgo` containing several Python modules.
 
-The functions of the library can be used like in this example.::
 
+First steps
+-----------
+
+Coin change
+:::::::::::
+
+Here is an dynamic programming example, with coin change (`6 lines of source code <tryalgo/subsetsum.html#coin_change>`__): ::
 
     #!/usr/bin/env python3
 
@@ -39,20 +49,26 @@ The functions of the library can be used like in this example.::
 
 Which should print :code:`True` because 29 can be expressed as the linear combination 6*3 + 0*5 + 1*11.
 
-In order to find the longest substring that is a palindrome, you can use the implementation of Manacher's algorithm as follows.::
+Longest palindrome substring of a string
+::::::::::::::::::::::::::::::::::::::::
+
+In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <tryalgo/manacher.html#manacher>`__) as follows: ::
 
     from tryalgo.manacher import manacher
     print(manacher("babcbabcbaccba"))
 
-which will print (1,10). Indeed the substring ranging from index 1 to index 10 (excluding position 10) is the palindrome "abcbabcba".
+which will print (1,10). Indeed, the substring from index 1 to index 10 (excluding position 10) is the palindrome "abcbabcba".
 
-Now suppose you want to compute shortest paths in the following graph from the source vertex 0.
+Pathfinding
+:::::::::::
+
+Now, suppose you want to compute the shortest paths in the following graph starting at vertex 0.
 
 .. image:: _static/example_dijkstra.png
    :width: 400 px
 
 
-First we need to encode the graph with a an adjacency list data structure :code:`graph`, where :code:`graph[u]` is the list of neighboring vertices of vertex u.  The edge weights are encoded simply in a squared matrix.::
+First, we need to encode this graph with a an adjacency list data structure :code:`graph`, where :code:`graph[u]` is the list of neighbors of vertex :code:`u`.  The edge weights are simply encoded in a squared matrix: ::
 
     graph = [[1, 3],
              [0, 2, 3],
@@ -83,19 +99,21 @@ First we need to encode the graph with a an adjacency list data structure :code:
                [_, _, _, _, _, _, _, _, _, 1, _, _]] #11
 
 
-The shortest path can be computing with Dijkstra's algorithm.  Our implementation returns the table of distances from the source and a predecessor table describing the shortest path tree.::
+The shortest path can be computed using Dijkstra's algorithm, also known as *lowest-cost search*.  Our implementation returns the table of distances from the source and a predecessor table describing the shortest path tree: ::
 
     from tryalgo.dijkstra import dijkstra
 
     dist, prec = dijkstra(graph, weights, source=0)
 
-    print(dist[10])
-    print("%i %i %i %i %i %i" % (10, prec[10], prec[prec[10]], prec[prec[prec[10]]],
-          prec[prec[prec[prec[10]]]], prec[prec[prec[prec[prec[10]]]]]))
+    node = 10
+    print(dist[10])  # Will print 9, the distance from node 0 to node 10
+    path = [node]
+    while prec[node] is not None:
+        node = prec[node]
+        path.append(node)
+    print(path[::-1])  # Will print [0, 1, 2, 4, 7, 10], a shortest path from 0 to 10
 
-which will print for target vertex 10 the distance 9 and the shortest path 10 7 4 2 1  0 (in reverse order).
-
-If your graph is sparse (contains few arcs), then you might want to represent it using dictionnaries.  Formally the sparse graph representation is a list of dictionnaries :code:`sparse` such that :code:`v` belongs to :code:`sparse[u]` if there is an arc (u,v) and the weight is the  value :code:`sparse[u][v]` of the dictionnary.  For example the above graph would be represented as.::
+If your graph is sparse (contains few arcs), then you might want to represent it using dictionaries.  Formally, the sparse graph representation is a list of dictionaries :code:`sparse` such that :code:`v` belongs to :code:`sparse[u]` if there is an arc :code:`(u,v)` of weight :code:`sparse[u][v]`.  For example, the above graph would be represented as: ::
 
     [{1: 1, 3: 4},
      {0: 1, 2: 1, 3: 3},
@@ -110,8 +128,16 @@ If your graph is sparse (contains few arcs), then you might want to represent it
      {7: 3, 8: 2},
      {9: 1}]
 
-This data structure encodes both the graph and the arc weights, and hence it is possible to invoque the function as.::
+This data structure encodes both the graph and the arc weights, hence it is possible to invoke the function the following way: ::
 
     dist, prec = dijkstra(sparse, sparse, source=0)
 
-.. include:: content.rst
+.. toctree::
+   :maxdepth: 2
+
+   content
+
+.. toctree::
+   :maxdepth: 2
+
+   tryalgo/modules
