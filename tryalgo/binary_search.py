@@ -39,15 +39,15 @@ def discrete_binary_search(tab, lo, hi):
 
 
 # snip{ continuous_binary_search
-def continuous_binary_search(f, lo, hi):
+def continuous_binary_search(f, lo, hi, gap=1e-4):
     """Binary search for a function
 
     :param f: boolean monotone function with f(hi) = True
     :returns: first value x in [lo,hi] such that f(x),
              x is computed up to some precision
-    :complexity: `O(log(hi-lo))`
+    :complexity: `O(log((hi-lo)/gap))`
     """
-    while hi - lo > 1e-4:     # régler la précision voulue ici
+    while hi - lo > gap:  
         mid = (lo + hi) / 2.  # division flottante
         if f(mid):
             hi = mid
