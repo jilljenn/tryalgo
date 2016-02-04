@@ -15,7 +15,7 @@ from tryalgo.bellman_ford import bellman_ford
 from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.bfs import bfs
-from tryalgo.biconnected_components import cut_nodes_edges
+from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search
 from tryalgo.bipartite_matching import max_bipartite_matching
 from tryalgo.closest_points import closest_points
