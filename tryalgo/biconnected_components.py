@@ -70,7 +70,7 @@ def cut_nodes_edges2(graph):
     """
     N = len(graph)
     recursionlimit = getrecursionlimit()
-    setrecursionlimit(N + 5) # ou 42 ça marche aussi
+    setrecursionlimit(N + 42) # 5 est la vraie constante, mais ça fait foirer les builds
     edges = set((i, j) for i in range(N) for j in graph[i] if i <= j)
     nodes = set()
     NOT = -2 # pas encore visité ; avec -1 on a un gros bug à cause de `marked[v] != prof - 1`
