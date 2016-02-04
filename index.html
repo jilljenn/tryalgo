@@ -1,0 +1,36 @@
+---
+layout: default
+title: Accueil
+---
+
+<div class="page">
+    <h1 class="page-title">Programmation efficace</h1>
+    <h2>128 algorithmes qu'il faut avoir compris et codés en Python dans sa vie.</h2>
+
+    <p>Une implémentation de l'algorithme de Dijkstra aussi courte ?</p>
+
+{% highlight python %}
+from heapq import heappop, heappush
+
+def dijkstra(graph, weight, source=0):
+    n = len(graph)
+    dist  = [float('inf')] * n
+    prec  = [None] * n
+    marked = [False] * n
+    dist[source] = 0
+    heap = [(0, source)]
+    while heap:
+        _, node = heappop(heap)       # Le sommet le plus proche
+        if not marked[node]:
+            marked[node] = True
+            for neighbor in graph[node]:
+                my_dist_neighbor = dist[node] + weight[node][neighbor]
+                if my_dist_neighbor < dist[neighbor]:
+                    dist[neighbor] = my_dist_neighbor
+                    prec[neighbor] = node
+                    heappush(heap, (my_dist_neighbor, neighbor))
+    return dist, prec
+{% endhighlight %}
+
+    <p>Maintenant, oui.</p>
+</div>
