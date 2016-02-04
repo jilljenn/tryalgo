@@ -27,4 +27,4 @@ http://docs.tryalgo.org
 
 ## Found a bug?
 
-Please [drop an issue](/jilljenn/tryalgo/issues/)!
+Please [drop an issue](https://github.com/jilljenn/tryalgo/issues)!
