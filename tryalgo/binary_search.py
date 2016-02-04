@@ -48,7 +48,7 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
     :complexity: `O(log((hi-lo)/gap))`
     """
     while hi - lo > gap:  
-        mid = (lo + hi) / 2.  # division flottante
+        mid = (lo + hi) / 2
         if f(mid):
             hi = mid
         else:
