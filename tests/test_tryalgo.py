@@ -237,8 +237,11 @@ class TestTryalgo(unittest.TestCase):
             A2 = ([2, 3], [(2, 3), (4, 7)])
             G3 = [[1, 2], [0, 2], [0, 1, 3], [2]]
             A3 = ([2], [(2, 3)])
-            L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3),
+            G4 = [[(i+1)%10000] for i in range(10000)]
+            A4 = ([], [])
+            L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3), (G4, A4),
                  ([[]], ([], [])),
+                 ([[1,2],[],[]], [[1,2],[],[]]),
                  ([[1], [0]], ([], [(0, 1)])),
                  ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
             for graph, answer in L:
@@ -248,6 +251,8 @@ class TestTryalgo(unittest.TestCase):
             #     cut_nodes, cut_edges = cut_nodes_edges(G)
             #     write_graph("biconnexes_%s.dot" % name, G,
             #                 node_mark=cut_nodes, arc_mark=set(cut_edges))
+
+    test_cut_nodes_edges2 = test_cut_nodes_edges
 
     def test_binary_search(self):
         L = 1 << 19
