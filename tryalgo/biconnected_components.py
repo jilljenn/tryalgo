@@ -61,7 +61,7 @@ def cut_nodes_edges(graph):
 # snip}
 
 # snip{
-def cut_nodes_edges(graph):
+def cut_nodes_edges2(graph):
     """Bi-connected components
 
     :param graph: adjacency list of an undirected graph. Cannot be adjacency dictionnary.
