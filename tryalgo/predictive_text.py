@@ -11,7 +11,7 @@ t9 = "22233344455566677778889999"
 
 def lettre_chiffre(x):
     """:returns: the digit correspondence for letter x"""
-    assert 'a' <= x and x <= 'z'
+    assert 'a' <= x <= 'z'
     return t9[ord(x)-ord('a')]
 
 
