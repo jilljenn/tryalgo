@@ -10,7 +10,7 @@ Basic algorithms and data structures
 
 We illustrate how to read from standard input and write to standard output, using Freivald's test, see `freivalds <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__.  Given n by n matrices A,B,C the goal is to decide whether AB=C.  A naïve test would have a time complexity of :math:`O(n^3)`.  But `Freivald's test <https://en.wikipedia.org/wiki/Freivalds'_algorithm>`_, generates a random vector x and tests in time :math:`O(n^2)` if :math:`ABx=Cx`.  It can be shown that the probability that the tests fails to detect difference in AB and in C is negligibly small.
 
-An simple implementation of a first-in-first-out queue is presented in `our_queue <tryalgo/tryalgo.html#module-tryalgo.our_queue>`__, as well as of a heap in `our_heap <tryalgo/tryalgo.html#module-tryalgo.our_heap>`__.
+A simple implementation of a first-in-first-out queue is presented in `our_queue <tryalgo/tryalgo.html#module-tryalgo.our_queue>`__, as well as of a heap in `our_heap <tryalgo/tryalgo.html#module-tryalgo.our_heap>`__.
 
 The `union-find structure <https://en.wikipedia.org/wiki/Disjoint-set_data_structure>`_ permits to maintain a partitioning of n items (typically vertices of a graph), and implements the operation :code:`union(x,y)` to merge the two sets containing x and y, as well as :code:`find(x)` to return a canonical element of the set containing x. It is implemented in `kruskal <tryalgo/tryalgo.html#module-tryalgo.kruskal>`__.
 
