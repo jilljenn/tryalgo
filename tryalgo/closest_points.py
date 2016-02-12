@@ -11,6 +11,8 @@ from random import randint
 from math import hypot   # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
 from random import shuffle
 
+__all__ = ["closest_points"]
+
 
 def dist(p, q):
     return hypot(p[0] - q[0], p[1] - q[1])
@@ -58,8 +60,6 @@ def closest_points(S):
             break
     return (p, q)
 # snip}
-
-__all__ = ["closest_points"]
 
 
 if __name__ == "__main__":
