@@ -16,19 +16,15 @@ def dist(p, q):
     return hypot(p[0] - q[0], p[1] - q[1])
 
 
-def floor(x, pas):
-    return int(x / pas) - int(x < 0)
-
-
 def cell(point, pas):
     x, y = point
-    return (floor(x, pas), floor(y, pas))
+    return (int(x//pas), int(y//pas))
 
 
 def ameliore(S, d):
     G = {}            # grille
     for p in S:
-        (a, b) = cell(p, d / 2.)
+        (a, b) = cell(p, d / 2)
         for a1 in range(a - 2, a + 3):
             for b1 in range(b - 2, b + 3):
                 if (a1, b1) in G:
