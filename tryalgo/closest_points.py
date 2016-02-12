@@ -58,7 +58,7 @@ def closest_points(S):
             d, p, q = r
         else:
             break
-    return (p, q)
+    return p, q
 # snip}
 
 
