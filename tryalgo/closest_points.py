@@ -18,20 +18,20 @@ def dist(p, q):
 
 def cell(point, pas):
     x, y = point
-    return (int(x//pas), int(y//pas))
+    return (int(x // pas), int(y // pas))
 
 
 def ameliore(S, d):
     G = {}            # grille
     for p in S:
-        (a, b) = cell(p, d / 2)
+        a, b = cell(p, d / 2)
         for a1 in range(a - 2, a + 3):
             for b1 in range(b - 2, b + 3):
                 if (a1, b1) in G:
                     q = G[a1, b1]
                     pq = dist(p, q)
                     if pq < d:
-                        return (pq, p, q)
+                        return pq, p, q
         G[a, b] = p
     return None
 
@@ -53,7 +53,7 @@ def closest_points(S):
     while d > 0:
         r = ameliore(S, d)
         if r:
-            (d, p, q) = r
+            d, p, q = r
         else:
             break
     return (p, q)
@@ -72,6 +72,6 @@ if __name__ == "__main__":
         for i in range(len(S)):
             print('\\draw (%f, %f) -- (%f, %f);' % (S[i - 1] + S[i]))
 
-    S = [(randint(0, 400) / 100., randint(0, 400) / 100.) for _ in range(32)]
+    S = [(randint(0, 400) / 100, randint(0, 400) / 100) for _ in range(32)]
     tikz_points(S)
     tikz_polygone(closest_points(S))
