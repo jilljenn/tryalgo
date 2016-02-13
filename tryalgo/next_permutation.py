@@ -77,15 +77,12 @@ if __name__ == "__main__":
             if not next_permutation(L):
                 exit(0)
 
-    def readstr():
+    def _readstr():
         return stdin.readline().strip()
 
-    def readint():
+    def _readint():
         return int(stdin.readline())
 
-    def readarray(f):
-        return map(f, stdin.readline().split())
-
-    n = readint()
-    S = [readstr() for _ in range(n)]
+    n = _readint()
+    S = [_readstr() for _ in range(n)]
     print(solve_word_addition(S))

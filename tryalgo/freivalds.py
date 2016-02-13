@@ -6,6 +6,9 @@
 from random import randint
 from sys import stdin
 
+#snip}
+__all__ = ["freivalds"]
+#snip{
 
 def readint():
     return int(stdin.readline())
@@ -53,4 +56,3 @@ if __name__ == "__main__":
     print(freivalds(A, B, C))
 # snip}
 
-__all__ = ["freivalds"]

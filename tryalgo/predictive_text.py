@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Predictive text for mobile phones
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr and louis abraham - 2014-2015
 
 __all__ = ["predictive_text", "propose"]
 

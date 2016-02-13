@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Closest pair of points
 # trouver la paire de points la plus proche
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr et louis abraham - 2014-2015
 
 
 from random import randint
@@ -20,6 +20,8 @@ def dist(p, q):
 
 def cell(point, pas):
     x, y = point
+    # beware in other languages negative coordinates need special care
+    # in C++ for example int(-1.5) == -1 and not -2 as we need
     return (int(x // pas), int(y // pas))
 
 

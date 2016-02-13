@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # bi-connected components, cut vertices and cut cut-nodes
-# jill-jenn vie et christoph durr - 2015
+# jill-jenn vie et christoph durr et louis abraham - 2015
 from sys import getrecursionlimit, setrecursionlimit
+
 
 # snip{
 # pour faciliter la lecture les variables sont sans préfixe dfs_
@@ -62,45 +63,46 @@ def cut_nodes_edges(graph):
 
 # snip{
 def cut_nodes_edges2(graph):
-    """Bi-connected components
+    """Bi-connected components, alternative recursive implementation
 
-    :param graph: adjacency list of an undirected graph. Cannot be adjacency dictionnary.
+    :param graph: adjacency list of an undirected graph. Cannot be adjacency dictionary.
+    :assumes: graph has about 10^4 vertices at most, otherwise memory limit is reached
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
-    :complexity: `O(|V|+|E|)`
+    :complexity: `O(|V|+|E|)` in average, `O(|V|+|E|^2)` in worst case due to use of dictionary
     """
     N = len(graph)
     recursionlimit = getrecursionlimit()
-    setrecursionlimit(N + 42) # 5 est la vraie constante, mais ça fait foirer les builds
+    setrecursionlimit(N + 42)  # 5 est la vraie constante, mais ça fait foirer les builds
     edges = set((i, j) for i in range(N) for j in graph[i] if i <= j)
     nodes = set()
-    NOT = -2 # pas encore visité ; avec -1 on a un gros bug à cause de `marked[v] != prof - 1`
-    FIN = -3 # déjà visité
+    NOT = -2  # pas encore visité ; avec -1 on a un gros bug à cause de `marked[v] != prof - 1`
+    FIN = -3  # déjà visité
     marked = [NOT] * N # si c'est positif ou nul, cela vaut la profondeur dans le DFS
     def DFS(n, prof=0):
         """Parcourt récursivement le graphe, met à jour la liste des arêtes et renvoie
         le premier sommet dans l'ordre de parcours auquel on peut revenir."""
-        if marked[n] == FIN: # seulement lorsqu'il y a plusieurs composantes connexes
+        if marked[n] == FIN:  # seulement lorsqu'il y a plusieurs composantes connexes
             return
         if marked[n] != NOT:
             return marked[n]
         marked[n] = prof
         m = float('inf')
-        count = 0 # utile seulement pour prof==0
+        count = 0  # utile seulement pour prof==0
         for v in graph[n]:
             if marked[v] != FIN and marked[v] != prof - 1:
                 count += 1
                 r = DFS(v, prof+1)
                 if r <= prof:
                     edges.discard(tuple(sorted((n, v))))
-                if prof and r >= prof: # seulement si on n'est pas dans la racine
+                if prof and r >= prof:  # seulement si on n'est pas dans la racine
                     nodes.add(n)
                 m = min(m, r)
-        if prof==0 and count >= 2: # la racine est un point d'articulation ssi elle a plus de deux fils
+        if prof == 0 and count >= 2:  # la racine est un point d'articulation ssi elle a plus de deux fils
             nodes.add(n)
         marked[n] = FIN
         return m
     for r in range(N):
-        DFS(r) # on pourrait compter les composantes connexes en ajoutant 1 si c'est différent de None
+        DFS(r)  # on pourrait compter les composantes connexes en ajoutant 1 si c'est différent de None
     setrecursionlimit(recursionlimit)
-    return sorted(nodes), sorted(edges)
+    return nodes, edges
 # snip}
