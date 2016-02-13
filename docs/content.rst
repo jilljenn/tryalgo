@@ -6,11 +6,11 @@ The main purpose of this library is to present easy-to-implement-algorithms.  So
 The content of `our library <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__ is organized by problem classes as follows.
 
 Basic algorithms and data structures
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+::::::::::::::::::::::::::::::::::::
 
 We illustrate how to read from standard input and write to standard output, using Freivald's test, see `freivalds <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__.  Given n by n matrices A,B,C the goal is to decide whether AB=C.  A naive test would have a time complexity of :math:`O(n^3)`.  But `Freivald's test <https://en.wikipedia.org/wiki/Freivalds'_algorithm>`_, generates a random vector x and tests in time :math:`O(n^2)` if :math:`ABx=Cx`.  It can be shown that the probability that the tests fails to detect difference in AB and in C is negligibly small.
 
-An simple implementation of a first-in-first-out queue is presented in `our_queue <tryalgo/tryalgo.html#module-tryalgo.our_queue>`__, as well as of a heap in `our_heap <tryalgo/tryalgo.html#module-tryalgo.our_heap>`__.
+A simple implementation of a first-in-first-out queue is presented in `our_queue <tryalgo/tryalgo.html#module-tryalgo.our_queue>`__, as well as of a heap in `our_heap <tryalgo/tryalgo.html#module-tryalgo.our_heap>`__.
 
 The `union-find structure <https://en.wikipedia.org/wiki/Disjoint-set_data_structure>`_ permits to maintain a partitioning of n items (typically vertices of a graph), and implements the operation :code:`union(x,y)` to merge the two sets containing x and y, as well as :code:`find(x)` to return a canonical element of the set containing x. It is implemented in `kruskal <tryalgo/tryalgo.html#module-tryalgo.kruskal>`__.
 
@@ -26,7 +26,7 @@ In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illu
 
 
 Strings
-~~~~~~~
+:::::::
 
 A word x is an `anagram <https://en.wikipedia.org/wiki/Anagram>`_ of a word y, if the letters of x can be permuted to form y.  In `anagrams <tryalgo/tryalgo.html#module-tryalgo.anagrams>`__ we show how to detect all anagrams among a given list of words.
 
@@ -41,7 +41,7 @@ An alternative algorithm for the string matching problem has been given by `Rabi
 A `trie <https://en.wikipedia.org/wiki/Trie>`_, or prefix tree is a data structure storing a set of words, which permits to search for a given word, allowing spelling errors.  This is the data-structure one needs in a spell checker. Our implementation is in `trie <tryalgo/tryalgo.html#module-tryalgo.trie>`__.
 
 Sequences and Arrays
-~~~~~~~~~~~~~~~~~~~~
+::::::::::::::::::::
 
 Many problem on sequences (which are basically strings) can be solved with dynamic programming.
 A classical example is the computation of the `edit distance <https://en.wikipedia.org/wiki/Edit_distance>`_ (also called Levenshtein distance) between two given strings, see `levenshtein <tryalgo/tryalgo.html#module-tryalgo.levenshtein>`__.  Other examples include the longest common subsequence (`longest_common_subsequence <tryalgo/tryalgo.html#module-tryalgo.longest_common_subsequence>`__) and the longest increasing subsequence (`longest_increasing_subsequence <tryalgo/tryalgo.html#module-tryalgo.longest_increasing_subsequence>`__).
@@ -53,14 +53,14 @@ A data structure for an array is an object that stores the array (possibly in an
 A similar structure is the `Fenwick tree <https://en.wikipedia.org/wiki/Fenwick_tree>`_ also called BIT or binary indexed tree. It permits again to modify individual items of the array, but also to query the sum over a given interval of indices, see `fenwick <tryalgo/tryalgo.html#module-tryalgo.fenwick>`__.
 
 Intervals
-~~~~~~~~~
+:::::::::
 
 The tryalgo library covers two nice problems on intervals. The first one is a data structure called `interval tree <https://en.wikipedia.org/wiki/Interval_tree>`_, which stores a set of intervals and permits to select all those that contain a given value, see `interval_tree <tryalgo/tryalgo.html#module-tryalgo.interval_tree>`__.
 
 The other problem consists in finding a smallest hitting set for a given set of intervals, that is to find a smallest set of values, that intersect each interval.  This problem is solved with the sweep line technique mentioned above, see `intervals_cover <tryalgo/tryalgo.html#module-tryalgo.intervals_cover>`__.
 
 Graphs
-~~~~~~
+::::::
 
 For this library we decided to encode graphs using in two different manners, at your convenience.
 In the `adjacency list` a graph on n vertices is encoded as a list of n elements, where the i-th element is the adjacency list of the i-th vertex.  Labels on edges or on vertices are stored in separate matrices or lists.  In contrast in the `adjacency dictionary` a graph is encoded as a list of n dictionary, such that the keys of the i-th dictionary are the neighbors of the i-th vertex, and the values are the attached edge weights.  Undirected graphs are represented as directed graphs by duplicating each edge into two opposite facing arcs.  The function documentations specify if both representations can be passed as arguments, or only if the function accepts only adjacency lists.
@@ -80,7 +80,7 @@ For directed graphs there are two important problems.  The first one is the `top
 Another important problem consists in determining strongly connected components, which are vertex sets such that for each vertex pair there is a directed path connecting them.  These can be computed by an algorithm by Tarjan or by an algorithm by Kosaraju, see `strongly_connected_components <tryalgo/tryalgo.html#module-tryalgo.strongly_connected_components>`__.  The main application is the resolution of 2-SAT boolean formulas, see `two_sat <tryalgo/tryalgo.html#module-tryalgo.two_sat>`__.
 
 Cycles
-~~~~~~
+::::::
 
 The library contains implementations of 4 cycle finding algorithms.  The most basic problem consists of finding any cycle in a given undirected graph.  In the second problem we are given an edge weighted graph and want to compute a cycle of minimum total weight. For the third problem we want to minimize the total cycle weight over the cycle length. And in the last problem we want to find a cycle that visits every edge exactly once.
 
@@ -95,7 +95,7 @@ Eulerian cycle              :math:`O(|V|+|E|)`      `Greedy <https://en.wikipedi
 
 
 Shortest paths
-~~~~~~~~~~~~~~
+::::::::::::::
 
 Several shortest path algorithms are included in the library, which apply for different classes of graphs.  They are summarized in the following table. For the complexity indication we assume that :math:`|E|\geq |V|`.
 
@@ -112,7 +112,7 @@ all source destination pairs :math:`O(|V|^3)`         `Floyd-Warshall <https://e
 
 
 Matching and flows
-~~~~~~~~~~~~~~~~~~
+::::::::::::::::::
 
 ======================================================== ============================== ============================================================================== ===========================
 problem                                                  complexity                     algorithm                                                implementation
@@ -128,7 +128,7 @@ minimum paths decomposition of a directed acyclic graph  :math:`O(|E|\cdot|V|)` 
 
 
 Trees
-~~~~~
+:::::
 
 A classical example of a problem solved by the greedy algorithm is the problem of constructing optimal `Huffman codes <https://en.wikipedia.org/wiki/Huffman_coding>`_.  An implementation can be found in the module `huffman <tryalgo/tryalgo.html#module-tryalgo.huffman>`__.
 
@@ -138,7 +138,7 @@ The lowest common ancestor problem consists of building a data structure that st
 
 
 Sets
-~~~~
+::::
 
 Many problems defined on sets can be solved by dynamic programming. This is the case of the `Knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_. We are given n items, each has a size and a value, and we wish to find a subset of maximum total value which size does not exceed a given capacity C.  This problem is NP-hard, but can be solved efficiently in time O(nC) if the capacity is bounded by a small value, see `knapsack <tryalgo/tryalgo.html#module-tryalgo.knapsack>`__.
 
@@ -146,7 +146,7 @@ In the coin change problem, we are given a collection of coins of n different va
 
 
 Geometry
-~~~~~~~~
+::::::::
 
 A very classical problem in computational geometry is the computation of the convex hull of a given point set in the Euclidean space. Generally text books present Graham's algorithm.  But for this library we made the choice of Andrew's sweepline algorithm, which has the advantage of avoiding trigonometric operations, see `convex_hull <tryalgo/tryalgo.html#module-tryalgo.convex_hull>`__.  (With some work Graham's algorithm can also be implemented without trigonometric operations, but it is a bit more tricky than Andrew's algorithm.)
 
@@ -162,7 +162,7 @@ Computing the area of the union of n given rectilinear rectangles can be done in
 
 
 Arithmetic
-~~~~~~~~~~
+::::::::::
 
 Prime numbers are best generated with Eratosthene's method, see `eratosthene <tryalgo/tryalgo.html#module-tryalgo.eratosthene>`__.
 
@@ -178,7 +178,7 @@ When multiplying a sequence of matrices the order of evaluation does not matter,
 
 
 Backtracking
-~~~~~~~~~~~~
+::::::::::::
 
 Sometimes all our known techniques fail on some problems, and then we need to attack it with brute force and backtracking.  This technique is illustrated in `laser_mirrors <tryalgo/tryalgo.html#module-tryalgo.laser_mirrors>`__ on a problem consisting of a grid containing in some cells two sided mirrors which can be oriented at angles 45 or 225 degrees.  The goal is to find an orientation which permits to orient the trajectory of a laser beam entering at a specific position on the left border of the grid, so it reaches a specific position on the right side of the grid.
 
