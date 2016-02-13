@@ -257,7 +257,6 @@ class TestTryalgo(unittest.TestCase):
             #     write_graph("biconnexes_%s.dot" % name, G,
             #                 node_mark=cut_nodes, arc_mark=set(cut_edges))
 
-    test_cut_nodes_edges2 = test_cut_nodes_edges
 
     def test_binary_search(self):
         L = 1 << 19
