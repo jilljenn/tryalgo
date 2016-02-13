@@ -15,7 +15,7 @@ from tryalgo.bellman_ford import bellman_ford
 from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.bfs import bfs
-from tryalgo.biconnected_components import cut_nodes_edges
+from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search
 from tryalgo.bipartite_matching import max_bipartite_matching
 from tryalgo.closest_points import closest_points
@@ -237,17 +237,27 @@ class TestTryalgo(unittest.TestCase):
             A2 = ([2, 3], [(2, 3), (4, 7)])
             G3 = [[1, 2], [0, 2], [0, 1, 3], [2]]
             A3 = ([2], [(2, 3)])
-            L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3),
+            big = 10000
+            G4 =   [[(i + 1) % big, (i - 1) % big] for i in range(big)] \
+                 + [[big + ((i + 1) % big), big + ((i - 1) % big)] for i in range(big)]
+            G4[0].append(big)
+            G4[big].append(0)
+            A4 = ([0, big], [(0, big)])
+            L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3), (G4, A4),
                  ([[]], ([], [])),
+                 ([[1,2],[0],[0]], ([0], [(0, 1), (0, 2)])),
                  ([[1], [0]], ([], [(0, 1)])),
                  ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
             for graph, answer in L:
-                # for g in [graph, graph_weight_to_sparse(graph)]:
-                self.assertEqual( cut_nodes_edges(graph), answer)
+                for f in [cut_nodes_edges, cut_nodes_edges2]:
+                    cn, ce = f(graph)
+                    self.assertEqual( (sorted(cn), sorted(ce)), answer)
             # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
             #     cut_nodes, cut_edges = cut_nodes_edges(G)
             #     write_graph("biconnexes_%s.dot" % name, G,
             #                 node_mark=cut_nodes, arc_mark=set(cut_edges))
+
+    test_cut_nodes_edges2 = test_cut_nodes_edges
 
     def test_binary_search(self):
         L = 1 << 19

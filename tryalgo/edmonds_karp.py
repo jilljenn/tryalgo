@@ -35,8 +35,8 @@ def _augment(graph, capacity, flow, source, target):
 def edmonds_karp(graph, capacity, source, target):
     """Maxmum flow by Edmonds-Karp
 
-    :param graph: adjacency list or adjacency dictionnary of a directed graph
-    :param capacity: matrix or adjacency dictionnary
+    :param graph: adjacency list or adjacency dictionary of a directed graph
+    :param capacity: matrix or adjacency dictionary
     :param int source: vertex
     :param int target: vertex
     :returns: flow matrix, flow value

@@ -65,9 +65,9 @@ def write_graph(dotfile, graph, directed=False,
     """Writes a graph to a file in the DOT format
 
     :param dotfile: the filename.
-    :param graph: adjacency list or adjacency dictionnary
+    :param graph: adjacency list or adjacency dictionary
     :param directed: true if graph is directed, false if undirected
-    :param weight: weight matrix or None
+    :param weight: weight matrix or adjacency dictionary or None
     :param node_label: vertex label table or None
     :param arc_label: arc label matrix or None
     :param comment: comment string for the dot file or None
@@ -220,9 +220,9 @@ def extract_path(prec, v):
 def make_flow_labels(graph, flow, capac):
     """Generate arc labels for a flow in a graph with capacities.
 
-    :param graph: adjacency list or adjacency dictionnary
-    :param flow:  flow matrix or adjacency dictionnary
-    :param capac: capacity matrix or adjacency dictionnary
+    :param graph: adjacency list or adjacency dictionary
+    :param flow:  flow matrix or adjacency dictionary
+    :param capac: capacity matrix or adjacency dictionary
     """
     V = range(len(graph))
     arc_label = [{v:"" for v in graph[u]} for u in V]
