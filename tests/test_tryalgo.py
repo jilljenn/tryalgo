@@ -30,7 +30,7 @@ from tryalgo.dist_grid import dist_grid
 from tryalgo.edmonds_karp import edmonds_karp
 from tryalgo.eratosthene import eratosthene
 from tryalgo.eulerian_tour import eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
-from tryalgo.fast_exponentiation import fast_exponentiation
+from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick
 from tryalgo.floyd_warshall import floyd_warshall
 from tryalgo.ford_fulkerson import ford_fulkerson
@@ -565,12 +565,13 @@ XXXXX#...#
 
 
     def test_fast_exponentation(self):
-        self.assertEqual( fast_exponentiation(1, 23, 1000), 1 )
-        self.assertEqual( fast_exponentiation(23, 1, 1000), 23 )
-        self.assertEqual( fast_exponentiation(23, 2, 1000), 23 * 23 )
-        self.assertEqual( fast_exponentiation(23, 0, 1000), 1 )
-        self.assertEqual( fast_exponentiation(7, 23, 1000000000), 80916343 )
-        self.assertEqual( fast_exponentiation(7, 2323474, 1000000000), 428796849 )
+        for f in [fast_exponentiation, fast_exponentiation2]:
+            self.assertEqual( f(1, 23, 1000), 1 )
+            self.assertEqual( f(23, 1, 1000), 23 )
+            self.assertEqual( f(23, 2, 1000), 23 * 23 )
+            self.assertEqual( f(23, 0, 1000), 1 )
+            self.assertEqual( f(7, 23, 1000000000), 80916343 )
+            self.assertEqual( f(7, 2323474, 1000000000), 428796849 )
 
 
     def test_fenwick(self):

@@ -1,6 +1,6 @@
 #!/usr/bin/env pypy3
 # Binary search
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr et louis abraham - 2014-2015
 
 from sys import stdin
 
@@ -12,11 +12,11 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 # [!] python3 est trop lent pour ce problème
 
 
-def readint():
+def _readint():
     return int(stdin.readline())
 
 
-def readarray(f):
+def _readarray(f):
     return tuple(map(f, stdin.readline().split()))
 
 
@@ -47,7 +47,8 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
              x is computed up to some precision
     :complexity: `O(log((hi-lo)/gap))`
     """
-    while hi - lo > gap:  
+    while hi - lo > gap:
+        # in other languages you want to force floating division by using 2.0
         mid = (lo + hi) / 2
         if f(mid):
             hi = mid
@@ -99,20 +100,20 @@ if __name__ == "__main__":
     def volume(level):
         vol = 0
         for base, height, ground in rect:
-            if base<level:
-                vol += ground * min(level-base, height)
+            if base < level:
+                vol += ground * min(level - base, height)
         return vol
 
-    for test in range(readint()):
-        n = readint()
+    for test in range(_readint()):
+        n = _readint()
         rect = []
         for _ in range(n):
-            t = stdin.readline().split()
-            rect.append( (int(t[0]), int(t[1]), int(t[2]) * int(t[3])) )
-        V = readint()
+            x, y, w, h = _readarray(int)
+            rect.append((x, y, w * h))
+        V = _readint()
         hi = 1e6 + 40000
         if volume(hi) < V:
             print("OVERFLOW")
         else:
-            print("%.02f" % \
-                  continuous_binary_search(lambda x: volume(x)>=V, 0, hi))
+            print("%.02f" %
+                  continuous_binary_search(lambda x: volume(x) >= V, 0, hi))
