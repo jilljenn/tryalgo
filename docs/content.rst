@@ -8,7 +8,7 @@ The content of `our library <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__ i
 Basic algorithms and data structures
 ::::::::::::::::::::::::::::::::::::
 
-We illustrate how to read from standard input and write to standard output, using Freivald's test, see `freivalds <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__.  Given n by n matrices A,B,C the goal is to decide whether AB=C.  A naive test would have a time complexity of :math:`O(n^3)`.  But `Freivald's test <https://en.wikipedia.org/wiki/Freivalds'_algorithm>`_, generates a random vector x and tests in time :math:`O(n^2)` if :math:`ABx=Cx`.  It can be shown that the probability that the tests fails to detect difference in AB and in C is negligibly small.
+We illustrate how to read from standard input and write to standard output, using Freivald's test, see `freivalds <tryalgo/tryalgo.html#module-tryalgo.freivalds>`__.  Given n by n matrices A,B,C the goal is to decide whether AB=C.  A naive test would have a time complexity of :math:`O(n^3)`.  But `Freivald's test <https://en.wikipedia.org/wiki/Freivalds%27_algorithm>`_, generates a random vector x and tests in time :math:`O(n^2)` if :math:`ABx=Cx`.  It can be shown that the probability that the tests fails to detect difference in AB and in C is negligibly small.
 
 A simple implementation of a first-in-first-out queue is presented in `our_queue <tryalgo/tryalgo.html#module-tryalgo.our_queue>`__, as well as of a heap in `our_heap <tryalgo/tryalgo.html#module-tryalgo.our_heap>`__.
 
@@ -57,7 +57,7 @@ Intervals
 
 The tryalgo library covers two nice problems on intervals. The first one is a data structure called `interval tree <https://en.wikipedia.org/wiki/Interval_tree>`_, which stores a set of intervals and permits to select all those that contain a given value, see `interval_tree <tryalgo/tryalgo.html#module-tryalgo.interval_tree>`__.
 
-The other problem consists in finding a smallest hitting set for a given set of intervals, that is to find a smallest set of values, that intersect each interval.  This problem is solved with the sweep line technique mentioned above, see `intervals_cover <tryalgo/tryalgo.html#module-tryalgo.intervals_cover>`__.
+The other problem consists in finding a smallest hitting set for a given set of intervals, that is to find a smallest set of values, that intersect each interval.  This problem is solved with the sweep line technique mentioned above, see `interval_cover <tryalgo/tryalgo.html#module-tryalgo.interval_cover>`__.
 
 Graphs
 ::::::
@@ -105,7 +105,7 @@ problem                      complexity               algorithm                 
 unweighted graph             :math:`O(|E|)`           `breadth-first search <https://en.wikipedia.org/wiki/Breadth-first_search>`_   `bfs <tryalgo/tryalgo.html#module-tryalgo.bfs>`__
 grid                         :math:`O(|E|)`           breadth-first search adapted to the grid graph                                 `dist_grid <tryalgo/tryalgo.html#module-tryalgo.dist_grid>`__
 {0,1} weighted graph         :math:`O(|E|)`           `Dijkstra with a deque <http://goo.gl/w67Hs1>`_                                `graph01 <tryalgo/tryalgo.html#module-tryalgo.graph01>`__
-non negative weighted graph  :math:`O(|E| \log |V|)`  `Dijkstra <https://en.wikipedia.org/wiki/Dijkstra's_algorithm>`_               `dijkstra <tryalgo/tryalgo.html#module-tryalgo.dijkstra>`__
+non negative weighted graph  :math:`O(|E| \log |V|)`  `Dijkstra <https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm>`_             `dijkstra <tryalgo/tryalgo.html#module-tryalgo.dijkstra>`__
 arbitrary weighted graph     :math:`O(|E| \cdot |V|)` `Bellman-Ford`_                                                                `bellman_ford <tryalgo/tryalgo.html#module-tryalgo.bellman_ford>`__
 all source destination pairs :math:`O(|V|^3)`         `Floyd-Warshall <https://en.wikipedia.org/wiki/Floyd-Warshall_algorithm>`_     `floyd_warshall <tryalgo/tryalgo.html#module-tryalgo.floyd_warshall>`__
 ============================ ======================== ============================================================================== ===============
@@ -122,8 +122,8 @@ maximum profit bipartite matching                        :math:`O(|V|^3)`       
 stable bipartite matching                                :math:`O(|V|^2)`               `Gale-Shapley <https://en.wikipedia.org/wiki/Stable_marriage_problem>`_        `gale_shapley <tryalgo/tryalgo.html#module-tryalgo.gale_shapley>`__
 max flow capacities in {1,...,C}                         :math:`O(|V|\cdot|E|\cdot|C|)` `Ford-Fulkerson <https://en.wikipedia.org/wiki/Ford-Fulkerson_algorithm>`_     `ford_fulkerson <tryalgo/tryalgo.html#module-tryalgo.ford_fulkerson>`__
 max flow arbitrary capacities                            :math:`O(|V|\cdot|E|^2)`       `Edmonds-Karp <https://en.wikipedia.org/wiki/Edmonds-Karp_algorithm>`_         `edmonds_karp <tryalgo/tryalgo.html#module-tryalgo.edmonds_karp>`__
-max flow arbitrary capacities                            :math:`O(|V|^2\cdot|E|)`       `Dinic <https://en.wikipedia.org/wiki/Dinic's_algorithm>`_                     `dinic <tryalgo/tryalgo.html#module-tryalgo.dinic>`__
-minimum paths decomposition of a directed acyclic graph  :math:`O(|E|\cdot|V|)`         `Dilworth <https://en.wikipedia.org/wiki/Dilworth's_theorem>`_                 `dilworth <tryalgo/tryalgo.html#module-tryalgo.dilworth>`__
+max flow arbitrary capacities                            :math:`O(|V|^2\cdot|E|)`       `Dinic <https://en.wikipedia.org/wiki/Dinic%27s_algorithm>`_                   `dinic <tryalgo/tryalgo.html#module-tryalgo.dinic>`__
+minimum paths decomposition of a directed acyclic graph  :math:`O(|E|\cdot|V|)`         `Dilworth <https://en.wikipedia.org/wiki/Dilworth%27s_theorem>`_               `dilworth <tryalgo/tryalgo.html#module-tryalgo.dilworth>`__
 ======================================================== ============================== ============================================================================== ===========================
 
 
@@ -152,7 +152,7 @@ A very classical problem in computational geometry is the computation of the con
 
 Another not less classical problem is the problem of determining a closest pair among a given point set.  It can be solved in time O(n log n) with a sweep line algorithm or using a divide and conquer approach.  In this library we present a randomized very simple algorithm with an expected linear running time, see `closest_points <tryalgo/tryalgo.html#module-tryalgo.closest_points>`__.
 
-The area of a given simple polygon can be computed in linear time, see `polygon <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.  And testing whether a given rectilinear polygon is simple can be verified with a sweepline algorithm in time O(n log n), see `is_simple <tryalgo/tryalgo.html#module-tryalgo.is_simple>`__.
+The area of a given simple polygon can be computed in linear time, see `polygon <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.  And testing whether a given rectilinear polygon is simple can be verified with a sweepline algorithm in time O(n log n), see `is_simple <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.
 
 Here is an algorithmic puzzle that we like a lot. Given a set of n points in the plane, we which to find out how many 4-tuples we can form such that they are the 4 corners of a rectangle.  The solution can be found in `rectangles_from_points <tryalgo/tryalgo.html#module-tryalgo.rectangles_from_points>`__.
 
