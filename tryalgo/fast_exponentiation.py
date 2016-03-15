@@ -4,7 +4,7 @@
 
 
 # snip{
-def fast_exponentiation(a, b, q):
+def fast_exponentiation2(a, b, q):
     """Compute (a pow b) % q
 
     :complexity: O(log b)
@@ -26,7 +26,7 @@ def fast_exponentiation(a, b, q):
 
 
 
-def fast_exponentiation2(a, b, q):
+def fast_exponentiation(a, b, q):
     """Compute (a pow b) % q, alternative shorter implementation
 
     :complexity: O(log b)
