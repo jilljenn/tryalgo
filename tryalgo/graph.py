@@ -160,14 +160,24 @@ def tree_adj_to_prec(graph, root=0):
 
 
 # snip{ add_reverse_arcs
-def add_reverse_arcs(graph, capac):
+def add_reverse_arcs(graph, capac = None):
     """Utility function for flow algorithms that need for every arc (u,v),
-    the existence of an (v,u) arc with zero capacity."""
+    the existence of an (v,u) arc with zero capacity.
+
+    graph can be in adjacency list, possibly with capacity matrix capac.
+    or graph can be in adjacency dictionnary, then capac parameter is ignored.
+
+    """
     for u in range(len(graph)):
         for v in graph[u]:
             if u not in graph[v]:
-                graph[v].append(u)
-                capac[v][u] = 0
+                if type(graph[v]) is list:
+                    graph[v].append(u)
+                    if capac:
+                        capac[v][u] = 0
+                else:
+                    assert type(graph[v]) is dict
+                    graph[v][u] = 0
 # snip}
 
 
