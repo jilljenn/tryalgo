@@ -514,6 +514,11 @@ XXXXX#...#
                 self.assertEqual(flow_val, 35)
                 labels = make_flow_labels(g, flow_matr, w)
                 # write_graph("dinic.dot", graph, directed=True, arc_label=labels)
+        graph = [{1: 9, 2: 9}, {3: 1}, {4: 1}, {5: 9}, {5: 9}, {}]
+        for f in [dinic, edmonds_karp, ford_fulkerson]:
+            flow_matr, flow_val = f(graph, graph, 0, 5)
+            self.assertEqual(flow_val, 2)
+
 
 
     def test_dist_grid(self):
