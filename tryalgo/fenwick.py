@@ -9,12 +9,14 @@ class Fenwick:
        maintains a tree to allow quick updates and queries
     """
     def __init__(self, t):
+        """stores an integer table t, index 0 is ignored
+        """
         self.s = [0] * len(t)
         for i in range(1, len(t)):
             self.add(i, t[i])
 
     def prefixSum(self, i):
-        """:returns: t[0] + ... + t[i]
+        """:returns: t[1] + ... + t[i]
         """
         sum = 0
         while i > 0:
