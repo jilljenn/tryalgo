@@ -166,7 +166,7 @@ def add_reverse_arcs(graph, capac = None):
     the existence of an (v,u) arc with zero capacity.
 
     graph can be in adjacency list, possibly with capacity matrix capac.
-    or graph can be in adjacency dictionnary, then capac parameter is ignored.
+    or graph can be in adjacency dictionary, then capac parameter is ignored.
 
     """
     for u in range(len(graph)):
@@ -190,11 +190,11 @@ def add_reverse_arcs(graph, capac = None):
 #        such that W[u][v] is the weight of arc (u,v)
 
 # listdict is an arc weighted adjacency list G,
-#        where G[u] is a dictionnary.
+#        where G[u] is a dictionary.
 #        For each arc (u,v), G[u][v] is the weight of the arc.
 
-# dictdict is an arc weighted adjacency dictionnary G,
-#        where G[u] is a dictionnary.
+# dictdict is an arc weighted adjacency dictionary G,
+#        where G[u] is a dictionary.
 #        For each arc (u,v), G[u][v] is the weight of the arc.
 
 # matrix is an adjacency matrix M,
@@ -238,9 +238,9 @@ def listdict_to_listlist_and_matrix(sparse):
 
 def dictdict_to_listdict(dictgraph):
     """Transforms a dict-dict graph representation into a
-    adjacency dictionnary representation (list-dict)
+    adjacency dictionary representation (list-dict)
 
-    input: dictionnary mapping vertices to dictionnary
+    input: dictionary mapping vertices to dictionary
            such that dictgraph[u][v] is weight of arc (u,v)
     complexity: linear
     returns: graph (list of dict), name_to_node (dict), node_to_name (list)

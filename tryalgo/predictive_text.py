@@ -47,7 +47,7 @@ def predictive_text(dico):
 
 
 def propose(prop, seq):
-    """wrapper to access a dictionnary even for non present keys"""
+    """wrapper to access a dictionary even for non present keys"""
     if seq in prop:
         return prop[seq]
     else:
