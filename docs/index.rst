@@ -68,7 +68,7 @@ Now, suppose you want to compute the shortest paths in the following graph start
    :width: 400 px
 
 
-First, we need to encode this graph with a an adjacency list data structure :code:`graph`, where :code:`graph[u]` is the list of neighbors of vertex :code:`u`.  The edge weights are simply encoded in a squared matrix: ::
+First, we need to encode this graph with a an adjacency list data structure :code:`graph`, which format we call *listlist*, where :code:`graph[u]` is the list of neighbors of vertex :code:`u`.  The edge weights are simply encoded in a squared matrix: ::
 
     graph = [[1, 3],
              [0, 2, 3],
@@ -113,7 +113,8 @@ The shortest path can be computed using Dijkstra's algorithm, also known as *low
         path.append(node)
     print(path[::-1])  # Will print [0, 1, 2, 4, 7, 10], a shortest path from 0 to 10
 
-If your graph is sparse (contains few arcs), then you might want to represent it using dictionaries.  Formally, the sparse graph representation is a list of dictionaries :code:`sparse` such that :code:`v` belongs to :code:`sparse[u]` if there is an arc :code:`(u,v)` of weight :code:`sparse[u][v]`.  For example, the above graph would be represented as: ::
+If your graph is sparse (contains few arcs), then you might want to represent it using dictionaries.  Formally, the sparse graph representation is a list of dictionaries :code:`sparse` such that :code:`v` belongs to :code:`sparse[u]` if there is an arc :code:`(u,v)` of weight :code:`sparse[u][v]`.
+We call this graph format *listdict*. For example, the above graph would be represented as: ::
 
     [{1: 1, 3: 4},
      {0: 1, 2: 1, 3: 3},
@@ -131,6 +132,7 @@ If your graph is sparse (contains few arcs), then you might want to represent it
 This data structure encodes both the graph and the arc weights, hence it is possible to invoke the function the following way: ::
 
     dist, prec = dijkstra(sparse, sparse, source=0)
+
 
 .. toctree::
    :maxdepth: 2
