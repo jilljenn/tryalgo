@@ -5,8 +5,9 @@ import random
 from collections import deque
 
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
-from tryalgo.graph import weight_to_graph, tree_adj_to_prec, tree_prec_to_adj
-from tryalgo.graph import graph_weight_to_sparse, sparse_to_graph_weight
+from tryalgo.graph import tree_adj_to_prec, tree_prec_to_adj
+from tryalgo.graph import matrix_to_listlist, listlist_and_matrix_to_listdict
+from tryalgo.graph import listdict_to_listlist_and_matrix, dictdict_to_listdict
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm import inv
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
@@ -175,7 +176,7 @@ class TestTryalgo(unittest.TestCase):
 
     def test_bellman_ford(self):
         for title, graph, weight, has_circuit, shortest_path in self.L_dir:
-            sparse = graph_weight_to_sparse(graph, weight)
+            sparse = listlist_and_matrix_to_listdict(graph, weight)
             for g,w in [(graph, weight), (sparse, sparse)]:
                 dist, prec, detect = bellman_ford(g, w)
                 self.assertEqual(has_circuit, detect)
@@ -209,7 +210,7 @@ class TestTryalgo(unittest.TestCase):
              ([[1], [0]], 0, ([0, 1], [None, 0]))]
         for graph, source, answer in L:
             V = range(len(graph))
-            for g in [graph, graph_weight_to_sparse(graph)]:
+            for g in [graph, listlist_and_matrix_to_listdict(graph)]:
                 self.assertEqual(bfs(g, source), answer)
 
 
@@ -341,7 +342,7 @@ class TestTryalgo(unittest.TestCase):
             dfs(graph, start, seen)
             retval = [node for node in range(n) if seen[node]]
             seen = [False] * n
-            dfs(graph_weight_to_sparse(graph), start, seen)
+            dfs(listlist_and_matrix_to_listdict(graph), start, seen)
             self.assertEqual(retval, [node for node in range(n) if seen[node]])
             return retval
 
@@ -415,7 +416,7 @@ XXXXX#...#
               ([[1, 2], [0], [0]], None),
               ([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]], [4, 5, 3]) ]
         for graph, result in L:
-            for g in [graph, graph_weight_to_sparse(graph)]:
+            for g in [graph, listlist_and_matrix_to_listdict(graph)]:
                 answer = find_cycle(g)
                 if isinstance(result, set):
                     self.assertEqual(set(answer), result)
@@ -452,7 +453,7 @@ XXXXX#...#
             ]
         for f in [dijkstra, dijkstra_update_heap]:
             for title, graph, weight, shortest_path in L_dir:
-                sparse = graph_weight_to_sparse(graph, weight)
+                sparse = listlist_and_matrix_to_listdict(graph, weight)
                 for g, w in [(graph, weight), (sparse, sparse)]:
                     source = 0
                     target = len(g)-1
@@ -476,7 +477,7 @@ XXXXX#...#
              [8],
              [],
              []]
-        for graph in [G, graph_weight_to_sparse(G)]:
+        for graph in [G, listlist_and_matrix_to_listdict(G)]:
             self.assertEqual(set(dilworth(graph)), {0,1,2})
         # write_graph(dotfile="dilworth.dot", graph=G, directed=True, node_label=p)
 
@@ -508,7 +509,7 @@ XXXXX#...#
                   [_, _, _, _, _, _, 99, _, _, _, 0, 10],
                   [_, _, _, _, _, _, _, 15, 3, 7, 10, 0]]
         for f in [dinic, edmonds_karp, ford_fulkerson]:
-            sparse = graph_weight_to_sparse(graph, capacity)
+            sparse = listlist_and_matrix_to_listdict(graph, capacity)
             for g, w in [(graph, capacity), (sparse, sparse)]:
                 flow_matr, flow_val = f(g, w, 0, 11)
                 self.assertEqual(flow_val, 35)
@@ -564,7 +565,7 @@ XXXXX#...#
                   [[1, 2], [0, 2], [3], [1]],
                   [[1], [2], [3], [4, 5], [3, 6], [4], [0]]]
         for g in graphs:
-            # for g in [graph, graph_weight_to_sparse(graph)]:
+            # for g in [graph, listlist_and_matrix_to_listdict(graph)]:
             self.assertTrue(is_eulerian_tour(g, eulerian_tour_directed(g)))
 
 
@@ -652,7 +653,7 @@ XXXXX#...#
                  [ _, _]], None),
             ]
         for title, g, w, shortest_path in L_dir:
-            sparse = graph_weight_to_sparse(g, w)
+            sparse = listlist_and_matrix_to_listdict(g, w)
             for graph, weight in [(g, w), (sparse, sparse)]:
                 source = 0
                 target = len(graph) - 1
@@ -741,7 +742,7 @@ XXXXX#...#
         # from http://www.ics.uci.edu/~eppstein/PADS/MinimumSpanningTree.py
         sparse = [{1:11,2:13,3:12}, {0:11,3:14}, {0:13,3:10}, {0:12,1:14,2:10}]
         tree = [(2, 3), (0, 1), (0, 3)]
-        for graph, weight in [(sparse, sparse), sparse_to_graph_weight(sparse)]:
+        for graph, weight in [(sparse, sparse), listdict_to_listlist_and_matrix(sparse)]:
             self.assertEqual(kruskal(graph, weight), tree)
 
 
@@ -926,8 +927,8 @@ XXXXX#...#
         A3 = None
 
         for w, answ in [(W0, A0), (W1, A1), (W2, A2), (W3, A3)]:
-            g = weight_to_graph(w)
-            sparse = graph_weight_to_sparse(g, w)
+            g = matrix_to_listlist(w)
+            sparse = listlist_and_matrix_to_listdict(g, w)
             for graph, weight in [(g, w), (sparse, sparse)]:
                 self.assertEqual( min_mean_cycle(graph, weight), answ)
 
@@ -1183,7 +1184,7 @@ XXXXX#...#
     def test_strongly_connected_components(self):
         def check(f, G, b):
             a = f(G)
-            # self.assertEqual(a, f(graph_weight_to_sparse(G)))
+            # self.assertEqual(a, f(listlist_and_matrix_to_listdict(G)))
             # print("sccp(%s)=%s" % (G, a))
             n = len(b)
             C = [None] * n
@@ -1334,6 +1335,20 @@ XXXXX#...#
                     self.assertFalse(len(set(x[i-1:j])) == k)
                 if j<len(x):
                     self.assertFalse(len(set(x[i:j+1])) == k)
+
+    def test_graph_conversion(self):
+        Gdd = {'A': {'B': 7}, 'B': {'A': 6, 'B': 1, 'C': 0,  'D': -1}, 'C': {}, 'D':{'C': 8}}
+        Gld, name2node, node2name = dictdict_to_listdict(Gdd)
+        self.assertEqual(Gld, [{1: 7}, {0: 6, 1: 1, 2: 0, 3: -1}, {}, {2: 8}])
+        self.assertEqual(node2name, ['A', 'B', 'C', 'D'])
+        self.assertEqual(name2node, {'A': 0, 'B': 1, 'C': 2, 'D': 3})
+        Gll, W = listdict_to_listlist_and_matrix(Gld)
+        self.assertEqual(Gll, [[1], [0, 1, 2, 3], [], [2]])
+        self.assertEqual(W, [[None, 7, None, None], [6, 1, 0, -1], [None, None, None, None], [None, None, 8, None]])
+        Hld = listlist_and_matrix_to_listdict(Gll, W)
+        self.assertEqual(Hld, Gld)
+        Hll = matrix_to_listlist(W)
+        self.assertEqual(Hll, Gll)
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from tryalgo.dijkstra import dijkstra
-from tryalgo.graph import graph_weight_to_sparse
+from tryalgo.graph import listlist_and_matrix_to_listdict
 
 graph = [[1, 3],
          [0, 2, 3],
@@ -37,7 +37,7 @@ print(dist[10])
 print("%i %i %i %i %i %i" % (10, prec[10], prec[prec[10]], prec[prec[prec[10]]],
       prec[prec[prec[prec[10]]]], prec[prec[prec[prec[prec[10]]]]]))
 
-sparse_graph = graph_weight_to_sparse(weights)
+sparse_graph = listlist_and_matrix_to_listdict(weights)
 
 
 # provides the same behavior

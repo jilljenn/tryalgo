@@ -15,8 +15,8 @@ setrecursionlimit(5010)  # nécessaire pour de grands graphes
 def dinic(graph, capacity, source, target):
     """Maximum flow by Dinic
 
-    :param graph: adjacency list or adjacency dictionary of directed graph
-    :param capacity: matrix or adjacency dictionary
+    :param graph: directed graph in listlist or listdict format
+    :param capacity: in matrix format or same listdict graph
     :param int source: vertex
     :param int target: vertex
     :returns: skew symmetric flow matrix, flow value

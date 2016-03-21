@@ -48,8 +48,8 @@ class UnionFind:
 def kruskal(graph, weight):
     """Minimum spanning tree by Kruskal
 
-    :param graph: adjacency list or adjacency dictionary
-    :param weight: matrix
+    :param graph: undirected graph in listlist or listdict format
+    :param weight: in matrix format or same listdict graph
     :returns: list of edges of the tree
     :complexity: `O(|E|log|E|)`
     """

@@ -7,7 +7,7 @@
 def topological_order_dfs(graph):
     """Topological sorting by depth first search
 
-    :param graph: adjacency list of a directed acyclic graph, cannot be adjacency dictionary
+    :param graph: directed graph in listlist format, cannot be listdict
     :returns: list of vertices in order
     :complexity: `O(|V|+|E|)`
     """
@@ -38,7 +38,7 @@ def topological_order_dfs(graph):
 def topological_order(graph):
     """Topological sorting by maintaining indegree
 
-    :param graph: adjacency list of a directed acyclic graph, cannot be adjacency dictionary
+    :param graph: directed graph in listlist format, cannot be listdict
     :returns: list of vertices in order
     :complexity: `O(|V|+|E|)`
     """

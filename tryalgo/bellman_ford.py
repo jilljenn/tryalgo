@@ -8,8 +8,9 @@
 def bellman_ford(graph, weight, source=0):
     """ Single source shortest paths by Bellman-Ford
 
-    :param graph: adjacency list or adjacency dictionary of a directed graph
-    :param weight: matrix or adjacency dictionary, might be negative
+    :param graph: directed graph in listlist or listdict format
+    :param weight: can be negative.
+                   in matrix format or same listdict graph
     :returns: distance table, precedence table, bool
     :explanation: bool is True if a negative circuit is
                   reachable from the source, circuits

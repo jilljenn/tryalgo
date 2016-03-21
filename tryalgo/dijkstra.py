@@ -10,8 +10,8 @@ from heapq import heappop, heappush
 def dijkstra(graph, weight, source=0, target=None):
     """single source shortest paths by Dijkstra
 
-       :param graph: adjacency list or adjacency dictionary of a directed graph
-       :param weight: matrix
+       :param graph: directed graph in listlist or listdict format
+       :param weight: in matrix format or same listdict graph
        :assumes: weights are non-negative
        :param source: source vertex
        :type source: int

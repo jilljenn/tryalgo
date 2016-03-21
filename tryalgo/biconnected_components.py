@@ -9,7 +9,7 @@ from sys import getrecursionlimit, setrecursionlimit
 def cut_nodes_edges(graph):
     """Bi-connected components
 
-    :param graph: adjacency list of an undirected graph. Cannot be adjacency dictionary.
+    :param graph: undirected graph. in listlist format. Cannot be in listdict format.
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)`
     """
@@ -65,7 +65,7 @@ def cut_nodes_edges(graph):
 def cut_nodes_edges2(graph):
     """Bi-connected components, alternative recursive implementation
 
-    :param graph: adjacency list of an undirected graph. Cannot be adjacency dictionary.
+    :param graph: undirected graph. in listlist format. Cannot be in listdict format.
     :assumes: graph has about 10^4 vertices at most, otherwise memory limit is reached
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)` in average, `O(|V|+|E|^2)` in worst case due to use of dictionary
