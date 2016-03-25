@@ -87,7 +87,7 @@ class TestTryalgo(unittest.TestCase):
 
 
     def unorder(self, L):
-        return set(frozenset(group) for group in L)
+        return sorted(sorted(group) for group in L)
 
     def test_anagrams(self):
         L = [("le chien marche vers sa niche et trouve une "
