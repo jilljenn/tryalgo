@@ -7,7 +7,7 @@ from collections import deque
 
 # snip{
 def dist_grid(grid, source, target=None):
-    """Distances in a grid by DFS
+    """Distances in a grid by BFS
 
     :param grid: matrix with 4-neighborhood
     :param source: pair of row, column indices
