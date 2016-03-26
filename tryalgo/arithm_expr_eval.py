@@ -45,7 +45,7 @@ priority = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
 def arithm_expr_parse(line):
     """Constructs an arithmetic expression tree
 
-    :param line: string containing the expression
+    :param line: list of token strings containing the expression
     :returns: expression tree
 
     :complexity:     linear
