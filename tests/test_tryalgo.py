@@ -49,6 +49,7 @@ from tryalgo.kruskal import kruskal
 from tryalgo.kuhn_munkres_n4 import kuhn_munkres as kuhn_munkres_n4
 from tryalgo.kuhn_munkres    import kuhn_munkres as kuhn_munkres_n3
 from tryalgo.rabin_karp import rabin_karp_matching
+from tryalgo.roman_numbers import roman2int, int2roman
 from tryalgo.laser_mirrors import laser_mirrors
 from tryalgo.levenshtein import levenshtein
 from tryalgo.longest_common_subsequence import longest_common_subsequence
@@ -1172,6 +1173,12 @@ XXXXX#...#
             self.assertEqual(rectangles_from_points(L), A[-1])
             A.pop()
             L.pop()
+
+    def test_roman_numbers(self):
+        for val in range(1, 10000):
+            self.assertEqual(roman2int(int2roman(val)), val)
+        self.assertEqual(int2roman(68), "LXVIII")
+        self.assertEqual(int2roman(890), "DCCCXC")
 
     def test_scalar(self):
         n = 10
