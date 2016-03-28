@@ -41,6 +41,27 @@ def dfs_iterative(graph, start, seen):
 # snip}
 
 
+# snip{ dfs
+def dfs(graph, start=0):
+    """DFS tree in unweighted graph
+
+       :param graph: directed graph in listlist or listdict format
+       :param start: source vertex
+       :returns: precedence table
+       :complexity: `O(|V|+|E|)`
+       """
+    to_visit = [source]
+    prec = [None] * len(graph)
+    while to_visit:              # une file vide évalue à Faux
+        node = to_visit.pop()
+        for neighbor in graph[node]:
+            if prec[neighbor] is None:
+                prec[neighbor] = node
+                to_visit.append(neighbor)
+    return dist, prec
+# snip}
+
+
 def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
     height = len(grid)
     width = len(grid[0])
