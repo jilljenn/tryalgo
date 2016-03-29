@@ -21,11 +21,12 @@ def roman2int(s):
     """
     val = 0
     pos10 = 1000
+    beg = 0
     for pos in range(3, -1, -1):
         for digit in range(9,-1,-1):
             r = roman[pos][digit]
-            if s.startswith(r):
-                s = s[len(r):]
+            if s.startswith(r, beg):
+                beg += len(r)
                 val += digit * pos10
                 break
         pos10 //= 10
