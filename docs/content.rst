@@ -184,6 +184,7 @@ For solving a system of linear equations, a classical method is to use the Gauss
 
 When multiplying a sequence of matrices the order of evaluation does not matter, but placing the parenthesis in a good manner, permits to minimize the number of arithmetic operations necessary for the computation.  This is a classical problem which can be solved by dynamic programming, see `matrix_chain_mult <tryalgo/tryalgo.html#module-tryalgo.matrix_chain_mult>`__.
 
+The module `roman_numbers <tryalgo/tryalgo.html#module-tryalgo.roman_numbers>`__ provides functions to convert an integer into its roman number representation string and vice-versa.
 
 Backtracking
 ::::::::::::
