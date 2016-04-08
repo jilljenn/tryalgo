@@ -27,7 +27,7 @@ def dist_grid(grid, source, target=None):
             i2 = i1 + di
             j2 = j1 + dj
             if not (0 <= i2 and i2 < rows and 0 <= j2 and j2 < cols):
-                break                # bord de la grille dépassé
+                continue             # bord de la grille dépassé
             if grid[i2][j2] != ' ':  # case inacc. ou déjà visitée
                 continue
             grid[i2][j2] = symbol    # marquer visite

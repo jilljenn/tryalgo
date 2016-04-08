@@ -548,6 +548,29 @@ XXXXX#...#
 #vv>>>>#vv>>t#
 ##############""")
 
+        G = '''\
+###
+ ##
+ ##
+ ##
+ ##
+ ##
+ ##
+###'''
+
+        grid = list(map(lambda line: list(line), G.split('\n')))
+        dist_grid(grid, (1, 0), (6, 0))
+        H = '\n'.join((''.join(line) for line in grid))
+        self.assertEqual(H, """\
+###
+s##
+v##
+v##
+v##
+v##
+t##
+###""")
+
 
     def test_eratosthene(self):
         self.assertEqual(eratosthene(98), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
