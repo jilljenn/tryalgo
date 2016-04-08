@@ -1,4 +1,7 @@
 [![Build Status](https://travis-ci.org/jilljenn/tryalgo.svg?branch=master)](https://travis-ci.org/jilljenn/tryalgo)
+[![PyPI](https://img.shields.io/pypi/v/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
+[![PyPI](https://img.shields.io/pypi/dm/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
+[![PyPI](https://img.shields.io/pypi/pyversions/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 
 # tryalgo
 
@@ -36,3 +39,4 @@ Please [drop an issue](https://github.com/jilljenn/tryalgo/issues)!
 Contributors include:
 
 - Louis Abraham
+- Ryan Lahfa
