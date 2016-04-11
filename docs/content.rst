@@ -66,7 +66,7 @@ For this library we decided to encode graphs using in two different manners, at 
 In the `adjacency list` a graph on n vertices is encoded as a list of n elements, where the i-th element is the adjacency list of the i-th vertex.  Labels on edges or on vertices are stored in separate matrices or lists.  We call it the *listlist* graph format.  In contrast in the `adjacency dictionary` a graph is encoded as a list of n dictionary, such that the keys of the i-th dictionary are the neighbors of the i-th vertex, and the values are the attached edge weights.  We call this one the *listdict* graph format.  Undirected graphs are represented as directed graphs by duplicating each edge into two opposite facing arcs.  All functions in our library work with the *listlist* graph format, and most work also with the *listdict* graph format. This is documented for each function.
 
 
-Some graph libraries, like <https://www.ics.uci.edu/~eppstein/PADS/>`_, choose to represent graphs as dictionaries, where :code:`graph[u]` would again be a dictionary mapping each neighbor :code:`v` to the arc weight :code:`graph[u][v]`.  In this representation, nodes can be any hashable objects, like strings for example, or tuples. We call it the *dictdict* graph format, and provide functions to convert between the different graph representations, namely
+Some graph libraries, like `PADS <https://www.ics.uci.edu/~eppstein/PADS/>`_, choose to represent graphs as dictionaries, where :code:`graph[u]` would again be a dictionary mapping each neighbor :code:`v` to the arc weight :code:`graph[u][v]`.  In this representation, nodes can be any hashable objects, like strings for example, or tuples. We call it the *dictdict* graph format, and provide functions to convert between the different graph representations, namely
 `matrix_to_listlist  <tryalgo/tryalgo.html#module-tryalgo.graph>`__,
 `listlist_and_matrix_to_listdict  <tryalgo/tryalgo.html#module-tryalgo.graph>`__,
 `listdict_to_listlist_and_matrix  <tryalgo/tryalgo.html#module-tryalgo.graph>`__,
@@ -199,4 +199,4 @@ Finally a useful procedure is :py:func:`next_permutation` which takes as input a
 Last words
 ~~~~~~~~~~
 
-We hope that you find the library instructive and useful.  If you miss some functionality, let us know, and you might want to have a look at `PADS <http://www.ics.uci.edu/~eppstein/PADS/>`__ and `NetworkX <https://pypi.python.org/pypi/networkx/>`__.
+We hope that you find the library instructive and useful.  If you miss some functionality, let us know, and you might want to have a look at `PADS <http://www.ics.uci.edu/~eppstein/PADS/>`__. and `NetworkX <https://pypi.python.org/pypi/networkx/>`__.

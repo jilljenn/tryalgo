@@ -5,11 +5,11 @@
 
 # snip{ dfs-recursive
 def dfs_recursive(graph, node, seen):
-    """DFS, recursive implementation
+    """DFS, detect connected component, recursive implementation
 
     :param graph: directed graph in listlist or listdict format
-    :param node: to start graph exploration
-    :param seen: boolean table, will be set true for the connected component
+    :param int node: to start graph exploration
+    :param boolean-table seen: will be set true for the connected component
           containing node.
     :complexity: `O(|V|+|E|)`
     """
@@ -22,11 +22,11 @@ def dfs_recursive(graph, node, seen):
 
 # snip{ dfs-iterative
 def dfs_iterative(graph, start, seen):
-    """DFS, iterative implementation
+    """DFS, detect connected component, iterative implementation
 
     :param graph: directed graph in listlist or listdict format
-    :param node: to start graph exploration
-    :param seen: boolean table, will be set true for the connected component
+    :param int node: to start graph exploration
+    :param boolean-table seen: will be set true for the connected component
           containing node.
     :complexity: `O(|V|+|E|)`
     """
@@ -43,10 +43,10 @@ def dfs_iterative(graph, start, seen):
 
 # snip{ dfs
 def dfs(graph, start=0):
-    """DFS tree in unweighted graph
+    """DFS, build DFS tree in unweighted graph
 
        :param graph: directed graph in listlist or listdict format
-       :param start: source vertex
+       :param int start: source vertex
        :returns: precedence table
        :complexity: `O(|V|+|E|)`
        """
@@ -58,11 +58,19 @@ def dfs(graph, start=0):
             if prec[neighbor] is None:
                 prec[neighbor] = node
                 to_visit.append(neighbor)
-    return dist, prec
+    return prec
 # snip}
 
 
 def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
+    """DFS on a grid, mark connected component, iterative version
+
+    :param grid: matrix, 4-neighborhood
+    :param i,j: cell in this matrix, start of DFS exploration
+    :param free: symbol for walkable cells
+    :param mark: symbol to overwrite visited vertices
+    :complexity: linear
+    """
     height = len(grid)
     width = len(grid[0])
     grid[i][j] = mark              # marquer passage
@@ -75,10 +83,10 @@ def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
 
 # snip{ dfs-grid
 def dfs_grid(grid, i, j, mark='X', free='.'):
-    """explore grid starting from cell (i,j)
+    """DFS on a grid, mark connected component, iterative version
 
     :param grid: matrix, 4-neighborhood
-    :param i,j: cell in this matrix
+    :param i,j: cell in this matrix, start of DFS exploration
     :param free: symbol for walkable cells
     :param mark: symbol to overwrite visited vertices
     :complexity: linear

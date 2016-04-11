@@ -8,7 +8,7 @@ def three_partition(x):
     """partition a set of integers in 3 parts of same total value
 
     :param x: table of non negative values
-    :returns triplet: of the integers encoding the sets, or None otherwise
+    :returns: triplet of the integers encoding the sets, or None otherwise
     :complexity: :math:`O(2^{2n})`
     """
     f = [0] * (1 << len(x))

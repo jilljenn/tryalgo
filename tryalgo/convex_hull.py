@@ -2,7 +2,10 @@
 # Convex hull by Andrew
 # jill-jenn vie et christoph durr - 2014-2015
 
-from random import *
+from random import randint
+
+
+__all__ = ["andrew"]
 
 
 # snip{ left-turn

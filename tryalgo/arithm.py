@@ -6,6 +6,9 @@
 # snip{ pgcd
 def pgcd(a, b):
     """Greatest common divisor for a and b
+
+    :param a,b: non-negative integers
+    :complexity: O(log a + log b)
     """
     return a if b == 0 else pgcd(b, a % b)
 # snip}
@@ -14,6 +17,9 @@ def pgcd(a, b):
 # snip{ bezout
 def bezout(a, b):
     """Bezout coefficients for a and b
+
+    :param a,b: non-negative integers
+    :complexity: O(log a + log b)
     """
     if b == 0:
         return (1, 0)
@@ -24,6 +30,9 @@ def bezout(a, b):
 
 def inv(a, p):
     """Inverse of a in :math:`{\mathbb Z}_p`
+
+    :param a,p: non-negative integers
+    :complexity: O(log a + log p)
     """
     return bezout(a, p)[0] % p
 # snip}
@@ -32,6 +41,9 @@ def inv(a, p):
 # snip{ binom
 def binom(n, k):
     """Binomial coefficients for :math:`n \choose k`
+
+    :param n,k: non-negative integers
+    :complexity: O(k)
     """
     prod = 1
     for i in range(k):
@@ -43,6 +55,9 @@ def binom(n, k):
 # snip{ binom_modulo
 def binom_modulo(n, k, p):
     """Binomial coefficients for :math:`n \choose k`, modulo p
+
+    :param n,k: non-negative integers
+    :complexity: O(k)
     """
     prod = 1
     for i in range(k):

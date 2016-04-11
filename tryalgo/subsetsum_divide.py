@@ -25,7 +25,7 @@ def subset_sum(x, R):
 
     :param x: table of values
     :param R: target value
-    :returns boolean: if there is a subsequence of x with total sum R
+    :returns bool: if there is a subsequence of x with total sum R
     :complexity: :math:`O(n^{\\lceil n/2 \\rceil})`
     """
     k = len(x) // 2             # diviser l'entrée

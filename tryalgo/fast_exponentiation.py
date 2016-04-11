@@ -7,6 +7,8 @@
 def fast_exponentiation2(a, b, q):
     """Compute (a pow b) % q
 
+    :param int a b: non negative
+    :param int q: positive
     :complexity: O(log b)
     """
     assert a >= 0 and b >= 0 and q >= 1
@@ -29,6 +31,8 @@ def fast_exponentiation2(a, b, q):
 def fast_exponentiation(a, b, q):
     """Compute (a pow b) % q, alternative shorter implementation
 
+    :param int a b: non negative
+    :param int q: positive
     :complexity: O(log b)
     """
     assert a >= 0 and b >= 0 and q >= 1

@@ -10,7 +10,7 @@ def bfs(graph, start=0):
     """Shortest path in unweighted graph by BFS
 
        :param graph: directed graph in listlist or listdict format
-       :param start: source vertex
+       :param int start: source vertex
        :returns: distance table, precedence table
        :complexity: `O(|V|+|E|)`
        """

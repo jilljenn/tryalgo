@@ -9,7 +9,7 @@ def subset_sum(x, R):
 
     :param x: table of non negative values
     :param R: target value
-    :returns boolean: True if a subset of x sums to R
+    :returns bool: True if a subset of x sums to R
     :complexity: O(n*R)
     """
     b = [False] * (R + 1)
@@ -27,8 +27,7 @@ def coin_change(x, R):
 
     :param x: table of non negative values
     :param R: target value
-    :returns boolean: True if there is a non negative linear combination
-             of x that has value R
+    :returns bool: True if there is a non negative linear combination of x that has value R
     :complexity: O(n*R)
     """
     b = [False] * (R + 1)

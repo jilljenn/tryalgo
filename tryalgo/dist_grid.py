@@ -10,8 +10,8 @@ def dist_grid(grid, source, target=None):
     """Distances in a grid by BFS
 
     :param grid: matrix with 4-neighborhood
-    :param source: pair of row, column indices
-    :param target: exploration stops if target is reached
+    :param (int,int) source: pair of row, column indices
+    :param (int,int) target: exploration stops if target is reached
     :complexity: linear in grid size
     """
     rows = len(grid)

@@ -31,7 +31,7 @@ def sudoku(G):
     """Solving Sudoku
 
     :param G: integer matrix with 0 at empty cells
-    :returns boolean: True if grid could be solved
+    :returns bool: True if grid could be solved
     :modifies: G will contain the solution
     :complexity: huge, but linear for usual published 9x9 grids
     """

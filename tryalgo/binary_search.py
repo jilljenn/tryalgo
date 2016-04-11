@@ -25,6 +25,8 @@ def discrete_binary_search(tab, lo, hi):
     """Binary search in a table
 
     :param tab: boolean monotone table with tab[hi] = True
+    :param int lo:
+    :param int hi: with hi >= lo
     :returns: first index i in [lo,hi] such that tab[i]
     :complexity: `O(log(hi-lo))`
     """
@@ -43,6 +45,9 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
     """Binary search for a function
 
     :param f: boolean monotone function with f(hi) = True
+    :param int lo:
+    :param int hi: with hi >= lo
+    :param float gap:
     :returns: first value x in [lo,hi] such that f(x),
              x is computed up to some precision
     :complexity: `O(log((hi-lo)/gap))`
@@ -64,6 +69,7 @@ def optimized_binary_search_lower(tab, logsize):
     :param tab: boolean monotone table
        of size :math:`2^\\textrm{logsize}`
        with tab[0] = False
+    :param int logsize:
     :returns: last i such that not tab[i]
     :complexity: O(logsize)
     """
@@ -83,6 +89,7 @@ def optimized_binary_search(tab, logsize):
     :param tab: boolean monotone table
        of size :math:`2^\\textrm{logsize}`
        with tab[hi] = True
+    :param int logsize:
     :returns: first i such that tab[i]
     :complexity: O(logsize)
     """

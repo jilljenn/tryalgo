@@ -7,6 +7,7 @@ from collections import deque
 from tryalgo.graph import write_graph
 
 
+
 # snip{ eulerian_tour_undirected
 def eulerian_tour_undirected(graph):
     """Eulerian tour on an undirected graph
@@ -65,6 +66,15 @@ def eulerian_tour_directed(graph):
 
 
 def write_cycle(filename, graph, cycle, directed):
+    """Write an eulerian tour in DOT format
+
+       :param filename: the file to be written in DOT format
+       :param graph: graph in listlist format, cannot be listdict
+       :param bool directed: describes the graph
+       :param cycle: tour as a vertex list
+       :returns: nothing
+       :complexity: `O(|V|^2 + |E|)`
+    """
     n = len(graph)
     weight = [[float('inf')] * n for _ in range(n)]
     for r in range(1, len(c)):
@@ -75,6 +85,12 @@ def write_cycle(filename, graph, cycle, directed):
 
 
 def random_eulerien_graph(n):
+    """Generates some random eulerian graph
+
+       :param int n: number of vertices
+       :returns: undirected graph in listlist representation
+       :complexity: linear
+    """
     graphe = [[] for _ in range(n)]
     for v in range(n - 1):
         noeuds = random.sample(range(v + 1, n), random.choice(
@@ -87,6 +103,13 @@ def random_eulerien_graph(n):
 
 
 def is_eulerian_tour(graph, tour):
+    """Eulerian tour on an undirected graph
+
+       :param graph: directed graph in listlist format, cannot be listdict
+       :param tour: vertex list
+       :returns: test if tour is eulerian
+       :complexity: `O(|V|*|E|)` under the assumption that set membership is in constant time
+    """
     m = len(tour)-1
     arcs = set((tour[i], tour[i+1]) for i in range(m))
     if len(arcs) != m:

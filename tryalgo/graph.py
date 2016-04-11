@@ -4,13 +4,23 @@
 
 
 def readval(file, ty):
-    """Reads a line from file with an item of type ty"""
+    """Reads a line from file with an item of type ty
+
+    :param file: input stream, for example sys.stdin
+    :param ty: a type, for example int
+    :returns: an element of type ty
+    """
     return ty(file.readline())
 
 
 def readtab(fi, ty):
     """Reads a line from file with a space separated list
-       of items of type ty"""
+       of items of type ty
+
+    :param file: input stream, for example sys.stdin
+    :param ty: a type, for example int
+    :returns: a tuple with elements of type ty
+    """
     return tuple(map(ty, fi.readline().split()))
 
 
@@ -126,6 +136,10 @@ def write_graph(dotfile, graph, directed=False,
 def tree_prec_to_adj(prec, root=0):
     """Transforms a tree given as predecessor table into adjacency list form
 
+    :param prec: predecessor table representing a tree, prec[u] == v iff u is descendant of v,
+                 except for the root where prec[root] == root
+    :param root: root vertex of the tree
+    :returns: undirected graph in listlist representation
     :complexity: linear
     """
     n = len(prec)
@@ -138,11 +152,11 @@ def tree_prec_to_adj(prec, root=0):
 
 
 def tree_adj_to_prec(graph, root=0):
-    """Transforms a tree given as adjacency list into predecessor table form
-
+    """Transforms a tree given as adjacency list into predecessor table form.
     if graph is not a tree: will return a DFS spanning tree
 
     :param graph: directed graph in listlist or listdict format
+    :returns: tree in predecessor table representation
     :complexity: linear
     """
     n = len(graph)
@@ -163,11 +177,14 @@ def tree_adj_to_prec(graph, root=0):
 # snip{ add_reverse_arcs
 def add_reverse_arcs(graph, capac = None):
     """Utility function for flow algorithms that need for every arc (u,v),
-    the existence of an (v,u) arc with zero capacity.
-
+    the existence of an (v,u) arc, by default with zero capacity.
     graph can be in adjacency list, possibly with capacity matrix capac.
     or graph can be in adjacency dictionary, then capac parameter is ignored.
 
+    :param capac: arc capacity matrix
+    :param graph: in listlist representation, or in listdict representation, in this case capac is ignored
+    :complexity: linear
+    :returns: nothing, but graph is modified
     """
     for u in range(len(graph)):
         for v in graph[u]:
@@ -205,7 +222,13 @@ def add_reverse_arcs(graph, capac = None):
 def matrix_to_listlist(weight):
     """transforms a squared weight matrix in a adjacency table of type listlist
     encoding the directed graph corresponding to the entries of the matrix
-    different from None """
+    different from None
+
+    :param weight: squared weight matrix, weight[u][v] != None iff arc (u,v) exists
+    :complexity: linear
+    :returns: the unweighted directed graph in the listlist representation,
+                       listlist[u] contains all v for which arc (u,v) exists.
+    """
     graph = [[] for _ in range(len(weight))]
     for u in range(len(graph)):
         for v in range(len(graph)):
@@ -217,7 +240,13 @@ def matrix_to_listlist(weight):
 def listlist_and_matrix_to_listdict(graph, weight=None):
     """Transforms the weighted adjacency list representation of a graph
     of type listlist + optional weight matrix
-    into the listdict representation"""
+    into the listdict representation
+
+    :param graph: in listlist representation
+    :param weight: optional weight matrix
+    :returns: graph in listdict representation
+    :complexity: linear
+    """
     if weight:
         return [{v:weight[u][v] for v in graph[u]} for u in range(len(graph))]
     else:
@@ -226,7 +255,12 @@ def listlist_and_matrix_to_listdict(graph, weight=None):
 
 def listdict_to_listlist_and_matrix(sparse):
     """Transforms the adjacency list representation of a graph
-    of type listdict into the listlist + weight matrix representation"""
+    of type listdict into the listlist + weight matrix representation
+
+    :param sparse: graph in listdict representation
+    :returns: couple with listlist representation, and weight matrix
+    :complexity: linear
+    """
     V = range(len(sparse))
     graph = [[] for _ in V]
     weight = [[None for v in V] for u in V]
@@ -240,10 +274,10 @@ def dictdict_to_listdict(dictgraph):
     """Transforms a dict-dict graph representation into a
     adjacency dictionary representation (list-dict)
 
-    input: dictionary mapping vertices to dictionary
+    :param dictgraph: dictionary mapping vertices to dictionary
            such that dictgraph[u][v] is weight of arc (u,v)
-    complexity: linear
-    returns: graph (list of dict), name_to_node (dict), node_to_name (list)
+    :complexity: linear
+    :returns: tuple with graph (listdict), name_to_node (dict), node_to_name (list)
     """
     n = len(dictgraph)                            # vertices
     node_to_name = [name for name in dictgraph]   # bijection indices <-> names
@@ -262,7 +296,13 @@ def dictdict_to_listdict(dictgraph):
 
 def extract_path(prec, v):
     """extracts a path in form of vertex list from source to vertex v
-       given a precedence table prec leading to the source"""
+       given a precedence table prec leading to the source
+
+    :param prec: precedence table of a tree
+    :param v: vertex on the tree
+    :returns: path from root to v, in form of a list
+    :complexity: linear
+    """
     L = []
     while v is not None:
         L.append(v)
@@ -280,6 +320,7 @@ def make_flow_labels(graph, flow, capac):
     :param graph: adjacency list or adjacency dictionary
     :param flow:  flow matrix or adjacency dictionary
     :param capac: capacity matrix or adjacency dictionary
+    :returns: listdic graph representation, with the arc label strings
     """
     V = range(len(graph))
     arc_label = [{v:"" for v in graph[u]} for u in V]
