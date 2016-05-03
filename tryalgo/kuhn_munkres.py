@@ -4,6 +4,9 @@
 
 
 # snip{
+TOLERANCE = 1e-6          # everything smaller is considered zero
+
+
 def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
     """Maximum profit bipartite matching by Kuhn-Munkres
 
@@ -30,7 +33,7 @@ def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
         while True:
             ((delta, u), v) = min((marge[v], v) for v in V if Av[v] == None)
             assert au[u]
-            if delta > 0:           # arbre est complet
+            if delta > TOLERANCE:   # arbre est complet
                 for u0 in U:        # améliorer les étiquettes
                     if au[u0]:
                         lu[u0] -= delta
@@ -40,7 +43,7 @@ def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
                     else:
                         (val, arg) = marge[v0]
                         marge[v0] = (val - delta, arg)
-            assert lu[u] + lv[v] == G[u][v]
+            assert abs(lu[u] + lv[v] - G[u][v]) <= TOLERANCE  # equality test
             Av[v] = u                # ajout (u, v) dans A
             if mv[v] is None:
                 break                # chemin alt. trouvé...
