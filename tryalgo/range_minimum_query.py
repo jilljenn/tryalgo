@@ -38,7 +38,7 @@ class RangeMinQuery:
             p //= 2
 
     def range_min(self, i, k):
-        """:returns:  min{ t[i], t[i + 1], ..., t[i + k - 1]}
+        """:returns:  min{ t[i], t[i + 1], ..., t[k - 1]}
         :complexity: O(log len(t))
         """
         return self._range_min(1, 0, self.N, i, k)
