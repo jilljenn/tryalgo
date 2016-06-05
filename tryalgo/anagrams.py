@@ -30,4 +30,3 @@ def anagrams(w):
             reponse.append([w[i] for i in d[s]])
     return reponse
 # snip}
-
