@@ -50,7 +50,7 @@ def dfs(graph, start=0):
        :returns: precedence table
        :complexity: `O(|V|+|E|)`
        """
-    to_visit = [source]
+    to_visit = [start]
     prec = [None] * len(graph)
     while to_visit:              # une file vide évalue à Faux
         node = to_visit.pop()
