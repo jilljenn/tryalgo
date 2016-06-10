@@ -51,7 +51,7 @@ if __name__ == "__main__":
             break            # fin des instances
         iles = []
         for _ in range(n):
-            x, y = readarray(int)
+            x, y = _readarray(int)
             iles.append((x, y))
         stdin.readline()          # consommer ligne vide
         print("Case %i: %i" % (testCase, solve(iles, rayon)))
