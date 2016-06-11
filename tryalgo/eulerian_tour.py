@@ -3,7 +3,6 @@
 # jill-jenn vie et christoph durr - 2015
 
 import random
-from collections import deque
 from tryalgo.graph import write_graph
 
 
@@ -77,10 +76,10 @@ def write_cycle(filename, graph, cycle, directed):
     """
     n = len(graph)
     weight = [[float('inf')] * n for _ in range(n)]
-    for r in range(1, len(c)):
-        weight[c[r-1]][c[r]] = r
+    for r in range(1, len(cycle)):
+        weight[cycle[r-1]][cycle[r]] = r
         if not directed:
-            weight[c[r]][c[r-1]] = r
+            weight[cycle[r]][cycle[r-1]] = r
     write_graph(filename, graph, arc_label=weight, directed=directed)
 
 

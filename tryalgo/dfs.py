@@ -41,8 +41,8 @@ def dfs_iterative(graph, start, seen):
 # snip}
 
 
-# snip{ dfs
-def dfs(graph, start=0):
+# snip{ dfs-tree
+def dfs_tree(graph, start=0):
     """DFS, build DFS tree in unweighted graph
 
        :param graph: directed graph in listlist or listdict format

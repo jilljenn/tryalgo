@@ -2,7 +2,7 @@
 # Bipartie maximum matching
 # jill-jenn vie et christoph durr - 2014-2015
 
-__all__ = ["max_bipartite_matching"]
+__all__ = ["max_bipartite_matching", "max_bipartite_matching2"]
 
 
 # snip{
@@ -29,6 +29,24 @@ def max_bipartite_matching(bigraph):
     match = [None] * n
     for u in range(n):
         augment(u, bigraph, [False] * n, match)
+    return match
+# snip}
+
+
+def max_bipartite_matching2(bigraph):
+    """Bipartie maximum matching
+
+    :param bigraph: adjacency list, index = vertex in U,
+                                    value = neighbor list in V
+    :comment: U and V can have different cardinalities
+    :returns: matching list, match[v] == u iff (u, v) in matching
+    :complexity: `O(|V|*|E|)`
+    """
+    nU = len(bigraph)
+    nV = max(max(adjlist, default=-1) for adjlist in bigraph) + 1
+    match = [None] * nV
+    for u in range(nU):
+        augment(u, bigraph, [False] * nV, match)
     return match
 # snip}
 

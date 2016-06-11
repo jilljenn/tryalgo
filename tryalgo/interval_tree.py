@@ -2,7 +2,6 @@
 # Interval tree
 # christoph dürr - jill-jênn vie - 2013-2015
 
-from random import randint
 from bisect import bisect_right
 
 

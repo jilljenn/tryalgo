@@ -159,7 +159,6 @@ def tree_adj_to_prec(graph, root=0):
     :returns: tree in predecessor table representation
     :complexity: linear
     """
-    n = len(graph)
     prec = [None] * len(graph)
     prec[root] = root            # marquer pour ne pas revisiter la racine
     to_visit = [root]

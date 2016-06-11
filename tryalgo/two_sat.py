@@ -2,8 +2,6 @@
 # Solving 2-SAT boolean formulas
 # jill-jenn vie et christoph durr - 2015
 
-from random import randint
-from sys import path
 from tryalgo.strongly_connected_components import tarjan
 
 

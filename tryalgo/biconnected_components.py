@@ -61,7 +61,7 @@ def cut_nodes_edges(graph):
     return cut_nodes, cut_edges
 # snip}
 
-# snip{
+
 def cut_nodes_edges2(graph):
     """Bi-connected components, alternative recursive implementation
 
@@ -72,7 +72,7 @@ def cut_nodes_edges2(graph):
     """
     N = len(graph)
     recursionlimit = getrecursionlimit()
-    setrecursionlimit(N + 42)  # 5 est la vraie constante, mais ça fait foirer les builds
+    setrecursionlimit(max(1000, N + 42))  # 5 est la vraie constante, mais ça fait foirer les builds
     edges = set((i, j) for i in range(N) for j in graph[i] if i <= j)
     nodes = set()
     NOT = -2  # pas encore visité ; avec -1 on a un gros bug à cause de `marked[v] != prof - 1`
@@ -105,4 +105,3 @@ def cut_nodes_edges2(graph):
         DFS(r)  # on pourrait compter les composantes connexes en ajoutant 1 si c'est différent de None
     setrecursionlimit(recursionlimit)
     return nodes, edges
-# snip}

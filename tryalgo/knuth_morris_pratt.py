@@ -3,8 +3,6 @@
 # jill-jênn vie et christoph dürr - 2014-2015
 
 # part d'un code de David Eppstein
-from time import time
-from random import randint
 
 
 # snip{

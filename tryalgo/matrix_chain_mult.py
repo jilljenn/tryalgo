@@ -3,8 +3,6 @@
 # multiplication de matrices
 # jill-jenn vie et christoph durr - 2014-2015
 
-from random import randint
-
 
 # snip{
 def matrix_mult_opt_order(M):
