@@ -18,7 +18,7 @@ from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search
-from tryalgo.bipartite_matching import max_bipartite_matching
+from tryalgo.bipartite_matching import max_bipartite_matching, max_bipartite_matching2
 from tryalgo.closest_points import closest_points
 from tryalgo.closest_values import closest_values
 from tryalgo.convex_hull import left_turn, andrew
@@ -64,6 +64,7 @@ from tryalgo.min_mean_cycle import min_mean_cycle
 from tryalgo.next_permutation import next_permutation
 from tryalgo.our_heap import OurHeap
 from tryalgo.our_queue import OurQueue
+from tryalgo.permutation_rank import permutation_rank, rank_permutation
 from tryalgo.polygon import area, is_simple
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.rabin_karp import rabin_karp_factor
@@ -275,11 +276,17 @@ class TestTryalgo(unittest.TestCase):
 
     def test_max_bipartite_matching(self):
         self.assertEqual( [None], max_bipartite_matching([[]]))
+        self.assertEqual( [], max_bipartite_matching2([[]]))
         self.assertEqual( [None, None], max_bipartite_matching([[], []]))
+        self.assertEqual( [], max_bipartite_matching2([[], []]))
         self.assertEqual( [0, None], max_bipartite_matching([[0], [0]]))
+        self.assertEqual( [0], max_bipartite_matching2([[0], [0]]))
         self.assertEqual( [0, 1], max_bipartite_matching([[0], [0, 1]]))
+        self.assertEqual( [0, 1], max_bipartite_matching2([[0], [0, 1]]))
         self.assertEqual( [0, 1, 2, 4, None],
                         max_bipartite_matching([[0], [0, 1], [2, 3], [1], [0, 3]]))
+        self.assertEqual( [0, 1, 2, 4],
+                        max_bipartite_matching2([[0], [0, 1], [2, 3], [1], [0, 3]]))
 
     def test_closest_points(self):
         S = [(3*i, 3*i) for i in range(1000)]
@@ -992,6 +999,13 @@ t##
             else:
                 if q1:
                     self.assertEqual( q1.popleft() , q2.pop() )
+
+    def test_permutation_rank(self):
+        for n, nfact in [(1,1), (2,2), (3,6), (4,24)]:
+            for r in range(nfact):
+                self.assertEqual(permutation_rank(rank_permutation(r, 4)), r)
+            self.assertEqual(rank_permutation(0, n), list(range(n)))
+            self.assertEqual(rank_permutation(nfact - 1, n), list(range(n))[::-1])
 
     def test_polygon_area(self):
         self.assertEqual( area([(1, 0), (2, 3), (2, 4), (0, 3)]) , 4 )
