@@ -74,7 +74,7 @@ class PartitionRefinement:
         """
         self.n = n
         c = PartitionClass(None, None, n)   # initially there is a single class of size n
-        self.classes = c
+        self.classes = c                           # reference to first class in class list
         self.items = [PartitionItem(0, None, c)]   # first item needs special treatment
         c.start = self.items[0]
         for x in range(1, n):               # insert before first item equals appending after last item
@@ -105,6 +105,7 @@ class PartitionRefinement:
             c.split = None
             if c.size == 0:                 # delete class if it became empty
                 c.remove()
+                del c
 
 
     def tolist(self):
