@@ -65,6 +65,7 @@ from tryalgo.next_permutation import next_permutation
 from tryalgo.our_heap import OurHeap
 from tryalgo.our_queue import OurQueue
 from tryalgo.permutation_rank import permutation_rank, rank_permutation
+from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.rabin_karp import rabin_karp_factor
@@ -1006,6 +1007,18 @@ t##
                 self.assertEqual(permutation_rank(rank_permutation(r, 4)), r)
             self.assertEqual(rank_permutation(0, n), list(range(n)))
             self.assertEqual(rank_permutation(nfact - 1, n), list(range(n))[::-1])
+
+
+    def test_permutation_refinement(self):
+        P = PartitionRefinement(10)
+        self.assertEqual( P.tolist(), [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
+        P.refine([3, 4, 5])
+        P.refine([2, 3])
+        P.refine([-1, 2, 3, 10])
+        self.assertEqual( P.tolist(), [[3], [4, 5], [2], [0, 1, 6, 7, 8, 9]])
+        flattened = [val for sublist in P.tolist() for val in sublist]
+        self.assertEqual(flattened, P.order())
+
 
     def test_polygon_area(self):
         self.assertEqual( area([(1, 0), (2, 3), (2, 4), (0, 3)]) , 4 )
