@@ -45,7 +45,11 @@ def max_bipartite_matching2(bigraph):
     nU = len(bigraph)
     # the following line works only in Python version ≥ 2.5
     # nV = max(max(adjlist, default=-1) for adjlist in bigraph) + 1
-    nV = max(-1, *(v for adjlist in bigraph for v in adjlist)) + 1
+    nV = 0
+    for adjlist in bigraph:
+        for v in adjlist:
+            if v + 1 > nV:
+                nV = v + 1
     match = [None] * nV
     for u in range(nU):
         augment(u, bigraph, [False] * nV, match)
