@@ -24,6 +24,7 @@ Sometimes it is convenient to encode sets over a small universe as bit vectors i
 
 In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illustrate different variants of binary search.
 
+A very interesting data structure is called `PartitionRefinement <tryalgo/tryalgo.html#module-tryalgo.partition_refinement>`.  It maintains a partition over the set {0,1,...,n-1}.  The main operation is called *refine(S)* which splits each part P of the current partition into elements that are in S and elements that are not in S.  The complexity of this operation is linear in the size of S.
 
 Strings
 :::::::
@@ -126,6 +127,7 @@ Matching and flows
 problem                                                  complexity                     algorithm                                                implementation
 ======================================================== ============================== ============================================================================== ===========================
 maximum cardinality bipartite matching                   :math:`O(|E|\cdot|V|)`         `augmenting path algorithm <https://goo.gl/lGtp9f>`_                           `bipartite_matching <tryalgo/tryalgo.html#module-tryalgo.bipartite_matching>`__
+minimum bipartite vertex cover                           :math:`O(|E|\cdot|V|)`         `reduction to matching <goo.gl/AkBUQH`_                                        `bipartite_vertex_cover <tryalgo/tryalgo.html#module-tryalgo.bipartite_vertex_cover>`__
 maximum profit bipartite matching                        :math:`O(|V|^3)`               `Hungarian algorithm <https://en.wikipedia.org/wiki/Hungarian_algorithm>`_     `kuhn_munkres <tryalgo/tryalgo.html#module-tryalgo.kuhn_munkres>`__
 stable bipartite matching                                :math:`O(|V|^2)`               `Gale-Shapley <https://en.wikipedia.org/wiki/Stable_marriage_problem>`_        `gale_shapley <tryalgo/tryalgo.html#module-tryalgo.gale_shapley>`__
 max flow capacities in {1,...,C}                         :math:`O(|V|\cdot|E|\cdot|C|)` `Ford-Fulkerson <https://en.wikipedia.org/wiki/Ford-Fulkerson_algorithm>`_     `ford_fulkerson <tryalgo/tryalgo.html#module-tryalgo.ford_fulkerson>`__

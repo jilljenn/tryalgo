@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Predictive text for mobile phones
 # jill-jenn vie et christoph durr and louis abraham - 2014-2015
 

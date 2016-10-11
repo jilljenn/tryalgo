@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Depth first search - DFS
 # jill-jenn vie et christoph durr - 2015
 

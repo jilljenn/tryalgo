@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # arithmetic functions
 # christoph dürr - jill-jênn vie - 2013-2015
 

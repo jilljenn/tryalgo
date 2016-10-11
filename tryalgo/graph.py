@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Reading graphs from files and writing into files
 # jill-jênn vie et christoph dürr - 2015
 

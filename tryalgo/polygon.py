@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Area of polygone
 # mesures polygone
 # jill-jenn vie et christoph durr - 2014-2015
@@ -37,6 +38,7 @@ def is_simple(polygon):
     rank_to_y.sort()
     y_to_rank = {rank_to_y[i]: i for i in range(len(rank_to_y))}
     S = RangeMinQuery([0] * len(rank_to_y))      # structure balayage
+    last_y = None                     # juste pour calmer pyflakes
     for i in order:
         x, y = polygon[i]
         rank = y_to_rank[y]

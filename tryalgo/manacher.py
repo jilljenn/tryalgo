@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Longest palindrome in a string by Manacher
 # jill-jenn vie et christoph durr - 2014-2015
 

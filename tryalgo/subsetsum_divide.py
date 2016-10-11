@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Subsetsum by splitting
 # c.durr et jill-jênn vie - 2014-2015
 

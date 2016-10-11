@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Merge two ordered listes
 # jill-jenn vie et christoph durr - 2014-2015
 

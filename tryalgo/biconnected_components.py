@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # bi-connected components, cut vertices and cut cut-nodes
 # jill-jenn vie et christoph durr et louis abraham - 2015
 from sys import getrecursionlimit, setrecursionlimit

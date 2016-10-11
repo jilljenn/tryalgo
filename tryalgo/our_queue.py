@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # A FIFO queue
 # christoph dürr - jill-jênn vie - 2015
 

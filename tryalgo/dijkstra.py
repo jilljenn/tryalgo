@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Shortest paths by Dijkstra
 # jill-jênn vie et christoph dürr - 2015
 

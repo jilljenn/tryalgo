@@ -1,4 +1,5 @@
 #!/usr/bin/env pypy3
+# -*- coding: utf-8 -*-
 # Binary search
 # jill-jenn vie et christoph durr et louis abraham - 2014-2015
 
@@ -54,7 +55,7 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
     """
     while hi - lo > gap:
         # in other languages you want to force floating division by using 2.0
-        mid = (lo + hi) / 2
+        mid = (lo + hi) / 2.
         if f(mid):
             hi = mid
         else:

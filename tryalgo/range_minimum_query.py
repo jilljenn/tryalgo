@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Range minimum query
 # Minimum d'une plage --- range minimum query
 # jill-jenn vie et christoph durr - 2014-2015

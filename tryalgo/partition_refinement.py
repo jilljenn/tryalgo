@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Partition refinement
 # christoph durr - 2016
 
@@ -25,7 +26,8 @@ class DoubleLinkedListItem:
         self.succ.prec = self.prec
 
     def insert(self, anchor):
-        # insert before anchor
+        """insert list item before anchor
+        """
         self.prec = anchor.prec        # point to the neighbors
         self.succ = anchor
         self.succ.prec = self          # make neighbors point to item
@@ -43,25 +45,40 @@ class DoubleLinkedListItem:
 
 
 class PartitionClass(DoubleLinkedListItem):
-    """There is a single double linked list of all classes
+    """A partition is a list of classes
     """
 
-    def __init__(self, anchor, start, size=0):
+    def __init__(self, anchor=None):
         DoubleLinkedListItem.__init__(self, anchor)
-        self.start = start        # first item in class
-        self.size = size          # number of items in class
+        self.items = None         # empty list
         self.split = None         # reference to split class
+
+    def append(self, item):
+        """add item to the end of the item list
+        """
+        if not self.items:        # was list empty ?
+            self.items = item     # then this is the new head
+        item.insert(self.items)
 
 
 class PartitionItem(DoubleLinkedListItem):
-    """There is a single double linked list of all items.
-    Every class is consecutive in that list.
+    """A class is a list of items
     """
 
-    def __init__(self, val, anchor, theclass):
-        DoubleLinkedListItem.__init__(self, anchor)
+    def __init__(self, val, theclass):
+        DoubleLinkedListItem.__init__(self)
         self.val = val
         self.theclass = theclass
+        theclass.append(self)
+
+    def remove(self):
+        """remove item from its class
+        """
+        DoubleLinkedListItem.remove(self)     # remove from double linked list
+        if self.succ is self:                 # list was a singleton
+            self.theclass.items = None        # class is empty
+        elif self.theclass.items is self:     # oups we removed the head
+            self.theclass.items = self.succ   # head is now successor
 
 
 class PartitionRefinement:
@@ -72,38 +89,30 @@ class PartitionRefinement:
         """Start with the partition consisting of the unique class {0,1,..,n-1}
         complexity: O(n) both in time and space
         """
-        self.n = n
-        c = PartitionClass(None, None, n)   # initially there is a single class of size n
-        self.classes = c                           # reference to first class in class list
-        self.items = [PartitionItem(0, None, c)]   # first item needs special treatment
-        c.start = self.items[0]
-        for x in range(1, n):               # insert before first item equals appending after last item
-            self.items.append(PartitionItem(x, c.start, c))
+        c = PartitionClass()                  # initially there is a single class of size n
+        self.classes = c                      # reference to first class in class list
+        self.items = [PartitionItem(i, c) for i in range(n)]   # value ordered list of items
 
     def refine(self, pivot):
         """Split every class C in the partition into C intersection pivot and C setminus pivot
         complexity: linear in size of pivot
         """
-        has_split = []                      # remember which classes split
+        has_split = []                        # remember which classes split
         for i in pivot:
-            if 0 <= i < self.n:             # ignore if outside of domain
+            if 0 <= i < len(self.items):      # ignore if outside of domain
                 x = self.items[i]
-                c = x.theclass              # c = class of x
-                c.size -= 1                 # remove item from c
-                if c.start is x:
-                    c.start = x.succ
-                x.remove()
-                if not c.split:             # possibly create new split class
-                    c.split = PartitionClass(c, x, 0)
+                c = x.theclass                # c = class of x
+                if not c.split:               # possibly create new split class
+                    c.split = PartitionClass(c)
                     if self.classes is c:
                         self.classes = c.split   # always make self.classes point to the first class
                     has_split.append(c)
-                x.insert(c.start)           # append item to split class, which ends right before class c
+                x.remove()                    # remove from its class
                 x.theclass = c.split
-                c.split.size += 1
-        for c in has_split:                 # clean information about split classes
+                c.split.append(x)             # append to the split class
+        for c in has_split:                   # clean information about split classes
             c.split = None
-            if c.size == 0:                 # delete class if it became empty
+            if not c.items:                   # delete class if it became empty
                 c.remove()
                 del c
 
@@ -111,17 +120,9 @@ class PartitionRefinement:
     def tolist(self):
         """produce a list representation of the partition
         """
-        retval = []
-        for c in self.classes:
-            retval.append([])
-            curr = c.start
-            for _ in range(c.size):
-                retval[-1].append(curr.val)
-                curr = curr.succ
-        return retval
+        return [[x.val for x in theclass.items] for theclass in self.classes]
 
     def order(self):
         """Produce a flatten list of the partition, ordered by classes
         """
-        return [x.val for x in self.classes.start]
-
+        return [x.val for theclass in self.classes for x in theclass.items]

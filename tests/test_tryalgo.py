@@ -1,4 +1,5 @@
 # jill-jenn vie et christoph durr - 2015
+# -*- coding: utf-8 -*-
 
 import unittest
 import random
@@ -19,6 +20,7 @@ from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search
 from tryalgo.bipartite_matching import max_bipartite_matching, max_bipartite_matching2
+from tryalgo.bipartite_vertex_cover import bipartite_vertex_cover
 from tryalgo.closest_points import closest_points
 from tryalgo.closest_values import closest_values
 from tryalgo.convex_hull import left_turn, andrew
@@ -288,6 +290,26 @@ class TestTryalgo(unittest.TestCase):
                         max_bipartite_matching([[0], [0, 1], [2, 3], [1], [0, 3]]))
         self.assertEqual( [0, 1, 2, 4],
                         max_bipartite_matching2([[0], [0, 1], [2, 3], [1], [0, 3]]))
+
+
+    def test_bipartite_vertex_cover(self):
+        for n in range(1, 10):                   # try different random bipartite graphs
+            V = range(n)
+            bigraph = [[] for u in V]
+            for i in range(100):
+                for _ in range(n*n // 8):
+                    u = random.choice(V)
+                    v = random.choice(V)
+                    if v not in bigraph[u]:
+                        bigraph[u].append(v)
+                matching = max_bipartite_matching(bigraph)
+                low = n - matching.count(None)
+                Su, Sv = bipartite_vertex_cover(bigraph)
+                high = Su.count(True) + Sv.count(True)
+                self.assertEqual(low, high)      # verify cardinalities
+                for u in V:                      # verify vertex cover
+                    for v in bigraph[u]:
+                        self.assertTrue( Su[u] or Sv[v] )
 
     def test_closest_points(self):
         S = [(3*i, 3*i) for i in range(1000)]
@@ -1009,7 +1031,7 @@ t##
             self.assertEqual(rank_permutation(nfact - 1, n), list(range(n))[::-1])
 
 
-    def test_permutation_refinement(self):
+    def test_partition_refinement(self):
         P = PartitionRefinement(10)
         self.assertEqual( P.tolist(), [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
         P.refine([3, 4, 5])
@@ -1406,6 +1428,7 @@ t##
         self.assertEqual(Hld, Gld)
         Hll = matrix_to_listlist(W)
         self.assertEqual(Hll, Gll)
+
 
 if __name__ == '__main__':
     unittest.main()

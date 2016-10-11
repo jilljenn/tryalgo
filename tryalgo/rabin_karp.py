@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Find substrings by Rabin-Karp
 # jill-jenn vie et christoph durr - 2015
 

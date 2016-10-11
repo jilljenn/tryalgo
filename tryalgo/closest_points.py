@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Closest pair of points
 # trouver la paire de points la plus proche
 # jill-jenn vie et christoph durr et louis abraham - 2014-2015

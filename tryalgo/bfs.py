@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Breadth-first-search, bfs and OurQueue
 # christoph dürr - jill-jênn vie - 2015
 

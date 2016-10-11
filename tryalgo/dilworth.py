@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Decompose DAG into a minimum number of chains
 # jill-jenn vie et christoph durr - 2015
 

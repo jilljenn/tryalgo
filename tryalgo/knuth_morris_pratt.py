@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Find a substring by Knuth-Morris-Pratt
 # jill-jênn vie et christoph dürr - 2014-2015
 

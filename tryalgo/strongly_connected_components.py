@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Strongly connected components
 # composantes fortement connexes
 # jill-jênn vie et christoph dürr - 2015

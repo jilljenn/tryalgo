@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Lowest common ancestor
 # jill-jenn vie et christoph durr - 2014-2015
 # http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html

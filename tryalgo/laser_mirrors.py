@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 # Orienting mirrors to allow connectivity by a laser beam
 # jill-jenn vie et christoph durr - 2014-2015
 
@@ -32,8 +33,9 @@ def laser_mirrors(rows, cols, mir):
     succ = [[None for direc in range(4)] for i in range(n + 2)]
     L = [(mir[i][0], mir[i][1], i) for i in range(n)]
     L.append((0, -1, n))                  # entrée
-    L.append((0, cols, n + 1))              # sortie
+    L.append((0, cols, n + 1))            # sortie
     last_r = None
+    last_i = None                         # juste pour calmer pyflakes
     for (r, c, i) in sorted(L):           # balayage par ligne
         if last_r == r:
             succ[i][LEFT] = last_i
