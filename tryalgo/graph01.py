@@ -25,6 +25,8 @@ def dist01(graph, weight, source=0, target=None):
     gray = deque([source])
     while gray:
         node = gray.pop()
+        if black[node]:
+            continue
         black[node] = True
         if node == target:
             break
