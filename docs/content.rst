@@ -22,7 +22,7 @@ Other important techniques, include the greedy algorithm, which we illustrate in
 
 Sometimes it is convenient to encode sets over a small universe as bit vectors in integers.  We illustrate this technique on the problem of generating an arithmetic expression with a small given set of values to reach as close as possible some target value, see `arithm_expr_target <tryalgo/tryalgo.html#module-tryalgo.arithm_expr_target>`__.
 
-In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illustrate different variants of binary search.
+In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illustrate different variants of binary search or variants.  For example ternary_search permits to find the maximum of a bitonic function in logarithmic time in the size of the search interval.
 
 A very interesting data structure is called `PartitionRefinement <tryalgo/tryalgo.html#module-tryalgo.partition_refinement>`.  It maintains a partition over the set {0,1,...,n-1}.  The main operation is called *refine(S)* which splits each part P of the current partition into elements that are in S and elements that are not in S.  The complexity of this operation is linear in the size of S.
 
@@ -120,8 +120,8 @@ all source destination pairs :math:`O(|V|^3)`         `Floyd-Warshall <https://e
 ============================ ======================== ============================================================================== ===============
 
 
-Matching and flows
-::::::::::::::::::
+Matching, flows and related
+:::::::::::::::::::::::::::
 
 ======================================================== ============================== ============================================================================== ===========================
 problem                                                  complexity                     algorithm                                                implementation

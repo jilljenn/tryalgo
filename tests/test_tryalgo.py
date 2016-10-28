@@ -18,7 +18,7 @@ from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
-from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search
+from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, ternary_search
 from tryalgo.bipartite_matching import max_bipartite_matching, max_bipartite_matching2
 from tryalgo.bipartite_vertex_cover import bipartite_vertex_cover
 from tryalgo.closest_points import closest_points
@@ -1332,6 +1332,16 @@ t##
         for i in range(n):
             for j in range(n):
                 self.assertEqual(sorted(G[n * i + di][n * j + dj] for di in range(n) for dj in range(n)), all_terms)
+
+    def test_ternary_search(self):
+        x = ternary_search(lambda x: -x*(x-4), 0, 4)
+        self.assertTrue( 1.9 <= x <= 2.1 )
+        x = ternary_search(lambda x: x*(x-4), 0, 4)
+        self.assertTrue( x <= 0.1 or 3.9 <= x )
+        x = ternary_search(lambda x: x, 0, 4)
+        self.assertTrue( 3.9 <= x <= 4 )
+        x = ternary_search(lambda x: 1, 0, 4)
+        self.assertTrue( 0 <= x <= 4 )
 
     def test_three_partition(self):
         self.assertEqual(three_partition([5, 5, 3, 2]), (1, 2, 12))
