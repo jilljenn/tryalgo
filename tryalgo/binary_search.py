@@ -6,7 +6,7 @@
 from sys import stdin
 
 __all__ = ["discrete_binary_search", "continuous_binary_search",
-           "optimized_binary_search_lower", "optimized_binary_search"]
+           "optimized_binary_search_lower", "optimized_binary_search", "ternary_search"]
 
 # Fill the Cisterns
 # http://www.spoj.com/problems/CISTFILL/
@@ -102,6 +102,27 @@ def optimized_binary_search(tab, logsize):
         intervalsize >>= 1
     return hi
 # snip}
+
+
+def ternary_search(f, lo, hi, gap=1e-10):
+    """Ternary maximum search for a bitonic function
+
+    :param f: boolean bitonic function (increasing then decreasing, not necessarily strictly)
+    :param int lo:
+    :param int hi: with hi >= lo
+    :param float gap:
+    :returns: value x in [lo,hi] maximizing f(x),
+             x is computed up to some precision
+    :complexity: `O(log((hi-lo)/gap))`
+    """
+    while hi - lo > gap:
+        step = (hi - lo) / 3.
+        if f(lo + step) < f(lo + 2 * step):
+            lo += step
+        else:
+            hi -= step
+    return lo
+
 
 
 if __name__ == "__main__":
