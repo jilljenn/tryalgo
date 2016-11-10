@@ -1037,7 +1037,7 @@ t##
         P.refine([3, 4, 5])
         P.refine([2, 3])
         P.refine([-1, 2, 3, 10])
-        self.assertEqual( P.tolist(), [[3], [4, 5], [2], [0, 1, 6, 7, 8, 9]])
+        self.assertEqual( P.tolist(), [[0, 1, 6, 7, 8, 9], [2], [3], [4, 5]])
         flattened = [val for sublist in P.tolist() for val in sublist]
         self.assertEqual(flattened, P.order())
 

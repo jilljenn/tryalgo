@@ -9,7 +9,7 @@ import random
 
 # snip{ union-find
 class UnionFind:
-    """Maintains a partition of {1,..,n}
+    """Maintains a partition of {0,..,n-1}
     """
     def __init__(self, n):
         self.up = list(range(n))

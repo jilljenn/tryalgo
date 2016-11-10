@@ -4,7 +4,7 @@
 from distutils.core import setup
 
 setup(name='tryalgo',
-      version='1.1',
+      version='1.2',
       description='Basic and advanced algorithms and datastructures',
       author='Jill-Jênn Vie and Christoph Dürr',
       author_email='christoph.durr@lip6.fr',
