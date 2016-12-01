@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Left and right inversiona in a table
+# Left and right inversions in a table
 # christoph durr - 2016
 
 
@@ -45,5 +45,3 @@ def left_right_inversions(tab):
     _merge_sort(tab, tmp, rank, left, right, 0, n)
     return left, right
 # snip}
-
-left_right_inversions([1,3,1,1])

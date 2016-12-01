@@ -4,6 +4,7 @@
 # christoph durr - 2016
 
 #log: 10/11/2016 modified to preserve class order after refinement
+#     15/11/2016 this was non sense, moved back
 
 
 __all__ = ["PartitionRefinement"]
@@ -105,16 +106,13 @@ class PartitionRefinement:
                 x = self.items[i]
                 c = x.theclass                # c = class of x
                 if not c.split:               # possibly create new split class
-                    if c.items.val < i:
-                        c.split = PartitionClass(c.succ)
-                    else:
-                        c.split = PartitionClass(c)
+                    c.split = PartitionClass(c)       # new class comes before c
                     has_split.append(c)
+                    if self.classes == c:     # always point to the first class in the order
+                        self.classes = c.split 
                 x.remove()                    # remove from its class
                 x.theclass = c.split
                 c.split.append(x)             # append to the split class
-                if i == 0:
-                    self.classes = c.split    # point always to class with 0 to preserve order
         for c in has_split:                   # clean information about split classes
             c.split = None
             if not c.items:                   # delete class if it became empty

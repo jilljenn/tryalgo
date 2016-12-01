@@ -53,6 +53,7 @@ from tryalgo.kuhn_munkres    import kuhn_munkres as kuhn_munkres_n3
 from tryalgo.rabin_karp import rabin_karp_matching
 from tryalgo.roman_numbers import roman2int, int2roman
 from tryalgo.laser_mirrors import laser_mirrors
+from tryalgo.left_right_inversions import left_right_inversions
 from tryalgo.levenshtein import levenshtein
 from tryalgo.longest_common_subsequence import longest_common_subsequence
 from tryalgo.longest_increasing_subsequence import longest_increasing_subsequence
@@ -872,6 +873,16 @@ t##
                                     (3, 1), (3, 2), (3, 3), (4, 0), (4, 1),
                                     (4, 2), (4, 3)]) , None )
 
+    def test_left_right_inversions(self):
+        for n in range(1, 12):
+            for _ in range(20):
+                tab = [random.randint(1,n) for _ in range(n)]
+                left, right = left_right_inversions(tab)
+                for j in range(n):
+                    self.assertEqual(left[j], len([i for i in range(j) if tab[i] > tab[j] ]))
+                    self.assertEqual(right[j], len([k for k in range(j+1, n) if tab[k] < tab[j] ]))
+            
+        
     def test_levenshtein(self):
         self.assertEqual( levenshtein("AUDI", "LADA"), 3)
         self.assertEqual( levenshtein("kitten", "sitting"), 3)
