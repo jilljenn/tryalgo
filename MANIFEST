@@ -10,6 +10,7 @@ tryalgo/bfs.py
 tryalgo/biconnected_components.py
 tryalgo/binary_search.py
 tryalgo/bipartite_matching.py
+tryalgo/bipartite_vertex_cover.py
 tryalgo/closest_points.py
 tryalgo/closest_values.py
 tryalgo/convex_hull.py
@@ -29,6 +30,7 @@ tryalgo/ford_fulkerson.py
 tryalgo/freivalds.py
 tryalgo/gale_shapley.py
 tryalgo/gauss_jordan.py
+tryalgo/girth.py
 tryalgo/graph.py
 tryalgo/graph01.py
 tryalgo/huffman.py
@@ -42,6 +44,7 @@ tryalgo/kruskal.py
 tryalgo/kuhn_munkres.py
 tryalgo/kuhn_munkres_n4.py
 tryalgo/laser_mirrors.py
+tryalgo/left_right_inversions.py
 tryalgo/levenshtein.py
 tryalgo/longest_common_subsequence.py
 tryalgo/longest_increasing_subsequence.py
@@ -55,6 +58,8 @@ tryalgo/min_mean_cycle.py
 tryalgo/next_permutation.py
 tryalgo/our_heap.py
 tryalgo/our_queue.py
+tryalgo/partition_refinement.py
+tryalgo/permutation_rank.py
 tryalgo/polygon.py
 tryalgo/predictive_text.py
 tryalgo/rabin_karp.py

@@ -106,10 +106,10 @@ class PartitionRefinement:
                 x = self.items[i]
                 c = x.theclass                # c = class of x
                 if not c.split:               # possibly create new split class
-                    c.split = PartitionClass(c)       # new class comes before c
+                    c.split = PartitionClass(c)
+                    if self.classes is c:
+                        self.classes = c.split   # always make self.classes point to the first class
                     has_split.append(c)
-                    if self.classes == c:     # always point to the first class in the order
-                        self.classes = c.split 
                 x.remove()                    # remove from its class
                 x.theclass = c.split
                 c.split.append(x)             # append to the split class
@@ -124,7 +124,6 @@ class PartitionRefinement:
         """produce a list representation of the partition
         """
         return [[x.val for x in theclass.items] for theclass in self.classes]
-        
 
     def order(self):
         """Produce a flatten list of the partition, ordered by classes

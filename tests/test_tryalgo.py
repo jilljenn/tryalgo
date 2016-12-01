@@ -881,8 +881,8 @@ t##
                 for j in range(n):
                     self.assertEqual(left[j], len([i for i in range(j) if tab[i] > tab[j] ]))
                     self.assertEqual(right[j], len([k for k in range(j+1, n) if tab[k] < tab[j] ]))
-            
-        
+
+
     def test_levenshtein(self):
         self.assertEqual( levenshtein("AUDI", "LADA"), 3)
         self.assertEqual( levenshtein("kitten", "sitting"), 3)
@@ -1035,7 +1035,7 @@ t##
                     self.assertEqual( q1.popleft() , q2.pop() )
 
     def test_permutation_rank(self):
-        for n, nfact in [(1,1), (2,2), (3,6), (4,24)]:
+        for n, nfact in [(1, 1), (2, 2), (3, 6), (4, 24)]:
             for r in range(nfact):
                 self.assertEqual(permutation_rank(rank_permutation(r, 4)), r)
             self.assertEqual(rank_permutation(0, n), list(range(n)))
@@ -1048,7 +1048,7 @@ t##
         P.refine([3, 4, 5])
         P.refine([2, 3])
         P.refine([-1, 2, 3, 10])
-        self.assertEqual( P.tolist(), [[0, 1, 6, 7, 8, 9], [2], [3], [4, 5]])
+        self.assertEqual( P.tolist(), [[3], [4, 5], [2], [0, 1, 6, 7, 8, 9]])
         flattened = [val for sublist in P.tolist() for val in sublist]
         self.assertEqual(flattened, P.order())
 
