@@ -5,16 +5,17 @@
 
 # tryalgo
 
-Basic and advanced algorithms and data structures  
+Basic and advanced algorithms and data structures
 By Christoph Dürr and Jill-Jênn Vie.
 
 ## Install
 
     pip3 install tryalgo
 
-## Documentation
+## Additional information
 
-http://docs.tryalgo.org
+- http://pythonhosted.org/tryalgo/
+- http://tryalgo.org
 
 ## Demo: [TryAlgo in Paris](http://nbviewer.jupyter.org/github/jilljenn/tryalgo/blob/master/examples/TryAlgo%20Maps%20in%20Paris.ipynb)
 
@@ -24,9 +25,11 @@ http://docs.tryalgo.org
 
 **Dynamic programming** some example with coin change:
 
-    from tryalgo.subsetsum import coin_change
+{% highlight python %}
+from tryalgo.subsetsum import coin_change
 
-    print(coin_change([3, 5, 11], 29))  # True because 29 = 6*3 + 0*5 + 1*11
+print(coin_change([3, 5, 11], 29))  # True because 29 = 6*3 + 0*5 + 1*11
+{% endhighlight %}
 
 ## Found a bug?
 
