@@ -41,6 +41,7 @@ from tryalgo.freivalds import freivalds
 from tryalgo.gale_shapley import gale_shapley
 from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_UNE_SOLUTION, GJ_PLUSIEURS_SOLUTIONS
 from tryalgo.graph01 import dist01
+from tryalgo.horn_sat import horn_sat
 from tryalgo.huffman import huffman
 from tryalgo.interval_tree import interval_tree, intervals_containing
 from tryalgo.interval_cover import interval_cover
@@ -721,6 +722,17 @@ t##
                     val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
                     self.assertEqual(dist[target], val)
 
+
+    def test_horn_sat(self):
+        F1 = [(1, []), (None, [2])]
+        F2 = [(1, []), (2, []), (3, [1, 2]),
+              (3, [5]), (4, [1, 3]), (5, [1, 6])]
+        F3 = [(1, [1, 2]), (2, [])]
+        F4 = F2 + [(None, [1, 3])]
+        self.assertEqual(horn_sat(F1), {1} )
+        self.assertEqual(horn_sat(F2), {1, 2, 3, 4} )
+        self.assertEqual(horn_sat(F3), {2} )
+        self.assertEqual(horn_sat(F4), None )
 
     def test_huffman(self):
         self.assertEqual(huffman({'a': 7, 'b': 7, 'c': 7, 'd': 7}),
