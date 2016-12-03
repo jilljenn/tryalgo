@@ -729,10 +729,12 @@ t##
               (3, [5]), (4, [1, 3]), (5, [1, 6])]
         F3 = [(1, [1, 2]), (2, [])]
         F4 = F2 + [(None, [1, 3])]
+        F5 = [(1, [2, 2]), (2, [])]
         self.assertEqual(horn_sat(F1), {1} )
         self.assertEqual(horn_sat(F2), {1, 2, 3, 4} )
         self.assertEqual(horn_sat(F3), {2} )
         self.assertEqual(horn_sat(F4), None )
+        self.assertEqual(horn_sat(F5), {1, 2} )
 
     def test_huffman(self):
         self.assertEqual(huffman({'a': 7, 'b': 7, 'c': 7, 'd': 7}),

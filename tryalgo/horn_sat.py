@@ -21,8 +21,10 @@ pool : maps score to clauses of that score
 from collections import defaultdict
 import sys
 
-def _read(filename):
-    """ file format:
+def read(filename):
+    """ reads a Horn SAT formula from a text file
+
+    :file format:
     # comment
     A     # clause with unique positive literal
     :- A  # clause with unique negative literal
@@ -71,7 +73,7 @@ def horn_sat(formula):
     clauses_with_negvar = defaultdict(set)      # all clauses where a variable appears negatively
     for c in CLAUSES:
         posvar, negvars = formula[c]
-        score[c] = len(negvars)                 # set data structure for clause c
+        score[c] = len(set(negvars))            # set data structure for clause c
         posvar_in_clause[c] = posvar
         if posvar is not None:
             clauses_with_posvar[posvar].add(c)
