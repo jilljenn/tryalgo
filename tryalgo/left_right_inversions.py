@@ -27,14 +27,14 @@ def _merge_sort(tab, tmp, rank, left, right, lo, hi):
         k += 1
     for k in range(lo, hi):      # copy sorted segment into original table
         rank[k] = tmp[k]
-    
+
 
 def left_right_inversions(tab):
     """ Compute left and right inversions of each element of a table.
 
     :param tab: list with comparable elements
     :returns: lists left and right. left[j] = the number of i<j such that tab[i] > tab[j].
-    right[i] = the number of i<j such that tab[i] > tab[j].
+              right[i] = the number of i<j such that tab[i] > tab[j].
     :complexity: `O(n \log n)`
     """
     n = len(tab)
