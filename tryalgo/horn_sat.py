@@ -6,12 +6,10 @@
 """
 
 clauses are numbered starting from 0
-variables are numbered starting from 1
+variables are strings (identifier)
 
-sol : set of variables that are set to true
-notsol : set of variables that have to be set to false
+solution  : set of variables that are set to true
 posvar_in_clause : maps clause to the unique positive variable in clause (or None)
-clause_with_posvar : maps variable v to all clauses that contain v
 clause_with_negvar : maps variable v to all clauses that contain not(v)
 
 every clause has a score: number of its negative variables that are not in solution sol
@@ -67,47 +65,37 @@ def horn_sat(formula):
     # --- construct data structures
     CLAUSES = range(len(formula))
     score = [0 for c in CLAUSES]                # number of negative vars that are not yet in solution
-    satisfied = [False for c in CLAUSES]
     posvar_in_clause = [None for c in CLAUSES]  # the unique positive variable of a clause (if any)
-    clauses_with_posvar = defaultdict(set)      # all clauses where a variable appears positively
     clauses_with_negvar = defaultdict(set)      # all clauses where a variable appears negatively
     for c in CLAUSES:
         posvar, negvars = formula[c]
-        score[c] = len(set(negvars))            # set data structure for clause c
+        score[c] = len(set(negvars))            # do not count twice repeated negative variables
         posvar_in_clause[c] = posvar
-        if posvar is not None:
-            clauses_with_posvar[posvar].add(c)
         for v in negvars:
             clauses_with_negvar[v].add(c)
-        satisfied[c] = posvar in negvars
     pool = [set() for s in range(max(score) + 1)]   # create the pool
     for c in CLAUSES:
         pool[score[c]].add(c)                   # pool[s] = set of clauses with score s
 
     # --- solve Horn SAT formula
-    solution = set()
+    solution = set()                            # contains all variables set to True
     while pool[0]:
-        curr = pool[0].pop()
+        curr = pool[0].pop()                    # arbitrary zero score clause
         v = posvar_in_clause[curr]
-        if v == None:
-            return None   # formula is not satisfiable
-        if v in solution or satisfied[curr]:
-            continue                            # already processed v before
+        if v == None:                           # formula is not satisfiable
+            return None
+        if v in solution or curr in clauses_with_negvar[v]:
+            continue                            # clause is already satisfied
         solution.add(v)
-        for c in clauses_with_negvar[v]:
-            if c in pool[score[c]]:             # clause still active
-                pool[score[c]].remove(c)
-                score[c] -= 1
-                assert score[c] >= 0
-                pool[score[c]].add(c)               # change c to lower score in pool
-        for c in clauses_with_posvar[v]:
-            # c is now satisfied, we can ignore it from now on
-            satisfied[c] = True
+        for c in clauses_with_negvar[v]:        # update score
+            pool[score[c]].remove(c)
+            score[c] -= 1
+            pool[score[c]].add(c)               # change c to lower score in pool
     return solution
 
 
 if __name__=="__main__":
-    F = _read(sys.argv[1])
+    F = read(sys.argv[1])
     sol = horn_sat(F)
     if sol is None:
         print("No solution")
