@@ -3,4 +3,7 @@
 __pycache__
 _build
 build
+/dist
 venv
+*.pyc
+*.bak

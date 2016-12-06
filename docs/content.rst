@@ -87,6 +87,7 @@ A cut vertex is a vertex which removal splits a connected components.  A cut edg
 For directed graphs there are two important problems.  The first one is the `topological sorting <https://en.wikipedia.org/wiki/Topological_sorting>`_, which consists in ordering the vertices, such that every arc points only from left to right, see `topological_order <tryalgo/tryalgo.html#module-tryalgo.topological_order>`__.
 
 Another important problem consists in determining strongly connected components, which are vertex sets such that for each vertex pair there is a directed path connecting them.  These can be computed by an algorithm by Tarjan or by an algorithm by Kosaraju, see `strongly_connected_components <tryalgo/tryalgo.html#module-tryalgo.strongly_connected_components>`__.  The main application is the resolution of 2-SAT boolean formulas, see `two_sat <tryalgo/tryalgo.html#module-tryalgo.two_sat>`__.
+Another polynomial variant of SAT is Horn-SAT, see  `horn_sat <tryalgo/tryalgo.html#module-tryalgo.horn_sat>`__.
 
 Cycles
 ::::::

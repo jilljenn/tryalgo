@@ -25,11 +25,11 @@ By Christoph Dürr and Jill-Jênn Vie.
 
 **Dynamic programming** some example with coin change:
 
-{% highlight python %}
+```python
 from tryalgo.subsetsum import coin_change
 
 print(coin_change([3, 5, 11], 29))  # True because 29 = 6*3 + 0*5 + 1*11
-{% endhighlight %}
+```
 
 ## Found a bug?
 
