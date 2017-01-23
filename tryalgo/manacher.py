@@ -29,7 +29,7 @@ def manacher(s):
     :returns: i,j such that s[i:j] is the longest palindrome in s
     :complexity: O(len(s))
     """
-    assert '$' not in s and '^' not in s and '#' not in s
+    assert set.isdisjoint({'$', '^', '#'}, s)  # Aucun lettre interdite
     if s == "":
         return (0, 1)
     t = "^#" + "#".join(s) + "#$"
