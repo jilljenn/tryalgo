@@ -19,7 +19,7 @@ def rectangles_from_points(S):
             px, py = S[i]
             qx, qy = S[j]
             center = (px + qx, py + qy)
-            dist = (px - qx) * (px - qx) + (py - qy) * (py - qy)
+            dist = (px - qx) ** 2 + (py - qy) ** 2
             sign = (center, dist)
             if sign in pairs:
                 answ += len(pairs[sign])
