@@ -39,7 +39,7 @@ from tryalgo.floyd_warshall import floyd_warshall
 from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.freivalds import freivalds
 from tryalgo.gale_shapley import gale_shapley
-from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_UNE_SOLUTION, GJ_PLUSIEURS_SOLUTIONS
+from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTION, GJ_UNE_SOLUTION, GJ_PLUSIEURS_SOLUTIONS
 from tryalgo.graph01 import dist01
 from tryalgo.horn_sat import horn_sat
 from tryalgo.huffman import huffman
@@ -677,9 +677,9 @@ t##
                             x, [6, 12]), GJ_PLUSIEURS_SOLUTIONS)
         self.assertEqual( gauss_jordan([[1, -2], [3, 5], [4, 3]],
                             x, [-1, 8, 7]), GJ_UNE_SOLUTION)
-        self.assertEqual( gauss_jordan([[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTIONS)
+        self.assertEqual( gauss_jordan([[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTION)
         self.assertEqual( gauss_jordan([[1, 1], [2, 1], [3, 2]],
-                            x, [1, 1, 3]), GJ_ZERO_SOLUTIONS)
+                            x, [1, 1, 3]), GJ_ZERO_SOLUTION)
 
     def test_dist01(self):
         _ = None
