@@ -11,7 +11,7 @@ def is_zero(x):                    # tolérance
     return -1e-6 < x and x < 1e-6
     # remplacer par x == 0 si on travaille avec Fractions
 
-GJ_ZERO_SOLUTIONS = 0              # codes retour
+GJ_ZERO_SOLUTION = 0              # codes retour
 GJ_UNE_SOLUTION = 1
 GJ_PLUSIEURS_SOLUTIONS = 2
 
@@ -40,7 +40,7 @@ def gauss_jordan(A, x, b):
     if k < m:
         for i in range(k, m):
             if not is_zero(S[i][n]):
-                return GJ_ZERO_SOLUTIONS
+                return GJ_ZERO_SOLUTION
     for j in range(k):
         x[S[m][j]] = S[j][n]
     if k < n:
