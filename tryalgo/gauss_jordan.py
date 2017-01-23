@@ -57,7 +57,7 @@ def diagonalize(S, n, m):
         if is_zero(val):
             return k
         S[i], S[k] = S[k], S[i]    # échanger lignes   k, i
-        for r in range(m + 1):       # échanger colonnes k, j
+        for r in range(m + 1):     # échanger colonnes k, j
             S[r][j], S[r][k] = S[r][k], S[r][j]
         pivot = float(S[k][k])     # sans float si on trav. avec Fractions
         for j in range(k, n + 1):
