@@ -28,14 +28,13 @@ def laser_mirrors(rows, cols, mir):
     # construire les structures
     n = len(mir)
     orien = [None] * (n + 2)
-    orien[n] = 0  # orientations arbitraires pour les ouvertures
+    orien[n] = 0      # orientations arbitraires pour les ouvertures
     orien[n + 1] = 0
     succ = [[None for direc in range(4)] for i in range(n + 2)]
     L = [(mir[i][0], mir[i][1], i) for i in range(n)]
     L.append((0, -1, n))                  # entrée
     L.append((0, cols, n + 1))            # sortie
-    last_r = None
-    last_i = None                         # juste pour calmer pyflakes
+    last_r, last_i = None, None
     for (r, c, i) in sorted(L):           # balayage par ligne
         if last_r == r:
             succ[i][LEFT] = last_i
