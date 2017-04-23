@@ -73,7 +73,7 @@ from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.rabin_karp import rabin_karp_factor
-from tryalgo.range_minimum_query import RangeMinQuery
+from tryalgo.range_minimum_query import RangeMinQuery, LazySegmentTree
 from tryalgo.rectangles_from_grid import rectangles_from_grid
 from tryalgo.rectangles_from_histogram import rectangles_from_histogram
 from tryalgo.rectangles_from_points import rectangles_from_points
@@ -886,6 +886,33 @@ t##
                                     (2, 0), (2, 1), (2, 2), (2, 3), (3, 0),
                                     (3, 1), (3, 2), (3, 3), (4, 0), (4, 1),
                                     (4, 2), (4, 3)]) , None )
+
+    def test_lazy_segment_tree(self):
+        for n in range(1, 2, 10, 10000):
+            tab = [random.randint(-100, 100) for _ in range(n)]
+            tree = LazySegmentTree(tab)
+            for t in range(10000):
+                i = random.randint(0, n-1)
+                j = random.randint(0, n-1)
+                v = random.randint(-100, 100)
+                if i > j:
+                    i, j = j, i
+                if t % 2 == 0:
+                    tree.set(i, j, v)
+                    for k in range(i, j):
+                        tab[k] = v
+                else:
+                    tree.add(i, j, v)
+                    for k in range(i, j):
+                        tab[k] += v
+                if i == j:
+                    self.assertEqual(tree.max(i, j) == float('-inf'))
+                    self.assertEqual(tree.min(i, j) == float('+inf'))
+                    self.assertEqual(tree.sum(i, j) == 0)
+                else:
+                    self.assertEqual(tree.max(i, j) == max(tab[i:j])
+                    self.assertEqual(tree.min(i, j) == min(tab[i:j])
+                    self.assertEqual(tree.sum(i, j) == sum(tab[i:j])
 
     def test_left_right_inversions(self):
         for n in range(1, 12):

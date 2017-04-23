@@ -33,6 +33,7 @@ tryalgo/gauss_jordan.py
 tryalgo/girth.py
 tryalgo/graph.py
 tryalgo/graph01.py
+tryalgo/horn_sat.py
 tryalgo/huffman.py
 tryalgo/interval_cover.py
 tryalgo/interval_tree.py

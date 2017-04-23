@@ -4,7 +4,7 @@
 # jill-jenn vie et christoph durr - 2014-2015
 
 from heapq import heappush, heappop
-
+from numpy import ndarray
 
 # snip{
 def huffman(freq):
@@ -26,12 +26,23 @@ def huffman(freq):
     return code
 
 
-def extract(code, tree, prefix=""):
+def extract(code, tree, prefix=[]):
+    """Extract the Huffman code from a Huffman tree
+
+    :param tree: a node of the tree
+    :param prefix: a list with the 01 characters encoding the path from
+                    the root to the node `tree`
+    :complexity: O(n)
+    """
     if isinstance(tree, list):
         l, r = tree
-        extract(code, l, prefix + "0")
-        extract(code, r, prefix + "1")
+        prefix.append('0')
+        extract(code, l, prefix)
+        prefix.pop()
+        prefix.append('1')
+        extract(code, r, prefix)
+        prefix.pop()
     else:
-        code[tree] = prefix
+        code[tree] = ''.join(prefix)
 # snip}
 
