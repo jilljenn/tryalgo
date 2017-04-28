@@ -888,7 +888,7 @@ t##
                                     (4, 2), (4, 3)]) , None )
 
     def test_lazy_segment_tree(self):
-        for n in range(1, 2, 10, 10000):
+        for n in [10, 10000]:  # 1, 2
             tab = [random.randint(-100, 100) for _ in range(n)]
             tree = LazySegmentTree(tab)
             for t in range(10000):
@@ -906,13 +906,13 @@ t##
                     for k in range(i, j):
                         tab[k] += v
                 if i == j:
-                    self.assertEqual(tree.max(i, j) == float('-inf'))
-                    self.assertEqual(tree.min(i, j) == float('+inf'))
-                    self.assertEqual(tree.sum(i, j) == 0)
+                    self.assertEqual(tree.max(i, j), float('-inf'))
+                    self.assertEqual(tree.min(i, j), float('+inf'))
+                    self.assertEqual(tree.sum(i, j), 0)
                 else:
-                    self.assertEqual(tree.max(i, j) == max(tab[i:j])
-                    self.assertEqual(tree.min(i, j) == min(tab[i:j])
-                    self.assertEqual(tree.sum(i, j) == sum(tab[i:j])
+                    self.assertEqual(tree.max(i, j), max(tab[i:j]))
+                    self.assertEqual(tree.min(i, j), min(tab[i:j]))
+                    self.assertEqual(tree.sum(i, j), sum(tab[i:j]))
 
     def test_left_right_inversions(self):
         for n in range(1, 12):

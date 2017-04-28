@@ -4,7 +4,7 @@
 # jill-jenn vie et christoph durr - 2014-2015
 
 from heapq import heappush, heappop
-from numpy import ndarray
+
 
 # snip{
 def huffman(freq):
