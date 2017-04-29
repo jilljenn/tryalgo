@@ -888,10 +888,10 @@ t##
                                     (4, 2), (4, 3)]) , None )
 
     def test_lazy_segment_tree(self):
-        for n in [10, 10000]:  # 1, 2
+        for n in [1, 2, 10, 1000]:
             tab = [random.randint(-100, 100) for _ in range(n)]
             tree = LazySegmentTree(tab)
-            for t in range(10000):
+            for t in range(1000):
                 i = random.randint(0, n-1)
                 j = random.randint(0, n-1)
                 v = random.randint(-100, 100)
