@@ -231,9 +231,10 @@ class LazySegmentTree:
         print("digraph G{", file=f)
         print('0 [label="lazyset/lazyadd/maxval/minval/sumval"]', file=f)
         for node in range(1, 2 * self.N):
-            print('%i [label="%s/%i/%s/%s/%s"]' %
+            s = '%i [label="%s/%i/%s/%s/%s"]' % \
                 (node, self.lazyset[node], self.lazyadd[node],
-                    self.maxval[node], self.minval[node], self.sumval[node]), file=f)
+                    self.maxval[node], self.minval[node], self.sumval[node])
+            print(s.replace('inf', '∞'), file=f)
         for node in range(1, self.N):
             print("%i -> %i" % (node, 2 * node), file=f)
             print("%i -> %i" % (node, 2 * node + 1), file=f)
@@ -258,7 +259,7 @@ if __name__ == '__main__':
         i = int(t[0])
         j = int(t[1])
         if t[2] == '?':
-            print("[%i,%i] max=%i min=%i sum=%i" % (i, j, tree.max(i,j), tree.min(i,j), tree.sum(i,j)))
+            print("[%i,%i] max=%s min=%s sum=%s" % (i, j, tree.max(i,j), tree.min(i,j), tree.sum(i,j)))
         elif t[2] == '+':
             tree.add(i, j, int(t[3]))
         elif t[2] == '=':

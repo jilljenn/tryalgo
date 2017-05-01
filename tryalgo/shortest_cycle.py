@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# cchristoph durr and finn völkel and louis abraham - 2016
+# christoph durr and finn völkel and louis abraham - 2016
 
 # Find shortest simple cycle
 # O(V*E)
@@ -9,20 +9,21 @@
 
 from collections import deque
 from sys import stdin
+from . floyd_warshall import floyd_warshall
 
 def readstr():    return stdin.readline().strip()
 def readints():   return map(int, stdin.readline().split())
 def readint():    return int(stdin.readline())
 
 
-__all__ = ["shortest_cycle"]
+__all__ = ["shortest_cycle", "powergraph"]
 
 
 def bfs(graph, root, prune_level):
     """make a pruned BFS search of the graph starting at root.
     returns the BFS tree, and possibly a traversal edge (u,v) that with the tree
     forms a cycle of some length.
-    
+
     :param graph: undirected graph in listlist or listdict format
     :param root:  vertex where BFS exploration starts
     :param prune_level: exploration is done only up to the prune_level (included)
@@ -32,13 +33,13 @@ def bfs(graph, root, prune_level):
     level = [-1] * n                      # -1 == not seen
     tree = [None] * n                     # pointers to predecessors
     toVisit = deque([root])               # queue for BFS
-    level[root] = 0                       
-    tree[root] = root                     
+    level[root] = 0
+    tree[root] = root
     best_cycle = float('inf')             # start with infinity
     best_u = None
     best_v = None
     while toVisit:
-        u = toVisit.popleft()           
+        u = toVisit.popleft()
         if level[u] > prune_level:
             break
         for v in graph[u]:
@@ -49,7 +50,6 @@ def bfs(graph, root, prune_level):
                 toVisit.append(v)
                 tree[v] = u
             else:                         # vertex already seen - traversal edge
-                has_cycle = True
                 prune_level = level[v] - 1
                 cycle_len = level[u] + 1 + level[v]
                 if cycle_len < best_cycle:  # footnote (1)
@@ -57,8 +57,8 @@ def bfs(graph, root, prune_level):
                     best_u = u
                     best_v = v
     return tree, best_cycle, best_u, best_v
-    
-    
+
+
 def path(tree, v):
     """returns the path in the tree from v to the root
     Complexity: O(V)
@@ -68,13 +68,13 @@ def path(tree, v):
         P.append(v)
         v = tree[v]
     return P
-    
-    
+
+
 def shortest_cycle(graph):
-    """ Finding a shortest cycle in an undirected graph
-    
+    """ Finding a shortest cycle in an undirected unweighted graph
+
     :param graph: undirected graph in listlist or listdict format
-    :returns: None or a list C describing the a shortest cycle with C[0]==C[-1]
+    :returns: None or a list C describing a shortest cycle
     :complexity: `O(|V|*|E|)`
     """
     best_cycle = float('inf')
@@ -91,7 +91,27 @@ def shortest_cycle(graph):
             best_tree = tree
     if best_cycle == float('inf'):
         return None                   # no cycle found
-    Pu = path(best_tree, best_u)
+    Pu = path(best_tree, best_u)      # combine path to make a cycle
     Pv = path(best_tree, best_v)
-    return Pu[::-1] + Pv              # combine path to make a cycle
-    
+    cycle = Pu[::-1] + Pv   # last vertex equals first vertex
+    return cycle[1:]        # remove duplicate vertex
+
+
+def powergraph(graph, k):
+    """Compute the k-th [powergraph](https://en.wikipedia.org/wiki/Graph_power)
+       which has an edge u,v for every vertex pair
+       of distance at most k in the given graph.
+
+    :param graph: undirected graph in listlist or listdict format
+    :param k: non-negative integer.
+    :complexity: O(V^3)
+    """
+    V = range(len(graph))
+    # create weight matrix for paths of length 1
+    M = [[float('inf') for v in V] for u in V]
+    for u in V:
+        for v in graph[u]:
+            M[u][v] = M[v][u] = 1
+        M[u][u] = 0
+    floyd_warshall(M)
+    return [[v for v in V if M[u][v] <= k] for u in V]

@@ -43,7 +43,7 @@ Here is an dynamic programming example, with coin change (`6 lines of source cod
 
     #!/usr/bin/env python3
 
-    from tryalgo.subsetsum import coin_change
+    from tryalgo import coin_change
 
     print(coin_change([3, 5, 11], 29))
 
@@ -54,7 +54,7 @@ Longest palindrome substring of a string
 
 In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <tryalgo/manacher.html#manacher>`__) as follows: ::
 
-    from tryalgo.manacher import manacher
+    from tryalgo import manacher
     print(manacher("babcbabcbaccba"))
 
 which will print (1,10). Indeed, the substring from index 1 to index 10 (excluding position 10) is the palindrome "abcbabcba".
@@ -101,7 +101,7 @@ First, we need to encode this graph with a an adjacency list data structure :cod
 
 The shortest path can be computed using Dijkstra's algorithm, also known as *lowest-cost search*.  Our implementation returns the table of distances from the source and a predecessor table describing the shortest path tree: ::
 
-    from tryalgo.dijkstra import dijkstra
+    from tryalgo import dijkstra
 
     dist, prec = dijkstra(graph, weights, source=0)
 

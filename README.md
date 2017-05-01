@@ -26,7 +26,7 @@ By Christoph Dürr and Jill-Jênn Vie.
 **Dynamic programming** some example with coin change:
 
 ```python
-from tryalgo.subsetsum import coin_change
+from tryalgo import coin_change
 
 print(coin_change([3, 5, 11], 29))  # True because 29 = 6*3 + 0*5 + 1*11
 ```
@@ -34,6 +34,8 @@ print(coin_change([3, 5, 11], 29))  # True because 29 = 6*3 + 0*5 + 1*11
 ## Found a bug?
 
 Please [drop an issue](https://github.com/jilljenn/tryalgo/issues)!
+
+Read our [change log](CHANGELOG).
 
 ## Authors
 

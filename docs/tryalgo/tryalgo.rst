@@ -236,14 +236,6 @@ tryalgo.gauss_jordan module
     :undoc-members:
     :show-inheritance:
 
-tryalgo.girth module
---------------------
-
-.. automodule:: tryalgo.girth
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 tryalgo.graph module
 --------------------
 
@@ -552,6 +544,14 @@ tryalgo.scalar module
 ---------------------
 
 .. automodule:: tryalgo.scalar
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
+tryalgo.shortest_cycle module
+-----------------------------
+
+.. automodule:: tryalgo.shortest_cycle
     :members:
     :undoc-members:
     :show-inheritance:

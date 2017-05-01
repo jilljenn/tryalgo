@@ -101,6 +101,7 @@ find a cycle                :math:`O(|V| + |E|)`    depth-first search          
 minimum weight cycle        :math:`O(|V|\cdot |E|)` `Bellman-Ford <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>`_ `bellman_ford <tryalgo/tryalgo.html#module-tryalgo.bellman_ford>`__
 minimum mean cycle          :math:`O(|V|\cdot |E|)` `Karp <http://www.sciencedirect.com/science/article/pii/0012365X78900110>`_    `min_mean_cycle <tryalgo/tryalgo.html#module-tryalgo.min_mean_cycle>`__
 Eulerian cycle              :math:`O(|V|+|E|)`      `Greedy <https://en.wikipedia.org/wiki/Eulerian_path>`_                        `eulerian_tour <tryalgo/tryalgo.html#module-tryalgo.eulerian_tour>`__
+shortest cycle              :math:`O(|V|\cdot|E|)`  breath-first search                                                            `shortest_cycle <tryalgo/tryalgo.html#module-tryalgo.shortest_cycle>`__
 =========================== ======================= ============================================================================== ===============
 
 

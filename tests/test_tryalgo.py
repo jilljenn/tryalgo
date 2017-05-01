@@ -78,6 +78,7 @@ from tryalgo.rectangles_from_grid import rectangles_from_grid
 from tryalgo.rectangles_from_histogram import rectangles_from_histogram
 from tryalgo.rectangles_from_points import rectangles_from_points
 from tryalgo.scalar import min_scalar_prod
+from tryalgo.shortest_cycle import shortest_cycle, powergraph
 from tryalgo.strongly_connected_components import tarjan, kosaraju, tarjan_recursif
 from tryalgo.subsetsum_divide import subset_sum as subset_sum1
 from tryalgo.subsetsum import subset_sum as subset_sum2, coin_change
@@ -1225,6 +1226,36 @@ t##
         self.assertEqual(area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1)
 
 
+    def test_powergraph(self):
+        """  0  1
+             U  U         self-loops
+        """
+        G1 = [[0], [1]]
+        for k in range(1,4):
+            self.assertEqual(powergraph(G1, k), G1)
+        """  0  1
+             U
+        """
+        G2 = [[0], []]
+        self.assertEqual(powergraph(G1, 1), G1)
+        self.assertEqual(powergraph(G1, 2), G1)
+        """ 0---1---2---4
+             \ /        U
+              3
+        """
+        G1 = [[0, 1, 3], [0, 1, 2, 3], [1, 2, 4], [0, 1, 3], [2, 4]]
+        """   0---1
+              |\ /| \    .
+              |/ \|  \   .
+              3---2---4
+        """
+        G2 = [[0, 1, 2, 3], [0, 1, 2, 3, 4], [0, 1, 2, 3, 4], [0, 1, 2, 3], [1, 2, 4]]
+        G0 = [[0], [1], [2], [3], [4]]
+        self.assertEqual(powergraph(G1, 0), G0)
+        self.assertEqual(powergraph(G1, 1), G1)
+        self.assertEqual(powergraph(G1, 2), G2)
+
+
     def test_predictive_text(self):
         dico = [("another", 5),  ("contest", 6),  ("follow", 3),
                 ("give", 13),  ("integer", 6),  ("new", 14),  ("program", 4)]
@@ -1298,11 +1329,13 @@ t##
             A.pop()
             L.pop()
 
+
     def test_roman_numbers(self):
         for val in range(1, 10000):
             self.assertEqual(roman2int(int2roman(val)), val)
         self.assertEqual(int2roman(68), "LXVIII")
         self.assertEqual(int2roman(890), "DCCCXC")
+
 
     def test_scalar(self):
         n = 10
@@ -1311,6 +1344,62 @@ t##
         random.shuffle(x)
         random.shuffle(y)
         self.assertEqual(min_scalar_prod(x, y), sum(i * (n - 1 - i) for i in range(n)))
+
+
+    def test_shortest_cycle(self):
+        def check(graph, cycle):
+            for i in range(len(cycle)):        # check presence of edges
+                self.assertTrue(cycle[i - 1] in graph[cycle[i]])
+
+        def matrix_mult(A, B):
+            n = len(A)
+            C = []
+            for i in range(n):
+                row = []
+                for j in range(n):
+                    v = sum(A[i][k] * B[k][j] for k in range(n))
+                    row.append(v)
+                C.append(row)
+            return C
+
+        def has_selfloops(graph):
+            for v in range(len(graph)):
+                if v in graph[v]:
+                    return True
+            return False
+
+        """  0---2---3
+              \ /
+               1
+        """
+        graph = [[1, 2], [0, 2], [0, 1, 3], [2]]
+        cycle = shortest_cycle(graph)
+        check(graph, cycle)
+        """  0---2---3
+                /
+               1
+        """
+        graph = [[2], [2], [0, 1, 3], [2]]
+        self.assertIsNone(shortest_cycle(graph))
+        for _ in range(100):               # check on some random undirected graphs
+          n = 10
+          graph = [[] for u in range(n)]   # add random edges to initially empty graph
+          G = [[0 for u in range(n)] for v in range(n)]
+          for i in range(n * n // 15):     # this edge number makes about half cycle free graphs
+              v = random.randint(1, n-1)
+              u = random.randint(0, v-1)
+              if u in graph[v]:            # do not create multi-edges
+                  continue
+              graph[u].append(v)
+              graph[v].append(u)
+              G[u][v] = G[v][u] = 1
+          cycle = shortest_cycle(graph)
+          M = [[int(u==v) for u in range(n)] for v in range(n)]
+          if cycle is None:
+              pass  # right now we have no tools to check the absence of a cycle
+          else:
+              check(graph, cycle)
+
 
     def test_strongly_connected_components(self):
         def check(f, G, b):
