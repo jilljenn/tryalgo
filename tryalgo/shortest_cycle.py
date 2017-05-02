@@ -98,7 +98,7 @@ def shortest_cycle(graph):
 
 
 def powergraph(graph, k):
-    """Compute the k-th [powergraph](https://en.wikipedia.org/wiki/Graph_power)
+    """Compute the k-th `powergraph <https://en.wikipedia.org/wiki/Graph_power>`_
        which has an edge u,v for every vertex pair
        of distance at most k in the given graph.
 

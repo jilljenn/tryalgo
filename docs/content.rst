@@ -94,15 +94,15 @@ Cycles
 
 The library contains implementations of 4 cycle finding algorithms.  The most basic problem consists of finding any cycle in a given undirected graph.  In the second problem we are given an edge weighted graph and want to compute a cycle of minimum total weight. For the third problem we want to minimize the total cycle weight over the cycle length. And in the last problem we want to find a cycle that visits every edge exactly once.
 
-=========================== ======================= ============================================================================== ===============
-problem                     complexity              algorithm                                                                      implementation
-=========================== ======================= ============================================================================== ===============
-find a cycle                :math:`O(|V| + |E|)`    depth-first search                                                             `find_cycle <tryalgo/tryalgo.html#module-tryalgo.dfs>`__
-minimum weight cycle        :math:`O(|V|\cdot |E|)` `Bellman-Ford <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>`_ `bellman_ford <tryalgo/tryalgo.html#module-tryalgo.bellman_ford>`__
-minimum mean cycle          :math:`O(|V|\cdot |E|)` `Karp <http://www.sciencedirect.com/science/article/pii/0012365X78900110>`_    `min_mean_cycle <tryalgo/tryalgo.html#module-tryalgo.min_mean_cycle>`__
-Eulerian cycle              :math:`O(|V|+|E|)`      `Greedy <https://en.wikipedia.org/wiki/Eulerian_path>`_                        `eulerian_tour <tryalgo/tryalgo.html#module-tryalgo.eulerian_tour>`__
-shortest cycle              :math:`O(|V|\cdot|E|)`  breath-first search                                                            `shortest_cycle <tryalgo/tryalgo.html#module-tryalgo.shortest_cycle>`__
-=========================== ======================= ============================================================================== ===============
+=========================== ========== ======================= ============================================================================== ===============
+problem                     graph      complexity              algorithm                                                                      implementation
+=========================== ========== ======================= ============================================================================== ===============
+find a cycle                undirected :math:`O(|V| + |E|)`    depth-first search                                                             `find_cycle <tryalgo/tryalgo.html#module-tryalgo.dfs>`__
+shortest cycle              undirected :math:`O(|V|\cdot|E|)`  breath-first search                                                            `shortest_cycle <tryalgo/tryalgo.html#module-tryalgo.shortest_cycle>`__
+minimum weight cycle        directed   :math:`O(|V|\cdot |E|)` `Bellman-Ford <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>`_ `bellman_ford <tryalgo/tryalgo.html#module-tryalgo.bellman_ford>`__
+minimum mean cycle          directed   :math:`O(|V|\cdot |E|)` `Karp <http://www.sciencedirect.com/science/article/pii/0012365X78900110>`_    `min_mean_cycle <tryalgo/tryalgo.html#module-tryalgo.min_mean_cycle>`__
+Eulerian cycle              both       :math:`O(|V|+|E|)`      `Greedy <https://en.wikipedia.org/wiki/Eulerian_path>`_                        `eulerian_tour <tryalgo/tryalgo.html#module-tryalgo.eulerian_tour>`__
+=========================== ========== ======================= ============================================================================== ===============
 
 
 Shortest paths
