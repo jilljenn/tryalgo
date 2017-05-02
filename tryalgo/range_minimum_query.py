@@ -102,9 +102,9 @@ class LazySegmentTree:
             j = self.N + i
             self.maxval[j] = self.minval[j] = self.sumval[j] = tabi
         for node in range(self.N - 1, 0, -1):
-            self.maintain(node)                    # maintain invariant
+            self._maintain(node)                    # maintain invariant
 
-    def maintain(self, node):
+    def _maintain(self, node):
         """maintains the invariant for the given node
         :promize: the lazy values are None/0 for this node
         """
@@ -121,7 +121,7 @@ class LazySegmentTree:
         self.minval[node] = min(self.minval[l], self.minval[r])
         self.sumval[node] = self.sumval[l] + self.sumval[r]
 
-    def clear(self, node, left, right):
+    def _clear(self, node, left, right):
         """propagates the lazy updates for this node to the subtrees.
         as a result the maxval, minval, sumval values for the node
         are up to date.
@@ -164,36 +164,36 @@ class LazySegmentTree:
 
 
     def _add(self, i, j, val, node, left, right):
-        self.clear(node, left, right)
+        self._clear(node, left, right)
         if j <= left or right <= i:
             return   # disjoint intervals, nothing to do
         if i <= left and right <= j:
             self.lazyadd[node] += val
-            self.clear(node, left, right)
+            self._clear(node, left, right)
         else:
             mid = (right + left) // 2
             self._add(i, j, val, 2 * node, left, mid)
             self._add(i, j, val, 2 * node + 1, mid, right)
-            self.maintain(node)
+            self._maintain(node)
 
     def _set(self, i, j, val, node, left, right):
-        self.clear(node, left, right)
+        self._clear(node, left, right)
         if j <= left or right <= i:
             return   # disjoint intervals, nothing to do
         if i <= left and right <= j:
             self.lazyset[node] = val
             self.lazyadd[node] = 0
-            self.clear(node, left, right)
+            self._clear(node, left, right)
         else:
             mid = (right + left) // 2
             self._set(i, j, val, 2 * node, left, mid)
             self._set(i, j, val, 2 * node + 1, mid, right)
-            self.maintain(node)
+            self._maintain(node)
 
     def _max(self, i, j, node, left, right):
         if j <= left or right <= i:
             return float('-inf')   # neutral value for max
-        self.clear(node, left, right)
+        self._clear(node, left, right)
         if i <= left and right <= j:
             return self.maxval[node]
         else:
@@ -205,7 +205,7 @@ class LazySegmentTree:
     def _min(self, i, j, node, left, right):
         if j <= left or right <= i:
             return float('+inf')   # neutral value for min
-        self.clear(node, left, right)
+        self._clear(node, left, right)
         if i <= left and right <= j:
             return self.minval[node]
         else:
@@ -217,7 +217,7 @@ class LazySegmentTree:
     def _sum(self, i, j, node, left, right):
         if j <= left or right <= i:
             return 0               # neutral value for sum
-        self.clear(node, left, right)
+        self._clear(node, left, right)
         if i <= left and right <= j:
             return self.sumval[node]
         else:
@@ -226,7 +226,7 @@ class LazySegmentTree:
             b = self._sum(i, j, 2 * node + 1, mid, right)
             return a + b
 
-    def dump(self):
+    def _dump(self):
         f = open("tmp.dot", "w")
         print("digraph G{", file=f)
         print('0 [label="lazyset/lazyadd/maxval/minval/sumval"]', file=f)
@@ -264,5 +264,5 @@ if __name__ == '__main__':
             tree.add(i, j, int(t[3]))
         elif t[2] == '=':
             tree.set(i, j, int(t[3]))
-        tree.dump()
+        tree._dump()
 
