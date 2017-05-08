@@ -36,7 +36,7 @@ def is_simple(polygon):
     order.sort(key=lambda i: polygon[i])         # ordre lexicographique
     rank_to_y = list(set(p[1] for p in polygon))
     rank_to_y.sort()
-    y_to_rank = {rank_to_y[i]: i for i in range(len(rank_to_y))}
+    y_to_rank = {r: i for (i, r) in enumerate(rank_to_y)}
     S = RangeMinQuery([0] * len(rank_to_y))      # structure balayage
     last_y = None                     # juste pour calmer pyflakes
     for i in order:
