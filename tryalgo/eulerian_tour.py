@@ -20,14 +20,14 @@ def eulerian_tour_undirected(graph):
     P = []
     Q = [0]
     R = []
-    nextnode = [0] * len(graph)
+    succ = [0] * len(graph)
     seen = [set() for _ in graph]
     while Q:
         node = Q.pop()
         P.append(node)
-        while nextnode[node] < len(graph[node]):
-            neighbor = graph[node][nextnode[node]]
-            nextnode[node] += 1
+        while succ[node] < len(graph[node]):
+            neighbor = graph[node][succ[node]]
+            succ[node] += 1
             if neighbor not in seen[node]:
                 seen[neighbor].add(node)
                 R.append(neighbor)
@@ -50,13 +50,13 @@ def eulerian_tour_directed(graph):
     P = []
     Q = [0]
     R = []
-    nextnode = [0] * len(graph)
+    succ = [0] * len(graph)
     while Q:
         node = Q.pop()
         P.append(node)
-        while nextnode[node] < len(graph[node]):
-            neighbor = graph[node][nextnode[node]]
-            nextnode[node] += 1
+        while succ[node] < len(graph[node]):
+            neighbor = graph[node][succ[node]]
+            succ[node] += 1
             R.append(neighbor)
             node = neighbor
         while R:
