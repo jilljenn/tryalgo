@@ -15,9 +15,9 @@ def huffman(freq):
     :complexity: O(n log n)
     """
     h = []
-    for a in freq:
+    for a in freq:  # Construction du tas
         heappush(h, (freq[a], a))
-    while len(h) > 1:
+    while h:        # Utilisation du tas, tant que non vide
         (fl, l) = heappop(h)
         (fr, r) = heappop(h)
         heappush(h, (fl + fr, [l, r]))

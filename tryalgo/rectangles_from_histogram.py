@@ -18,7 +18,7 @@ def rectangles_from_histogram(H):
     for right in range(len(H2)):
         x = H2[right]
         left = right
-        while len(S) > 0 and S[-1][1] >= x:
+        while S and S[-1][1] >= x:
             left, height = S.pop()
             #                (surface, gauche, hauteur, droite)
             rect = (height * (right - left), left, height, right)
