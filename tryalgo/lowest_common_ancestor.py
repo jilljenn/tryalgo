@@ -86,19 +86,19 @@ class LowestCommonAncestorRMQ:
         dfs_trace = []
         self.last = [None] * n
         to_visit = [(0, 0, None)]            # sommet 0 est la racine
-        next = [0] * n
+        nextn = [0] * n
         while to_visit:
             level, node, father = to_visit[-1]
             self.last[node] = len(dfs_trace)
             dfs_trace.append((level, node))
-            if next[node] < len(graph[node]) and \
-               graph[node][next[node]] == father:
-                next[node] += 1
-            if next[node] == len(graph[node]):
+            if nextn[node] < len(graph[node]) and \
+               graph[node][nextn[node]] == father:
+                nextn[node] += 1
+            if nextn[node] == len(graph[node]):
                 to_visit.pop()
             else:
-                neighbor = graph[node][next[node]]
-                next[node] += 1
+                neighbor = graph[node][nextn[node]]
+                nextn[node] += 1
                 to_visit.append((level + 1, neighbor, node))
         self.rmq = RangeMinQuery(dfs_trace, (float('inf'), None))
 
