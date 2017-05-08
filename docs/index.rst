@@ -33,13 +33,19 @@ From PyPI
 Download the `tar.gz file from PyPI <https://pypi.python.org/pypi/tryalgo/>`_ and extract it.  The library consists of a directory named `tryalgo` containing several Python modules.
 
 
+.. toctree::
+   :maxdepth: 2
+
+   content
+
+
 First steps
 -----------
 
 Coin change
 :::::::::::
 
-Here is an dynamic programming example, with coin change (`6 lines of source code <tryalgo/subsetsum.html#coin_change>`__): ::
+Here is an dynamic programming example, with coin change (`6 lines of source code <_modules/tryalgo/subsetsum.html#coin_change>`__): ::
 
     #!/usr/bin/env python3
 
@@ -52,7 +58,7 @@ Which should print :code:`True` because 29 can be expressed as the linear combin
 Longest palindrome substring of a string
 ::::::::::::::::::::::::::::::::::::::::
 
-In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <tryalgo/manacher.html#manacher>`__) as follows: ::
+In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <_modules/tryalgo/manacher.html#manacher>`__) as follows: ::
 
     from tryalgo import manacher
     print(manacher("babcbabcbaccba"))
@@ -133,11 +139,6 @@ This data structure encodes both the graph and the arc weights, hence it is poss
 
     dist, prec = dijkstra(sparse, sparse, source=0)
 
-
-.. toctree::
-   :maxdepth: 2
-
-   content
 
 .. toctree::
    :maxdepth: 2
