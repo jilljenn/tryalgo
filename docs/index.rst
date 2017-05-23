@@ -12,8 +12,15 @@ This Python library implements various algorithms and data structures such as gr
 
 Proofs of correctness of these algorithms are available in the French language book: `Programmation efficace : les 128 algorithmes qu'il faut avoir compris et codés en Python au cours de sa vie <http://www.editions-ellipses.fr/product_info.php?products_id=10829>`_.
 
-* :ref:`genindex`
+
+
+.. toctree::
+   :maxdepth: 2
+
+   content
+
 * :ref:`modindex`
+* :ref:`genindex`
 * `GitHub Project <https://github.com/jilljenn/tryalgo>`_
 
 
@@ -33,11 +40,6 @@ From PyPI
 Download the `tar.gz file from PyPI <https://pypi.python.org/pypi/tryalgo/>`_ and extract it.  The library consists of a directory named `tryalgo` containing several Python modules.
 
 
-.. toctree::
-   :maxdepth: 2
-
-   content
-
 
 First steps
 -----------
@@ -45,7 +47,7 @@ First steps
 Coin change
 :::::::::::
 
-Here is an dynamic programming example, with coin change (`6 lines of source code <_modules/tryalgo/subsetsum.html#coin_change>`__): ::
+Here is an dynamic programming example, with coin change (`6 lines of source code <http://pythonhosted.org/tryalgo/_modules/tryalgo/subsetsum.html#coin_change>`__): ::
 
     #!/usr/bin/env python3
 
@@ -58,7 +60,7 @@ Which should print :code:`True` because 29 can be expressed as the linear combin
 Longest palindrome substring of a string
 ::::::::::::::::::::::::::::::::::::::::
 
-In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <_modules/tryalgo/manacher.html#manacher>`__) as follows: ::
+In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <http://pythonhosted.org/tryalgo/_modules/tryalgo/manacher.html#manacher>`__) as follows: ::
 
     from tryalgo import manacher
     print(manacher("babcbabcbaccba"))
@@ -139,8 +141,3 @@ This data structure encodes both the graph and the arc weights, hence it is poss
 
     dist, prec = dijkstra(sparse, sparse, source=0)
 
-
-.. toctree::
-   :maxdepth: 2
-
-   tryalgo/modules
