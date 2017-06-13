@@ -22,6 +22,7 @@ def tarjan_recursif(graph):
     dfs_num = [None] * len(graph)
 
     def dfs(node):
+        """we modify sccp, waiting, waits, dfs_time and dfs_num"""
         nonlocal dfs_time
         waiting.append(node)           # nouveau nœud attend
         waits[node] = True
