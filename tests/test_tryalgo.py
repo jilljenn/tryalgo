@@ -79,6 +79,7 @@ from tryalgo.rectangles_from_histogram import rectangles_from_histogram
 from tryalgo.rectangles_from_points import rectangles_from_points
 from tryalgo.scalar import min_scalar_prod
 from tryalgo.shortest_cycle import shortest_cycle, powergraph
+from tryalgo.skip_list import SortedSet, SortedDict
 from tryalgo.strongly_connected_components import tarjan, kosaraju, tarjan_recursif
 from tryalgo.subsetsum_divide import subset_sum as subset_sum1
 from tryalgo.subsetsum import subset_sum as subset_sum2, coin_change
@@ -1580,6 +1581,40 @@ t##
         Hll = matrix_to_listlist(W)
         self.assertEqual(Hll, Gll)
 
+    def test_SortedSet(self):
+        s1 = set()
+        s2 = SortedSet()
+        for _ in range(50):
+            i = random.randint(0, 20)
+            try:
+                nK = next(k for k in sorted(s1) if k >= i)
+            except StopIteration:
+                nK = None
+            self.assertEqual(s2.nextKey(i), nK)
+            try:
+                lK = next(k for k in reversed(sorted(s1)) if k < i)
+            except StopIteration:
+                lK = None
+            self.assertEqual(s2.lastKey(i), lK)
+            if i in s1:
+                for s in (s1, s2):
+                    s.remove(i)
+            else:
+                for s in (s1, s2):
+                    s.add(i)
+            self.assertEqual(set(s2), s1)
+
+    def test_SortedDict(self):
+        d1 = dict()
+        d2 = SortedDict()
+        for _ in range(50):
+            i = random.randint(0, 20)
+            j = random.randint(0, 20)
+            for d in (d1, d2):
+                d[i] = j
+            self.assertEqual(dict(d2), d1)
+
 
 if __name__ == '__main__':
     unittest.main()
+
