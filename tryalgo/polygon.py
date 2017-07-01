@@ -5,6 +5,9 @@
 # jill-jenn vie et christoph durr - 2014-2015
 
 
+from tryalgo.range_minimum_query import RangeMinQuery
+
+
 # snip{ area
 def area(p):
     """Area of a polygone
@@ -20,8 +23,6 @@ def area(p):
     return A / 2.
 # snip}
 
-
-from tryalgo.range_minimum_query import RangeMinQuery
 
 # snip{ is_simple
 def is_simple(polygon):
@@ -44,7 +45,7 @@ def is_simple(polygon):
         rank = y_to_rank[y]
         #                             -- type de point
         right_x = max(polygon[i - 1][0], polygon[(i + 1) % n][0])
-        left   = x < right_x
+        left = x < right_x
         below_y = min(polygon[i - 1][1], polygon[(i + 1) % n][1])
         high = y > below_y
         if left:                      # il ne faut pas encore y dans S
@@ -56,7 +57,7 @@ def is_simple(polygon):
         if high:
             lo = y_to_rank[below_y]   # vérifier S entre lo + 1 et rank - 1
             if (below_y != last_y or last_y == y or
-                rank - lo >= 2 and S.range_min(lo + 1, rank)):
+                    rank - lo >= 2 and S.range_min(lo + 1, rank)):
                 return False          # inters. entre segm. horiz. et vertic.
         last_y = y                    # mémoriser pour prochaine itération
     return True

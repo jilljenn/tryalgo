@@ -5,10 +5,10 @@
 
 # convert roman numbers
 
-roman = [['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'],
-         ['', 'X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],
-         ['', 'C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],
-         ['', 'M', 'MM', 'M'*3, 'M'*4,'M'*5,'M'*6,'M'*7,'M'*8,'M'*9]]
+roman = [['', 'I', 'II', 'III', 'IV' , 'V',   'VI',  'VII', 'VIII', 'IX'],
+         ['', 'X', 'XX', 'XXX', 'XL' , 'L',   'LX',  'LXX', 'LXXX', 'XC'],
+         ['', 'C', 'CC', 'CCC', 'CD',  'D',   'DC',  'DCC', 'DCCC', 'CM'],
+         ['', 'M', 'MM', 'M'*3, 'M'*4, 'M'*5, 'M'*6, 'M'*7, 'M'*8,  'M'*9]]
 
 
 def roman2int(s):

@@ -30,7 +30,7 @@ def tarjan_recursif(graph):
         dfs_time += 1
         dfs_min = dfs_num[node]        # calculer dfs_min
         for neighbor in graph[node]:
-            if dfs_num[neighbor] == None:
+            if dfs_num[neighbor] is None:
                 dfs_min = min(dfs_min, dfs(neighbor))
             elif waits[neighbor] and dfs_min > dfs_num[neighbor]:
                 dfs_min = dfs_num[neighbor]
@@ -45,7 +45,7 @@ def tarjan_recursif(graph):
         return dfs_min
 
     for node in range(len(graph)):
-        if dfs_num[node] == None:
+        if dfs_num[node] is None:
             dfs(node)
     return sccp
 # snip}

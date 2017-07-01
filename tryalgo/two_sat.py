@@ -36,7 +36,7 @@ def two_sat(formula):
         rep = min(component)             # représentation de la composante
         for vtx in component:
             comp_id[vtx] = rep
-            if affectations[vtx] == None:
+            if affectations[vtx] is None:
                 affectations[vtx] = True
                 affectations[vtx ^ 1] = False    # littéral complémentaire
     for i in range(n):

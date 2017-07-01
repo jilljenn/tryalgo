@@ -162,7 +162,6 @@ class LazySegmentTree:
     def sum(self, i, j):
         return self._sum(i, j, 1, 0, self.N)
 
-
     def _add(self, i, j, val, node, left, right):
         self._clear(node, left, right)
         if j <= left or right <= i:

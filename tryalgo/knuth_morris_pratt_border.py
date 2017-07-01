@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Maximum string borders by Knuth-Morris-Pratt
-# jill-jênn vie et christoph dürr - 2014-2015
+# jill-jênn vie et christoph dürr et louis abraham - 2014-2015
 
 # part d'un TP de Yves Lemaire
 # en temps linéaire avec Knuth-Morris-Pratt
@@ -18,15 +18,16 @@ def maximum_border_length(w):
     :complexity: linear
     """
     n = len(w)
-    L = [0] * (n + 1)
+    L = [0] * n
+    k = 0
     for i in range(1, n):
-        k = L[i]
         while w[k] != w[i] and k > 0:
-            k = L[k]
+            k = L[k - 1]
         if w[k] == w[i]:
-            L[i + 1] = k + 1
+            k += 1
+            L[i] = k
         else:
-            L[i + 1] = 0
+            L[i] = 0
     return L
 # snip}
 

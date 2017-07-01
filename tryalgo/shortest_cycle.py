@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# christoph durr and finn völkel and louis abraham - 2016
+# christoph durr and finn voelkel and louis abraham - 2016
 
 # Find shortest simple cycle
 # O(V*E)

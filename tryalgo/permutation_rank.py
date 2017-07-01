@@ -43,7 +43,7 @@ def rank_permutation(r, n):
     for i in range(n):
         q = r // fact                       # by decomposing r = q * fact + rest
         r %= fact
-        p.append( digits[q] )
+        p.append(digits[q])
         del digits[q]                       # remove digit at position q
         if i != n - 1:
             fact //= (n - 1 - i)            # weight of next digit
