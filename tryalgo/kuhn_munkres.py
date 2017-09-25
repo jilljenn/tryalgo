@@ -26,7 +26,6 @@ def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
     lu = [max(row) for row in G]    # étiqu. triviaux
     lv = [0] * n
     for root in U:                  # constr. un arbre alterné
-        n = len(G)
         au = [False] * n
         au[root] = True
         Av = [None] * n
