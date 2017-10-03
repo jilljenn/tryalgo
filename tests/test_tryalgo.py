@@ -989,6 +989,9 @@ t##
         self.assertEqual( manacher("a") , (0, 1) )
         self.assertEqual( manacher("aa") , (0, 2) )
         self.assertEqual( manacher("ab") , (1, 2) )
+        self.assertEqual( manacher("aba") , (0, 3) )
+        self.assertEqual( manacher("baa") , (1, 3) )
+        self.assertEqual( manacher("aab") , (0, 2) )
         self.assertEqual( manacher("babcbabcbaccba") , (1, 10) )
 
 

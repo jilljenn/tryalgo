@@ -34,7 +34,7 @@ def manacher(s):
         return (0, 1)
     t = "^#" + "#".join(s) + "#$"
     c = 1
-    d = 0
+    d = 1
     p = [0] * len(t)
     for i in range(2, len(t) - 1):
         #                        -- refléter l'indice i par rapport à c
