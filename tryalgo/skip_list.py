@@ -1,10 +1,17 @@
+# -*- coding: utf-8 -*-
+# skip-list
+# louis abraham - 2017
+
+# Inspired by https://kunigami.blog/2012/09/25/skip-lists-in-python/
+# count contains the gap between the positions (https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
+
+from __future__ import print_function
 from collections import namedtuple
 from random import random
 
-"""
-Inspired by https://kunigami.blog/2012/09/25/skip-lists-in-python/
-count contains the gap between the positions (https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
-"""
+
+
+
 
 # TODO: add order_of_key
 
@@ -125,9 +132,9 @@ class AbstractSkipList():
 
     @staticmethod
     def randomHeight():
-        
+
         p = 2
-        
+
         r = p * random()
         ans = 1
         while r < 1:
@@ -153,7 +160,8 @@ class SortedSet(AbstractSkipList):
             self.remove(x)
             return x
         except StopIteration:
-            raise KeyError('pop from an empty set') from None
+            raise KeyError('pop from an empty set')
+            # raise KeyError('pop from an empty set') from None
 
     def add(self, key):
         height = self.randomHeight()
@@ -208,6 +216,9 @@ if __name__ == '__main__':
 
     def display(a):
         while a is not None:
+            # if sys.version_info.major < 3:
+            #     print (a.key if a.key is not None else 'N') + ' | ',
+            # else:
             print(a.key if a.key is not None else 'N', end=' | ')
             print(*('(%s, %s)' % (i.key if i is not None else 'N', c)
                     for i, c in zip(a.next, a.count)))
@@ -222,4 +233,4 @@ if __name__ == '__main__':
         n.remove(i)
         display(n)
         print("----------")
-    
+

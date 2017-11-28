@@ -259,9 +259,13 @@ class TestTryalgo(unittest.TestCase):
                  ([[1], [0]], ([], [(0, 1)])),
                  ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
             for graph, answer in L:
-                for f in [cut_nodes_edges, cut_nodes_edges2]:
-                    cn, ce = f(graph)
+                cn, ce = cut_nodes_edges(graph)
+                self.assertEqual( (sorted(cn), sorted(ce)), answer)
+            for graph, answer in L:
+                if len(graph) <= 5000:
+                    cn, ce = cut_nodes_edges2(graph)
                     self.assertEqual( (sorted(cn), sorted(ce)), answer)
+
             # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
             #     cut_nodes, cut_edges = cut_nodes_edges(G)
             #     write_graph("biconnexes_%s.dot" % name, G,

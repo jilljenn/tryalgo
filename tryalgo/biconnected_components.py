@@ -67,13 +67,14 @@ def cut_nodes_edges2(graph):
     """Bi-connected components, alternative recursive implementation
 
     :param graph: undirected graph. in listlist format. Cannot be in listdict format.
-    :assumes: graph has about 10^4 vertices at most, otherwise memory limit is reached
+    :assumes: graph has about 5000 vertices at most, otherwise memory limit is reached
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)` in average, `O(|V|+|E|^2)` in worst case due to use of dictionary
     """
     N = len(graph)
+    assert N <= 5000
     recursionlimit = getrecursionlimit()
-    setrecursionlimit(max(1000, N + 42))  # 5 est la vraie constante, mais ça fait foirer les builds
+    setrecursionlimit(max(recursionlimit, N + 42))  # 5 est la vraie constante, mais ça fait foirer les builds
     edges = set((i, j) for i in range(N) for j in graph[i] if i <= j)
     nodes = set()
     NOT = -2  # pas encore visité ; avec -1 on a un gros bug à cause de `marked[v] != prof - 1`
