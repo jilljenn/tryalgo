@@ -8,7 +8,8 @@ python:
     - '3.5'
     - 'pypy3'
 install: python setup.py install
-script: python -m unittest
+script: 
+    - pytest
 deploy:
     provider: pypi
     user: xtof.durr
