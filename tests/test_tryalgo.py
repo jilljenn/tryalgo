@@ -875,6 +875,12 @@ t##
                                  966, 232, 308, 833, 251, 631, 107],
                                 [813, 883, 451, 509, 615,  77, 281, 613,
                                  459, 205, 380, 274, 302,  35, 805]])[1], 13938 )
+        # https://www.youtube.com/watch?v=aPVtIhnwHPE
+        self.assertEqual( kuhn_munkres_n3([[62, 78, 50, 101, 82],
+                                           [71, 84, 61, 73, 59],
+                                           [87, 92, 111, 71, 81],
+                                           [48, 64, 87, 77, 80]]),
+                          ([3, 1, 2, 4], 376) )
         # test non-symmetrical graphs
         inf = float('inf')
         self.assertEqual( kuhn_munkres_n3([[10, -inf]]),              ([0], 10))
