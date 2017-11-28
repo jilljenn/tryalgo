@@ -8,28 +8,27 @@
 TOLERANCE = 1e-6          # everything smaller is considered zero
 
 
-def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
+def kuhn_munkres(G):      # couplage maximum de profit maximal en O(n^3)
     """Maximum profit bipartite matching by Kuhn-Munkres
 
     :param G: weight matrix G[u][v] is weight of edge (u,v),
-    :requires: graph is complete bi-partite graph and both sides U, V have same size.
-               Hence G is a squared matrix where  float('-inf') or float('inf')
-               are allowed entries but not None.
+    :requires: graph is maximum bi-partite graph and side U must not be larger
+               than side V. Hence G is a matrix where float('-inf') or
+               float('inf') are allowed entries but not None.
     :returns: matching table from U to V, value of matching
-    :complexity: :math:`O(|V|^3)`
+    :complexity: :math:`O(|U|*|V|^2) \leq O(|V|^3)`
     """
-    assert len(G) == len(G[0])      # matrice carrée
-    n = len(G)
-    U = V = range(n)
-    mu = [None] * n                 # couplage vide
-    mv = [None] * n
+    assert len(G) <= len(G[0])      # |U| <= |V|
+    nu, nv = len(G), len(G[0])
+    U, V = range(nu), range(nv)
+    mu = [None] * nu                # couplage vide
+    mv = [None] * nv
     lu = [max(row) for row in G]    # étiqu. triviaux
-    lv = [0] * n
+    lv = [0] * nv
     for root in U:                  # constr. un arbre alterné
-        n = len(G)
-        au = [False] * n
+        au = [False] * nu
         au[root] = True
-        Av = [None] * n
+        Av = [None] * nv
         marge = [(lu[root] + lv[v] - G[root][v], root) for v in V]
         while True:
             ((delta, u), v) = min((marge[v], v) for v in V if Av[v] == None)
