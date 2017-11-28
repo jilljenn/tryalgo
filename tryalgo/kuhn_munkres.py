@@ -79,7 +79,7 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
                         lu[u0] -= delta
                 for v0 in V:
                     if Av[v0] is not None:
-                        lv[v0] += deltapip
+                        lv[v0] += delta
                     else:
                         (val, arg) = marge[v0]
                         marge[v0] = (val - delta, arg)
