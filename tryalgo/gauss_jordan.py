@@ -3,6 +3,7 @@
 # Linear equation system Ax=b by Gauss-Jordan
 # jill-jenn vie et christoph durr - 2014-2015
 
+__all__ = ["gauss_jordan", "GJ_ZERO_SOLUTION", "GJ_UNE_SOLUTION", "GJ_PLUSIEURS_SOLUTIONS"]
 
 # snip{
 def is_zero(x):                    # tolérance

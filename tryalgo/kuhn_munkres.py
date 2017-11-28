@@ -1,37 +1,77 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Maximum profit bipartite matching by Kuhn-Munkres
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie, christoph durr and samuel tardieu - 2014-2017
+
+"""
+primal LP
+
+    max sum_{u,v} w[u,v] * x[u,v]
+
+    such that
+    for all u in U: sum_v x[u,v] == 1   (l[u])
+
+    for all v in V: sum_u x[u,v] <= 1   (l[v])
+
+    for all u,v: x[u,v] >= 0
+
+
+dual LP
+
+    min sum_u l[u] + sum_v l[v]
+
+    such that
+    for all u,v:  l[u] + l[v] >= w[u,v]   (*)
+
+    for all u in U: l[u] is arbitrary (free variable)
+    for all v in V: l[v] >= 0
+
+
+primal-dual algorithm:
+
+    Start with trivial solution l for dual and with trivial
+    non-solution x for primal.
+
+    Iteratively improve primal or dual solution, maintaining complementary
+    slackness conditions.
+
+"""
 
 
 # snip{
-TOLERANCE = 1e-6          # everything smaller is considered zero
-
-
-def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
+def kuhn_munkres(G, TOLERANCE=1e-6):
     """Maximum profit bipartite matching by Kuhn-Munkres
 
-    :param G: weight matrix G[u][v] is weight of edge (u,v),
-    :requires: graph is complete bi-partite graph and both sides U, V have same size.
-               Hence G is a squared matrix where  float('-inf') or float('inf')
-               are allowed entries but not None.
+    :param G: weight matrix where G[u][v] is the weight of edge (u,v),
+    :param TOLERANCE: a value with absolute value below tolerance
+                      is considered as being zero.
+                      If G consists of integer or fractional values
+                      then TOLERANCE can be chosen 0.
+    :requires: graph (U,V,E) is complete bi-partite graph with |U| <= |V|.
+               float('-inf') or float('inf') entries in G
+               are allowed but not None.
     :returns: matching table from U to V, value of matching
-    :complexity: :math:`O(|V|^3)`
+    :complexity: :math:`O(|U|^2 |V|)`
     """
-    assert len(G) == len(G[0])      # matrice carrée
-    n = len(G)
-    U = V = range(n)
-    mu = [None] * n                 # couplage vide
-    mv = [None] * n
+    nU = len(G)
+    U = range(nU)
+    nV = len(G[0])
+    V = range(nV)
+    assert nU <= nV
+    mu = [None] * nU                # couplage vide
+    mv = [None] * nV
     lu = [max(row) for row in G]    # étiqu. triviaux
-    lv = [0] * n
+    lv = [0] * nV
     for root in U:                  # constr. un arbre alterné
-        au = [False] * n
-        au[root] = True
-        Av = [None] * n
+        au = [False] * nU           # au, av marquent les sommets ...
+        au[root] = True             # ... couverts par l'arbre
+        Av = [None] * nV            # Av[v] descendant du sommet v dans l'arbre
+        # pour chaque sommet u, marge[u] := (val, v) tel que
+        # val est la plus petite marge sur les contraintes (*)
+        # avec u fixé et v le sommet correspondant
         marge = [(lu[root] + lv[v] - G[root][v], root) for v in V]
         while True:
-            ((delta, u), v) = min((marge[v], v) for v in V if Av[v] == None)
+            ((delta, u), v) = min((marge[v], v) for v in V if Av[v] is None)
             assert au[u]
             if delta > TOLERANCE:   # arbre est complet
                 for u0 in U:        # améliorer les étiquettes
@@ -39,7 +79,7 @@ def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^3)
                         lu[u0] -= delta
                 for v0 in V:
                     if Av[v0] is not None:
-                        lv[v0] += delta
+                        lv[v0] += deltapip
                     else:
                         (val, arg) = marge[v0]
                         marge[v0] = (val - delta, arg)

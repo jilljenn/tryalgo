@@ -33,10 +33,10 @@ def manacher(s):
     if s == "":
         return (0, 1)
     t = "^#" + "#".join(s) + "#$"
-    c = 0
-    d = 0
+    c = 1
+    d = 1
     p = [0] * len(t)
-    for i in range(1, len(t) - 1):
+    for i in range(2, len(t) - 1):
         #                        -- refléter l'indice i par rapport à c
         mirror = 2 * c - i         # = c - (i-c)
         p[i] = max(0, min(d - i, p[mirror]))

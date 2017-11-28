@@ -875,6 +875,11 @@ t##
                                  966, 232, 308, 833, 251, 631, 107],
                                 [813, 883, 451, 509, 615,  77, 281, 613,
                                  459, 205, 380, 274, 302,  35, 805]])[1], 13938 )
+        # test non-symmetrical graphs
+        inf = float('inf')
+        self.assertEqual( kuhn_munkres_n3([[10, -inf]]),              ([0], 10))
+        self.assertEqual( kuhn_munkres_n3([[10]], 0),                 ([0], 10))
+        self.assertEqual( kuhn_munkres_n3([[5, 0, 1], [8, 5, 4]], 0), ([0, 1], 10))
 
     def test_laser_mirrors(self):
         self.assertEqual( laser_mirrors(2, 2, [(0, 0), (0, 1),
@@ -989,6 +994,9 @@ t##
         self.assertEqual( manacher("a") , (0, 1) )
         self.assertEqual( manacher("aa") , (0, 2) )
         self.assertEqual( manacher("ab") , (1, 2) )
+        self.assertEqual( manacher("aba") , (0, 3) )
+        self.assertEqual( manacher("baa") , (1, 3) )
+        self.assertEqual( manacher("aab") , (0, 2) )
         self.assertEqual( manacher("babcbabcbaccba") , (1, 10) )
 
 
