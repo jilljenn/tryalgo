@@ -51,7 +51,7 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
                float('-inf') or float('inf') entries in G
                are allowed but not None.
     :returns: matching table from U to V, value of matching
-    :complexity: :math:`O(|V|^3)` --- to be made precise
+    :complexity: :math:`O(|U|^2 |V|)`
     """
     nU = len(G)
     U = range(nU)
