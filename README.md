@@ -1,6 +1,5 @@
 [![Build Status](https://travis-ci.org/jilljenn/tryalgo.svg?branch=master)](https://travis-ci.org/jilljenn/tryalgo)
 [![PyPI](https://img.shields.io/pypi/v/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
-[![PyPI](https://img.shields.io/pypi/dm/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 
 # tryalgo
 
