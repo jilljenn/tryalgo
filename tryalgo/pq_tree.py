@@ -266,8 +266,6 @@ def consecutive_ones_property(sets, universe=None):
     try:
         for S in sets:
             tree.reduce(S)
-        return tree
+        return tree.border()
     except IsNotC1P:
         return None
-
-print(consecutive_ones_property(["BCD", "ABCD", "ABCDE", "HI", "GHI"]))
