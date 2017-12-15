@@ -71,6 +71,7 @@ from tryalgo.our_queue import OurQueue
 from tryalgo.permutation_rank import permutation_rank, rank_permutation
 from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
+from tryalgo.pq_tree import consecutive_ones_property
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.rabin_karp import rabin_karp_factor
 from tryalgo.range_minimum_query import RangeMinQuery, LazySegmentTree
@@ -1117,6 +1118,43 @@ t##
     def test_polygon_area(self):
         self.assertEqual( area([(1, 0), (2, 3), (2, 4), (0, 3)]) , 4 )
         self.assertEqual( area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1 )
+
+
+    def test_pq_tree(self):
+
+        check_automaton = [[0, 1], [2, 1], [2, 3], [3, 3]]
+
+        def check_positive(sets):
+            order = consecutive_ones_property(sets)
+            for S in sets:
+                state = 0
+                for i in order:
+                    state = check_automaton[state][int(i in S)]
+                    if state == 3:
+                        return False
+            return True
+
+        self.assertIsNone(consecutive_ones_property([
+           {2, 3, 4, 5, 6},
+           {3, 6, 7},
+           {4, 7}]))
+        self.assertTrue(check_positive([
+           {2, 3, 4, 5, 6},
+           {3, 6, 7},
+           {7}]))
+        self.assertTrue(check_positive([
+           {2, 3, 10},
+           {3, 6, 8},
+           ]))
+        self.assertTrue(check_positive([
+           {2, 3, 4},
+           {1, 2, 3},
+           {4, 5},
+           ]))
+        self.assertIsNone(consecutive_ones_property([
+            {3,4}, {3,4,6}, {3,4,5}, {4,5}, {2,6}, {1,2}, {4,5}, {5,3}]))
+        self.assertTrue(check_positive([
+            {1,4}, {3,0,2,5,4}, {0,2,5,4}, {2,5}, {0,2}]))
 
 
     def test_polygon_is_simple(self):

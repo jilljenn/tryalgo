@@ -130,7 +130,7 @@ problem                                                  complexity             
 ======================================================== ============================== ============================================================================== ===========================
 maximum cardinality bipartite matching                   :math:`O(|E|\cdot|V|)`         `augmenting path algorithm <https://goo.gl/lGtp9f>`_                           `bipartite_matching <tryalgo/tryalgo.html#module-tryalgo.bipartite_matching>`__
 minimum bipartite vertex cover                           :math:`O(|E|\cdot|V|)`         `reduction to matching <goo.gl/AkBUQH>`_                                       `bipartite_vertex_cover <tryalgo/tryalgo.html#module-tryalgo.bipartite_vertex_cover>`__
-maximum profit bipartite matching                        :math:`O(|V|^3)`               `Hungarian algorithm <https://en.wikipedia.org/wiki/Hungarian_algorithm>`_     `kuhn_munkres <tryalgo/tryalgo.html#module-tryalgo.kuhn_munkres>`__
+maximum profit bipartite matching                        :math:`O(|U|^2|V|)`            `Hungarian algorithm <https://en.wikipedia.org/wiki/Hungarian_algorithm>`_     `kuhn_munkres <tryalgo/tryalgo.html#module-tryalgo.kuhn_munkres>`__
 stable bipartite matching                                :math:`O(|V|^2)`               `Gale-Shapley <https://en.wikipedia.org/wiki/Stable_marriage_problem>`_        `gale_shapley <tryalgo/tryalgo.html#module-tryalgo.gale_shapley>`__
 max flow capacities in {1,...,C}                         :math:`O(|V|\cdot|E|\cdot|C|)` `Ford-Fulkerson <https://en.wikipedia.org/wiki/Ford-Fulkerson_algorithm>`_     `ford_fulkerson <tryalgo/tryalgo.html#module-tryalgo.ford_fulkerson>`__
 max flow arbitrary capacities                            :math:`O(|V|\cdot|E|^2)`       `Edmonds-Karp <https://en.wikipedia.org/wiki/Edmonds-Karp_algorithm>`_         `edmonds_karp <tryalgo/tryalgo.html#module-tryalgo.edmonds_karp>`__
@@ -152,10 +152,13 @@ The lowest common ancestor problem consists of building a data structure that st
 Sets
 ::::
 
+A simple data structure to store an ordered set allowing insertions and deletions is the `skip tree <tryalgo/tryalo.html#module-tryalgo.skip_tree>`__. The expected cost of an update is :math:`O(\log n)`.
+
 Many problems defined on sets can be solved by dynamic programming. This is the case of the `Knapsack problem <https://en.wikipedia.org/wiki/Knapsack_problem>`_. We are given n items, each has a size and a value, and we wish to find a subset of maximum total value which size does not exceed a given capacity C.  This problem is NP-hard, but can be solved efficiently in time O(nC) if the capacity is bounded by a small value, see `knapsack <tryalgo/tryalgo.html#module-tryalgo.knapsack>`__.
 
 In the coin change problem, we are given a collection of coins of n different values and unbounded number of coins for each value and a target value C.  The goal is to find a set of coins of total value C.  Again this problem can be solved by dynamic programming in time O(nC), see `subsetsum <tryalgo/tryalgo.html#module-tryalgo.subsetsum>`__.  A similar problem is called the `subset sum problem <https://en.wikipedia.org/wiki/Subset_sum_problem>`_ and consists of finding a subset out of n given values that sum up to a target value C.  It can be solved with the same method.  When n is small and C large, there is a different algorithm with complexity :math:`O(n^{\lceil n/2 \rceil})`, see `subsetsum_divide <tryalgo/tryalgo.html#module-tryalgo.subsetsum_divide>`__.
 
+An interesting problem with sets, which has also a connection with intervals graphs, consists in finding a total order on a ground set such that every given subset is consecutive in this ground set. This problem can be solved using `PQ trees <tryalgo/tryalgo.html#module-tryalgo.pq_tree>`__.
 
 Geometry
 ::::::::
