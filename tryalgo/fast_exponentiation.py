@@ -18,7 +18,7 @@ def fast_exponentiation2(a, b, q):
     ap2 = a % q         # a ^ (2 ^ p)
     result = 1
     while b > 0:
-        if p2 & b > 0:  # décomposition bin. de b contient a^(2^p)
+        if p2 & b > 0:  # décomposition bin. de b contient 2^p
             b -= p2
             result = (result * ap2) % q
         p += 1
