@@ -17,7 +17,6 @@ class OurHeap:
                 and O(n) in worst case, due to the usage of a dictionary
     """
     def __init__(self, items):
-        self.n = 0
         self.heap = [None]  # index 0 will be ignored
         self.rank = {}
         for x in items:
