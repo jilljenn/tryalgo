@@ -26,9 +26,10 @@ class UnionFind:
             return self.up[x]
 
     def union(self, x, y):
-        """ merges part that contain x and part containing y
-            :returns: false if x,y are already in same part
-            :complexity: O(inverse_ackerman(n))
+        """Merges part that contain x and part containing y
+
+        :returns: False if x, y are already in same part
+        :complexity: O(inverse_ackerman(n))
         """
         repr_x = self.find(x)
         repr_y = self.find(y)
@@ -52,7 +53,7 @@ def kruskal(graph, weight):
     :param graph: undirected graph in listlist or listdict format
     :param weight: in matrix format or same listdict graph
     :returns: list of edges of the tree
-    :complexity: `O(|E|log|E|)`
+    :complexity: ``O(|E|log|E|)``
     """
     uf = UnionFind(len(graph))
     edges = []
