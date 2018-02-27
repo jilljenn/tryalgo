@@ -15,7 +15,6 @@ def tarjan_recursif(graph):
     :returns: list of lists for each component
     :complexity: linear
     """
-    global sccp, waiting, dfs_time, dfs_num
     sccp = []
     waiting = []
     waits = [False] * len(graph)
@@ -23,7 +22,8 @@ def tarjan_recursif(graph):
     dfs_num = [None] * len(graph)
 
     def dfs(node):
-        global sccp, waiting, dfs_time, dfs_num
+        """we modify sccp, waiting, waits, dfs_time and dfs_num"""
+        nonlocal dfs_time
         waiting.append(node)           # nouveau nœud attend
         waits[node] = True
         dfs_num[node] = dfs_time       # marquer visite
