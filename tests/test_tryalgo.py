@@ -40,6 +40,7 @@ from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.freivalds import freivalds
 from tryalgo.gale_shapley import gale_shapley
 from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTION, GJ_UNE_SOLUTION, GJ_PLUSIEURS_SOLUTIONS
+from tryalgo.graph import Graph
 from tryalgo.graph01 import dist01
 from tryalgo.horn_sat import horn_sat
 from tryalgo.huffman import huffman
@@ -687,6 +688,24 @@ t##
         self.assertEqual( gauss_jordan([[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTION)
         self.assertEqual( gauss_jordan([[1, 1], [2, 1], [3, 2]],
                             x, [1, 1, 3]), GJ_ZERO_SOLUTION)
+
+
+    def test_graph(self):
+        G = Graph()
+        G.add_node("A")
+        G.add_node("B")
+        G.add_node("C")
+        G.add_edge("A", "B", 4)
+        G.add_arc("A", "C", 1)
+        G.add_arc("C", "B", -2)
+        G.add_arc("B", "C", 0)
+        self.assertEqual(G.node2name, ['A', 'B', 'C'])
+        self.assertEqual(G.name2node, {'A': 0, 'B': 1, 'C': 2})
+        self.assertEqual(G.neighbors, [[1, 2], [0, 2], [1]])
+        self.assertEqual(G.weight, [{1: 4, 2: 1}, {0: 4, 2: 0}, {1: -2}])
+        self.assertEqual(len(G), 3)
+        self.assertEqual(G[0], [1, 2])
+
 
     def test_dist01(self):
         _ = None
