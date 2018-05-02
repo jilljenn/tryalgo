@@ -22,7 +22,7 @@ def bellman_ford(graph, weight, source=0):
     dist = [float('inf')] * n
     prec = [None] * n
     dist[source] = 0
-    for nb_iterations in range(n+2):
+    for nb_iterations in range(n):
         changed = False
         for node in range(n):
             for neighbor in graph[node]:
