@@ -52,5 +52,5 @@ def propose(prop, seq):
     if seq in prop:
         return prop[seq]
     else:
-        return "None"
+        return None
 # snip}
