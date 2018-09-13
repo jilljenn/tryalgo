@@ -1339,7 +1339,7 @@ t##
         A = ""
         for seq in ["7764726", "639", "468", "2668437", "7777"]:
             for i in range(len(seq)):
-                A += propose(prop, seq[:i + 1]) + " "
+                A += str(propose(prop, seq[:i + 1])) + " "
         self.assertEqual( A, "p pr pro prog progr progra program n ne new g "\
                     "in int c co con cont anoth anothe another p pr None None ")
 
