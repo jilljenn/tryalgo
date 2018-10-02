@@ -1,7 +1,7 @@
 #!/usr/bin/env pypy3
 # -*- coding: utf-8 -*-
 # Binary search
-# jill-jenn vie et christoph durr et louis abraham - 2014-2015
+# jill-jenn vie et christoph durr et louis abraham - 2014-2018
 
 from sys import stdin
 
@@ -10,7 +10,7 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 
 # Fill the Cisterns
 # http://www.spoj.com/problems/CISTFILL/
-# [!] python3 est trop lent pour ce problème
+# [!] python3 is too slow for this problem
 
 
 def _readint():

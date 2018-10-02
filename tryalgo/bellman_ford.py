@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Single source shortest paths by Bellman-Ford
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 
@@ -31,7 +31,7 @@ def bellman_ford(graph, weight, source=0):
                     dist[neighbor] = alt
                     prec[neighbor] = node
                     changed = True
-        if not changed:                   # point fixe
+        if not changed:                   # fixed point
             return dist, prec, False
     return dist, prec, True
 # snip}

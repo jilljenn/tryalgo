@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Bipartie maximum matching
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 __all__ = ["max_bipartite_matching", "max_bipartite_matching2"]
 
@@ -12,7 +12,7 @@ def augment(u, bigraph, visit, match):
         if not visit[v]:
             visit[v] = True
             if match[v] is None or augment(match[v],  bigraph, visit, match):
-                match[v] = u       # chemin augmentant trouvé
+                match[v] = u       # found an augmenting path
                 return True
     return False
 
@@ -26,7 +26,7 @@ def max_bipartite_matching(bigraph):
     :returns: matching list, match[v] == u iff (u, v) in matching
     :complexity: `O(|V|*|E|)`
     """
-    n = len(bigraph)               # même domaine pour U que pour V
+    n = len(bigraph)               # same domain for U and V
     match = [None] * n
     for u in range(n):
         augment(u, bigraph, [False] * n, match)

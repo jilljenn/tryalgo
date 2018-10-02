@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Bipartie vertex cover
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 from tryalgo.bipartite_matching import max_bipartite_matching
@@ -15,12 +15,12 @@ def _alternate(u, bigraph, visitU, visitV, matchV):
     for v in bigraph[u]:
         if not visitV[v]:
             visitV[v] = True
-            assert matchV[v] is not None   # otherwise match not maximum
+            assert matchV[v] is not None   # otherwise match is not maximum
             _alternate(matchV[v], bigraph, visitU, visitV, matchV)
 
 
 def bipartite_vertex_cover(bigraph):
-    """Bipartie minimum vertex cover by Koenig's theorem
+    """Bipartite minimum vertex cover by Koenig's theorem
 
     :param bigraph: adjacency list, index = vertex in U,
                                     value = neighbor list in V

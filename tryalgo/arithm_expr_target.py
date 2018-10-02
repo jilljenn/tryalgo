@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Create arithmetic expression approaching target value
-# jill-jenn vie et christoph durr et jean-christophe filliatre - 2014-2017
+# jill-jenn vie et christoph durr et jean-christophe filliatre - 2014-2018
 
 
 # snip{
@@ -16,8 +16,8 @@ def arithm_expr_target(x, target):
     expr = [{} for _ in range(1 << n)]  # expr[S][val] = string of expr. of value val using only values from set S
     for i in range(n):
         expr[1 << i] = {x[i]: str(x[i])}   # store singletons
-    tout = (1 << n) - 1
-    for S in range(3, tout + 1): # 3 = first number which is not a power of 2
+    all_ = (1 << n) - 1
+    for S in range(3, all_ + 1): # 3 = first number which is not a power of 2
         if expr[S] != {}:
             continue             # in that case S is a power of 2
         for L in range(1, S):    # decompose set S into non-empty sets L and R
@@ -30,18 +30,18 @@ def arithm_expr_target(x, target):
                         expr[S][vL] = eL
                         if vL > vR:        # difference cannot become negative
                             expr[S][vL - vR] = "(%s-%s)" % (eL, eR)
-                        if L < R:   # briser la symétrie
+                        if L < R:   # break symmetry
                             expr[S][vL + vR] = "(%s+%s)" % (eL, eR)
                             expr[S][vL * vR] = "(%s*%s)" % (eL, eR)
                         if vR != 0 and vL % vR == 0:  # only integer divisions
                             expr[S][vL // vR] = "(%s/%s)" % (eL, eR)
-    # chercher expression la plus proche du but
+    # look for the closest expression from the target
     for dist in range(target + 1):
         for sign in [-1, +1]:
             val = target + sign * dist
-            if val in expr[tout]:
-                return "%s=%i" % (expr[tout][val], val)
-    # partie jamais atteinte si x contient des nombres entre 0 et but
+            if val in expr[all_]:
+                return "%s=%i" % (expr[all_][val], val)
+    # never reaches here if x contains integers between 0 and target
     pass
 # snip}
 

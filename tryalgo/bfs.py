@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Breadth-first-search, bfs and OurQueue
-# christoph dürr - jill-jênn vie - 2015
+# christoph dürr - jill-jênn vie - 2015-2018
 
 # snip{
 from collections import deque
@@ -20,7 +20,7 @@ def bfs(graph, start=0):
     prec = [None] * len(graph)
     dist[start] = 0
     to_visit.appendleft(start)
-    while to_visit:              # une file vide évalue à Faux
+    while to_visit:              # an empty queue is considered False
         node = to_visit.pop()
         for neighbor in graph[node]:
             if dist[neighbor] == float('inf'):

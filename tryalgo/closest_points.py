@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Closest pair of points
 # trouver la paire de points la plus proche
-# jill-jenn vie et christoph durr et louis abraham - 2014-2015
+# jill-jenn vie et christoph durr et louis abraham - 2014-2018
 
 
 from random import randint
@@ -21,13 +21,13 @@ def dist(p, q):
 
 def cell(point, pas):
     x, y = point
-    # beware in other languages negative coordinates need special care
+    # beware: in other languages negative coordinates need special care
     # in C++ for example int(-1.5) == -1 and not -2 as we need
     return (int(x // pas), int(y // pas))
 
 
-def ameliore(S, d):
-    G = {}            # grille
+def improve(S, d):
+    G = {}            # grid
     for p in S:
         a, b = cell(p, d / 2)
         for a1 in range(a - 2, a + 3):
@@ -56,7 +56,7 @@ def closest_points(S):
     q = S[1]
     d = dist(p, q)
     while d > 0:
-        r = ameliore(S, d)
+        r = improve(S, d)
         if r:
             d, p, q = r
         else:

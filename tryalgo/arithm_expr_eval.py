@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Evaluate an arithmetic expression
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 # IPCELLS
 # http://www.spoj.com/problems/IPCELLS/
@@ -54,18 +54,18 @@ def arithm_expr_parse(line):
     vals = []
     ops = []
     for tok in line + [';']:
-        if tok in priority:  # tok est un opérateur
+        if tok in priority:  # tok is an operator
             while tok != '(' and ops and priority[ops[-1]] >= priority[tok]:
                 right = vals.pop()
                 left = vals.pop()
                 vals.append((left, ops.pop(), right))
             if tok == ')':
-                ops.pop()    # ceci est la '(' correspondante
+                ops.pop()    # this is the corresponding '('
             else:
                 ops.append(tok)
-        elif tok.isdigit():  # tok est un entier
+        elif tok.isdigit():  # tok is an integer
             vals.append(int(tok))
-        else:                # tok est un identifiant
+        else:                # tok is an identifier
             vals.append(tok)
     return vals.pop()
 # snip}
@@ -76,10 +76,10 @@ def _readint():
 
 
 if __name__ == "__main__":
-    # ce programme principal est pour tester sur le juge en ligne
+    # this main program is here to be tested on the online judge
     for test in range(_readint()):
         cell = {}
-        stdin.readline()                     # consommer la ligne vide
+        stdin.readline()                     # consume the empty line
         for _ in range(_readint()):
             line = stdin.readline().split()
             cell[line[0]] = arithm_expr_parse(line[2:])

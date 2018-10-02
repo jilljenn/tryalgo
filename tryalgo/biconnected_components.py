@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # bi-connected components, cut vertices and cut cut-nodes
-# jill-jenn vie et christoph durr et louis abraham - 2015
+# jill-jenn vie et christoph durr et louis abraham - 2015-2018
 from sys import getrecursionlimit, setrecursionlimit
 
 
 # snip{
-# pour faciliter la lecture les variables sont sans préfixe dfs_
+# to ease readiness, variables do not have dfs_ prefix
 def cut_nodes_edges(graph):
     """Bi-connected components
 
@@ -18,43 +18,43 @@ def cut_nodes_edges(graph):
     time = 0
     num = [None] * n
     low = [n] * n
-    father = [None] * n        # father[v] = père de v, None si racine
-    critical_childs = [0] * n  # c_childs[u] = nb fils v tq low[v] >= num[u]
+    father = [None] * n        # father[v] = None if root, otherwise v's father
+    critical_childs = [0] * n  # c_childs[u] = #childs v s.t. low[v] >= num[u]
     times_seen = [-1] * n
     for start in range(n):
-        if times_seen[start] == -1:               # initier parcours DFS
+        if times_seen[start] == -1:               # init DFS path
             times_seen[start] = 0
             to_visit = [start]
             while to_visit:
                 node = to_visit[-1]
-                if times_seen[node] == 0:         # début traitement
+                if times_seen[node] == 0:         # start processing
                     num[node] = time
                     time += 1
                     low[node] = float('inf')
                 children = graph[node]
-                if times_seen[node] == len(children):  # fin traitement
+                if times_seen[node] == len(children):  # end processing
                     to_visit.pop()
-                    up = father[node]             # propager low au père
+                    up = father[node]             # propagate low to father
                     if up is not None:
                         low[up] = min(low[up], low[node])
                         if low[node] >= num[up]:
                             critical_childs[up] += 1
                 else:
-                    child = children[times_seen[node]]   # prochain arc
+                    child = children[times_seen[node]]   # next arrow
                     times_seen[node] += 1
-                    if times_seen[child] == -1:   # pas encore visité
-                        father[child] = node      # arc de liaison
+                    if times_seen[child] == -1:   # not visited yet
+                        father[child] = node      # link arrow
                         times_seen[child] = 0
-                        to_visit.append(child)    # (dessous) arc retour
+                        to_visit.append(child)    # (below) back arrow
                     elif num[child] < num[node] and father[node] != child:
                         low[node] = min(low[node], num[child])
     cut_edges = []
-    cut_nodes = []                                # extraire solution
+    cut_nodes = []                                # extract solution
     for node in range(n):
-        if father[node] == None:                  # caractérisations
+        if father[node] == None:                  # characteristics
             if critical_childs[node] >= 2:
                 cut_nodes.append(node)
-        else:                                     # nœuds internes
+        else:                                     # internal nodes
             if critical_childs[node] >= 1:
                 cut_nodes.append(node)
             if low[node] >= num[node]:
@@ -74,36 +74,38 @@ def cut_nodes_edges2(graph):
     N = len(graph)
     assert N <= 5000
     recursionlimit = getrecursionlimit()
-    setrecursionlimit(max(recursionlimit, N + 42))  # 5 est la vraie constante, mais ça fait foirer les builds
+    setrecursionlimit(max(recursionlimit, N + 42))
     edges = set((i, j) for i in range(N) for j in graph[i] if i <= j)
     nodes = set()
-    NOT = -2  # pas encore visité ; avec -1 on a un gros bug à cause de `marked[v] != prof - 1`
-    FIN = -3  # déjà visité
-    marked = [NOT] * N # si c'est positif ou nul, cela vaut la profondeur dans le DFS
+    NOT = -2  # not visited yet; -1 would be buggy because of `marked[v] != prof - 1`
+    FIN = -3  # already visited
+    marked = [NOT] * N  # if >= 0, it means depth within the DFS
     def DFS(n, prof=0):
-        """Parcourt récursivement le graphe, met à jour la liste des arêtes et renvoie
-        le premier sommet dans l'ordre de parcours auquel on peut revenir."""
-        if marked[n] == FIN:  # seulement lorsqu'il y a plusieurs composantes connexes
+        """
+        Recursively search graph, update edge list and returns the first node
+        the first edge within search to which we can come back.
+        """
+        if marked[n] == FIN:  # only when there are several connected components
             return
         if marked[n] != NOT:
             return marked[n]
         marked[n] = prof
         m = float('inf')
-        count = 0  # utile seulement pour prof==0
+        count = 0  # useful only for prof == 0
         for v in graph[n]:
             if marked[v] != FIN and marked[v] != prof - 1:
                 count += 1
                 r = DFS(v, prof+1)
                 if r <= prof:
                     edges.discard(tuple(sorted((n, v))))
-                if prof and r >= prof:  # seulement si on n'est pas dans la racine
+                if prof and r >= prof:  # only if we are not at root
                     nodes.add(n)
                 m = min(m, r)
-        if prof == 0 and count >= 2:  # la racine est un point d'articulation ssi elle a plus de deux fils
+        if prof == 0 and count >= 2:  # root is an articulation point iff it has more than 2 childs
             nodes.add(n)
         marked[n] = FIN
         return m
     for r in range(N):
-        DFS(r)  # on pourrait compter les composantes connexes en ajoutant 1 si c'est différent de None
+        DFS(r)  # we can count connected components by adding 1 if it is not None
     setrecursionlimit(recursionlimit)
     return nodes, edges
