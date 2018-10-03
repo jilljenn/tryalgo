@@ -335,6 +335,7 @@ def make_flow_labels(graph, flow, capac):
 # -----------------------------------------------------------------------------
 # for creating a graph using vertex names
 
+#snip{ class_graph
 class Graph:
     def __init__(self):
         self.neighbors = []
@@ -365,6 +366,6 @@ class Graph:
         v = self.name2node[name_v]
         self.neighbors[u].append(v)
         self.weight[u][v] = weight_uv
-
+#snip}
 
 
