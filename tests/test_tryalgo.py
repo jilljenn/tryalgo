@@ -31,7 +31,7 @@ from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
 from tryalgo.dist_grid import dist_grid
 from tryalgo.edmonds_karp import edmonds_karp
-from tryalgo.eratosthene import eratosthene
+from tryalgo.eratosthene import eratosthene, gries_misra
 from tryalgo.eulerian_tour import eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick
@@ -614,7 +614,8 @@ t##
 
     def test_eratosthene(self):
         self.assertEqual(eratosthene(98), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
-
+        for n in range(3, 100):
+            self.assertEqual(eratosthene(n), gries_misra(n))
 
     def test_eulerian_tour_directed(self):
         graphs = [random_eulerien_graph(50),
