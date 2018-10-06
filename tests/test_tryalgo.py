@@ -615,7 +615,13 @@ t##
     def test_eratosthene(self):
         self.assertEqual(eratosthene(98), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
         for n in range(3, 100):
-            self.assertEqual(eratosthene(n), gries_misra(n))
+            self.assertEqual(eratosthene(n), gries_misra(n)[0])
+        factor = gries_misra(100)[1]
+        for x in range(2, 100):
+            while x > 1:
+                self.assertTrue(factor[x] > 1)
+                self.assertTrue(x % factor[x] == 0)
+                x //= factor[x]
 
     def test_eulerian_tour_directed(self):
         graphs = [random_eulerien_graph(50),

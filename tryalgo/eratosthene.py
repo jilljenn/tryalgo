@@ -29,35 +29,24 @@ def eratosthene(n):
 # snip{ gries_misra
 def gries_misra(n):
     """Prime numbers by the sieve of Gries-Misra
-    This algorithm has better theoretical complexity as the sieve of Eratosthene, but is worse in practice
+    Computes both the list of all prime numbers less than n, 
+    and a table mapping every integer 2 ≤ x < n to its smallest prime factor
 
     :param n: positive integer
-    :assumes: n > 2
-    :returns: list of prime numbers <n
+    :returns: list of prime numbers, and list of prime factors
     :complexity: O(n)
     """
-    succ = [i + 1 for i in range(n)]
-    prec = [i - 1 for i in range(n)] 
-    succ[n - 1] = 2
-    prec[2] = n - 1
-    p = 2
-    while p * p < n:
-        q = p
-        while p * q < n:
-            x = p * q
-            while x < n:
-                # remove the non prime x
-                succ[prec[x]] = succ[x]
-                prec[succ[x]] = prec[x]
-                x *= p
-            q = succ[q]
-        p = succ[p]
-    answ = [2]
-    p = succ[2]
-    while p != 2:
-        answ.append(p)
-        p = succ[p]
-    return answ
+    primes = []
+    factor = [0] * n
+    for x in range(2, n):
+        if not factor[x]:      # no factor found
+            factor[x] = x      # meaning x is prime
+            primes.append(x)
+        for p in primes:       # loop over all non primes of the form p * x
+            if p > factor[x] or p * x >= n: 
+                break
+            factor[p * x] = p
+    return primes, factor
 # snip}
 
 
