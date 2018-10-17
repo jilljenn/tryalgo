@@ -39,6 +39,7 @@ def arithm_expr_eval(cell, expr):
         return cell[expr]
 # snip}
 
+
 # snip{ arithm_expr_parse
 priority = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
 

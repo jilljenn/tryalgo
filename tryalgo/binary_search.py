@@ -124,7 +124,6 @@ def ternary_search(f, lo, hi, gap=1e-10):
     return lo
 
 
-
 if __name__ == "__main__":
     def volume(level):
         vol = 0

@@ -19,6 +19,7 @@ pool : maps score to clauses of that score
 from collections import defaultdict
 import sys
 
+
 def read(filename):
     """ reads a Horn SAT formula from a text file
 

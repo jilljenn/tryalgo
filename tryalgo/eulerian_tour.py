@@ -7,7 +7,6 @@ import random
 from tryalgo.graph import write_graph
 
 
-
 # snip{ eulerian_tour_undirected
 def eulerian_tour_undirected(graph):
     """Eulerian tour on an undirected graph

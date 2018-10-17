@@ -80,6 +80,7 @@ def cut_nodes_edges2(graph):
     NOT = -2  # not visited yet; -1 would be buggy because of `marked[v] != prof - 1`
     FIN = -3  # already visited
     marked = [NOT] * N  # if >= 0, it means depth within the DFS
+
     def DFS(n, prof=0):
         """
         Recursively search graph, update edge list and returns the first node
