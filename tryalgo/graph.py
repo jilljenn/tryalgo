@@ -367,5 +367,3 @@ class Graph:
         self.neighbors[u].append(v)
         self.weight[u][v] = weight_uv
 #snip}
-
-

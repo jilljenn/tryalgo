@@ -27,4 +27,3 @@ def majority(L):
     valmin, argmin = min((-compte[mot], mot) for mot in compte)
     return argmin
 # snip}
-

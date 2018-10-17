@@ -56,4 +56,3 @@ if __name__ == "__main__":
     C = readmatrix(n)
     print(freivalds(A, B, C))
 # snip}
-

@@ -71,5 +71,3 @@ def intervals_containing(t, p):
             retval.append(t.by_high[j][1])
     return retval
 # snip}
-
-

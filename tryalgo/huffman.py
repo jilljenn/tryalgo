@@ -45,4 +45,3 @@ def extract(code, tree, prefix=[]):
     else:
         code[tree] = ''.join(prefix)
 # snip}
-

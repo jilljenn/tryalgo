@@ -233,4 +233,3 @@ if __name__ == '__main__':
         n.remove(i)
         display(n)
         print("----------")
-

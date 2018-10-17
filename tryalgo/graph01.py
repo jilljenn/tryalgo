@@ -42,4 +42,3 @@ def dist01(graph, weight, source=0, target=None):
                 gray.appendleft(neighbor)
     return dist, prec
 # snip}
-

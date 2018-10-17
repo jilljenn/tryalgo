@@ -57,4 +57,3 @@ def _apply_order(M, arg, i, j):
         return [[sum(A[a][b] * B[b][c] for b in row_B)
                  for c in col_B] for a in row_A]
 # snip}
-

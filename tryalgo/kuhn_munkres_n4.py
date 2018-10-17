@@ -56,5 +56,3 @@ def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^4)
                 improve_labels(G, au, av, lu, lv)
     return (mu,  sum(lu) + sum(lv))
 # snip}
-
-

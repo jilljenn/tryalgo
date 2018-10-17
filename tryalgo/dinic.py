@@ -68,4 +68,3 @@ def _dinic_step(graph, capacity, lev, flow, u, target, limit):
         lev[u] = None         # sommet non franchissable à enlever
     return val
 # snip}
-

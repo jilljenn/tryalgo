@@ -37,7 +37,7 @@ class LowestCommonAncestorShortcuts:
         self.level = [None] * n        # construit les niveaux
         self.level[0] = 0
         for u in range(1, n):
-                self.level[u] = 1 + self.level[prec[u]]
+            self.level[u] = 1 + self.level[prec[u]]
         depth = log2ceil(max(self.level[u] for u in range(n))) + 1
         self.anc = [[0] * n for _ in range(depth)]
         for u in range(n):
