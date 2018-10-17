@@ -111,7 +111,7 @@ def write_graph(dotfile, graph, directed=False,
             for v in graph[u]:
                 if not directed and u > v:
                     continue   # don't show twice the edge
-                if arc_label and arc_label[u][v] == None:
+                if arc_label and arc_label[u][v] is None:
                     continue   # suppress arcs with no label
                 if directed:
                     arc = "%d -> %d " % (u, v)
@@ -232,7 +232,7 @@ def matrix_to_listlist(weight):
     graph = [[] for _ in range(len(weight))]
     for u in range(len(graph)):
         for v in range(len(graph)):
-            if weight[u][v] != None:
+            if weight[u][v] is not None:
                 graph[u].append(v)
     return graph
 
