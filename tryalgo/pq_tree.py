@@ -33,9 +33,11 @@
 
 from collections import deque
 
+
 class IsNotC1P(Exception):
     """The given instance does not have the all consecutive ones property"""
     pass
+
 
 P_shape = 0
 Q_shape = 1
@@ -99,7 +101,6 @@ class PQ_node:
             for x in self.sons:
                 x.border(L)
 
-
     def __str__(self):
         if self.shape == L_shape:
             return str(self.value)
@@ -109,7 +110,6 @@ class PQ_node:
             return "(" + ",".join(map(str, self.sons)) + ")"
         else:
             return "[" + ",".join(map(str, self.sons)) + "]"
-
 
 
 class PQ_tree:

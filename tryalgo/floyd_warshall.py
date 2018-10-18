@@ -4,7 +4,6 @@
 # jill-jenn vie et christoph durr - 2014-2015
 
 
-
 # snip{
 def floyd_warshall(weight):
     """All pairs shortest paths by Floyd-Warshall

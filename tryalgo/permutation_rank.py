@@ -4,7 +4,6 @@
 # christoph durr - 2016
 
 
-
 def permutation_rank(p):
     """Given a permutation of {0,..,n-1} find its rank according to lexicographical order
 
