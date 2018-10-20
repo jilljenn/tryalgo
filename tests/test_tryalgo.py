@@ -38,7 +38,7 @@ from tryalgo.floyd_warshall import floyd_warshall
 from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.freivalds import freivalds
 from tryalgo.gale_shapley import gale_shapley
-from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTION, GJ_UNE_SOLUTION, GJ_PLUSIEURS_SOLUTIONS
+from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
 from tryalgo.graph import Graph
 from tryalgo.graph01 import dist01
 from tryalgo.horn_sat import horn_sat
@@ -662,15 +662,15 @@ t##
     def test_gauss_jordan(self):
         x = [0, 0, 0]
         self.assertEqual( gauss_jordan([[3, 2, -1], [2, -2, 4], [-1, .5, -1]],
-                                       x, [1, -2, 0]), GJ_UNE_SOLUTION)
+                                       x, [1, -2, 0]), GJ_SINGLE_SOLUTION)
         x = [0, 0]
         self.assertEqual( gauss_jordan([[3, 2], [6, 4]],
-                                       x, [6, 12]), GJ_PLUSIEURS_SOLUTIONS)
+                                       x, [6, 12]), GJ_SEVERAL_SOLUTIONS)
         self.assertEqual( gauss_jordan([[1, -2], [3, 5], [4, 3]],
-                                       x, [-1, 8, 7]), GJ_UNE_SOLUTION)
-        self.assertEqual( gauss_jordan([[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTION)
+                                       x, [-1, 8, 7]), GJ_SINGLE_SOLUTION)
+        self.assertEqual( gauss_jordan([[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTIONS)
         self.assertEqual( gauss_jordan([[1, 1], [2, 1], [3, 2]],
-                                       x, [1, 1, 3]), GJ_ZERO_SOLUTION)
+                                       x, [1, 1, 3]), GJ_ZERO_SOLUTIONS)
 
     def test_graph(self):
         G = Graph()
