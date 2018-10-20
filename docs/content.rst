@@ -24,7 +24,7 @@ Sometimes it is convenient to encode sets over a small universe as bit vectors i
 
 In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illustrate different variants of binary search or variants.  For example ternary_search permits to find the maximum of a bitonic function in logarithmic time in the size of the search interval.
 
-A very interesting data structure is called `PartitionRefinement <tryalgo/tryalgo.html#module-tryalgo.partition_refinement>`.  It maintains a partition over the set {0,1,...,n-1}.  The main operation is called *refine(S)* which splits each part P of the current partition into elements that are in S and elements that are not in S.  The complexity of this operation is linear in the size of S.
+A very interesting data structure is called `PartitionRefinement <tryalgo/tryalgo.html#module-tryalgo.partition_refinement>`__.  It maintains a partition over the set {0,1,...,n-1}.  The main operation is called *refine(S)* which splits each part P of the current partition into elements that are in S and elements that are not in S.  The complexity of this operation is linear in the size of S.
 
 Strings
 :::::::
@@ -179,7 +179,7 @@ Computing the area of the union of n given rectilinear rectangles can be done in
 Arithmetic
 ::::::::::
 
-Prime numbers are best generated with Eratosthene's method, see `eratosthene <tryalgo/tryalgo.html#module-tryalgo.eratosthene>`__.
+All prime numbers less than some given integer n are easily generated with Eratosthene's method, see `eratosthene <tryalgo/tryalgo.html#module-tryalgo.eratosthene>`__.  Its complexity is  :math:`O(n \log\log n)`.  This is improved by the Gries-Misra sieve which not only has complexity  :math:`O(n)`, but also produces a table indicating for every positive integer less than n, its smallest prime factor. 
 
 The library contains functions to compute the greatest common divisor (GCD in english or PGCD in french), to compute the Bezot coefficients and the binomial coefficients, see `arithm <tryalgo/tryalgo.html#module-tryalgo.arithm>`__.
 
