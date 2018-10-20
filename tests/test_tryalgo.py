@@ -1338,7 +1338,7 @@ t##
              "00111010",
              "11011101",
              "01000101"]
-        self.assertEqual(rectangles_from_grid(R, noir='1'), (6, 3, 4, 5, 1))
+        self.assertEqual(rectangles_from_grid(R, black='1'), (6, 3, 4, 5, 1))
 
     def test_rectangles_from_histogram(self):
         for L in range(100):
