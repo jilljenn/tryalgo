@@ -15,7 +15,6 @@ from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
 from tryalgo.bellman_ford import bellman_ford
 from tryalgo.knapsack import knapsack, knapsack2
-from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, ternary_search
@@ -217,7 +216,7 @@ class TestTryalgo(unittest.TestCase):
              ([[], []], 0, ([0, float('inf')], [None, None])),
              ([[1], [0]], 0, ([0, 1], [None, 0]))]
         for graph, source, answer in L:
-            V = range(len(graph))
+            # V = range(len(graph))
             for g in [graph, listlist_and_matrix_to_listdict(graph)]:
                 self.assertEqual(bfs(g, source), answer)
 
@@ -540,7 +539,7 @@ XXXXX#...#
             for g, w in [(graph, capacity), (sparse, sparse)]:
                 flow_matr, flow_val = f(g, w, 0, 11)
                 self.assertEqual(flow_val, 35)
-                labels = make_flow_labels(g, flow_matr, w)
+                # labels = make_flow_labels(g, flow_matr, w)
                 # write_graph("dinic.dot", graph, directed=True, arc_label=labels)
         graph = [{1: 9, 2: 9}, {3: 1}, {4: 1}, {5: 9}, {5: 9}, {}]
         for f in [dinic, edmonds_karp, ford_fulkerson]:
@@ -1422,7 +1421,7 @@ t##
               graph[v].append(u)
               G[u][v] = G[v][u] = 1
           cycle = shortest_cycle(graph)
-          M = [[int(u==v) for u in range(n)] for v in range(n)]
+          # M = [[int(u==v) for u in range(n)] for v in range(n)]
           if cycle is None:
               pass  # right now we have no tools to check the absence of a cycle
           else:
