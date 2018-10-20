@@ -6,7 +6,8 @@
 from sys import stdin
 
 __all__ = ["discrete_binary_search", "continuous_binary_search",
-           "optimized_binary_search_lower", "optimized_binary_search", "ternary_search"]
+           "optimized_binary_search_lower", "optimized_binary_search",
+           "ternary_search"]
 
 # Fill the Cisterns
 # http://www.spoj.com/problems/CISTFILL/
@@ -54,7 +55,7 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
     :complexity: `O(log((hi-lo)/gap))`
     """
     while hi - lo > gap:
-        # in other languages you want to force floating division by using 2.0
+        # in other languages you can force floating division by using 2.0
         mid = (lo + hi) / 2.
         if f(mid):
             hi = mid
@@ -144,4 +145,5 @@ if __name__ == "__main__":
             print("OVERFLOW")
         else:
             print("%.02f" %
-                  continuous_binary_search(lambda x: volume(x) >= V, 0, hi))
+                  continuous_binary_search(lambda x: volume(x) >= V,
+                                           0, hi))

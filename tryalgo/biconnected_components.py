@@ -18,8 +18,8 @@ def cut_nodes_edges(graph):
     time = 0
     num = [None] * n
     low = [n] * n
-    father = [None] * n        # father[v] = None if root, otherwise v's father
-    critical_childs = [0] * n  # c_childs[u] = #childs v s.t. low[v] >= num[u]
+    father = [None] * n        # father[v] = None if root else father of v
+    critical_childs = [0] * n  # c_c[u] = #childs v s.t. low[v] >= num[u]
     times_seen = [-1] * n
     for start in range(n):
         if times_seen[start] == -1:               # init DFS path
@@ -34,7 +34,7 @@ def cut_nodes_edges(graph):
                 children = graph[node]
                 if times_seen[node] == len(children):  # end processing
                     to_visit.pop()
-                    up = father[node]             # propagate low to father
+                    up = father[node]            # propagate low to father
                     if up is not None:
                         low[up] = min(low[up], low[node])
                         if low[node] >= num[up]:
@@ -77,17 +77,17 @@ def cut_nodes_edges2(graph):
     setrecursionlimit(max(recursionlimit, N + 42))
     edges = set((i, j) for i in range(N) for j in graph[i] if i <= j)
     nodes = set()
-    NOT = -2  # not visited yet; -1 would be buggy because of `marked[v] != prof - 1`
+    NOT = -2  # not visited yet; -1 would be buggy `marked[v] != prof - 1`
     FIN = -3  # already visited
     marked = [NOT] * N  # if >= 0, it means depth within the DFS
 
     def DFS(n, prof=0):
         """
-        Recursively search graph, update edge list and returns the first node
-        the first edge within search to which we can come back.
+        Recursively search graph, update edge list and returns the first
+        node the first edge within search to which we can come back.
         """
-        if marked[n] == FIN:  # only when there are several connected components
-            return
+        if marked[n] == FIN:
+            return  # only when there are several connected components
         if marked[n] != NOT:
             return marked[n]
         marked[n] = prof
@@ -102,11 +102,12 @@ def cut_nodes_edges2(graph):
                 if prof and r >= prof:  # only if we are not at root
                     nodes.add(n)
                 m = min(m, r)
-        if prof == 0 and count >= 2:  # root is an articulation point iff it has more than 2 childs
+        # root is an articulation point iff it has more than 2 childs
+        if prof == 0 and count >= 2:
             nodes.add(n)
         marked[n] = FIN
         return m
     for r in range(N):
-        DFS(r)  # we can count connected components by adding 1 if it is not None
+        DFS(r)  # we can count connected components by nb += DFS(r)
     setrecursionlimit(recursionlimit)
     return nodes, edges

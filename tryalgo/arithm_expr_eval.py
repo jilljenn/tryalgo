@@ -56,7 +56,8 @@ def arithm_expr_parse(line):
     ops = []
     for tok in line + [';']:
         if tok in priority:  # tok is an operator
-            while tok != '(' and ops and priority[ops[-1]] >= priority[tok]:
+            while (tok != '(' and ops and
+                   priority[ops[-1]] >= priority[tok]):
                 right = vals.pop()
                 left = vals.pop()
                 vals.append((left, ops.pop(), right))
