@@ -28,7 +28,6 @@ def fast_exponentiation2(a, b, q):
 # snip}
 
 
-
 def fast_exponentiation(a, b, q):
     """Compute (a pow b) % q, alternative shorter implementation
 

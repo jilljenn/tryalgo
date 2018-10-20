@@ -4,7 +4,6 @@
 # jill-jenn vie et christoph durr - 2014-2018
 
 
-
 # snip{
 def bellman_ford(graph, weight, source=0):
     """ Single source shortest paths by Bellman-Ford

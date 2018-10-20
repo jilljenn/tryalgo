@@ -15,7 +15,7 @@ def _alternate(u, bigraph, visitU, visitV, matchV):
     for v in bigraph[u]:
         if not visitV[v]:
             visitV[v] = True
-            assert matchV[v] is not None   # otherwise match is not maximum
+            assert matchV[v] is not None  # otherwise match is not maximum
             _alternate(matchV[v], bigraph, visitU, visitV, matchV)
 
 

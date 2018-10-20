@@ -4,7 +4,6 @@
 # christoph durr - 2016
 
 
-
 # snip{
 def _merge_sort(tab, tmp, rank, left, right, lo, hi):
     if hi <= lo + 1:             # interval is empty or singleton

@@ -10,9 +10,6 @@ from collections import namedtuple
 from random import random
 
 
-
-
-
 # TODO: add order_of_key
 
 class AbstractSkipList():
@@ -208,7 +205,6 @@ class SortedDict(AbstractSkipList):
 
     def __repr__(self):
         return '{%s}' % (', '.join('%s: %s' % (k, self[k]) for k in self))
-
 
 
 if __name__ == '__main__':

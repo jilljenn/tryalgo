@@ -241,7 +241,6 @@ class LazySegmentTree:
         f.close()
 
 
-
 if __name__ == '__main__':
     # execute with: rlwrap python3 range_minimum_query.py
     import sys

@@ -219,6 +219,7 @@ def add_reverse_arcs(graph, capac = None):
 #        otherwise it is the weight of the arc.
 #        Value M[u][v]=True can be used for unweighted graphs.
 
+
 def matrix_to_listlist(weight):
     """transforms a squared weight matrix in a adjacency table of type listlist
     encoding the directed graph corresponding to the entries of the matrix
@@ -270,6 +271,7 @@ def listdict_to_listlist_and_matrix(sparse):
             weight[u][v] = sparse[u][v]
     return graph, weight
 
+
 def dictdict_to_listdict(dictgraph):
     """Transforms a dict-dict graph representation into a
     adjacency dictionary representation (list-dict)
@@ -293,6 +295,7 @@ def dictdict_to_listdict(dictgraph):
 
 # -----------------------------------------------------------------------------
 # for shortest paths
+
 
 def extract_path(prec, v):
     """extracts a path in form of vertex list from source to vertex v
@@ -334,6 +337,7 @@ def make_flow_labels(graph, flow, capac):
 
 # -----------------------------------------------------------------------------
 # for creating a graph using vertex names
+
 
 #snip{ class_graph
 class Graph:
