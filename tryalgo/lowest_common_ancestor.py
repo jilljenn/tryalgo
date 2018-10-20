@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Lowest common ancestor
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 # http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
 
 from tryalgo.range_minimum_query import RangeMinQuery
@@ -34,7 +34,7 @@ class LowestCommonAncestorShortcuts:
         :complexity: O(n log n), with n = len(nodes)
         """
         n = len(prec)
-        self.level = [None] * n        # construit les niveaux
+        self.level = [None] * n        # build levels
         self.level[0] = 0
         for u in range(1, n):
             self.level[u] = 1 + self.level[prec[u]]
@@ -50,10 +50,10 @@ class LowestCommonAncestorShortcuts:
         """:returns: the lowest common ancestor of u and v
         :complexity: O(log n)
         """
-        # -- supposer que v n'est pas plus haut que u dans l'arbre
+        # -- assume w.l.o.g. that v is not higher than u in the tree
         if self.level[u] > self.level[v]:
             u, v = v, u
-        # -- ramener v au même niveau que u
+        # -- put v at the same level as u
         depth = len(self.anc)
         for k in range(depth-1, -1, -1):
             if self.level[u] <= self.level[v] - (1 << k):
@@ -61,7 +61,7 @@ class LowestCommonAncestorShortcuts:
         assert self.level[u] == self.level[v]
         if u == v:
             return u
-        # -- remonter jusqu'à l'ancêtre commun le plus proche
+        # -- climb until the lowest common ancestor
         for k in range(depth-1, -1, -1):
             if self.anc[k][u] != self.anc[k][v]:
                 u = self.anc[k][u]
@@ -85,7 +85,7 @@ class LowestCommonAncestorRMQ:
         n = len(graph)
         dfs_trace = []
         self.last = [None] * n
-        to_visit = [(0, 0, None)]            # sommet 0 est la racine
+        to_visit = [(0, 0, None)]            # node 0 is root
         succ = [0] * n
         while to_visit:
             level, node, father = to_visit[-1]

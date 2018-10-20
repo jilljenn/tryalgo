@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Union of rectangles
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{ cover-query
@@ -13,13 +13,13 @@ class Cover_query:
         """creates a structure, where all possible intervals
         will be included in [0, _len - 1].
         """
-        assert _len != []              # on suppose _len ordonné
+        assert _len != []              # _len is assumed sorted
         self.N = 1
         while self.N < len(_len):
             self.N *= 2
-        self.c = [0] * (2 * self.N)         # --- couvert
+        self.c = [0] * (2 * self.N)         # --- covered
         self.s = [0] * (2 * self.N)         # --- score
-        self.w = [0] * (2 * self.N)         # --- longueur
+        self.w = [0] * (2 * self.N)         # --- length
         for i in range(len(_len)):
             self.w[self.N + i] = _len[i]
         for p in range(self.N - 1, 0, -1):
@@ -39,13 +39,14 @@ class Cover_query:
     def _change(self, p, start, span, i, k, delta):
         if start + span <= i or k <= start:   # --- disjoint
             return
-        if i <= start and start + span <= k:  # --- inclus
+        if i <= start and start + span <= k:  # --- included
             self.c[p] += delta
         else:
-            self._change(2*p,     start,             span // 2, i, k, delta)
-            self._change(2*p + 1, start + span // 2, span // 2, i, k, delta)
+            self._change(2 * p, start, span // 2, i, k, delta)
+            self._change(2 * p + 1, start + span // 2, span // 2,
+                         i, k, delta)
         if self.c[p] == 0:
-            if p >= self.N:                   # --- feuille
+            if p >= self.N:                   # --- leaf
                 self.s[p] = 0
             else:
                 self.s[p] = self.s[2 * p] + self.s[2 * p + 1]
@@ -72,7 +73,7 @@ def union_rectangles(R):
         assert x1 <= x2 and y1 <= y2
         X.append(x1)
         X.append(x2)
-        Y.append((y1, +1, j))    # générer événements
+        Y.append((y1, +1, j))    # generate events
         Y.append((y2, -1, j))
     X.sort()
     Y.sort()

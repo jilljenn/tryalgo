@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Majority
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{
@@ -18,12 +18,12 @@ def majority(L):
     """
     assert L    # majorité n'est pas définie sur ensemble vide
     # snip{
-    compte = {}
-    for mot in L:
-        if mot in compte:
-            compte[mot] += 1
+    count = {}
+    for word in L:
+        if word in count:
+            count[word] += 1
         else:
-            compte[mot] = 1
-    valmin, argmin = min((-compte[mot], mot) for mot in compte)
+            count[word] = 1
+    valmin, argmin = min((-count[word], word) for word in count)
     return argmin
 # snip}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Subsetsum by splitting
-# c.durr et jill-jênn vie - 2014-2015
+# christoph dürr et jill-jênn vie - 2014-2018
 
 
 # snip{
@@ -29,17 +29,17 @@ def subset_sum(x, R):
     :returns bool: if there is a subsequence of x with total sum R
     :complexity: :math:`O(n^{\\lceil n/2 \\rceil})`
     """
-    k = len(x) // 2             # diviser l'entrée
+    k = len(x) // 2             # divide input
     Y = [v for v in part_sum(x[:k])]
     Z = [R - v for v in part_sum(x[k:])]
-    Y.sort()                    # test d'intersection Y avec Z
+    Y.sort()                    # test of intersection between Y and Z
     Z.sort()
     i = 0
     j = 0
     while i < len(Y) and j < len(Z):
         if Y[i] == Z[j]:
             return True
-        elif Y[i] < Z[j]:       # incrémenter l'indice du plus petit élément
+        elif Y[i] < Z[j]:       # increment index of smallest element
             i += 1
         else:
             j += 1

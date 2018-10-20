@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# christoph durr and finn voelkel and louis abraham - 2016
+# christoph durr and finn voelkel and louis abraham - 2016-2018
 
 # Find shortest simple cycle
 # O(V*E)
@@ -32,14 +32,14 @@ def bfs(graph, root, prune_level):
     n = len(graph)
     level = [-1] * n                      # -1 == not seen
     tree = [None] * n                     # pointers to predecessors
-    toVisit = deque([root])               # queue for BFS
+    to_visit = deque([root])               # queue for BFS
     level[root] = 0
     tree[root] = root
     best_cycle = float('inf')             # start with infinity
     best_u = None
     best_v = None
-    while toVisit:
-        u = toVisit.popleft()
+    while to_visit:
+        u = to_visit.popleft()
         if level[u] > prune_level:
             break
         for v in graph[u]:
@@ -47,7 +47,7 @@ def bfs(graph, root, prune_level):
                 continue
             if level[v] == -1:            # new vertex - tree edge
                 level[v] = level[u] + 1
-                toVisit.append(v)
+                to_visit.append(v)
                 tree[v] = u
             else:                         # vertex already seen - traversal edge
                 prune_level = level[v] - 1

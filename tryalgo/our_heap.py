@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # A min heap
-# christoph durr et jill-jenn vie - 2015
+# christoph durr et jill-jenn vie - 2015-2018
 
 
 # snip{
@@ -30,19 +30,19 @@ class OurHeap:
            Assumption: x is not already in the heap"""
         assert x not in self.rank
         i = len(self.heap)
-        self.heap.append(x)    # ajout d'une nouvelle feuille
+        self.heap.append(x)    # add a new leaf
         self.rank[x] = i
-        self.up(i)             # maintenir l'ordre de tas
+        self.up(i)             # maintain heap order
 
     def pop(self):
         """Remove and return smallest element"""
         root = self.heap[1]
         del self.rank[root]
-        x = self.heap.pop()    # enlever la dernière feuille
-        if self:               # le tas n'est pas vide
-            self.heap[1] = x   # et la mettre à la racine
+        x = self.heap.pop()    # remove last leaf
+        if self:               # if heap is not empty
+            self.heap[1] = x   # put last leaf to root
             self.rank[x] = 1
-            self.down(1)       # maintenir l'ordre de tas
+            self.down(1)       # maintain heap order
         return root
     # snip}
 
@@ -54,7 +54,7 @@ class OurHeap:
             self.heap[i] = self.heap[i // 2]
             self.rank[self.heap[i // 2]] = i
             i //= 2
-        self.heap[i] = x       # point d'insertion trouvé
+        self.heap[i] = x       # insertion index found
         self.rank[x] = i
 
     def down(self, i):
@@ -62,30 +62,30 @@ class OurHeap:
         x = self.heap[i]
         n = len(self.heap)
         while True:
-            left = 2 * i       # descendre dans l'arbre
+            left = 2 * i       # climb down the tree
             right = left + 1
-            if right < n and \
-               self.heap[right] < x and self.heap[right] < self.heap[left]:
+            if (right < n and self.heap[right] < x and
+                              self.heap[right] < self.heap[left]):
                 self.heap[i] = self.heap[right]
-                self.rank[self.heap[right]] = i   # remonter fils droite
+                self.rank[self.heap[right]] = i   # go back up right child
                 i = right
             elif left < n and self.heap[left] < x:
                 self.heap[i] = self.heap[left]
-                self.rank[self.heap[left]] = i    # remonter fils gauche
+                self.rank[self.heap[left]] = i    # go back up left child
                 i = left
             else:
-                self.heap[i] = x   # point d'insertion trouvé
+                self.heap[i] = x   # insertion index found
                 self.rank[x] = i
                 return
 
     def update(self, old, new):
         """Replace an element in the heap
         """
-        i = self.rank[old]     # changer la valeur à l'indice i
+        i = self.rank[old]     # change value at index i
         del self.rank[old]
         self.heap[i] = new
         self.rank[new] = i
-        if old < new:          # maintenir l'ordre de tas
+        if old < new:          # maintain heap order
             self.down(i)
         else:
             self.up(i)

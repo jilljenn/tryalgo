@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Topological order
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{ topological_order_dfs
@@ -45,13 +45,13 @@ def topological_order(graph):
     """
     V = range(len(graph))
     indeg = [0 for _ in V]
-    for node in V:            # déterminer degré entrant
+    for node in V:            # compute indegree
         for neighbor in graph[node]:
             indeg[neighbor] += 1
     Q = [node for node in V if indeg[node] == 0]
     order = []
     while Q:
-        node = Q.pop()        # sommet sans arc entrant
+        node = Q.pop()        # node without incoming arrows
         order.append(node)
         for neighbor in graph[node]:
             indeg[neighbor] -= 1

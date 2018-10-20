@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Partition refinement
-# christoph durr - 2016
+# christoph durr - 2016-2018
 
 #log: 10/11/2016 modified to preserve class order after refinement
 #     15/11/2016 this was non sense, moved back
@@ -31,7 +31,7 @@ class DoubleLinkedListItem:
     def insert(self, anchor):
         """insert list item before anchor
         """
-        self.prec = anchor.prec        # point to the neighbors
+        self.prec = anchor.prec        # point to neighbors
         self.succ = anchor
         self.succ.prec = self          # make neighbors point to item
         self.prec.succ = self

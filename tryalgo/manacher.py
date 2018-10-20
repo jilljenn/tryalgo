@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Longest palindrome in a string by Manacher
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 # http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
 
@@ -29,7 +29,7 @@ def manacher(s):
     :returns: i,j such that s[i:j] is the longest palindrome in s
     :complexity: O(len(s))
     """
-    assert set.isdisjoint({'$', '^', '#'}, s)  # Aucun lettre interdite
+    assert set.isdisjoint({'$', '^', '#'}, s)  # Forbidden letters
     if s == "":
         return (0, 1)
     t = "^#" + "#".join(s) + "#$"
@@ -37,16 +37,16 @@ def manacher(s):
     d = 1
     p = [0] * len(t)
     for i in range(2, len(t) - 1):
-        #                        -- refléter l'indice i par rapport à c
+        #                        -- reflect index i with respect to c
         mirror = 2 * c - i         # = c - (i-c)
         p[i] = max(0, min(d - i, p[mirror]))
-        #                        -- faire grossir le palindrome centré en i
+        #                        -- grow palindrome centered in i
         while t[i + 1 + p[i]] == t[i - 1 - p[i]]:
             p[i] += 1
-        #                        -- ajuster centre si nécessaire
+        #                        -- adjust center if necessary
         if i + p[i] > d:
             c = i
             d = i + p[i]
     (k, i) = max((p[i], i) for i in range(1, len(t) - 1))
-    return ((i - k) // 2, (i + k) // 2)  # extraire solution
+    return ((i - k) // 2, (i + k) // 2)  # extract solution
 # snip}

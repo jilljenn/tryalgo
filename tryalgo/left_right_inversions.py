@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Left and right inversions in a table
-# christoph durr - 2016
+# christoph durr - 2016-2018
 
 
 # snip{
 def _merge_sort(tab, tmp, rank, left, right, lo, hi):
     if hi <= lo + 1:             # interval is empty or singleton
         return                   # nothing to do
-    mid = lo + (hi - lo) // 2    # divide interval into [lo:mid] and [mid:hi]
+    mid = lo + (hi - lo) // 2    # divide interval into [lo:mid], [mid:hi]
     _merge_sort(tab, tmp, rank, left, right, lo, mid)
     _merge_sort(tab, tmp, rank, left, right, mid, hi)
-    i = lo                       # merge the two lists
+    i = lo                       # merge both lists
     j = mid
     k = lo
     while k < hi:

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Range minimum query
 # Minimum d'une plage --- range minimum query
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 from __future__ import print_function
@@ -19,12 +19,12 @@ class RangeMinQuery:
     def __init__(self, t, INF=float('inf')):
         self.INF = INF
         self.N = 1
-        while self.N < len(t):                     # trouver la taille N
+        while self.N < len(t):                     # find size N
             self.N *= 2
         self.s = [self.INF] * (2 * self.N)
-        for i in range(len(t)):                    # poser t aux feuilles
+        for i in range(len(t)):                    # put t at leaves
             self.s[self.N + i] = t[i]
-        for p in range(self.N - 1, 0, -1):         # remplir les noeuds
+        for p in range(self.N - 1, 0, -1):         # fill nodes
             self.s[p] = min(self.s[2 * p], self.s[2 * p + 1])
 
     def __getitem__(self, i):
@@ -36,8 +36,8 @@ class RangeMinQuery:
         """
         p = self.N + i
         self.s[p] = v
-        p //= 2                                    # remonter dans l'arbre
-        while p > 0:                               # mettre à jour le noeud
+        p //= 2                                    # climb up the tree
+        while p > 0:                               # update node
             self.s[p] = min(self.s[2 * p], self.s[2 * p + 1])
             p //= 2
 
@@ -52,9 +52,9 @@ class RangeMinQuery:
            with [start, start + span).
            p is the node associated to the later interval.
         """
-        if start + span <= i or k <= start:        # intervalles disjoints
+        if start + span <= i or k <= start:        # disjoint intervals
             return self.INF
-        if i <= start and start + span <= k:       # intervalles inclus
+        if i <= start and start + span <= k:       # included intervals
             return self.s[p]
         left = self._range_min(2*p,      start,             span // 2, i, k)
         right = self._range_min(2*p + 1, start + span // 2, span // 2, i, k)
@@ -93,8 +93,8 @@ class LazySegmentTree:
         self.N = 1
         while self.N < len(tab):
             self.N *= 2
-        self.maxval = [float('-inf')] * 2* self.N  # init with neutral values
-        self.minval = [float('+inf')] * 2* self.N
+        self.maxval = [float('-inf')] * 2 * self.N  # init with neutral values
+        self.minval = [float('+inf')] * 2 * self.N
         self.sumval = [0] * 2 * self.N
         self.lazyset = [None] * 2 * self.N
         self.lazyadd = [0] * 2 * self.N

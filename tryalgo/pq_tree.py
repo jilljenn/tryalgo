@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# c.durr - 2017
+# c.durr - 2017-2018
 
 
 """ Solve the consecutive all ones column problem using PQ-trees

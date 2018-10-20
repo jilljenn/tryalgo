@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Merge two ordered listes
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{
 def merge(x, y):
-    """Merge two ordered listes
+    """Merge two ordered lists
 
     :param x:
     :param y: x,y are non decreasing ordered lists

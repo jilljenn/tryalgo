@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Matrix chain multiplication
 # multiplication de matrices
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{
@@ -20,7 +20,7 @@ def matrix_mult_opt_order(M):
     c = [len(Mi[0]) for Mi in M]
     opt = [[0 for j in range(n)] for i in range(n)]
     arg = [[None for j in range(n)] for i in range(n)]
-    for j_i in range(1, n):   # boucler sur i, j par j - i croissant
+    for j_i in range(1, n):   # loop on i, j of increasing j - i = j_i
         for i in range(n - j_i):
             j = i + j_i
             opt[i][j] = float('inf')
@@ -44,11 +44,11 @@ def matrix_chain_mult(M):
 
 
 def _apply_order(M, arg, i, j):
-    # --- multiplication de matrices de M[i] à M[j] inclu
+    # --- multiply matrices from M[i] to M[j] included
     if i == j:
         return M[i]
     else:
-        k = arg[i][j]        # --- suivre le placement de parenthèses
+        k = arg[i][j]        # --- follow placement of parentheses
         A = _apply_order(M, arg, i, k)
         B = _apply_order(M, arg, k + 1, j)
         row_A = range(len(A))

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # subsetsum
-# jill-jenn vie et christoph durr - 2015
+# jill-jenn vie et christoph durr - 2015-2018
 
 
 # snip{

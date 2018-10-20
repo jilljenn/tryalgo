@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Minimum mean cycle by Karp
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{
@@ -16,7 +16,7 @@ def min_mean_cycle(graph, weight, start=0):
     :complexity:  `O(|V|*|E|)`
     """
     INF = float('inf')
-    n = len(graph)                  # calculer distances
+    n = len(graph)                  # compute distances
     dist = [[INF] * n]
     prec = [[None] * n]
     dist[0][start] = 0
@@ -29,7 +29,7 @@ def min_mean_cycle(graph, weight, start=0):
                 if alt < dist[ell][neighbor]:
                     dist[ell][neighbor] = alt
                     prec[ell][neighbor] = node
-    #                               -- détecter valeur optimale
+    #                               -- find the optimal value
     valmin = INF
     argmin = None
     for node in range(n):
@@ -37,15 +37,15 @@ def min_mean_cycle(graph, weight, start=0):
         argmax = None
         for k in range(n):
             alt = (dist[n][node] - dist[k][node]) / float(n - k)
-            # ne pas diviser par float(n-k) pour le cycle de poids total min
-            if alt >= valmax:     # par >= on cherche cycles simples
+            # do not divide by float(n-k) => cycle of minimal total weight
+            if alt >= valmax:     # with >= we get simple cycles
                 valmax = alt
                 argmax = k
         if argmax is not None and valmax < valmin:
             valmin = valmax
             argmin = (node, argmax)
-    #                               -- extraire cycle
-    if valmin == INF:             # -- il n'y a pas de cycle du tout
+    #                               -- extract cycle
+    if valmin == INF:             # -- there is no cycle
         return None
     C = []
     node, k = argmin

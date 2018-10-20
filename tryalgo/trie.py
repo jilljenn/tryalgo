@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # trie - correcteur orthographique
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
-# don't write a Trie class otherwise you cannot represent leafs with None
+# Don't write a Trie class otherwise you cannot represent leaves with None
 
 # snip{
-from string import ascii_letters    # in python2 one would import letters
+from string import ascii_letters    # in Python 2 one would import letters
 
 
 class Trie_Node:
@@ -53,7 +53,7 @@ def spell_check(T, w):
     """
     assert T is not None
     dist = 0
-    while True:   # tente de distances de plus en plus grandes
+    while True:   # Try increasing distances
         u = search(T, dist, w)
         if u is not None:
             return u
@@ -70,7 +70,7 @@ def search(T, dist, w, i=0):
             return None
     if T is None:
         return None
-    f = search(T.s[w[i]], dist, w, i + 1)       # correspondance
+    f = search(T.s[w[i]], dist, w, i + 1)       # matching
     if f is not None:
         return w[i] + f
     if dist == 0:
@@ -82,5 +82,5 @@ def search(T, dist, w, i=0):
         f = search(T.s[c], dist - 1, w, i + 1)  # substitution
         if f is not None:
             return c + f
-    return search(T, dist - 1, w, i + 1)        # suppression
+    return search(T, dist - 1, w, i + 1)        # deletion
 # snip}

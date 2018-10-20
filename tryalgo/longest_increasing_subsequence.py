@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Longest increasing subsequence
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 # snip{
 from bisect import bisect_left
@@ -24,12 +24,12 @@ def longest_increasing_subsequence(x):
             h.append(i)
             b.append(x[i])
         else:
-            #   -- recherche dichotomique: b[k - 1] < x[i] <= b[k]
+            #   -- binary search: b[k - 1] < x[i] <= b[k]
             k = bisect_left(b, x[i])
             h[k] = i
             b[k] = x[i]
             p[i] = h[k - 1]
-    # extraire solution
+    # extract solution
     q = h[-1]
     s = []
     while q is not None:

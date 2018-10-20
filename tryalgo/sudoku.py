@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Solving Sudoku
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 from tryalgo.dancing_links import dancing_links
 
@@ -13,7 +13,7 @@ N = 3        # global constants
 N2 = N * N
 N4 = N2 * N2
 
-# les ensembles
+# sets
 def assignation(r, c, v): return r * N4 + c * N2 + v
 
 def row(a): return a // N4
@@ -40,7 +40,7 @@ def sudoku(G):
     if len(G) == 16:              # for a 16 x 16 sudoku grid
         N, N2, N4 = 4, 16, 256
     e = 4 * N4
-    univers = e + 1
+    universe = e + 1
     S = [[rc(a), rv(a), cv(a), bv(a)] for a in range(N4 * N2)]
     A = [e]
     for r in range(N2):
@@ -48,7 +48,7 @@ def sudoku(G):
             if G[r][c] != 0:
                 a = assignation(r, c, G[r][c] - 1)
                 A += S[a]
-    sol = dancing_links(univers, S + [A])
+    sol = dancing_links(universe, S + [A])
     if sol:
         for a in sol:
             if a < len(S):

@@ -2,17 +2,17 @@
 # -*- coding: utf-8 -*-
 # Largest area rectangle in a binary matrix
 # plus grand rectangle monochromatique
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 from tryalgo.rectangles_from_histogram import rectangles_from_histogram
 
 
 # snip{
-def rectangles_from_grid(P, noir=1):
+def rectangles_from_grid(P, black=1):
     """Largest area rectangle in a binary matrix
 
     :param P: matrix
-    :param noir: search for rectangles filled with value noir
+    :param black: search for rectangles filled with value black
     :returns: area, left, top, right, bottom of optimal rectangle
              consisting of all (i,j) with
              left <= j < right and top <= i <= bottom
@@ -24,7 +24,7 @@ def rectangles_from_grid(P, noir=1):
     best = None
     for i in range(rows):
         for j in range(cols):
-            if P[i][j] == noir:
+            if P[i][j] == black:
                 t[j] += 1
             else:
                 t[j] = 0

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Sweepline algrithm technique
-# jill-jenn vie et christoph durr - 2014-2015
+# Sweepline algorithm technique
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{

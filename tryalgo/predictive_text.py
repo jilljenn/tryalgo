@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Predictive text for mobile phones
-# jill-jenn vie et christoph durr and louis abraham - 2014-2015
+# jill-jenn vie et christoph durr and louis abraham - 2014-2018
 
 __all__ = ["predictive_text", "propose"]
 
 # snip{
 t9 = "22233344455566677778889999"
-#     abcdefghijklmnopqrstuvwxyz   correspondance
+#     abcdefghijklmnopqrstuvwxyz   mapping on the phone
 
 
 def lettre_chiffre(x):
@@ -29,7 +29,7 @@ def predictive_text(dico):
              a corresponding word from the dictionary with highest weight
     :complexity: linear in total word length
     """
-    freq = {}   # freq[p] = poids total des mots de préfixe p
+    freq = {}   # freq[p] = total weight of words having prefix p
     for mot, poids in dico:
         prefixe = ""
         for x in mot:
@@ -38,7 +38,7 @@ def predictive_text(dico):
                 freq[prefixe] += poids
             else:
                 freq[prefixe] = poids
-    #   prop[s] = préfixe à afficher sur s
+    #   prop[s] = prefix to display for s
     prop = {}
     for prefixe in freq:
         code = mot_code(prefixe)
@@ -48,7 +48,7 @@ def predictive_text(dico):
 
 
 def propose(prop, seq):
-    """wrapper to access a dictionary even for non present keys"""
+    """wrapper to access a dictionary even for non-present keys"""
     if seq in prop:
         return prop[seq]
     else:

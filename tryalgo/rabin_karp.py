@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Find substrings by Rabin-Karp
-# jill-jenn vie et christoph durr - 2015
+# jill-jenn vie et christoph durr - 2015-2018
 
 # http://www.wolframalpha.com/input/?i=nearest+prime+number+to+2**56
 # snip{ rabin_karp_roll_hash
@@ -44,15 +44,16 @@ def rabin_karp_matching(s, t):
     last_pos = pow(DOMAIN, len_t - 1) % PRIME
     if len_s < len_t:
         return -1
-    for i in range(len_t):         # précalcul
+    for i in range(len_t):         # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
         hash_t = (DOMAIN * hash_t + ord(t[i])) % PRIME
     for i in range(len_s - len_t + 1):
-        if hash_s == hash_t:        # vérifier caract. par caract.
+        if hash_s == hash_t:       # check character by character
             if matches(s, t, i, 0, len_t):
                 return i
         if i < len_s - len_t:
-            hash_s = roll_hash(hash_s, ord(s[i]), ord(s[i+len_t]), last_pos)
+            hash_s = roll_hash(hash_s, ord(s[i]), ord(s[i + len_t]),
+                               last_pos)
     return -1
 # snip}
 
@@ -75,7 +76,7 @@ def rabin_karp_factor(s, t, k):
     if len(s) < k or len(t) < k:
         return None
     hash_t = 0
-    for j in range(k):         # stocker les valeurs de hachage
+    for j in range(k):         # store hashing values
         hash_t = (DOMAIN * hash_t + ord(t[j])) % PRIME
     for j in range(len(t) - k + 1):
         if hash_t in pos:
@@ -85,10 +86,10 @@ def rabin_karp_factor(s, t, k):
         if j < len(t) - k:
             hash_t = roll_hash(hash_t, ord(t[j]), ord(t[j + k]), last_pos)
     hash_s = 0
-    for i in range(k):         # précalcul
+    for i in range(k):         # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
     for i in range(len(s) - k + 1):
-        if hash_s in pos:      # est-ce que cette signature est dans s ?
+        if hash_s in pos:      # is this signature in s?
             for j in pos[hash_s]:
                 if matches(s, t, i, j, k):
                     return (i, j)
