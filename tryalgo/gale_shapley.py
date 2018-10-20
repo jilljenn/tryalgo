@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Stable matching by Gale-Shapley
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 from collections import deque
 
@@ -17,23 +17,23 @@ def gale_shapley(men, women):
     """
     n = len(men)
     assert n == len(women)
-    suiv = [0] * n
-    mari = [None] * n
-    rang = [[0] * n for j in range(n)]                # construire rang
+    current_suitor = [0] * n
+    spouse = [None] * n
+    rang = [[0] * n for j in range(n)]  # build rank
     for j in range(n):
         for r in range(n):
             rang[j][women[j][r]] = r
-    celib = deque(range(n))              # tous les hommes sont célibataires
-    while celib:              # tant qu'il y a des hommes à mettre en couple
-        i = celib.popleft()
-        j = men[i][suiv[i]]
-        suiv[i] += 1
-        if mari[j] is None:
-            mari[j] = i
-        elif rang[j][mari[j]] < rang[j][i]:
-            celib.append(i)
+    singles = deque(range(n))  # all men are single and get in the queue
+    while singles:
+        i = singles.popleft()
+        j = men[i][current_suitor[i]]
+        current_suitor[i] += 1
+        if spouse[j] is None:
+            spouse[j] = i
+        elif rang[j][spouse[j]] < rang[j][i]:
+            singles.append(i)
         else:
-            celib.put(mari[j])                       # désolé pour mari[j]
-            mari[j] = i
-    return mari
+            singles.put(spouse[j])  # sorry for spouse[j]
+            spouse[j] = i
+    return spouse
 # snip}

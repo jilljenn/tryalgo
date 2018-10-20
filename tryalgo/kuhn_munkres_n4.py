@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# jill-jenn vie et christoph durr - 2014
+# jill-jenn vie et christoph durr - 2014-2018
 
 __all__ = ["kuhn_munkres"]
 
@@ -32,8 +32,8 @@ def improve_labels(G, au, av, lu, lv):
             lv[v] += delta
 
 
-def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^4)
-    """Maximal profit perfect matching
+def kuhn_munkres(G):      # maximum profit bipartite matching in O(n^4)
+    """Maximum profit perfect matching
 
     for minimum cost perfect matching just inverse the weights
 
@@ -42,14 +42,14 @@ def kuhn_munkres(G):      # couplage parfait de profit maximal en O(n^4)
     """
     assert len(G) == len(G[0])
     n = len(G)
-    mu = [None] * n                 # couplage vide
+    mu = [None] * n                 # Empty matching
     mv = [None] * n
-    lu = [max(row) for row in G]    # étiqu. triviaux
+    lu = [max(row) for row in G]    # Trivial labels
     lv = [0] * n
     for u0 in range(n):
-        if mu[u0] is None:          # sommet libre
+        if mu[u0] is None:          # Free node
             while True:
-                au = [False] * n    # arbre alternant vide
+                au = [False] * n    # Empty alternating tree
                 av = [False] * n
                 if improve_matching(G, u0, mu, mv, au, av, lu, lv):
                     break

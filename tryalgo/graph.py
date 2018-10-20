@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Reading graphs from files and writing into files
-# jill-jênn vie et christoph dürr - 2015
+# jill-jênn vie et christoph dürr - 2015-2018
 
 
 def readval(file, ty):
@@ -137,16 +137,16 @@ def write_graph(dotfile, graph, directed=False,
 def tree_prec_to_adj(prec, root=0):
     """Transforms a tree given as predecessor table into adjacency list form
 
-    :param prec: predecessor table representing a tree, prec[u] == v iff u is descendant of v,
+    :param prec: predecessor table representing a tree, prec[u] == v iff u is successor of v,
                  except for the root where prec[root] == root
     :param root: root vertex of the tree
     :returns: undirected graph in listlist representation
     :complexity: linear
     """
     n = len(prec)
-    graph = [[prec[u]] for u in range(n)]   # ajouter les prédécesseurs
+    graph = [[prec[u]] for u in range(n)]   # add predecessors
     graph[root] = []
-    for u in range(n):                      # ajouter les descendants
+    for u in range(n):                      # add successors
         if u != root:
             graph[prec[u]].append(u)
     return graph
@@ -161,15 +161,15 @@ def tree_adj_to_prec(graph, root=0):
     :complexity: linear
     """
     prec = [None] * len(graph)
-    prec[root] = root            # marquer pour ne pas revisiter la racine
+    prec[root] = root            # mark to visit root only once
     to_visit = [root]
-    while to_visit:              # parcours DFS
+    while to_visit:              # DFS
         node = to_visit.pop()
         for neighbor in graph[node]:
             if prec[neighbor] is None:
                 prec[neighbor] = node
                 to_visit.append(neighbor)
-    prec[root] = None            # mettre la marque standard pour la racine
+    prec[root] = None            # put the standard mark for root
     return prec
 # snip}
 

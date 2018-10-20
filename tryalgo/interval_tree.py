@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Interval tree
-# christoph dürr - jill-jênn vie - 2013-2015
+# christoph dürr - jill-jênn vie - 2013-2018
 
 from bisect import bisect_right
 
@@ -25,7 +25,7 @@ def interval_tree(intervals):
     :returns: the root of the interval tree
     :complexity: O(n log n)
     """
-    # le test suivant dégraderait les performances
+    # the following test would degrade performance
     # assert intervals == sorted(intervals)
     if intervals == []:
         return None

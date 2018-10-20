@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Depth first search - DFS
-# jill-jenn vie et christoph durr - 2015
+# jill-jenn vie et christoph durr - 2015-2018
 
 
 # snip{ dfs-recursive
@@ -53,7 +53,7 @@ def dfs_tree(graph, start=0):
        """
     to_visit = [start]
     prec = [None] * len(graph)
-    while to_visit:              # une file vide évalue à Faux
+    while to_visit:              # an empty queue equals False
         node = to_visit.pop()
         for neighbor in graph[node]:
             if prec[neighbor] is None:
@@ -74,7 +74,7 @@ def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
     """
     height = len(grid)
     width = len(grid[0])
-    grid[i][j] = mark              # marquer passage
+    grid[i][j] = mark              # mark path
     for ni, nj in [(i + 1, j), (i, j + 1),
                    (i - 1, j), (i, j - 1)]:
         if 0 <= ni < height and 0 <= nj < width:
@@ -100,8 +100,9 @@ def dfs_grid(grid, i, j, mark='X', free='.'):
         i1, j1 = to_visit.pop()
         for i2, j2 in [(i1 + 1, j1), (i1, j1 + 1),
                        (i1 - 1, j1), (i1, j1 - 1)]:
-            if 0 <= i2 < height and 0 <= j2 < width and grid[i2][j2] == free:
-                grid[i2][j2] = mark  # marquer visite
+            if (0 <= i2 < height and 0 <= j2 < width and
+                grid[i2][j2] == free):
+                grid[i2][j2] = mark  # mark path
                 to_visit.append((i2, j2))
 # snip}
 
@@ -124,7 +125,7 @@ def find_cycle(graph):
                 for v in graph[u]:  # for all neighbors
                     if v != prec[u]:  # except arcs to father in DFS tree
                         if prec[v] is not None:
-                            cycle = [v, u]  # cycle found, (u,v) is a back edge
+                            cycle = [v, u]  # cycle found, (u,v) back edge
                             while u != prec[v] and u != prec[u]:  # directed
                                 u = prec[u]  # climb up the tree
                                 cycle.append(u)

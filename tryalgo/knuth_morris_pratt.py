@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Find a substring by Knuth-Morris-Pratt
-# jill-jênn vie et christoph dürr - 2014-2015
-
-# part d'un code de David Eppstein
+# jill-jênn vie et christoph dürr - 2014-2018
+# inspired by a code from David Eppstein
 
 
 # snip{

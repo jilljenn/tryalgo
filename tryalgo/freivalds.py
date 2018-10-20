@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Test matrix product AB=C by Freivalds
-# jill-jênn vie et christoph dürr - 2015
+# jill-jênn vie et christoph dürr - 2015-2018
 
 # snip{
 from random import randint

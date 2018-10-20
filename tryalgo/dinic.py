@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Maximum flow by Dinic
-# jill-jênn vie et christoph dürr - 2015
+# jill-jênn vie et christoph dürr - 2015-2018
 
 
 from collections import deque
@@ -9,7 +9,7 @@ from sys import setrecursionlimit
 from tryalgo.graph import add_reverse_arcs
 
 
-setrecursionlimit(5010)  # nécessaire pour de grands graphes
+setrecursionlimit(5010)  # necessary for big graphs
 
 
 # snip{
@@ -28,11 +28,11 @@ def dinic(graph, capacity, source, target):
     Q = deque()
     total = 0
     n = len(graph)
-    flow = [[0] * n for u in range(n)]   # flot init. vide
-    while True:                   # répéter tant qu'on peut augmenter
+    flow = [[0] * n for u in range(n)]   # flow initially empty
+    while True:                   # repeat while we can increase
         Q.appendleft(source)
-        lev = [None] * n          # construire niveaux, None = inaccessible
-        lev[source] = 0           # par parcours BFS
+        lev = [None] * n          # build levels, None = inaccessible
+        lev[source] = 0           # by BFS
         while Q:
             u = Q.pop()
             for v in graph[u]:
@@ -40,11 +40,11 @@ def dinic(graph, capacity, source, target):
                     lev[v] = lev[u] + 1
                     Q.appendleft(v)
 
-        if lev[target] is None:   # arrêt si puits inaccessible
+        if lev[target] is None:   # stop if sink is not reachable
             return flow, total
-        # UB = borne supérieure
-        UB = sum(capacity[source][v] for v in graph[source]) - total
-        total += _dinic_step(graph, capacity, lev, flow, source, target, UB)
+        up_bound = sum(capacity[source][v] for v in graph[source]) - total
+        total += _dinic_step(graph, capacity, lev, flow, source, target,
+                             up_bound)
 
 
 def _dinic_step(graph, capacity, lev, flow, u, target, limit):
@@ -65,6 +65,6 @@ def _dinic_step(graph, capacity, lev, flow, u, target, limit):
             val += aug
             limit -= aug
     if val == 0:
-        lev[u] = None         # sommet non franchissable à enlever
+        lev[u] = None         # remove unreachable node
     return val
 # snip}

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Exact set cover by the dancing links algorithm
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 __all__ = ["dancing_links"]
 
@@ -47,15 +47,15 @@ class Cell:
 
 
 # snip{ liens-dansants-cover
-def cover(c):            # c = l'en-tête de la colonne à cacher
-    assert c.C is None   # doit être une cellule d'en-tête
+def cover(c):            # c = heading cell of the column to cover
+    assert c.C is None   # must be a heading cell
     c.hide_horiz()
     i = c.D
     while i != c:
         j = i.R
         while j != i:
             j.hide_verti()
-            j.C.S -= 1   # une entrée de moins dans cette colonne
+            j.C.S -= 1   # one fewer entry in this column
             j = j.R
         i = i.D
 
@@ -66,7 +66,7 @@ def uncover(c):
     while i != c:
         j = i.L
         while j != i:
-            j.C.S += 1   # une entrée de plus dans cette colonne
+            j.C.S += 1   # one more entry in this column
             j.unhide_verti()
             j = j.L
         i = i.U
@@ -83,14 +83,14 @@ def dancing_links(size_universe, sets):
     :returns: list of set indices partitioning the universe, or None
     :complexity: huge
     """
-    header = Cell(None, None, 0, None)  # constr. la structure des cellules
+    header = Cell(None, None, 0, None)  # building the cell structure
     col = []
     for j in range(size_universe):
         col.append(Cell(header, None, 0, None))
     for i in range(len(sets)):
         row = None
         for j in sets[i]:
-            col[j].S += 1               # une entrée de plus dans cette col.
+            col[j].S += 1               # one more entry in this column
             row = Cell(row, col[j], i, col[j])
     sol = []
     if solve(header, sol):
@@ -100,25 +100,25 @@ def dancing_links(size_universe, sets):
 
 
 def solve(header, sol):
-    if header.R == header:     # instance vide, solution trouvée
+    if header.R == header:     # the instance is empty => solution found
         return True
-    c = None                   # chercher colonne la moins couverte
+    c = None                   # find the least covered column
     j = header.R
     while j != header:
         if c is None or j.S < c.S:
             c = j
         j = j.R
-    cover(c)                   # couvrir cette colonne
-    r = c.D                    # essayer chaque ligne
+    cover(c)                   # cover this column
+    r = c.D                    # try every row
     while r != c:
         sol.append(r.S)
-        j = r.R                # couvrir éléments dans l'ensemble r
+        j = r.R                # cover elements in set r
         while j != r:
             cover(j.C)
             j = j.R
         if solve(header, sol):
             return True
-        j = r.L                # restituer
+        j = r.L                # uncover
         while j != r:
             uncover(j.C)
             j = j.L

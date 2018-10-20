@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Union of intervals
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{

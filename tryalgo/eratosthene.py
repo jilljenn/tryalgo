@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # Prime numbers by Eratosthene
 # nombre premiers <n
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{ eratosthene
@@ -38,10 +38,10 @@ def gries_misra(n):
     primes = []
     factor = [0] * n
     for x in range(2, n):
-        if not factor[x]:      # no factor found
-            factor[x] = x      # meaning x is prime
+        if not factor[x]:     # no factor found
+            factor[x] = x     # meaning x is prime
             primes.append(x)
-        for p in primes:       # loop over all non primes of the form p * x
+        for p in primes:      # loop over all non primes of the form p * x
             if p > factor[x] or p * x >= n:
                 break
             factor[p * x] = p

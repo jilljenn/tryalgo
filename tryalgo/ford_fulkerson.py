@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Maximum flow by Ford-Fulkerson
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 
 from tryalgo.graph import add_reverse_arcs
@@ -15,11 +15,11 @@ def _augment(graph, capacity, flow, val, u, target, visit):
         return val
     for v in graph[u]:
         cuv = capacity[u][v]
-        if not visit[v] and cuv > flow[u][v]:  # arc franchissable
+        if not visit[v] and cuv > flow[u][v]:  # reachable arc
             res = min(val, cuv - flow[u][v])
             delta = _augment(graph, capacity, flow, res, v, target, visit)
             if delta > 0:
-                flow[u][v] += delta            # augmenter le flot
+                flow[u][v] += delta            # augment flow
                 flow[v][u] -= delta
                 return delta
     return 0
@@ -41,6 +41,6 @@ def ford_fulkerson(graph, capacity, s, t):
     flow = [[0] * n for _ in range(n)]
     INF = float('inf')
     while _augment(graph, capacity, flow, INF, s, t, [False] * n) > 0:
-        pass                               # corps de boucle vide
-    return (flow, sum(flow[s]))                # flot, valeur du flot
+        pass
+    return (flow, sum(flow[s]))             # flow network, amount of flow
 # snip}

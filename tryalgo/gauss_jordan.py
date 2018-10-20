@@ -1,22 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Linear equation system Ax=b by Gauss-Jordan
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
-__all__ = ["gauss_jordan", "GJ_ZERO_SOLUTION", "GJ_UNE_SOLUTION", "GJ_PLUSIEURS_SOLUTIONS"]
+__all__ = ["gauss_jordan", "GJ_ZERO_SOLUTIONS", "GJ_SINGLE_SOLUTION",
+           "GJ_SEVERAL_SOLUTIONS"]
 
 
 # snip{
-def is_zero(x):                    # tolérance
+def is_zero(x):                    # tolerance
     """error tolerant zero test
     """
     return -1e-6 < x and x < 1e-6
-    # remplacer par x == 0 si on travaille avec Fractions
+    # replace with x == 0 si we are handling Fraction elements
 
 
-GJ_ZERO_SOLUTION = 0              # codes retour
-GJ_UNE_SOLUTION = 1
-GJ_PLUSIEURS_SOLUTIONS = 2
+GJ_ZERO_SOLUTIONS = 0
+GJ_SINGLE_SOLUTION = 1
+GJ_SEVERAL_SOLUTIONS = 2
 
 
 def gauss_jordan(A, x, b):
@@ -35,22 +36,22 @@ def gauss_jordan(A, x, b):
     n = len(x)
     m = len(b)
     assert len(A) == m and len(A[0]) == n
-    S = []                # mettre système dans une unique matrice S
+    S = []                        # put linear system in a single matrix S
     for i in range(m):
         S.append(A[i][:] + [b[i]])
-    S.append(list(range(n)))       # indices dans x
+    S.append(list(range(n)))      # indices in x
     k = diagonalize(S, n, m)
     if k < m:
         for i in range(k, m):
             if not is_zero(S[i][n]):
-                return GJ_ZERO_SOLUTION
+                return GJ_ZERO_SOLUTIONS
     for j in range(k):
         x[S[m][j]] = S[j][n]
     if k < n:
         for j in range(k, n):
             x[S[m][j]] = 0
-        return GJ_PLUSIEURS_SOLUTIONS
-    return GJ_UNE_SOLUTION
+        return GJ_SEVERAL_SOLUTIONS
+    return GJ_SINGLE_SOLUTION
 
 
 def diagonalize(S, n, m):
@@ -59,13 +60,13 @@ def diagonalize(S, n, m):
                         for i in range(k, m) for j in range(k, n))
         if is_zero(val):
             return k
-        S[i], S[k] = S[k], S[i]    # échanger lignes   k, i
-        for r in range(m + 1):     # échanger colonnes k, j
+        S[i], S[k] = S[k], S[i]    # swap lines k, i
+        for r in range(m + 1):     # swap columns k, j
             S[r][j], S[r][k] = S[r][k], S[r][j]
-        pivot = float(S[k][k])     # sans float si on trav. avec Fractions
+        pivot = float(S[k][k])     # without float if Fraction elements
         for j in range(k, n + 1):
-            S[k][j] /= pivot       # diviser ligne k par pivot
-        for i in range(m):         # enlever ligne k pondérée de la ligne i
+            S[k][j] /= pivot       # divide line k by pivot
+        for i in range(m):         # remove line k weighted with line i
             if i != k:
                 fact = S[i][k]
                 for j in range(k, n + 1):

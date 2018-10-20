@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Maximum profit bipartite matching by Kuhn-Munkres
-# jill-jenn vie, christoph durr and samuel tardieu - 2014-2017
+# jill-jenn vie, christoph durr and samuel tardieu - 2014-2018
 
 """
 primal LP
@@ -58,14 +58,14 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
     nV = len(G[0])
     V = range(nV)
     assert nU <= nV
-    mu = [None] * nU                # couplage vide
+    mu = [None] * nU                # empty matching
     mv = [None] * nV
-    lu = [max(row) for row in G]    # étiqu. triviaux
+    lu = [max(row) for row in G]    # trivial labels
     lv = [0] * nV
-    for root in U:                  # constr. un arbre alterné
-        au = [False] * nU           # au, av marquent les sommets ...
-        au[root] = True             # ... couverts par l'arbre
-        Av = [None] * nV            # Av[v] descendant du sommet v dans l'arbre
+    for root in U:                  # build an alternate tree
+        au = [False] * nU           # au, av mark nodes...
+        au[root] = True             # ... covered by the tree
+        Av = [None] * nV            # Av[v] successor of v in the tree
         # pour chaque sommet u, marge[u] := (val, v) tel que
         # val est la plus petite marge sur les contraintes (*)
         # avec u fixé et v le sommet correspondant
@@ -73,8 +73,8 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
         while True:
             ((delta, u), v) = min((marge[v], v) for v in V if Av[v] is None)
             assert au[u]
-            if delta > TOLERANCE:   # arbre est complet
-                for u0 in U:        # améliorer les étiquettes
+            if delta > TOLERANCE:   # tree is full
+                for u0 in U:        # improve labels
                     if au[u0]:
                         lu[u0] -= delta
                 for v0 in V:
@@ -83,22 +83,22 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
                     else:
                         (val, arg) = marge[v0]
                         marge[v0] = (val - delta, arg)
-            assert abs(lu[u] + lv[v] - G[u][v]) <= TOLERANCE  # equality test
-            Av[v] = u                # ajout (u, v) dans A
+            assert abs(lu[u] + lv[v] - G[u][v]) <= TOLERANCE  # equality
+            Av[v] = u                # add (u, v) to A
             if mv[v] is None:
-                break                # chemin alt. trouvé...
+                break                # alternating path found
             u1 = mv[v]
             assert not au[u1]
-            au[u1] = True            # ajout (u1, v) dans A
+            au[u1] = True            # add (u1, v) to A
             for v1 in V:
-                if Av[v1] is None:   # mettre à jour les marges
+                if Av[v1] is None:   # update margins
                     alt = (lu[u1] + lv[v1] - G[u1][v1], u1)
                     if marge[v1] > alt:
                         marge[v1] = alt
-        while v is not None:         # ...chemin alt. trouvé
-            u = Av[v]                # le long du chemin vers la racine
+        while v is not None:         # ... alternating path found
+            u = Av[v]                # along path to root
             prec = mu[u]
-            mv[v] = u                # augmenter le couplage
+            mv[v] = u                # augment matching
             mu[u] = v
             v = prec
     return (mu,  sum(lu) + sum(lv))

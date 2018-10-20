@@ -1,13 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Maximum string borders by Knuth-Morris-Pratt
-# jill-jênn vie et christoph dürr et louis abraham - 2014-2015
+# jill-jênn vie et christoph dürr et louis abraham - 2014-2018
+# inspired from a practical lesson (TP) from Yves Lemaire
+# in linear time with Knuth-Morris-Pratt
 
-# part d'un TP de Yves Lemaire
-# en temps linéaire avec Knuth-Morris-Pratt
 
-
-# détermine la longueur des bords maximaux de u en temps linéaire.
+# Find the length of maximal borders of u in linear time.
 
 # snip{
 def maximum_border_length(w):

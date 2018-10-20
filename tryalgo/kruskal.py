@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Minimum spanning tree by kruskal
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 from math import sqrt
 import random
@@ -9,7 +9,7 @@ import random
 
 # snip{ union-find
 class UnionFind:
-    """Maintains a partition of {0,..,n-1}
+    """Maintains a partition of {0, ..., n-1}
     """
     def __init__(self, n):
         self.up = list(range(n))
@@ -33,7 +33,7 @@ class UnionFind:
         """
         repr_x = self.find(x)
         repr_y = self.find(y)
-        if repr_x == repr_y:       # déjà dans la même composante
+        if repr_x == repr_y:       # already in the same component
             return False
         if self.rank[repr_x] == self.rank[repr_y]:
             self.rank[repr_x] += 1

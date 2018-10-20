@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Huffman code
-# jill-jenn vie et christoph durr - 2014-2015
+# jill-jenn vie et christoph durr - 2014-2018
 
 from heapq import heappush, heappop
 
@@ -27,7 +27,7 @@ def huffman(freq):
 
 
 def extract(code, tree, prefix=[]):
-    """Extract the Huffman code from a Huffman tree
+    """Extract Huffman code from a Huffman tree
 
     :param tree: a node of the tree
     :param prefix: a list with the 01 characters encoding the path from

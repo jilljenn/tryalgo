@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Minimum interval cover
-# jill-jênn vie et christoph dürr - 2014-2015
+# jill-jênn vie et christoph dürr - 2014-2018
 
 from sys import stdin
 from math import sqrt
@@ -14,16 +14,16 @@ def _solve(iles, rayon):
     I = []
     for x, y in iles:
         if y > rayon:
-            return -1               # île trop loin
-        z = sqrt(rayon * rayon - y * y)   # déterminer l'intervalle
+            return -1               # island is too far
+        z = sqrt(rayon * rayon - y * y)   # find the interval
         I.append((x + z, x - z))
-    I.sort()                        # trier par côté droit
+    I.sort()                        # sort by right side
     sol = 0
     last = float('-inf')
     for right, left in I:
-        if last < left:             # intervalle pas couvert
+        if last < left:             # uncovered interval
             sol += 1
-            last = right            # placer une antenne
+            last = right            # put an antenna
     return sol
 
 
@@ -47,13 +47,13 @@ if __name__ == "__main__":
     # http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1360
     testCase = 1
     while True:
-        n, rayon = _readarray(int)   # n=nb îles, d=rayon
+        n, rayon = _readarray(int)   # n=#islands, d=radius
         if n == 0:
-            break            # fin des instances
+            break            # end of instances
         iles = []
         for _ in range(n):
             x, y = _readarray(int)
             iles.append((x, y))
-        stdin.readline()          # consommer ligne vide
+        stdin.readline()          # consume empty line
         print("Case %i: %i" % (testCase, _solve(iles, rayon)))
         testCase += 1

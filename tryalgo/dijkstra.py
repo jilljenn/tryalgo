@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Shortest paths by Dijkstra
-# jill-jênn vie et christoph dürr - 2015
+# jill-jênn vie et christoph dürr - 2015-2018
 
 
 # snip{
@@ -30,7 +30,7 @@ def dijkstra(graph, weight, source=0, target=None):
     dist[source] = 0
     heap = [(0, source)]
     while heap:
-        dist_node, node = heappop(heap)       # Le sommet le plus proche
+        dist_node, node = heappop(heap)       # Closest node from source
         if not black[node]:
             black[node] = True
             if node == target:
@@ -73,7 +73,7 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
     dist[source] = 0
     heap = OurHeap([(dist[node], node) for node in range(n)])
     while heap:
-        dist_node, node = heap.pop()       # Le sommet le plus proche
+        dist_node, node = heap.pop()       # Closest node from source
         if node == target:
             break
         for neighbor in graph[node]:

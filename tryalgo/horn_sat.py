@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Solving Horn SAT
-# christoph dürr - 2016
+# christoph dürr - 2016-2018
 
 """
 
