@@ -5,12 +5,14 @@
 
 __all__ = ["gauss_jordan", "GJ_ZERO_SOLUTION", "GJ_UNE_SOLUTION", "GJ_PLUSIEURS_SOLUTIONS"]
 
+
 # snip{
 def is_zero(x):                    # tolérance
     """error tolerant zero test
     """
     return -1e-6 < x and x < 1e-6
     # remplacer par x == 0 si on travaille avec Fractions
+
 
 GJ_ZERO_SOLUTION = 0              # codes retour
 GJ_UNE_SOLUTION = 1

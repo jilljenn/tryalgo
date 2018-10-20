@@ -25,7 +25,6 @@ def eratosthene(n):
 # snip}
 
 
-
 # snip{ gries_misra
 def gries_misra(n):
     """Prime numbers by the sieve of Gries-Misra

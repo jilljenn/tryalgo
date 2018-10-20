@@ -119,7 +119,6 @@ class PartitionRefinement:
                 c.remove()
                 del c
 
-
     def tolist(self):
         """produce a list representation of the partition
         """
