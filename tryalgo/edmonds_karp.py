@@ -58,4 +58,3 @@ def edmonds_karp(graph, capacity, source, target):
             v = u
     return (flow, sum(flow[source]))  # flot, valeur du flot
 # snip}
-

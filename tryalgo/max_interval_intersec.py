@@ -22,4 +22,3 @@ def max_interval_intersec(S):
             best = (c, x)
     return best
 # snip}
-

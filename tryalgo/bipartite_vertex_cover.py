@@ -44,4 +44,3 @@ def bipartite_vertex_cover(bigraph):
             _alternate(u, bigraph, visitU, visitV, matchV)
     inverse = [not b for b in visitU]
     return (inverse, visitV)
-

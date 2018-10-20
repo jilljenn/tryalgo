@@ -37,4 +37,3 @@ def gale_shapley(men, women):
             mari[j] = i
     return mari
 # snip}
-

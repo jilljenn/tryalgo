@@ -127,6 +127,3 @@ def solve(header, sol):
     uncover(c)
     return False
 # snip}
-
-
-

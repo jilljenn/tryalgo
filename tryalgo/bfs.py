@@ -29,4 +29,3 @@ def bfs(graph, start=0):
                 to_visit.appendleft(neighbor)
     return dist, prec
 # snip}
-

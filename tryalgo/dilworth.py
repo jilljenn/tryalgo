@@ -28,4 +28,3 @@ def dilworth(graph):
             nb_chains += 1
     return part
 # snip}
-

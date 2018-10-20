@@ -46,4 +46,3 @@ def powerstring_by_border(u):
         return n // (n - L[-1])
     return 1
 # snip}
-

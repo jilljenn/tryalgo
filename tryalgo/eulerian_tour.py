@@ -117,4 +117,3 @@ def is_eulerian_tour(graph, tour):
         if v not in graph[u]:
             return False
     return True
-

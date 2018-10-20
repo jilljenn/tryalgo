@@ -43,4 +43,3 @@ def fast_exponentiation(a, b, q):
         a = a * a % q
         b >>= 1
     return result
-

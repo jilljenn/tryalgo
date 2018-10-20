@@ -37,4 +37,3 @@ def dist_grid(grid, source, target=None):
                 return
             Q.append((i2, j2))
 # snip}
-

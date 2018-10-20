@@ -28,4 +28,3 @@ def intervals_union(S):
                 retval.append((last, x))
     return retval
 # snip}
-

@@ -263,4 +263,3 @@ if __name__ == '__main__':
         elif t[2] == '=':
             tree.set(i, j, int(t[3]))
         tree._dump()
-

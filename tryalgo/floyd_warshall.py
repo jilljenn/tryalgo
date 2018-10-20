@@ -24,4 +24,3 @@ def floyd_warshall(weight):
             return True
     return False
 # snip}
-

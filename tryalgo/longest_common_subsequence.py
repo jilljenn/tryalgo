@@ -39,4 +39,3 @@ def longest_common_subsequence(x, y):
             sol.append(x[i])
     return ''.join(sol[::-1])    # liste inversée
 # snip}
-

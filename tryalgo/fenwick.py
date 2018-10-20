@@ -62,4 +62,3 @@ class Fenwick:
         """
         return self.prefixSum(i)
 # snip}
-

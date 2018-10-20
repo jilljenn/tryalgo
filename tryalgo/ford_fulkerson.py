@@ -41,7 +41,6 @@ def ford_fulkerson(graph, capacity, s, t):
     flow = [[0] * n for _ in range(n)]
     INF = float('inf')
     while _augment(graph, capacity, flow, INF, s, t, [False] * n) > 0:
-            pass                               # corps de boucle vide
+        pass                               # corps de boucle vide
     return (flow, sum(flow[s]))                # flot, valeur du flot
 # snip}
-

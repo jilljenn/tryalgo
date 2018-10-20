@@ -85,4 +85,3 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
                 heap.update((old, neighbor), (new, neighbor))
     return dist, prec
 # snip}
-

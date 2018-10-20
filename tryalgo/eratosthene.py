@@ -28,7 +28,7 @@ def eratosthene(n):
 # snip{ gries_misra
 def gries_misra(n):
     """Prime numbers by the sieve of Gries-Misra
-    Computes both the list of all prime numbers less than n, 
+    Computes both the list of all prime numbers less than n,
     and a table mapping every integer 2 ≤ x < n to its smallest prime factor
 
     :param n: positive integer
@@ -42,7 +42,7 @@ def gries_misra(n):
             factor[x] = x      # meaning x is prime
             primes.append(x)
         for p in primes:       # loop over all non primes of the form p * x
-            if p > factor[x] or p * x >= n: 
+            if p > factor[x] or p * x >= n:
                 break
             factor[p * x] = p
     return primes, factor

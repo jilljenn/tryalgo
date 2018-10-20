@@ -221,52 +221,52 @@ class TestTryalgo(unittest.TestCase):
                 self.assertEqual(bfs(g, source), answer)
 
     def test_cut_nodes_edges(self):
-            G0 = [[1, 2, 5],
-                  [0, 5],
-                  [0, 3, 4],
-                  [2, 4, 5, 6],
-                  [2, 3, 5, 6],
-                  [0, 1, 3, 4],
-                  [3, 4]]
-            A0 = ([], [])
-            G1 = [[], [2, 4], [1, 3, 5], [2, 4, 5], [3, 1], [2, 3, 6, 7], [5, 7, 8],
-                  [5, 6, 8], [6, 7, 9], [8, 10, 11], [9, 11], [9, 10]]
-            A1 = ([5, 8, 9], [(8, 9)])
-            G2 = [[2, 5],
-                  [3, 8],
-                  [0, 3, 5],
-                  [1, 2, 6, 8],
-                  [7],
-                  [0, 2],
-                  [3, 8],
-                  [4],
-                  [1, 3, 6]]
-            A2 = ([2, 3], [(2, 3), (4, 7)])
-            G3 = [[1, 2], [0, 2], [0, 1, 3], [2]]
-            A3 = ([2], [(2, 3)])
-            big = 10000
-            G4 = ([[(i + 1) % big, (i - 1) % big] for i in range(big)]
-                  + [[big + ((i + 1) % big), big + ((i - 1) % big)] for i in range(big)])
-            G4[0].append(big)
-            G4[big].append(0)
-            A4 = ([0, big], [(0, big)])
-            L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3), (G4, A4),
-                 ([[]], ([], [])),
-                 ([[1,2],[0],[0]], ([0], [(0, 1), (0, 2)])),
-                 ([[1], [0]], ([], [(0, 1)])),
-                 ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
-            for graph, answer in L:
-                cn, ce = cut_nodes_edges(graph)
+        G0 = [[1, 2, 5],
+              [0, 5],
+              [0, 3, 4],
+              [2, 4, 5, 6],
+              [2, 3, 5, 6],
+              [0, 1, 3, 4],
+              [3, 4]]
+        A0 = ([], [])
+        G1 = [[], [2, 4], [1, 3, 5], [2, 4, 5], [3, 1], [2, 3, 6, 7], [5, 7, 8],
+              [5, 6, 8], [6, 7, 9], [8, 10, 11], [9, 11], [9, 10]]
+        A1 = ([5, 8, 9], [(8, 9)])
+        G2 = [[2, 5],
+              [3, 8],
+              [0, 3, 5],
+              [1, 2, 6, 8],
+              [7],
+              [0, 2],
+              [3, 8],
+              [4],
+              [1, 3, 6]]
+        A2 = ([2, 3], [(2, 3), (4, 7)])
+        G3 = [[1, 2], [0, 2], [0, 1, 3], [2]]
+        A3 = ([2], [(2, 3)])
+        big = 10000
+        G4 = ([[(i + 1) % big, (i - 1) % big] for i in range(big)]
+              + [[big + ((i + 1) % big), big + ((i - 1) % big)] for i in range(big)])
+        G4[0].append(big)
+        G4[big].append(0)
+        A4 = ([0, big], [(0, big)])
+        L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3), (G4, A4),
+             ([[]], ([], [])),
+             ([[1,2],[0],[0]], ([0], [(0, 1), (0, 2)])),
+             ([[1], [0]], ([], [(0, 1)])),
+             ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
+        for graph, answer in L:
+            cn, ce = cut_nodes_edges(graph)
+            self.assertEqual( (sorted(cn), sorted(ce)), answer)
+        for graph, answer in L:
+            if len(graph) <= 5000:
+                cn, ce = cut_nodes_edges2(graph)
                 self.assertEqual( (sorted(cn), sorted(ce)), answer)
-            for graph, answer in L:
-                if len(graph) <= 5000:
-                    cn, ce = cut_nodes_edges2(graph)
-                    self.assertEqual( (sorted(cn), sorted(ce)), answer)
 
-            # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
-            #     cut_nodes, cut_edges = cut_nodes_edges(G)
-            #     write_graph("biconnexes_%s.dot" % name, G,
-            #                 node_mark=cut_nodes, arc_mark=set(cut_edges))
+        # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
+        #     cut_nodes, cut_edges = cut_nodes_edges(G)
+        #     write_graph("biconnexes_%s.dot" % name, G,
+        #                 node_mark=cut_nodes, arc_mark=set(cut_edges))
 
     def test_binary_search(self):
         L = 1 << 19
@@ -751,11 +751,11 @@ t##
     def test_interval_tree(self):
 
         def check(L, R):
-          IT = interval_tree(sorted(L))
-          for x in R:
-              A = intervals_containing(IT, x)
-              B = [(l, r) for (l, r) in L if l <= x and x < r]
-              self.assertEqual( sorted(A), sorted(B) )
+            IT = interval_tree(sorted(L))
+            for x in R:
+                A = intervals_containing(IT, x)
+                B = [(l, r) for (l, r) in L if l <= x and x < r]
+                self.assertEqual( sorted(A), sorted(B) )
 
         R = list(range(10))
         Q = [([], R), ([(1, 3)], R), ([(1, 3), (5, 7)], R),
@@ -1409,23 +1409,23 @@ t##
         graph = [[2], [2], [0, 1, 3], [2]]
         self.assertIsNone(shortest_cycle(graph))
         for _ in range(100):               # check on some random undirected graphs
-          n = 10
-          graph = [[] for u in range(n)]   # add random edges to initially empty graph
-          G = [[0 for u in range(n)] for v in range(n)]
-          for i in range(n * n // 15):     # this edge number makes about half cycle free graphs
-              v = random.randint(1, n-1)
-              u = random.randint(0, v-1)
-              if u in graph[v]:            # do not create multi-edges
-                  continue
-              graph[u].append(v)
-              graph[v].append(u)
-              G[u][v] = G[v][u] = 1
-          cycle = shortest_cycle(graph)
-          # M = [[int(u==v) for u in range(n)] for v in range(n)]
-          if cycle is None:
-              pass  # right now we have no tools to check the absence of a cycle
-          else:
-              check(graph, cycle)
+            n = 10
+            graph = [[] for u in range(n)]   # add random edges to initially empty graph
+            G = [[0 for u in range(n)] for v in range(n)]
+            for i in range(n * n // 15):     # this edge number makes about half cycle free graphs
+                v = random.randint(1, n-1)
+                u = random.randint(0, v-1)
+                if u in graph[v]:            # do not create multi-edges
+                    continue
+                graph[u].append(v)
+                graph[v].append(u)
+                G[u][v] = G[v][u] = 1
+            cycle = shortest_cycle(graph)
+            # M = [[int(u==v) for u in range(n)] for v in range(n)]
+            if cycle is None:
+                pass  # right now we have no tools to check the absence of a cycle
+            else:
+                check(graph, cycle)
 
     def test_strongly_connected_components(self):
         def check(f, G, b):
@@ -1642,4 +1642,3 @@ t##
 
 if __name__ == '__main__':
     unittest.main()
-

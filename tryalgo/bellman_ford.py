@@ -34,4 +34,3 @@ def bellman_ford(graph, weight, source=0):
             return dist, prec, False
     return dist, prec, True
 # snip}
-

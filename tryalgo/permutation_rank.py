@@ -47,4 +47,3 @@ def rank_permutation(r, n):
         if i != n - 1:
             fact //= (n - 1 - i)            # weight of next digit
     return p
-

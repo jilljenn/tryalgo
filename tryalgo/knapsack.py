@@ -81,5 +81,3 @@ def knapsack2(p, v, cmax):
         # (La première ligne n'a pas de prédécesseur.)
         chosen.append(cursor[0])
     return pgv[n - 1][cmax], chosen
-
-

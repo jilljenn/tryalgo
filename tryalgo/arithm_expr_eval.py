@@ -88,4 +88,3 @@ if __name__ == "__main__":
         for lhs in sorted(cell.keys()):
             print("%s = %i" % (lhs, arithm_expr_eval(cell, lhs)))
         print()
-
