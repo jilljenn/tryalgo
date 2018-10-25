@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # Solving Horn SAT
+
 # christoph dürr - 2016-2018
 
-"""
 
+"""
 clauses are numbered starting from 0
 variables are strings (identifier)
 
@@ -24,11 +25,11 @@ def read(filename):
     """ reads a Horn SAT formula from a text file
 
     :file format:
-    # comment
-    A     # clause with unique positive literal
-    :- A  # clause with unique negative literal
-    A :- B, C, D # clause where A is positive and B,C,D negative
-    # variables are strings without spaces
+        # comment
+        A     # clause with unique positive literal
+        :- A  # clause with unique negative literal
+        A :- B, C, D # clause where A is positive and B,C,D negative
+        # variables are strings without spaces
     """
     formula = []
     for line in open(filename, 'r'):
