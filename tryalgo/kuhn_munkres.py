@@ -66,12 +66,12 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
         au = [False] * nU           # au, av mark nodes...
         au[root] = True             # ... covered by the tree
         Av = [None] * nV            # Av[v] successor of v in the tree
-        # pour chaque sommet u, marge[u] := (val, v) tel que
-        # val est la plus petite marge sur les contraintes (*)
-        # avec u fixé et v le sommet correspondant
-        marge = [(lu[root] + lv[v] - G[root][v], root) for v in V]
+        # for every vertex u, slack[u] := (val, v) such that
+        # val is the smallest slack on the constraints (*)
+        # with fixed u and v being the corresponding vertex
+        slack = [(lu[root] + lv[v] - G[root][v], root) for v in V]
         while True:
-            ((delta, u), v) = min((marge[v], v) for v in V if Av[v] is None)
+            ((delta, u), v) = min((slack[v], v) for v in V if Av[v] is None)
             assert au[u]
             if delta > TOLERANCE:   # tree is full
                 for u0 in U:        # improve labels
@@ -81,8 +81,8 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
                     if Av[v0] is not None:
                         lv[v0] += delta
                     else:
-                        (val, arg) = marge[v0]
-                        marge[v0] = (val - delta, arg)
+                        (val, arg) = slack[v0]
+                        slack[v0] = (val - delta, arg)
             assert abs(lu[u] + lv[v] - G[u][v]) <= TOLERANCE  # equality
             Av[v] = u                # add (u, v) to A
             if mv[v] is None:
@@ -93,8 +93,8 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
             for v1 in V:
                 if Av[v1] is None:   # update margins
                     alt = (lu[u1] + lv[v1] - G[u1][v1], u1)
-                    if marge[v1] > alt:
-                        marge[v1] = alt
+                    if slack[v1] > alt:
+                        slack[v1] = alt
         while v is not None:         # ... alternating path found
             u = Av[v]                # along path to root
             prec = mu[u]

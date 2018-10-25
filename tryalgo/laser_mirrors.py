@@ -11,7 +11,7 @@ DOWN = 2
 RIGHT = 3
 # orientations None:? 0:/ 1:\
 
-# arrivée UP            LEFT        DOWN          RIGHT
+# destination UP          LEFT         DOWN           RIGHT
 reflex = [[RIGHT, LEFT], [DOWN, UP],  [LEFT, RIGHT], [UP, DOWN]]
 
 

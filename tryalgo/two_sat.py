@@ -7,7 +7,7 @@ from tryalgo.strongly_connected_components import tarjan
 
 
 # snip{
-def _vertex(lit):  # codage sommet pour un littéral donné
+def _vertex(lit):  # integer encoding of a litteral
     if lit > 0:
         return 2 * (lit - 1)
     else:
@@ -31,16 +31,16 @@ def two_sat(formula):
         graph[_vertex(-y)].append(_vertex(x))      # -y => x
     sccp = tarjan(graph)
     comp_id = [None] * (2 * n)     # for each node the ID of its component
-    affectations = [None] * (2 * n)
+    assignment = [None] * (2 * n)
     for component in sccp:
         rep = min(component)             # representative of the component
         for vtx in component:
             comp_id[vtx] = rep
-            if affectations[vtx] is None:
-                affectations[vtx] = True
-                affectations[vtx ^ 1] = False    # complementary literal
+            if assignment[vtx] is None:
+                assignment[vtx] = True
+                assignment[vtx ^ 1] = False    # complementary literal
     for i in range(n):
         if comp_id[2 * i] == comp_id[2 * i + 1]:
-            return None                          # insatisfiable formula
-    return affectations[::2]
+            return None                        # insatisfiable formula
+    return assignment[::2]
 # snip}

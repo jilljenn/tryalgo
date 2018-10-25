@@ -41,6 +41,6 @@ def ford_fulkerson(graph, capacity, s, t):
     flow = [[0] * n for _ in range(n)]
     INF = float('inf')
     while _augment(graph, capacity, flow, INF, s, t, [False] * n) > 0:
-        pass
-    return (flow, sum(flow[s]))             # flow network, amount of flow
+        pass                         # work already done in _augment
+    return (flow, sum(flow[s]))      # flow network, amount of flow
 # snip}

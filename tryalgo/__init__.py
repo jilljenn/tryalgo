@@ -27,7 +27,7 @@ from . dilworth import *
 from . dinic import *
 from . dist_grid import *
 from . edmonds_karp import *
-from . eratosthene import *
+from . primes import *
 from . eulerian_tour import *
 from . fast_exponentiation import *
 from . fenwick import *

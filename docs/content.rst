@@ -179,7 +179,7 @@ Computing the area of the union of n given rectilinear rectangles can be done in
 Arithmetic
 ::::::::::
 
-All prime numbers less than some given integer n are easily generated with Eratosthene's method, see `eratosthene <tryalgo/tryalgo.html#module-tryalgo.eratosthene>`__.  Its complexity is  :math:`O(n \log\log n)`.  This is improved by the Gries-Misra sieve which not only has complexity  :math:`O(n)`, but also produces a table indicating for every positive integer less than n, its smallest prime factor. 
+All prime numbers less than some given integer n are easily generated with Eratosthene's method, see `primes <tryalgo/tryalgo.html#module-tryalgo.primes>`__.  Its complexity is  :math:`O(n \log\log n)`.  This is improved by the Gries-Misra sieve which not only has complexity  :math:`O(n)`, but also produces a table indicating for every positive integer less than n, its smallest prime factor. 
 
 The library contains functions to compute the greatest common divisor (GCD in english or PGCD in french), to compute the Bezot coefficients and the binomial coefficients, see `arithm <tryalgo/tryalgo.html#module-tryalgo.arithm>`__.
 

@@ -30,7 +30,6 @@ from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
 from tryalgo.dist_grid import dist_grid
 from tryalgo.edmonds_karp import edmonds_karp
-from tryalgo.eratosthene import eratosthene, gries_misra
 from tryalgo.eulerian_tour import eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick
@@ -73,6 +72,7 @@ from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
 from tryalgo.pq_tree import consecutive_ones_property
 from tryalgo.predictive_text import predictive_text, propose
+from tryalgo.primes import eratosthene, gries_misra
 from tryalgo.rabin_karp import rabin_karp_factor
 from tryalgo.range_minimum_query import RangeMinQuery, LazySegmentTree
 from tryalgo.rectangles_from_grid import rectangles_from_grid
@@ -593,17 +593,6 @@ v##
 v##
 t##
 ###""")
-
-    def test_eratosthene(self):
-        self.assertEqual(eratosthene(98), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
-        for n in range(3, 100):
-            self.assertEqual(eratosthene(n), gries_misra(n)[0])
-        factor = gries_misra(100)[1]
-        for x in range(2, 100):
-            while x > 1:
-                self.assertTrue(factor[x] > 1)
-                self.assertTrue(x % factor[x] == 0)
-                x //= factor[x]
 
     def test_eulerian_tour_directed(self):
         graphs = [random_eulerien_graph(50),
@@ -1298,6 +1287,18 @@ t##
                 A += str(propose(prop, seq[:i + 1])) + " "
         self.assertEqual( A, "p pr pro prog progr progra program n ne new g "\
                           "in int c co con cont anoth anothe another p pr None None ")
+
+
+    def test_primes(self):
+        self.assertEqual(eratosthene(98), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
+        for n in range(3, 100):
+            self.assertEqual(eratosthene(n), gries_misra(n)[0])
+        factor = gries_misra(100)[1]
+        for x in range(2, 100):
+            while x > 1:
+                self.assertTrue(factor[x] > 1)
+                self.assertTrue(x % factor[x] == 0)
+                x //= factor[x]
 
     def test_rabin_karp(self):
         # rabin_karp_matching is tested in test_knuth_morris_pratt

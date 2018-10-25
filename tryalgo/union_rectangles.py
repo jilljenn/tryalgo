@@ -9,19 +9,19 @@ class Cover_query:
     """Segment tree to maintain a set of integer intervals
     and permitting to query the size of their union.
     """
-    def __init__(self, _len):
+    def __init__(self, L):
         """creates a structure, where all possible intervals
-        will be included in [0, _len - 1].
+        will be included in [0, L - 1].
         """
-        assert _len != []              # _len is assumed sorted
+        assert L != []              # L is assumed sorted
         self.N = 1
-        while self.N < len(_len):
+        while self.N < len(L):
             self.N *= 2
         self.c = [0] * (2 * self.N)         # --- covered
         self.s = [0] * (2 * self.N)         # --- score
         self.w = [0] * (2 * self.N)         # --- length
-        for i in range(len(_len)):
-            self.w[self.N + i] = _len[i]
+        for i in range(len(L)):
+            self.w[self.N + i] = L[i]
         for p in range(self.N - 1, 0, -1):
             self.w[p] = self.w[2 * p] + self.w[2 * p + 1]
 
@@ -32,7 +32,7 @@ class Cover_query:
 
     def change(self, i, k, delta):
         """when delta = +1, adds an interval [i, k], when delta = -1, removes it
-        :complexity: O(log _len)
+        :complexity: O(log L)
         """
         self._change(1, 0, self.N, i, k, delta)
 
@@ -78,8 +78,8 @@ def union_rectangles(R):
     X.sort()
     Y.sort()
     X2i = {X[i]: i for i in range(len(X))}
-    _len = [X[i + 1] - X[i] for i in range(len(X) - 1)]
-    C = Cover_query(_len)
+    L = [X[i + 1] - X[i] for i in range(len(X) - 1)]
+    C = Cover_query(L)
     area = 0
     last = 0
     for (y, delta, j) in Y:

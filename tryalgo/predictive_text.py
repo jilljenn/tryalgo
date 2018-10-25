@@ -10,40 +10,40 @@ t9 = "22233344455566677778889999"
 #     abcdefghijklmnopqrstuvwxyz   mapping on the phone
 
 
-def lettre_chiffre(x):
+def letter_to_digit(x):
     """:returns: the digit correspondence for letter x"""
     assert 'a' <= x <= 'z'
-    return t9[ord(x)-ord('a')]
+    return t9[ord(x) - ord('a')]
 
 
-def mot_code(mot):
-    """:returns: the digit correspondence for word mot"""
-    return ''.join(map(lettre_chiffre, mot))
+def code_word(word):
+    """:returns: the digit correspondence for given word"""
+    return ''.join(map(letter_to_digit, word))
 
 
-def predictive_text(dico):
+def predictive_text(dic):
     """Predictive text for mobile phones
 
-    :param dico: associates weights to words from [a-z]*
+    :param dic: associates weights to words from [a-z]*
     :returns: a dictionary associating to words from [2-9]*
              a corresponding word from the dictionary with highest weight
     :complexity: linear in total word length
     """
     freq = {}   # freq[p] = total weight of words having prefix p
-    for mot, poids in dico:
-        prefixe = ""
-        for x in mot:
-            prefixe += x
-            if prefixe in freq:
-                freq[prefixe] += poids
+    for word, weight in dic:
+        prefix = ""
+        for x in word:
+            prefix += x
+            if prefix in freq:
+                freq[prefix] += weight
             else:
-                freq[prefixe] = poids
+                freq[prefix] = weight
     #   prop[s] = prefix to display for s
     prop = {}
-    for prefixe in freq:
-        code = mot_code(prefixe)
-        if code not in prop or freq[prop[code]] < freq[prefixe]:
-            prop[code] = prefixe
+    for prefix in freq:
+        code = code_word(prefix)
+        if code not in prop or freq[prop[code]] < freq[prefix]:
+            prop[code] = prefix
     return prop
 
 

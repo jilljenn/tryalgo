@@ -4,7 +4,6 @@
 # jill-jenn vie et christoph durr and louis abraham - 2014-2018
 
 
-# snip{
 def fast_exponentiation2(a, b, q):
     """Compute (a pow b) % q
 
@@ -25,9 +24,9 @@ def fast_exponentiation2(a, b, q):
         p2 *= 2
         ap2 = (ap2 * ap2) % q
     return result
-# snip}
 
 
+# snip{
 def fast_exponentiation(a, b, q):
     """Compute (a pow b) % q, alternative shorter implementation
 
@@ -40,6 +39,7 @@ def fast_exponentiation(a, b, q):
     while b:
         if b & 1:
             result = (result * a) % q
-        a = a * a % q
+        a = ( a * a ) % q
         b >>= 1
     return result
+# snip}

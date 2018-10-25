@@ -24,12 +24,29 @@ def roman2int(s):
     for pos in range(3, -1, -1):
         for digit in range(9,-1,-1):
             r = roman[pos][digit]
-            if s.startswith(r, beg):
+            if s.startswith(r, beg):  # footnote 1
                 beg += len(r)
                 val += digit * pos10
                 break
         pos10 //= 10
     return val
+
+# footnote 1: 
+# in C one would write
+#
+# if (strncmp(s + beg, r, strlen(r)) == 0)
+#
+# in C++ the starts_with method does not allow a selection 
+# of a substring in s, where the search should start.
+# so you need to write your onwn function, something like:
+#
+# bool starts_with(const string &s, const string &r, int beg) {
+#     for (int i = 0; i < r.size(); i++) {
+#         if (s[i + beg] != r[i])
+#             return false;
+#     }
+#     return true;
+# }
 
 
 def int2roman(val):

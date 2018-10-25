@@ -3,10 +3,12 @@
 # Stable matching by Gale-Shapley
 # jill-jenn vie et christoph durr - 2014-2018
 
-from collections import deque
 
 
 # snip{
+from collections import deque
+
+
 def gale_shapley(men, women):
     """Stable matching by Gale-Shapley
 
@@ -19,10 +21,10 @@ def gale_shapley(men, women):
     assert n == len(women)
     current_suitor = [0] * n
     spouse = [None] * n
-    rang = [[0] * n for j in range(n)]  # build rank
+    rank = [[0] * n for j in range(n)]  # build rank
     for j in range(n):
         for r in range(n):
-            rang[j][women[j][r]] = r
+            rank[j][women[j][r]] = r
     singles = deque(range(n))  # all men are single and get in the queue
     while singles:
         i = singles.popleft()
@@ -30,7 +32,7 @@ def gale_shapley(men, women):
         current_suitor[i] += 1
         if spouse[j] is None:
             spouse[j] = i
-        elif rang[j][spouse[j]] < rang[j][i]:
+        elif rank[j][spouse[j]] < rank[j][i]:
             singles.append(i)
         else:
             singles.put(spouse[j])  # sorry for spouse[j]

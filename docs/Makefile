@@ -52,6 +52,7 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 html:
+	which sphinx-apidoc
 	sphinx-apidoc -f -o  tryalgo/ ../tryalgo/
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo

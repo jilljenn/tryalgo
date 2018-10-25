@@ -56,9 +56,9 @@ def _dinic_step(graph, capacity, lev, flow, u, target, limit):
         return limit
     val = 0
     for v in graph[u]:
-        residuel = capacity[u][v] - flow[u][v]
-        if lev[v] == lev[u] + 1 and residuel > 0:
-            z = min(limit, residuel)
+        residual = capacity[u][v] - flow[u][v]
+        if lev[v] == lev[u] + 1 and residual > 0:
+            z = min(limit, residual)
             aug = _dinic_step(graph, capacity, lev, flow, v, target, z)
             flow[u][v] += aug
             flow[v][u] -= aug
