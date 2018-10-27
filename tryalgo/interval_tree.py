@@ -20,13 +20,12 @@ def interval_tree(intervals):
     """Construct an interval tree
 
     :param intervals: list of half-open intervals
-                      encoded as value pairs [left, right)
+                      encoded as value pairs *[left, right)*
     :assumes: intervals are lexicographically ordered
+              ``>>> assert intervals == sorted(intervals)``
     :returns: the root of the interval tree
-    :complexity: O(n log n)
+    :complexity: :math:`O(n)`
     """
-    # the following test would degrade performance
-    # assert intervals == sorted(intervals)
     if intervals == []:
         return None
     center = intervals[len(intervals) // 2][0]

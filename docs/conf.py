@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'tryalgo'
-copyright = '2016, Christoph Dürr and Jill-Jênn Vie'
+copyright = '2016-2018, Christoph Dürr and Jill-Jênn Vie'
 author = 'Christoph Dürr and Jill-Jênn Vie'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -114,8 +114,8 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 # html_theme = 'alabaster'
-html_theme = "classic"
-#html_theme = "sphinx_rtd_theme"  # does not show the table of content in sidebar, why?
+# html_theme = "classic"
+html_theme = "sphinx_rtd_theme"  # does not show the table of content in sidebar, why?
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
