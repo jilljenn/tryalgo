@@ -8,6 +8,7 @@
 class Fenwick:
     """maintains a tree to allow quick updates and queries
     """
+
     def __init__(self, t):
         """stores an integer table t, index 0 is ignored
 
@@ -25,7 +26,7 @@ class Fenwick:
         sum = 0
         while i > 0:
             sum += self.s[i]
-            i -= (i & -i)
+            i -= i & -i
         return sum
 
     def intervalSum(self, a, b):
@@ -33,9 +34,9 @@ class Fenwick:
         :param int a b: with 1 <= a <= b
         :returns: t[a] + ... + t[b]
         """
-        return self.prefixSum(b) - self.prefixSum(a-1)
+        return self.prefixSum(b) - self.prefixSum(a - 1)
 
-    def add(self,  i, val):
+    def add(self, i, val):
         """
         :param int i: positive
         :modifies: adds val to t[i]
@@ -43,7 +44,7 @@ class Fenwick:
         assert i > 0
         while i < len(self.s):
             self.s[i] += val
-            i += (i & -i)
+            i += i & -i
 
     # variante:
 
@@ -52,7 +53,7 @@ class Fenwick:
 
         :param int a b: with 1 <= a <= b
         """
-        self.add(a,     +val)
+        self.add(a, +val)
         self.add(b + 1, -val)
 
     def get(self, i):
@@ -61,4 +62,6 @@ class Fenwick:
         :param int i: positive
         """
         return self.prefixSum(i)
+
+
 # snip}

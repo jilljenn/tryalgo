@@ -25,20 +25,25 @@ def knapsack(p, v, cmax):
     #                               --- induction case
     for i in range(1, n):
         for cap in range(cmax + 1):
-            if cap >= p[i] and opt[i-1][cap - p[i]] + v[i] > opt[i-1][cap]:
-                opt[i][cap] = opt[i-1][cap - p[i]] + v[i]
+            if (
+                cap >= p[i]
+                and opt[i - 1][cap - p[i]] + v[i] > opt[i - 1][cap]
+            ):
+                opt[i][cap] = opt[i - 1][cap - p[i]] + v[i]
                 sel[i][cap] = True
             else:
-                opt[i][cap] = opt[i-1][cap]
+                opt[i][cap] = opt[i - 1][cap]
                 sel[i][cap] = False
     #                               --- reading solution
     cap = cmax
     solution = []
-    for i in range(n-1, -1, -1):
+    for i in range(n - 1, -1, -1):
         if sel[i][cap]:
             solution.append(i)
             cap -= p[i]
     return (opt[n - 1][cmax], solution)
+
+
 # snip}
 
 
@@ -66,7 +71,10 @@ def knapsack2(p, v, cmax):
             # Est-ce que prendre l'objet i est préférable ?
             if c >= p[i] and pgv[i - 1][c - p[i]] + v[i] > pgv[i][c]:
                 pgv[i][c] = pgv[i - 1][c - p[i]] + v[i]
-                pred[(i, c)] = (i - 1, c - p[i])  # On marque le prédécesseur
+                pred[(i, c)] = (
+                    i - 1,
+                    c - p[i],
+                )  # On marque le prédécesseur
     # On pourrait s'arrêter là, mais si on veut un sous-ensemble d'objets
     # optimal, il faut remonter les marquages
     cursor = (n - 1, cmax)

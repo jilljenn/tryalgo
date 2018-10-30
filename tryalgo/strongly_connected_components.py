@@ -24,23 +24,23 @@ def tarjan_recursif(graph):
 
     def dfs(node):
         global sccp, waiting, dfs_time, dfs_num
-        waiting.append(node)           # new node is waiting
+        waiting.append(node)  # new node is waiting
         waits[node] = True
-        dfs_num[node] = dfs_time       # mark visit
+        dfs_num[node] = dfs_time  # mark visit
         dfs_time += 1
-        dfs_min = dfs_num[node]        # compute dfs_min
+        dfs_min = dfs_num[node]  # compute dfs_min
         for neighbor in graph[node]:
             if dfs_num[neighbor] is None:
                 dfs_min = min(dfs_min, dfs(neighbor))
             elif waits[neighbor] and dfs_min > dfs_num[neighbor]:
                 dfs_min = dfs_num[neighbor]
-        if dfs_min == dfs_num[node]:   # representative of a component
-            sccp.append([])            # make a component
-            while True:                # add waiting nodes
+        if dfs_min == dfs_num[node]:  # representative of a component
+            sccp.append([])  # make a component
+            while True:  # add waiting nodes
                 u = waiting.pop()
                 waits[u] = False
                 sccp[-1].append(u)
-                if u == node:          # until representative
+                if u == node:  # until representative
                     break
         return dfs_min
 
@@ -48,6 +48,8 @@ def tarjan_recursif(graph):
         if dfs_num[node] is None:
             dfs(node)
     return sccp
+
+
 # snip}
 
 
@@ -64,16 +66,16 @@ def tarjan(graph):
     dfs_min = [n] * n
     waiting = []
     waits = [False] * n  # invariant: waits[v] iff v in waiting
-    sccp = []          # list of detected components
+    sccp = []  # list of detected components
     dfs_time = 0
     times_seen = [-1] * n
     for start in range(n):
-        if times_seen[start] == -1:                    # initiate path
+        if times_seen[start] == -1:  # initiate path
             times_seen[start] = 0
             to_visit = [start]
             while to_visit:
-                node = to_visit[-1]                    # top of stack
-                if times_seen[node] == 0:              # start process
+                node = to_visit[-1]  # top of stack
+                if times_seen[node] == 0:  # start process
                     dfs_num[node] = dfs_time
                     dfs_min[node] = dfs_time
                     dfs_time += 1
@@ -81,27 +83,32 @@ def tarjan(graph):
                     waits[node] = True
                 children = graph[node]
                 if times_seen[node] == len(children):  # end of process
-                    to_visit.pop()                     # remove from stack
-                    dfs_min[node] = dfs_num[node]      # compute dfs_min
+                    to_visit.pop()  # remove from stack
+                    dfs_min[node] = dfs_num[node]  # compute dfs_min
                     for child in children:
-                        if waits[child] and dfs_min[child] < dfs_min[node]:
+                        if (
+                            waits[child]
+                            and dfs_min[child] < dfs_min[node]
+                        ):
                             dfs_min[node] = dfs_min[child]
                     if dfs_min[node] == dfs_num[node]:  # representative
-                        component = []                 # make component
-                        while True:                    # add nodes
+                        component = []  # make component
+                        while True:  # add nodes
                             u = waiting.pop()
                             waits[u] = False
                             component.append(u)
-                            if u == node:              # until repr.
+                            if u == node:  # until repr.
                                 break
                         sccp.append(component)
                 else:
                     child = children[times_seen[node]]
                     times_seen[node] += 1
-                    if times_seen[child] == -1:        # not visited yet
+                    if times_seen[child] == -1:  # not visited yet
                         times_seen[child] = 0
                         to_visit.append(child)
     return sccp
+
+
 # snip}
 
 
@@ -109,20 +116,20 @@ def tarjan(graph):
 def kosaraju_dfs(graph, nodes, order, sccp):
     times_seen = [-1] * len(graph)
     for start in nodes:
-        if times_seen[start] == -1:                     # initiate DFS
+        if times_seen[start] == -1:  # initiate DFS
             to_visit = [start]
             times_seen[start] = 0
             sccp.append([start])
             while to_visit:
                 node = to_visit[-1]
                 children = graph[node]
-                if times_seen[node] == len(children):   # end of process
+                if times_seen[node] == len(children):  # end of process
                     to_visit.pop()
                     order.append(node)
                 else:
                     child = children[times_seen[node]]
                     times_seen[node] += 1
-                    if times_seen[child] == -1:         # new node
+                    if times_seen[child] == -1:  # new node
                         times_seen[child] = 0
                         to_visit.append(child)
                         sccp[-1].append(child)
@@ -150,4 +157,6 @@ def kosaraju(graph):
     kosaraju_dfs(graph, range(n), order, [])
     kosaraju_dfs(reverse(graph), order[::-1], [], sccp)
     return sccp[::-1]  # follow inverse topological order
+
+
 # snip}

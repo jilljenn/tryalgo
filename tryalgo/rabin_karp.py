@@ -5,7 +5,7 @@
 
 # http://www.wolframalpha.com/input/?i=nearest+prime+number+to+2**56
 # snip{ rabin_karp_roll_hash
-PRIME = 72057594037927931     # < 2^{56}
+PRIME = 72057594037927931  # < 2^{56}
 DOMAIN = 128
 
 
@@ -13,6 +13,8 @@ def roll_hash(old_val, out_digit, in_digit, last_pos):
     val = (old_val - out_digit * last_pos + DOMAIN * PRIME) % PRIME
     val = (val * DOMAIN) % PRIME
     return (val + in_digit) % PRIME
+
+
 # snip}
 
 
@@ -23,6 +25,8 @@ def matches(s, t, i, j, k):
         if s[i + d] != t[j + d]:
             return False
     return True
+
+
 # snip}
 
 
@@ -44,17 +48,20 @@ def rabin_karp_matching(s, t):
     last_pos = pow(DOMAIN, len_t - 1) % PRIME
     if len_s < len_t:
         return -1
-    for i in range(len_t):         # preprocessing
+    for i in range(len_t):  # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
         hash_t = (DOMAIN * hash_t + ord(t[i])) % PRIME
     for i in range(len_s - len_t + 1):
-        if hash_s == hash_t:       # check character by character
+        if hash_s == hash_t:  # check character by character
             if matches(s, t, i, 0, len_t):
                 return i
         if i < len_s - len_t:
-            hash_s = roll_hash(hash_s, ord(s[i]), ord(s[i + len_t]),
-                               last_pos)
+            hash_s = roll_hash(
+                hash_s, ord(s[i]), ord(s[i + len_t]), last_pos
+            )
     return -1
+
+
 # snip}
 
 
@@ -76,7 +83,7 @@ def rabin_karp_factor(s, t, k):
     if len(s) < k or len(t) < k:
         return None
     hash_t = 0
-    for j in range(k):         # store hashing values
+    for j in range(k):  # store hashing values
         hash_t = (DOMAIN * hash_t + ord(t[j])) % PRIME
     for j in range(len(t) - k + 1):
         if hash_t in pos:
@@ -86,14 +93,16 @@ def rabin_karp_factor(s, t, k):
         if j < len(t) - k:
             hash_t = roll_hash(hash_t, ord(t[j]), ord(t[j + k]), last_pos)
     hash_s = 0
-    for i in range(k):         # preprocessing
+    for i in range(k):  # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
     for i in range(len(s) - k + 1):
-        if hash_s in pos:      # is this signature in s?
+        if hash_s in pos:  # is this signature in s?
             for j in pos[hash_s]:
                 if matches(s, t, i, j, k):
                     return (i, j)
         if i < len(s) - k:
             hash_s = roll_hash(hash_s, ord(s[i]), ord(s[i + k]), last_pos)
     return None
+
+
 # snip}

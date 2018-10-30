@@ -11,6 +11,7 @@ import random
 class UnionFind:
     """Maintains a partition of {0, ..., n-1}
     """
+
     def __init__(self, n):
         self.up = list(range(n))
         self.rank = [0] * n
@@ -33,7 +34,7 @@ class UnionFind:
         """
         repr_x = self.find(x)
         repr_y = self.find(y)
-        if repr_x == repr_y:       # already in the same component
+        if repr_x == repr_y:  # already in the same component
             return False
         if self.rank[repr_x] == self.rank[repr_y]:
             self.rank[repr_x] += 1
@@ -43,6 +44,8 @@ class UnionFind:
         else:
             self.up[repr_x] = repr_y
         return True
+
+
 # snip}
 
 
@@ -66,29 +69,39 @@ def kruskal(graph, weight):
         if uf.union(u, v):
             mst.append((u, v))
     return mst
+
+
 # snip}
 
 
 if __name__ == "__main__":
 
     def dist(a, b):
-        return sqrt(sum([(a[i] - b[i]) * (a[i] - b[i])
-                         for i in range(len(a))]))
+        return sqrt(
+            sum([(a[i] - b[i]) * (a[i] - b[i]) for i in range(len(a))])
+        )
 
     N = 256
-    points = [[random.random() * 5, random.random() * 5] for _ in range(N)]
-    weight = [[dist(points[i], points[j]) for j in range(N)]
-              for i in range(N)]
+    points = [
+        [random.random() * 5, random.random() * 5] for _ in range(N)
+    ]
+    weight = [
+        [dist(points[i], points[j]) for j in range(N)] for i in range(N)
+    ]
     graph = [[j for j in range(N) if i != j] for i in range(N)]
 
-    with open('../data/kruskal-points.tex', 'w') as f:
+    with open("../data/kruskal-points.tex", "w") as f:
         mst = kruskal(graph, weight)
         val = 0
         for u, v in mst:
             val += weight[u][v]
-            f.write('\\draw[blue] (%f, %f) -- (%f, %f);\n'
-                    % tuple(points[u] + points[v]))
+            f.write(
+                "\\draw[blue] (%f, %f) -- (%f, %f);\n"
+                % tuple(points[u] + points[v])
+            )
         for point in points:
-            f.write('\\filldraw[black] (%f, %f) circle (1pt);\n'
-                    % tuple(point))
+            f.write(
+                "\\filldraw[black] (%f, %f) circle (1pt);\n"
+                % tuple(point)
+            )
         print(val)

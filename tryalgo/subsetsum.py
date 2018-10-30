@@ -19,6 +19,8 @@ def subset_sum(x, R):
         for s in range(R, xi - 1, -1):
             b[s] |= b[s - xi]
     return b[R]
+
+
 # snip}
 
 
@@ -37,4 +39,6 @@ def coin_change(x, R):
         for s in range(xi, R + 1):
             b[s] |= b[s - xi]
     return b[R]
+
+
 # snip}

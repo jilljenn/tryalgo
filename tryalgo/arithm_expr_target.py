@@ -17,22 +17,22 @@ def arithm_expr_target(x, target):
     # expr[S][val]
     # = string solely composed of values in set S that evaluates to val
     for i in range(n):
-        expr[1 << i] = {x[i]: str(x[i])}   # store singletons
+        expr[1 << i] = {x[i]: str(x[i])}  # store singletons
     all_ = (1 << n) - 1
     for S in range(3, all_ + 1):  # 3: first num that isn't a power of 2
         if expr[S] != {}:
-            continue            # in that case S is a power of 2
-        for L in range(1, S):   # decompose set S into non-empty sets L, R
+            continue  # in that case S is a power of 2
+        for L in range(1, S):  # decompose set S into non-empty sets L, R
             if L & S == L:
                 R = S ^ L
-                for vL in expr[L]:         # combine expressions from L
-                    for vR in expr[R]:     # with expressions from R
+                for vL in expr[L]:  # combine expressions from L
+                    for vR in expr[R]:  # with expressions from R
                         eL = expr[L][vL]
                         eR = expr[R][vR]
                         expr[S][vL] = eL
-                        if vL > vR:    # difference cannot become negative
+                        if vL > vR:  # difference cannot become negative
                             expr[S][vL - vR] = "(%s-%s)" % (eL, eR)
-                        if L < R:      # break symmetry
+                        if L < R:  # break symmetry
                             expr[S][vL + vR] = "(%s+%s)" % (eL, eR)
                             expr[S][vL * vR] = "(%s*%s)" % (eL, eR)
                         if vR != 0 and vL % vR == 0:  # only integer div
@@ -45,4 +45,6 @@ def arithm_expr_target(x, target):
                 return "%s=%i" % (expr[all_][val], val)
     # never reaches here if x contains integers between 0 and target
     pass
+
+
 # snip}

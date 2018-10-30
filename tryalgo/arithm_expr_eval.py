@@ -24,24 +24,26 @@ def arithm_expr_eval(cell, expr):
         (left, op, right) = expr
         lval = arithm_expr_eval(cell, left)
         rval = arithm_expr_eval(cell, right)
-        if op == '+':
+        if op == "+":
             return lval + rval
-        if op == '-':
+        if op == "-":
             return lval - rval
-        if op == '*':
+        if op == "*":
             return lval * rval
-        if op == '/':
+        if op == "/":
             return lval // rval
     elif isinstance(expr, int):
         return expr
     else:
         cell[expr] = arithm_expr_eval(cell, cell[expr])
         return cell[expr]
+
+
 # snip}
 
 
 # snip{ arithm_expr_parse
-priority = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
+priority = {";": 0, "(": 1, ")": 2, "-": 3, "+": 3, "*": 4, "/": 4}
 
 
 def arithm_expr_parse(line):
@@ -54,22 +56,25 @@ def arithm_expr_parse(line):
     """
     vals = []
     ops = []
-    for tok in line + [';']:
+    for tok in line + [";"]:
         if tok in priority:  # tok is an operator
-            while (tok != '(' and ops and
-                   priority[ops[-1]] >= priority[tok]):
+            while (
+                tok != "(" and ops and priority[ops[-1]] >= priority[tok]
+            ):
                 right = vals.pop()
                 left = vals.pop()
                 vals.append((left, ops.pop(), right))
-            if tok == ')':
-                ops.pop()    # this is the corresponding '('
+            if tok == ")":
+                ops.pop()  # this is the corresponding '('
             else:
                 ops.append(tok)
         elif tok.isdigit():  # tok is an integer
             vals.append(int(tok))
-        else:                # tok is an identifier
+        else:  # tok is an identifier
             vals.append(tok)
     return vals.pop()
+
+
 # snip}
 
 
@@ -81,7 +86,7 @@ if __name__ == "__main__":
     # this main program is here to be tested on the online judge
     for test in range(_readint()):
         cell = {}
-        stdin.readline()                     # consume the empty line
+        stdin.readline()  # consume the empty line
         for _ in range(_readint()):
             line = stdin.readline().split()
             cell[line[0]] = arithm_expr_parse(line[2:])

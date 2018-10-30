@@ -12,8 +12,8 @@ from random import random
 
 # TODO: add order_of_key
 
-class AbstractSkipList():
 
+class AbstractSkipList:
     def __init__(self):
         raise NotImplemented
 
@@ -78,22 +78,16 @@ class AbstractSkipList():
     def nextKey(self, key):
         """nextKey(key) >= key"""
         ans = self.nextNode(key)
-        return (ans.key
-                if ans is not None
-                else None)
+        return ans.key if ans is not None else None
 
     def lastKey(self, key):
         """lastKey(key) < key"""
         update = self._updateList(key)[0]
-        return (update[0].key
-                if update
-                else None)
+        return update[0].key if update else None
 
     def find(self, key, update=None):
         ans = self.nextNode(key, update)
-        return (ans
-                if ans is not None and ans.key == key
-                else None)
+        return ans if ans is not None and ans.key == key else None
 
     def insert(self, node):
         # nup = len(self.next)
@@ -142,7 +136,7 @@ class AbstractSkipList():
 
 class SortedSet(AbstractSkipList):
 
-    Node = namedtuple('Node', 'key next count')
+    Node = namedtuple("Node", "key next count")
 
     def __init__(self, iterable=()):
         self.head = self.Node(None, [], [])
@@ -157,7 +151,7 @@ class SortedSet(AbstractSkipList):
             self.remove(x)
             return x
         except StopIteration:
-            raise KeyError('pop from an empty set')
+            raise KeyError("pop from an empty set")
             # raise KeyError('pop from an empty set') from None
 
     def add(self, key):
@@ -165,17 +159,17 @@ class SortedSet(AbstractSkipList):
         self.insert(self.Node(key, [None] * height, [0] * height))
 
     def __repr__(self):
-        return '{%s}' % (', '.join(map(str, iter(self))))
+        return "{%s}" % (", ".join(map(str, iter(self))))
 
 
 class SortedDict(AbstractSkipList):
 
-    Node = namedtuple('Node', 'key val next count')
+    Node = namedtuple("Node", "key val next count")
 
     def __init__(self, iterable=()):
         self.head = self.Node(None, None, [], [])
         self._len = 0
-        if hasattr(iterable, 'keys') and hasattr(iterable, '__getitem__'):
+        if hasattr(iterable, "keys") and hasattr(iterable, "__getitem__"):
             for i in iterable.keys():
                 self[i] = iterable[i]
         else:
@@ -204,10 +198,10 @@ class SortedDict(AbstractSkipList):
         self.remove(key)
 
     def __repr__(self):
-        return '{%s}' % (', '.join('%s: %s' % (k, self[k]) for k in self))
+        return "{%s}" % (", ".join("%s: %s" % (k, self[k]) for k in self))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     from random import sample
 
     def display(a):
@@ -215,10 +209,15 @@ if __name__ == '__main__':
             # if sys.version_info.major < 3:
             #     print (a.key if a.key is not None else 'N') + ' | ',
             # else:
-            print(a.key if a.key is not None else 'N', end=' | ')
-            print(*('(%s, %s)' % (i.key if i is not None else 'N', c)
-                    for i, c in zip(a.next, a.count)))
+            print(a.key if a.key is not None else "N", end=" | ")
+            print(
+                *(
+                    "(%s, %s)" % (i.key if i is not None else "N", c)
+                    for i, c in zip(a.next, a.count)
+                )
+            )
             a = a.next[0]
+
     n = SortedSet()
     for i in sample(range(5), 5):
         n.add(i)

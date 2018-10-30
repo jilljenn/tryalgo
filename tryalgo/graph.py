@@ -25,7 +25,9 @@ def readtab(fi, ty):
     return tuple(map(ty, fi.readline().split()))
 
 
-def read_graph(filename, directed=False, weighted=False, default_weight=None):
+def read_graph(
+    filename, directed=False, weighted=False, default_weight=None
+):
     """Read a graph from a text file
 
     :param filename: plain text file. All numbers are separated by space.
@@ -41,15 +43,17 @@ def read_graph(filename, directed=False, weighted=False, default_weight=None):
     :complexity: O(n + m) for unweighted graph,
                  :math:`O(n^2)` for weighted graph
     """
-    with open(filename, 'r') as f:
+    with open(filename, "r") as f:
         while True:
-            line = f.readline()         # ignore leading comments
-            if line[0] != '#':
+            line = f.readline()  # ignore leading comments
+            if line[0] != "#":
                 break
         nb_nodes, nb_edges = tuple(map(int, line.split()))
         graph = [[] for u in range(nb_nodes)]
         if weighted:
-            weight = [[default_weight] * nb_nodes for v in range(nb_nodes)]
+            weight = [
+                [default_weight] * nb_nodes for v in range(nb_nodes)
+            ]
             for v in range(nb_nodes):
                 weight[v][v] = 0
             for _ in range(nb_edges):
@@ -70,9 +74,16 @@ def read_graph(filename, directed=False, weighted=False, default_weight=None):
             return graph
 
 
-def write_graph(dotfile, graph, directed=False,
-                node_label=None, arc_label=None, comment="",
-                node_mark=set(), arc_mark=set()):
+def write_graph(
+    dotfile,
+    graph,
+    directed=False,
+    node_label=None,
+    arc_label=None,
+    comment="",
+    node_mark=set(),
+    arc_mark=set(),
+):
     """Writes a graph to a file in the DOT format
 
     :param dotfile: the filename.
@@ -86,7 +97,7 @@ def write_graph(dotfile, graph, directed=False,
     :param arc_marc: set of arcs to be shown in red
     :complexity: `O(|V| + |E|)`
     """
-    with open(dotfile, 'w') as f:
+    with open(dotfile, "w") as f:
         if directed:
             f.write("digraph G{\n")
         else:
@@ -99,7 +110,7 @@ def write_graph(dotfile, graph, directed=False,
             if node_mark and u in node_mark:
                 f.write('%d [style=filled, color="lightgrey", ' % u)
             else:
-                f.write('%d [' % u)
+                f.write("%d [" % u)
             if node_label:
                 f.write('label="%u [%s]"];\n' % (u, node_label[u]))
             else:
@@ -110,14 +121,17 @@ def write_graph(dotfile, graph, directed=False,
         for u in V:
             for v in graph[u]:
                 if not directed and u > v:
-                    continue   # don't show twice the edge
+                    continue  # don't show twice the edge
                 if arc_label and arc_label[u][v] == None:
-                    continue   # suppress arcs with no label
+                    continue  # suppress arcs with no label
                 if directed:
                     arc = "%d -> %d " % (u, v)
                 else:
                     arc = "%d -- %d " % (u, v)
-                if arc_mark and ( (v,u) in arc_mark or (not directed and (u,v) in arc_mark) ):
+                if arc_mark and (
+                    (v, u) in arc_mark
+                    or (not directed and (u, v) in arc_mark)
+                ):
                     pen = 'color="red"'
                 else:
                     pen = ""
@@ -144,9 +158,9 @@ def tree_prec_to_adj(prec, root=0):
     :complexity: linear
     """
     n = len(prec)
-    graph = [[prec[u]] for u in range(n)]   # add predecessors
+    graph = [[prec[u]] for u in range(n)]  # add predecessors
     graph[root] = []
-    for u in range(n):                      # add successors
+    for u in range(n):  # add successors
         if u != root:
             graph[prec[u]].append(u)
     return graph
@@ -161,16 +175,18 @@ def tree_adj_to_prec(graph, root=0):
     :complexity: linear
     """
     prec = [None] * len(graph)
-    prec[root] = root            # mark to visit root only once
+    prec[root] = root  # mark to visit root only once
     to_visit = [root]
-    while to_visit:              # DFS
+    while to_visit:  # DFS
         node = to_visit.pop()
         for neighbor in graph[node]:
             if prec[neighbor] is None:
                 prec[neighbor] = node
                 to_visit.append(neighbor)
-    prec[root] = None            # put the standard mark for root
+    prec[root] = None  # put the standard mark for root
     return prec
+
+
 # snip}
 
 
@@ -196,6 +212,8 @@ def add_reverse_arcs(graph, capac=None):
                 else:
                     assert type(graph[v]) is dict
                     graph[v][u] = 0
+
+
 # snip}
 
 # -----------------------------------------------------------------------------
@@ -249,9 +267,11 @@ def listlist_and_matrix_to_listdict(graph, weight=None):
     :complexity: linear
     """
     if weight:
-        return [{v:weight[u][v] for v in graph[u]} for u in range(len(graph))]
+        return [
+            {v: weight[u][v] for v in graph[u]} for u in range(len(graph))
+        ]
     else:
-        return [{v:None for v in graph[u]} for u in range(len(graph))]
+        return [{v: None for v in graph[u]} for u in range(len(graph))]
 
 
 def listdict_to_listlist_and_matrix(sparse):
@@ -281,17 +301,20 @@ def dictdict_to_listdict(dictgraph):
     :complexity: linear
     :returns: tuple with graph (listdict), name_to_node (dict), node_to_name (list)
     """
-    n = len(dictgraph)                            # vertices
-    node_to_name = [name for name in dictgraph]   # bijection indices <-> names
-    node_to_name.sort()                           # to make it more readable
+    n = len(dictgraph)  # vertices
+    node_to_name = [
+        name for name in dictgraph
+    ]  # bijection indices <-> names
+    node_to_name.sort()  # to make it more readable
     name_to_node = {}
     for i in range(n):
         name_to_node[node_to_name[i]] = i
-    sparse = [{} for _ in range(n)]               # build sparse graph
+    sparse = [{} for _ in range(n)]  # build sparse graph
     for u in dictgraph:
         for v in dictgraph[u]:
             sparse[name_to_node[u]][name_to_node[v]] = dictgraph[u][v]
     return sparse, name_to_node, node_to_name
+
 
 # -----------------------------------------------------------------------------
 # for shortest paths
@@ -310,12 +333,15 @@ def extract_path(prec, v):
     while v is not None:
         L.append(v)
         v = prec[v]
-        assert v not in L   # prevent infinite loops for a bad formed table prec
+        assert (
+            v not in L
+        )  # prevent infinite loops for a bad formed table prec
     return L[::-1]
 
 
 # -----------------------------------------------------------------------------
 # for exporting flows in dot format
+
 
 def make_flow_labels(graph, flow, capac):
     """Generate arc labels for a flow in a graph with capacities.
@@ -326,20 +352,21 @@ def make_flow_labels(graph, flow, capac):
     :returns: listdic graph representation, with the arc label strings
     """
     V = range(len(graph))
-    arc_label = [{v:"" for v in graph[u]} for u in V]
+    arc_label = [{v: "" for v in graph[u]} for u in V]
     for u in V:
         for v in graph[u]:
             if flow[u][v] >= 0:
                 arc_label[u][v] = "%s/%s" % (flow[u][v], capac[u][v])
             else:
-                arc_label[u][v] = None   # do not show negative flow arcs
+                arc_label[u][v] = None  # do not show negative flow arcs
     return arc_label
+
 
 # -----------------------------------------------------------------------------
 # for creating a graph using vertex names
 
 
-#snip{ class_graph
+# snip{ class_graph
 class Graph:
     def __init__(self):
         self.neighbors = []
@@ -370,4 +397,6 @@ class Graph:
         v = self.name2node[name_v]
         self.neighbors[u].append(v)
         self.weight[u][v] = weight_uv
-#snip}
+
+
+# snip}

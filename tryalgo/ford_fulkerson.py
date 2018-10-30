@@ -19,7 +19,7 @@ def _augment(graph, capacity, flow, val, u, target, visit):
             res = min(val, cuv - flow[u][v])
             delta = _augment(graph, capacity, flow, res, v, target, visit)
             if delta > 0:
-                flow[u][v] += delta            # augment flow
+                flow[u][v] += delta  # augment flow
                 flow[v][u] -= delta
                 return delta
     return 0
@@ -39,8 +39,10 @@ def ford_fulkerson(graph, capacity, s, t):
     add_reverse_arcs(graph, capacity)
     n = len(graph)
     flow = [[0] * n for _ in range(n)]
-    INF = float('inf')
+    INF = float("inf")
     while _augment(graph, capacity, flow, INF, s, t, [False] * n) > 0:
-        pass                         # work already done in _augment
-    return (flow, sum(flow[s]))      # flow network, amount of flow
+        pass  # work already done in _augment
+    return (flow, sum(flow[s]))  # flow network, amount of flow
+
+
 # snip}

@@ -5,9 +5,13 @@
 
 from sys import stdin
 
-__all__ = ["discrete_binary_search", "continuous_binary_search",
-           "optimized_binary_search_lower", "optimized_binary_search",
-           "ternary_search"]
+__all__ = [
+    "discrete_binary_search",
+    "continuous_binary_search",
+    "optimized_binary_search_lower",
+    "optimized_binary_search",
+    "ternary_search",
+]
 
 # Fill the Cisterns
 # http://www.spoj.com/problems/CISTFILL/
@@ -39,6 +43,8 @@ def discrete_binary_search(tab, lo, hi):
         else:
             lo = mid + 1
     return lo
+
+
 # snip}
 
 
@@ -56,12 +62,14 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
     """
     while hi - lo > gap:
         # in other languages you can force floating division by using 2.0
-        mid = (lo + hi) / 2.
+        mid = (lo + hi) / 2.0
         if f(mid):
             hi = mid
         else:
             lo = mid
     return lo
+
+
 # snip}
 
 
@@ -102,6 +110,8 @@ def optimized_binary_search(tab, logsize):
             hi ^= intervalsize
         intervalsize >>= 1
     return hi
+
+
 # snip}
 
 
@@ -117,7 +127,7 @@ def ternary_search(f, lo, hi, gap=1e-10):
     :complexity: `O(log((hi-lo)/gap))`
     """
     while hi - lo > gap:
-        step = (hi - lo) / 3.
+        step = (hi - lo) / 3.0
         if f(lo + step) < f(lo + 2 * step):
             lo += step
         else:
@@ -126,6 +136,7 @@ def ternary_search(f, lo, hi, gap=1e-10):
 
 
 if __name__ == "__main__":
+
     def volume(level):
         vol = 0
         for base, height, ground in rect:
@@ -144,6 +155,9 @@ if __name__ == "__main__":
         if volume(hi) < V:
             print("OVERFLOW")
         else:
-            print("%.02f" %
-                  continuous_binary_search(lambda x: volume(x) >= V,
-                                           0, hi))
+            print(
+                "%.02f"
+                % continuous_binary_search(
+                    lambda x: volume(x) >= V, 0, hi
+                )
+            )

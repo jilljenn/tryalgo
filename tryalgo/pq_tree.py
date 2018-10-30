@@ -36,6 +36,7 @@ from collections import deque
 
 class IsNotC1P(Exception):
     """The given instance does not have the all consecutive ones property"""
+
     pass
 
 
@@ -50,17 +51,18 @@ PARTIAL = 2
 # automaton is used for pattern recognition when reducing a Q node
 # -1 represents the result of a forbidden transition
 #             E  F  P
-automaton = [[1, 5, 4],  # 0 initial state
-             [1, 2, 2],  # 1
-             [3, 2, 3],  # 2
-             [3,-1,-1],  # 3
-             [6, 2, 3],  # 4
-             [6, 5, 6],  # 5
-             [6,-1,-1]]  # 6
+automaton = [
+    [1, 5, 4],  # 0 initial state
+    [1, 2, 2],  # 1
+    [3, 2, 3],  # 2
+    [3, -1, -1],  # 3
+    [6, 2, 3],  # 4
+    [6, 5, 6],  # 5
+    [6, -1, -1],
+]  # 6
 
 
 class PQ_node:
-
     def __init__(self, shape, value=None):
         self.shape = shape
         self.sons = []
@@ -113,7 +115,6 @@ class PQ_node:
 
 
 class PQ_tree:
-
     def __init__(self, universe):
         self.tree = PQ_node(P_shape)
         self.leafs = []
@@ -137,14 +138,16 @@ class PQ_tree:
 
     def reduce(self, S):
         queue = deque(self.leafs)
-        cleanup = []                        # we don't need to cleanup leafs
+        cleanup = []  # we don't need to cleanup leafs
         is_key_node = False
-        while queue and not is_key_node:    # while there are nodes to be processed
+        while (
+            queue and not is_key_node
+        ):  # while there are nodes to be processed
             x = queue.popleft()
-            is_key_node = (x.full_leafs == len(S))
-            x.mark = PARTIAL                # default mark
+            is_key_node = x.full_leafs == len(S)
+            x.mark = PARTIAL  # default mark
             if x.shape == P_shape:
-                E = []                      # group descendants according to marks
+                E = []  # group descendants according to marks
                 F = []
                 P = []
                 for y in x.sons:
@@ -154,7 +157,7 @@ class PQ_tree:
                         F.append(y)
                     else:
                         P.append(y)
-                if len(P) == 0:       # start long case analysis
+                if len(P) == 0:  # start long case analysis
                     if len(E) == 0:
                         x.mark = FULL
                     else:
@@ -166,7 +169,7 @@ class PQ_tree:
                                 # template P2
                                 x.sons = E
                                 x.add_group(F)
-                            else:                    # is not root
+                            else:  # is not root
                                 # template P3
                                 x.shape = Q_shape
                                 x.sons = []
@@ -178,7 +181,7 @@ class PQ_tree:
                         # template P4
                         x.sons = E + [P[0]]
                         P[0].add_group(F)
-                    else:                        # is not root
+                    else:  # is not root
                         # template P5
                         x.shape = Q_shape
                         x.sons = []
@@ -194,7 +197,7 @@ class PQ_tree:
                         z.add_all(reversed(P[1].sons))
                     else:
                         raise IsNotC1P
-                else:                      # more than 2 partial descendants
+                else:  # more than 2 partial descendants
                     raise IsNotC1P
             elif x.shape == Q_shape:
                 state = 0
@@ -223,21 +226,23 @@ class PQ_tree:
                     x.add_all(reversed(L))
                 else:
                     x.add_all(L)
-            else:                           # x is a leaf
+            else:  # x is a leaf
                 if x.value in S:
                     x.mark = FULL
                     x.full_leafs = 1
                 else:
                     x.mark = EMPTY
                     x.full_leafs = 0
-            if not is_key_node:                              # propagate node processing
+            if not is_key_node:  # propagate node processing
                 z = x.parent
-                z.full_leafs += x.full_leafs                 # cumulate bottom up full leaf numbers
+                z.full_leafs += (
+                    x.full_leafs
+                )  # cumulate bottom up full leaf numbers
                 if z.processed_sons == 0:
-                    cleanup.append(z)                        # first time considered
+                    cleanup.append(z)  # first time considered
                 z.processed_sons += 1
                 if z.processed_sons == len(z.sons):
-                    queue.append(z)                          # otherwise prune tree at z
+                    queue.append(z)  # otherwise prune tree at z
         for x in cleanup:
             x.full_leafs = 0
             x.processed_sons = 0

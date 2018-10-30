@@ -16,7 +16,7 @@ def majority(L):
                  where n = len(L) and k = max(w for w in L)
                  :math:`O(n^2k)` in worst case due to the use of a dictionary
     """
-    assert L    # majorité n'est pas définie sur ensemble vide
+    assert L  # majorité n'est pas définie sur ensemble vide
     # snip{
     count = {}
     for word in L:
@@ -26,4 +26,6 @@ def majority(L):
             count[word] = 1
     valmin, argmin = min((-count[word], word) for word in count)
     return argmin
+
+
 # snip}

@@ -16,16 +16,18 @@ def bfs(graph, start=0):
        :complexity: `O(|V|+|E|)`
        """
     to_visit = deque()
-    dist = [float('inf')] * len(graph)
+    dist = [float("inf")] * len(graph)
     prec = [None] * len(graph)
     dist[start] = 0
     to_visit.appendleft(start)
-    while to_visit:              # an empty queue is considered False
+    while to_visit:  # an empty queue is considered False
         node = to_visit.pop()
         for neighbor in graph[node]:
-            if dist[neighbor] == float('inf'):
+            if dist[neighbor] == float("inf"):
                 dist[neighbor] = dist[node] + 1
                 prec[neighbor] = node
                 to_visit.appendleft(neighbor)
     return dist, prec
+
+
 # snip}

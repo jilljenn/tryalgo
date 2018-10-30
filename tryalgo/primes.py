@@ -22,6 +22,8 @@ def eratosthene(n):
             for j in range(2 * i, n, i):
                 P[j] = False
     return answ
+
+
 # snip}
 
 
@@ -38,14 +40,16 @@ def gries_misra(n):
     primes = []
     factor = [0] * n
     for x in range(2, n):
-        if not factor[x]:     # no factor found
-            factor[x] = x     # meaning x is prime
+        if not factor[x]:  # no factor found
+            factor[x] = x  # meaning x is prime
             primes.append(x)
-        for p in primes:      # loop over all non primes of the form p * x
+        for p in primes:  # loop over all non primes of the form p * x
             if p > factor[x] or p * x >= n:
                 break
             factor[p * x] = p
     return primes, factor
+
+
 # snip}
 
 
@@ -66,5 +70,5 @@ if __name__ == "__main__":
     for _ in range(30):
         E = test(eratosthene, n)
         G = test(gries_misra, n)
-        print("%f\t%f\t%f" % (E, G, G / E) )
+        print("%f\t%f\t%f" % (E, G, G / E))
         n *= 2

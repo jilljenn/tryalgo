@@ -34,13 +34,13 @@ def bipartite_vertex_cover(bigraph):
     V = range(len(bigraph))
     matchV = max_bipartite_matching(bigraph)
     matchU = [None for u in V]
-    for v in V:                      # -- build the mapping from U to V
+    for v in V:  # -- build the mapping from U to V
         if matchV[v] is not None:
             matchU[matchV[v]] = v
-    visitU = [False for u in V]      # -- build max alternating forest
+    visitU = [False for u in V]  # -- build max alternating forest
     visitV = [False for v in V]
     for u in V:
-        if matchU[u] is None:        # -- starting with free vertices in U
+        if matchU[u] is None:  # -- starting with free vertices in U
             _alternate(u, bigraph, visitU, visitV, matchV)
     inverse = [not b for b in visitU]
     return (inverse, visitV)

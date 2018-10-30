@@ -24,7 +24,7 @@ def longest_common_subsequence(x, y):
             if x[i] == y[j]:
                 A[i + 1][j + 1] = A[i][j] + 1
             else:
-                A[i + 1][j + 1] = max(A[i][j + 1],  A[i + 1][j])
+                A[i + 1][j + 1] = max(A[i][j + 1], A[i + 1][j])
     #                      -- extract solution
     sol = []
     i, j = n, m
@@ -37,5 +37,7 @@ def longest_common_subsequence(x, y):
             i -= 1
             j -= 1
             sol.append(x[i])
-    return ''.join(sol[::-1])    # inverse solution
+    return "".join(sol[::-1])  # inverse solution
+
+
 # snip}

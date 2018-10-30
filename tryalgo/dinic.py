@@ -28,11 +28,11 @@ def dinic(graph, capacity, source, target):
     Q = deque()
     total = 0
     n = len(graph)
-    flow = [[0] * n for u in range(n)]   # flow initially empty
-    while True:                   # repeat while we can increase
+    flow = [[0] * n for u in range(n)]  # flow initially empty
+    while True:  # repeat while we can increase
         Q.appendleft(source)
-        lev = [None] * n          # build levels, None = inaccessible
-        lev[source] = 0           # by BFS
+        lev = [None] * n  # build levels, None = inaccessible
+        lev[source] = 0  # by BFS
         while Q:
             u = Q.pop()
             for v in graph[u]:
@@ -40,11 +40,12 @@ def dinic(graph, capacity, source, target):
                     lev[v] = lev[u] + 1
                     Q.appendleft(v)
 
-        if lev[target] is None:   # stop if sink is not reachable
+        if lev[target] is None:  # stop if sink is not reachable
             return flow, total
         up_bound = sum(capacity[source][v] for v in graph[source]) - total
-        total += _dinic_step(graph, capacity, lev, flow, source, target,
-                             up_bound)
+        total += _dinic_step(
+            graph, capacity, lev, flow, source, target, up_bound
+        )
 
 
 def _dinic_step(graph, capacity, lev, flow, u, target, limit):
@@ -65,6 +66,8 @@ def _dinic_step(graph, capacity, lev, flow, u, target, limit):
             val += aug
             limit -= aug
     if val == 0:
-        lev[u] = None         # remove unreachable node
+        lev[u] = None  # remove unreachable node
     return val
+
+
 # snip}

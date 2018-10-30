@@ -18,7 +18,7 @@ def dist01(graph, weight, source=0, target=None):
     :complexity: `O(|V|+|E|)`
     """
     n = len(graph)
-    dist = [float('inf')] * n
+    dist = [float("inf")] * n
     prec = [None] * n
     black = [False] * n
     dist[source] = 0
@@ -41,4 +41,6 @@ def dist01(graph, weight, source=0, target=None):
             else:
                 gray.appendleft(neighbor)
     return dist, prec
+
+
 # snip}

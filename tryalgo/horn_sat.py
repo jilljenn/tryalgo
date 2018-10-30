@@ -32,7 +32,7 @@ def read(filename):
         # variables are strings without spaces
     """
     formula = []
-    for line in open(filename, 'r'):
+    for line in open(filename, "r"):
         line = line.strip()
         if line[0] == "#":
             continue
@@ -43,9 +43,9 @@ def read(filename):
         else:
             assert len(lit) == 2
             posvar = lit[0].strip()
-            if posvar == '':
+            if posvar == "":
                 posvar = None
-            negvars = lit[1].split(',')
+            negvars = lit[1].split(",")
             for i in range(len(negvars)):
                 negvars[i] = negvars[i].strip()
         formula.append((posvar, negvars))
@@ -66,37 +66,45 @@ def horn_sat(formula):
     """
     # --- construct data structures
     CLAUSES = range(len(formula))
-    score = [0 for c in CLAUSES]                # number of negative vars that are not yet in solution
-    posvar_in_clause = [None for c in CLAUSES]  # the unique positive variable of a clause (if any)
-    clauses_with_negvar = defaultdict(set)      # all clauses where a variable appears negatively
+    score = [
+        0 for c in CLAUSES
+    ]  # number of negative vars that are not yet in solution
+    posvar_in_clause = [
+        None for c in CLAUSES
+    ]  # the unique positive variable of a clause (if any)
+    clauses_with_negvar = defaultdict(
+        set
+    )  # all clauses where a variable appears negatively
     for c in CLAUSES:
         posvar, negvars = formula[c]
-        score[c] = len(set(negvars))            # do not count twice repeated negative variables
+        score[c] = len(
+            set(negvars)
+        )  # do not count twice repeated negative variables
         posvar_in_clause[c] = posvar
         for v in negvars:
             clauses_with_negvar[v].add(c)
-    pool = [set() for s in range(max(score) + 1)]   # create the pool
+    pool = [set() for s in range(max(score) + 1)]  # create the pool
     for c in CLAUSES:
-        pool[score[c]].add(c)                   # pool[s] = set of clauses with score s
+        pool[score[c]].add(c)  # pool[s] = set of clauses with score s
 
     # --- solve Horn SAT formula
-    solution = set()                            # contains all variables set to True
+    solution = set()  # contains all variables set to True
     while pool[0]:
-        curr = pool[0].pop()                    # arbitrary zero score clause
+        curr = pool[0].pop()  # arbitrary zero score clause
         v = posvar_in_clause[curr]
-        if v == None:                           # formula is not satisfiable
+        if v == None:  # formula is not satisfiable
             return None
         if v in solution or curr in clauses_with_negvar[v]:
-            continue                            # clause is already satisfied
+            continue  # clause is already satisfied
         solution.add(v)
-        for c in clauses_with_negvar[v]:        # update score
+        for c in clauses_with_negvar[v]:  # update score
             pool[score[c]].remove(c)
             score[c] -= 1
-            pool[score[c]].add(c)               # change c to lower score in pool
+            pool[score[c]].add(c)  # change c to lower score in pool
     return solution
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     F = read(sys.argv[1])
     sol = horn_sat(F)
     if sol is None:

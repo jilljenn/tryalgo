@@ -26,21 +26,23 @@ def two_sat(formula):
     #                                   -- n is the number of variables
     n = max(abs(clause[p]) for p in (0, 1) for clause in formula)
     graph = [[] for node in range(2 * n)]
-    for x, y in formula:                           # x or y
-        graph[_vertex(-x)].append(_vertex(y))      # -x => y
-        graph[_vertex(-y)].append(_vertex(x))      # -y => x
+    for x, y in formula:  # x or y
+        graph[_vertex(-x)].append(_vertex(y))  # -x => y
+        graph[_vertex(-y)].append(_vertex(x))  # -y => x
     sccp = tarjan(graph)
-    comp_id = [None] * (2 * n)     # for each node the ID of its component
+    comp_id = [None] * (2 * n)  # for each node the ID of its component
     assignment = [None] * (2 * n)
     for component in sccp:
-        rep = min(component)             # representative of the component
+        rep = min(component)  # representative of the component
         for vtx in component:
             comp_id[vtx] = rep
             if assignment[vtx] is None:
                 assignment[vtx] = True
-                assignment[vtx ^ 1] = False    # complementary literal
+                assignment[vtx ^ 1] = False  # complementary literal
     for i in range(n):
         if comp_id[2 * i] == comp_id[2 * i + 1]:
-            return None                        # insatisfiable formula
+            return None  # insatisfiable formula
     return assignment[::2]
+
+
 # snip}

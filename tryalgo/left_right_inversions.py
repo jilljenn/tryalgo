@@ -6,12 +6,12 @@
 
 # snip{
 def _merge_sort(tab, tmp, rank, left, right, lo, hi):
-    if hi <= lo + 1:             # interval is empty or singleton
-        return                   # nothing to do
-    mid = lo + (hi - lo) // 2    # divide interval into [lo:mid], [mid:hi]
+    if hi <= lo + 1:  # interval is empty or singleton
+        return  # nothing to do
+    mid = lo + (hi - lo) // 2  # divide interval into [lo:mid], [mid:hi]
     _merge_sort(tab, tmp, rank, left, right, lo, mid)
     _merge_sort(tab, tmp, rank, left, right, mid, hi)
-    i = lo                       # merge both lists
+    i = lo  # merge both lists
     j = mid
     k = lo
     while k < hi:
@@ -24,7 +24,7 @@ def _merge_sort(tab, tmp, rank, left, right, lo, hi):
             left[rank[j]] += mid - i
             j += 1
         k += 1
-    for k in range(lo, hi):      # copy sorted segment into original table
+    for k in range(lo, hi):  # copy sorted segment into original table
         rank[k] = tmp[k]
 
 
@@ -39,8 +39,10 @@ def left_right_inversions(tab):
     n = len(tab)
     left = [0] * n
     right = [0] * n
-    tmp = [None] * n      # temporary table
+    tmp = [None] * n  # temporary table
     rank = list(range(n))
     _merge_sort(tab, tmp, rank, left, right, 0, n)
     return left, right
+
+
 # snip}

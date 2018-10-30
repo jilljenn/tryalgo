@@ -17,23 +17,25 @@ def next_permutation(tab):
     :complexity: O(n)
     """
     n = len(tab)
-    pivot = None                         # find pivot
+    pivot = None  # find pivot
     for i in range(n - 1):
         if tab[i] < tab[i + 1]:
             pivot = i
-    if pivot is None:                    # tab is already the last perm.
+    if pivot is None:  # tab is already the last perm.
         return False
-    for i in range(pivot + 1, n):        # find the element to swap
+    for i in range(pivot + 1, n):  # find the element to swap
         if tab[i] > tab[pivot]:
             swap = i
     tab[swap], tab[pivot] = tab[pivot], tab[swap]
     i = pivot + 1
-    j = n - 1                            # invert suffix
+    j = n - 1  # invert suffix
     while i < j:
         tab[i], tab[j] = tab[j], tab[i]
         i += 1
         j -= 1
     return True
+
+
 # snip}
 
 
@@ -46,25 +48,27 @@ def convert(word, ass):
     return retval
 
 
-def solve_word_addition(S):         # returns number of solutions
+def solve_word_addition(S):  # returns number of solutions
     n = len(S)
-    letters = sorted(list(set(''.join(S))))
-    not_zero = ''                   # letters that cannot be 0
+    letters = sorted(list(set("".join(S))))
+    not_zero = ""  # letters that cannot be 0
     for word in S:
         not_zero += word[0]
-    tab = ['@'] * (10 - len(letters)) + letters  # minimal lex permutation
+    tab = ["@"] * (10 - len(letters)) + letters  # minimal lex permutation
     count = 0
     while True:
         ass = {tab[i]: i for i in range(10)}  # dict = associative array
         if tab[0] not in not_zero:
             difference = -convert(S[n - 1], ass)  # do the addition
-            for word in S[:n - 1]:
+            for word in S[: n - 1]:
                 difference += convert(word, ass)
-            if difference == 0:                   # does it add up?
+            if difference == 0:  # does it add up?
                 count += 1
         if not next_permutation(tab):
             break
     return count
+
+
 # snip}
 
 

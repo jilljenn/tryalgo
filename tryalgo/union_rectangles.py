@@ -9,17 +9,18 @@ class Cover_query:
     """Segment tree to maintain a set of integer intervals
     and permitting to query the size of their union.
     """
+
     def __init__(self, L):
         """creates a structure, where all possible intervals
         will be included in [0, L - 1].
         """
-        assert L != []              # L is assumed sorted
+        assert L != []  # L is assumed sorted
         self.N = 1
         while self.N < len(L):
             self.N *= 2
-        self.c = [0] * (2 * self.N)         # --- covered
-        self.s = [0] * (2 * self.N)         # --- score
-        self.w = [0] * (2 * self.N)         # --- length
+        self.c = [0] * (2 * self.N)  # --- covered
+        self.s = [0] * (2 * self.N)  # --- score
+        self.w = [0] * (2 * self.N)  # --- length
         for i in range(len(L)):
             self.w[self.N + i] = L[i]
         for p in range(self.N - 1, 0, -1):
@@ -37,21 +38,24 @@ class Cover_query:
         self._change(1, 0, self.N, i, k, delta)
 
     def _change(self, p, start, span, i, k, delta):
-        if start + span <= i or k <= start:   # --- disjoint
+        if start + span <= i or k <= start:  # --- disjoint
             return
         if i <= start and start + span <= k:  # --- included
             self.c[p] += delta
         else:
             self._change(2 * p, start, span // 2, i, k, delta)
-            self._change(2 * p + 1, start + span // 2, span // 2,
-                         i, k, delta)
+            self._change(
+                2 * p + 1, start + span // 2, span // 2, i, k, delta
+            )
         if self.c[p] == 0:
-            if p >= self.N:                   # --- leaf
+            if p >= self.N:  # --- leaf
                 self.s[p] = 0
             else:
                 self.s[p] = self.s[2 * p] + self.s[2 * p + 1]
         else:
             self.s[p] = self.w[p]
+
+
 # snip}
 
 
@@ -73,7 +77,7 @@ def union_rectangles(R):
         assert x1 <= x2 and y1 <= y2
         X.append(x1)
         X.append(x2)
-        Y.append((y1, +1, j))    # generate events
+        Y.append((y1, +1, j))  # generate events
         Y.append((y2, -1, j))
     X.sort()
     Y.sort()
@@ -90,4 +94,6 @@ def union_rectangles(R):
         k = X2i[x2]
         C.change(i, k, delta)
     return area
+
+
 # snip}

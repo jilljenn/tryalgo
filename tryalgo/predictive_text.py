@@ -12,13 +12,13 @@ t9 = "22233344455566677778889999"
 
 def letter_to_digit(x):
     """:returns: the digit correspondence for letter x"""
-    assert 'a' <= x <= 'z'
-    return t9[ord(x) - ord('a')]
+    assert "a" <= x <= "z"
+    return t9[ord(x) - ord("a")]
 
 
 def code_word(word):
     """:returns: the digit correspondence for given word"""
-    return ''.join(map(letter_to_digit, word))
+    return "".join(map(letter_to_digit, word))
 
 
 def predictive_text(dic):
@@ -29,7 +29,7 @@ def predictive_text(dic):
              a corresponding word from the dictionary with highest weight
     :complexity: linear in total word length
     """
-    freq = {}   # freq[p] = total weight of words having prefix p
+    freq = {}  # freq[p] = total weight of words having prefix p
     for word, weight in dic:
         prefix = ""
         for x in word:
@@ -53,4 +53,6 @@ def propose(prop, seq):
         return prop[seq]
     else:
         return None
+
+
 # snip}

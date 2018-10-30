@@ -43,19 +43,21 @@ class Cell:
     def unhide_horiz(self):
         self.R.L = self
         self.L.R = self
+
+
 # snip}
 
 
 # snip{ liens-dansants-cover
-def cover(c):            # c = heading cell of the column to cover
-    assert c.C is None   # must be a heading cell
+def cover(c):  # c = heading cell of the column to cover
+    assert c.C is None  # must be a heading cell
     c.hide_horiz()
     i = c.D
     while i != c:
         j = i.R
         while j != i:
             j.hide_verti()
-            j.C.S -= 1   # one fewer entry in this column
+            j.C.S -= 1  # one fewer entry in this column
             j = j.R
         i = i.D
 
@@ -66,11 +68,13 @@ def uncover(c):
     while i != c:
         j = i.L
         while j != i:
-            j.C.S += 1   # one more entry in this column
+            j.C.S += 1  # one more entry in this column
             j.unhide_verti()
             j = j.L
         i = i.U
     c.unhide_horiz()
+
+
 # snip}
 
 
@@ -90,7 +94,7 @@ def dancing_links(size_universe, sets):
     for i in range(len(sets)):
         row = None
         for j in sets[i]:
-            col[j].S += 1               # one more entry in this column
+            col[j].S += 1  # one more entry in this column
             row = Cell(row, col[j], i, col[j])
     sol = []
     if solve(header, sol):
@@ -100,25 +104,25 @@ def dancing_links(size_universe, sets):
 
 
 def solve(header, sol):
-    if header.R == header:     # the instance is empty => solution found
+    if header.R == header:  # the instance is empty => solution found
         return True
-    c = None                   # find the least covered column
+    c = None  # find the least covered column
     j = header.R
     while j != header:
         if c is None or j.S < c.S:
             c = j
         j = j.R
-    cover(c)                   # cover this column
-    r = c.D                    # try every row
+    cover(c)  # cover this column
+    r = c.D  # try every row
     while r != c:
         sol.append(r.S)
-        j = r.R                # cover elements in set r
+        j = r.R  # cover elements in set r
         while j != r:
             cover(j.C)
             j = j.R
         if solve(header, sol):
             return True
-        j = r.L                # uncover
+        j = r.L  # uncover
         while j != r:
             uncover(j.C)
             j = j.L
@@ -126,4 +130,6 @@ def solve(header, sol):
         r = r.D
     uncover(c)
     return False
+
+
 # snip}

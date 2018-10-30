@@ -11,9 +11,10 @@ def augment(u, bigraph, visit, match):
     for v in bigraph[u]:
         if not visit[v]:
             visit[v] = True
-            if match[v] is None or augment(match[v], bigraph,
-                                           visit, match):
-                match[v] = u       # found an augmenting path
+            if match[v] is None or augment(
+                match[v], bigraph, visit, match
+            ):
+                match[v] = u  # found an augmenting path
                 return True
     return False
 
@@ -27,11 +28,13 @@ def max_bipartite_matching(bigraph):
     :returns: matching list, match[v] == u iff (u, v) in matching
     :complexity: `O(|V|*|E|)`
     """
-    n = len(bigraph)               # same domain for U and V
+    n = len(bigraph)  # same domain for U and V
     match = [None] * n
     for u in range(n):
         augment(u, bigraph, [False] * n, match)
     return match
+
+
 # snip}
 
 
@@ -56,4 +59,6 @@ def max_bipartite_matching2(bigraph):
     for u in range(nU):
         augment(u, bigraph, [False] * nV, match)
     return match
+
+
 # snip}

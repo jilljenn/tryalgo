@@ -55,7 +55,7 @@ def intervals_containing(t, p):
     :complexity: O(log n + m), where n is the number of intervals in t,
                 and m the length of the returned list
     """
-    INF = float('inf')
+    INF = float("inf")
     if t is None:
         return []
     if p < t.center:
@@ -69,4 +69,6 @@ def intervals_containing(t, p):
         for j in range(i, len(t.by_high)):
             retval.append(t.by_high[j][1])
     return retval
+
+
 # snip}

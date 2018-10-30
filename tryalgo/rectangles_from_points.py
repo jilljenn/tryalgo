@@ -27,4 +27,6 @@ def rectangles_from_points(S):
             else:
                 pairs[sign] = [(i, j)]
     return answ
+
+
 # snip}

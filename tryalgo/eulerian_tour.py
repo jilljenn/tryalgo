@@ -34,6 +34,8 @@ def eulerian_tour_undirected(graph):
         while R:
             Q.append(R.pop())
     return P
+
+
 # snip}
 
 
@@ -61,6 +63,8 @@ def eulerian_tour_directed(graph):
         while R:
             Q.append(R.pop())
     return P
+
+
 # snip}
 
 
@@ -75,11 +79,11 @@ def write_cycle(filename, graph, cycle, directed):
        :complexity: `O(|V|^2 + |E|)`
     """
     n = len(graph)
-    weight = [[float('inf')] * n for _ in range(n)]
+    weight = [[float("inf")] * n for _ in range(n)]
     for r in range(1, len(cycle)):
-        weight[cycle[r-1]][cycle[r]] = r
+        weight[cycle[r - 1]][cycle[r]] = r
         if not directed:
-            weight[cycle[r]][cycle[r-1]] = r
+            weight[cycle[r]][cycle[r - 1]] = r
     write_graph(filename, graph, arc_label=weight, directed=directed)
 
 
@@ -92,8 +96,12 @@ def random_eulerien_graph(n):
     """
     graphe = [[] for _ in range(n)]
     for v in range(n - 1):
-        noeuds = random.sample(range(v + 1, n), random.choice(
-            range(0 if len(graphe[v]) % 2 == 0 else 1, (n - v), 2)))
+        noeuds = random.sample(
+            range(v + 1, n),
+            random.choice(
+                range(0 if len(graphe[v]) % 2 == 0 else 1, (n - v), 2)
+            ),
+        )
         graphe[v].extend(noeuds)
         for w in graphe[v]:
             if w > v:
@@ -109,11 +117,11 @@ def is_eulerian_tour(graph, tour):
        :returns: test if tour is eulerian
        :complexity: `O(|V|*|E|)` under the assumption that set membership is in constant time
     """
-    m = len(tour)-1
-    arcs = set((tour[i], tour[i+1]) for i in range(m))
+    m = len(tour) - 1
+    arcs = set((tour[i], tour[i + 1]) for i in range(m))
     if len(arcs) != m:
         return False
-    for (u,v) in arcs:
+    for (u, v) in arcs:
         if v not in graph[u]:
             return False
     return True

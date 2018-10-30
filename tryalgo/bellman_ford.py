@@ -18,7 +18,7 @@ def bellman_ford(graph, weight, source=0):
     :complexity: `O(|V|*|E|)`
     """
     n = len(graph)
-    dist = [float('inf')] * n
+    dist = [float("inf")] * n
     prec = [None] * n
     dist[source] = 0
     for nb_iterations in range(n):
@@ -30,7 +30,9 @@ def bellman_ford(graph, weight, source=0):
                     dist[neighbor] = alt
                     prec[neighbor] = node
                     changed = True
-        if not changed:                   # fixed point
+        if not changed:  # fixed point
             return dist, prec, False
     return dist, prec, True
+
+
 # snip}

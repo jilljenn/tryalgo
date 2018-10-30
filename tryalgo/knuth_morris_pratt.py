@@ -14,7 +14,7 @@ def knuth_morris_pratt(s, t):
     :returns: index i such that s[i: i + len(t)] == t, or -1
     :complexity: O(len(s) + len(t))
     """
-    assert t != ''
+    assert t != ""
     len_s = len(s)
     len_t = len(t)
     r = [0] * len_t
@@ -32,4 +32,6 @@ def knuth_morris_pratt(s, t):
         if j == len_t:
             return i - len_t + 1
     return -1
+
+
 # snip}

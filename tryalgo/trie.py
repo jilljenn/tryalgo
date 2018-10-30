@@ -6,7 +6,7 @@
 # Don't write a Trie class otherwise you cannot represent leaves with None
 
 # snip{
-from string import ascii_letters    # in Python 2 one would import letters
+from string import ascii_letters  # in Python 2 one would import letters
 
 
 class Trie_Node:
@@ -53,7 +53,7 @@ def spell_check(T, w):
     """
     assert T is not None
     dist = 0
-    while True:   # Try increasing distances
+    while True:  # Try increasing distances
         u = search(T, dist, w)
         if u is not None:
             return u
@@ -70,17 +70,19 @@ def search(T, dist, w, i=0):
             return None
     if T is None:
         return None
-    f = search(T.s[w[i]], dist, w, i + 1)       # matching
+    f = search(T.s[w[i]], dist, w, i + 1)  # matching
     if f is not None:
         return w[i] + f
     if dist == 0:
         return None
     for c in ascii_letters:
-        f = search(T.s[c], dist - 1, w, i)      # insertion
+        f = search(T.s[c], dist - 1, w, i)  # insertion
         if f is not None:
             return c + f
         f = search(T.s[c], dist - 1, w, i + 1)  # substitution
         if f is not None:
             return c + f
-    return search(T, dist - 1, w, i + 1)        # deletion
+    return search(T, dist - 1, w, i + 1)  # deletion
+
+
 # snip}

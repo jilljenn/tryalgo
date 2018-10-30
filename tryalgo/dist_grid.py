@@ -17,23 +17,25 @@ def dist_grid(grid, source, target=None):
     """
     rows = len(grid)
     cols = len(grid[0])
-    dirs = [(0, +1, '>'), (0, -1, '<'), (+1, 0, 'v'), (-1, 0, '^')]
+    dirs = [(0, +1, ">"), (0, -1, "<"), (+1, 0, "v"), (-1, 0, "^")]
     i, j = source
-    grid[i][j] = 's'
+    grid[i][j] = "s"
     Q = deque()
     Q.append(source)
     while Q:
         i1, j1 = Q.popleft()
-        for di, dj, symbol in dirs:   # explore all directions
+        for di, dj, symbol in dirs:  # explore all directions
             i2 = i1 + di
             j2 = j1 + dj
             if not (0 <= i2 and i2 < rows and 0 <= j2 and j2 < cols):
-                continue              # reached the bounds of the grid
-            if grid[i2][j2] != ' ':   # inaccessible or already visited
+                continue  # reached the bounds of the grid
+            if grid[i2][j2] != " ":  # inaccessible or already visited
                 continue
-            grid[i2][j2] = symbol     # mark visit
+            grid[i2][j2] = symbol  # mark visit
             if (i2, j2) == target:
-                grid[i2][j2] = 't'    # goal is reached
+                grid[i2][j2] = "t"  # goal is reached
                 return
             Q.append((i2, j2))
+
+
 # snip}

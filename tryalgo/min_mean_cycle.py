@@ -15,8 +15,8 @@ def min_mean_cycle(graph, weight, start=0):
               or None if there is no cycle from start
     :complexity:  `O(|V|*|E|)`
     """
-    INF = float('inf')
-    n = len(graph)                  # compute distances
+    INF = float("inf")
+    n = len(graph)  # compute distances
     dist = [[INF] * n]
     prec = [[None] * n]
     dist[0][start] = 0
@@ -38,14 +38,14 @@ def min_mean_cycle(graph, weight, start=0):
         for k in range(n):
             alt = (dist[n][node] - dist[k][node]) / float(n - k)
             # do not divide by float(n-k) => cycle of minimal total weight
-            if alt >= valmax:     # with >= we get simple cycles
+            if alt >= valmax:  # with >= we get simple cycles
                 valmax = alt
                 argmax = k
         if argmax is not None and valmax < valmin:
             valmin = valmax
             argmin = (node, argmax)
     #                               -- extract cycle
-    if valmin == INF:             # -- there is no cycle
+    if valmin == INF:  # -- there is no cycle
         return None
     C = []
     node, k = argmin
@@ -53,4 +53,6 @@ def min_mean_cycle(graph, weight, start=0):
         C.append(node)
         node = prec[l][node]
     return C[::-1], valmin
+
+
 # snip}

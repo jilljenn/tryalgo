@@ -18,48 +18,50 @@ def cut_nodes_edges(graph):
     time = 0
     num = [None] * n
     low = [n] * n
-    father = [None] * n        # father[v] = None if root else father of v
+    father = [None] * n  # father[v] = None if root else father of v
     critical_childs = [0] * n  # c_c[u] = #childs v s.t. low[v] >= num[u]
     times_seen = [-1] * n
     for start in range(n):
-        if times_seen[start] == -1:               # init DFS path
+        if times_seen[start] == -1:  # init DFS path
             times_seen[start] = 0
             to_visit = [start]
             while to_visit:
                 node = to_visit[-1]
-                if times_seen[node] == 0:         # start processing
+                if times_seen[node] == 0:  # start processing
                     num[node] = time
                     time += 1
-                    low[node] = float('inf')
+                    low[node] = float("inf")
                 children = graph[node]
                 if times_seen[node] == len(children):  # end processing
                     to_visit.pop()
-                    up = father[node]            # propagate low to father
+                    up = father[node]  # propagate low to father
                     if up is not None:
                         low[up] = min(low[up], low[node])
                         if low[node] >= num[up]:
                             critical_childs[up] += 1
                 else:
-                    child = children[times_seen[node]]   # next arrow
+                    child = children[times_seen[node]]  # next arrow
                     times_seen[node] += 1
-                    if times_seen[child] == -1:   # not visited yet
-                        father[child] = node      # link arrow
+                    if times_seen[child] == -1:  # not visited yet
+                        father[child] = node  # link arrow
                         times_seen[child] = 0
-                        to_visit.append(child)    # (below) back arrow
+                        to_visit.append(child)  # (below) back arrow
                     elif num[child] < num[node] and father[node] != child:
                         low[node] = min(low[node], num[child])
     cut_edges = []
-    cut_nodes = []                                # extract solution
+    cut_nodes = []  # extract solution
     for node in range(n):
-        if father[node] is None:                  # characteristics
+        if father[node] is None:  # characteristics
             if critical_childs[node] >= 2:
                 cut_nodes.append(node)
-        else:                                     # internal nodes
+        else:  # internal nodes
             if critical_childs[node] >= 1:
                 cut_nodes.append(node)
             if low[node] >= num[node]:
                 cut_edges.append((father[node], node))
     return cut_nodes, cut_edges
+
+
 # snip}
 
 
@@ -91,12 +93,12 @@ def cut_nodes_edges2(graph):
         if marked[n] != NOT:
             return marked[n]
         marked[n] = prof
-        m = float('inf')
+        m = float("inf")
         count = 0  # useful only for prof == 0
         for v in graph[n]:
             if marked[v] != FIN and marked[v] != prof - 1:
                 count += 1
-                r = DFS(v, prof+1)
+                r = DFS(v, prof + 1)
                 if r <= prof:
                     edges.discard(tuple(sorted((n, v))))
                 if prof and r >= prof:  # only if we are not at root
@@ -107,6 +109,7 @@ def cut_nodes_edges2(graph):
             nodes.add(n)
         marked[n] = FIN
         return m
+
     for r in range(N):
         DFS(r)  # we can count connected components by nb += DFS(r)
     setrecursionlimit(recursionlimit)

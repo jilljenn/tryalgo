@@ -12,7 +12,7 @@ RIGHT = 3
 # orientations None:? 0:/ 1:\
 
 # destination UP          LEFT         DOWN           RIGHT
-reflex = [[RIGHT, LEFT], [DOWN, UP],  [LEFT, RIGHT], [UP, DOWN]]
+reflex = [[RIGHT, LEFT], [DOWN, UP], [LEFT, RIGHT], [UP, DOWN]]
 
 
 def laser_mirrors(rows, cols, mir):
@@ -28,28 +28,32 @@ def laser_mirrors(rows, cols, mir):
     # build structures
     n = len(mir)
     orien = [None] * (n + 2)
-    orien[n] = 0      # arbitrary orientations
+    orien[n] = 0  # arbitrary orientations
     orien[n + 1] = 0
     succ = [[None for direc in range(4)] for i in range(n + 2)]
     L = [(mir[i][0], mir[i][1], i) for i in range(n)]
-    L.append((0, -1, n))                  # enter
-    L.append((0, cols, n + 1))            # exit
+    L.append((0, -1, n))  # enter
+    L.append((0, cols, n + 1))  # exit
     last_r, last_i = None, None
-    for (r, c, i) in sorted(L):           # sweep by row
+    for (r, c, i) in sorted(L):  # sweep by row
         if last_r == r:
             succ[i][LEFT] = last_i
             succ[last_i][RIGHT] = i
         last_r, last_i = r, i
     last_c = None
-    for (r, c, i) in sorted(L, key=lambda tup_rci: (tup_rci[1], tup_rci[0])):
-        if last_c == c:                   # sweep by column
+    for (r, c, i) in sorted(
+        L, key=lambda tup_rci: (tup_rci[1], tup_rci[0])
+    ):
+        if last_c == c:  # sweep by column
             succ[i][UP] = last_i
             succ[last_i][DOWN] = i
         last_c, last_i = c, i
-    if solve(succ, orien, n, RIGHT):      # exploration
+    if solve(succ, orien, n, RIGHT):  # exploration
         return orien[:n]
     else:
         return None
+
+
 # snip}
 
 
@@ -65,11 +69,11 @@ def solve(succ, orien, i, direc):
     """
     assert orien[i] is not None
     j = succ[i][direc]
-    if j is None:          # basic case
+    if j is None:  # basic case
         return False
     if j == len(orien) - 1:
         return True
-    if orien[j] is None:   # try both orientations
+    if orien[j] is None:  # try both orientations
         for x in [0, 1]:
             orien[j] = x
             if solve(succ, orien, j, reflex[direc][x]):
@@ -78,4 +82,6 @@ def solve(succ, orien, i, direc):
         return False
     else:
         return solve(succ, orien, j, reflex[direc][orien[j]])
+
+
 # snip}

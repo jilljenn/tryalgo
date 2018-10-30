@@ -9,7 +9,7 @@ from random import randint
 
 
 # snip{
-from math import hypot   # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
+from math import hypot  # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
 from random import shuffle
 
 __all__ = ["closest_points"]
@@ -27,7 +27,7 @@ def cell(point, pas):
 
 
 def improve(S, d):
-    G = {}            # grid
+    G = {}  # grid
     for p in S:
         a, b = cell(p, d / 2)
         for a1 in range(a - 2, a + 3):
@@ -62,6 +62,8 @@ def closest_points(S):
         else:
             break
     return p, q
+
+
 # snip}
 
 
@@ -73,8 +75,10 @@ if __name__ == "__main__":
 
     def tikz_polygone(S):
         for i in range(len(S)):
-            print('\\draw (%f, %f) -- (%f, %f);' % (S[i - 1] + S[i]))
+            print("\\draw (%f, %f) -- (%f, %f);" % (S[i - 1] + S[i]))
 
-    S = [(randint(0, 400) / 100, randint(0, 400) / 100) for _ in range(32)]
+    S = [
+        (randint(0, 400) / 100, randint(0, 400) / 100) for _ in range(32)
+    ]
     tikz_points(S)
     tikz_polygone(closest_points(S))

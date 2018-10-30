@@ -4,7 +4,6 @@
 # jill-jenn vie et christoph durr - 2014-2018
 
 
-
 # snip{
 from collections import deque
 
@@ -38,4 +37,6 @@ def gale_shapley(men, women):
             singles.put(spouse[j])  # sorry for spouse[j]
             spouse[j] = i
     return spouse
+
+
 # snip}

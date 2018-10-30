@@ -21,4 +21,6 @@ def three_partition(x):
             if A & B == 0 and f[A] == f[B] and 3 * f[A] == f[-1]:
                 return (A, B, ((1 << len(x)) - 1) ^ A ^ B)
     return None
+
+
 # snip}

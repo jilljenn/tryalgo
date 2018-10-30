@@ -7,9 +7,10 @@
 from random import randint
 from sys import stdin
 
-#snip}
+# snip}
 __all__ = ["freivalds"]
-#snip{
+# snip{
+
 
 def readint():
     return int(stdin.readline())

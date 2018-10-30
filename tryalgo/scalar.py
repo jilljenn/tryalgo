@@ -16,4 +16,6 @@ def min_scalar_prod(x, y):
     x = sorted(x)  # make copies
     y = sorted(y)  # to save arguments
     return sum(x[i] * y[-i - 1] for i in range(len(x)))
+
+
 # snip}

@@ -28,6 +28,8 @@ def maximum_border_length(w):
         else:
             L[i] = 0
     return L
+
+
 # snip}
 
 
@@ -44,4 +46,6 @@ def powerstring_by_border(u):
     if n % (n - L[-1]) == 0:
         return n // (n - L[-1])
     return 1
+
+
 # snip}
