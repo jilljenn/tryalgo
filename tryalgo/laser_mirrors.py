@@ -63,7 +63,7 @@ def solve(succ, orien, i, direc):
     :param succ: succ[i][direc]=succ mirror reached
                  when leaving i in direction direc
     """
-    assert orien[i] != None
+    assert orien[i] is not None
     j = succ[i][direc]
     if j is None:          # basic case
         return False

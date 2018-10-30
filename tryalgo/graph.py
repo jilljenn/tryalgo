@@ -175,7 +175,7 @@ def tree_adj_to_prec(graph, root=0):
 
 
 # snip{ add_reverse_arcs
-def add_reverse_arcs(graph, capac = None):
+def add_reverse_arcs(graph, capac=None):
     """Utility function for flow algorithms that need for every arc (u,v),
     the existence of an (v,u) arc, by default with zero capacity.
     graph can be in adjacency list, possibly with capacity matrix capac.

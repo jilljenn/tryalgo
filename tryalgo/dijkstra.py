@@ -48,8 +48,8 @@ def dijkstra(graph, weight, source=0, target=None):
 # snip{ dijkstra_update_heap
 from tryalgo.our_heap import OurHeap
 
-# snip}
 
+# snip}
 
 # snip{ dijkstra_update_heap
 def dijkstra_update_heap(graph, weight, source=0, target=None):

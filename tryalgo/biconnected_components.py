@@ -51,7 +51,7 @@ def cut_nodes_edges(graph):
     cut_edges = []
     cut_nodes = []                                # extract solution
     for node in range(n):
-        if father[node] == None:                  # characteristics
+        if father[node] is None:                  # characteristics
             if critical_childs[node] >= 2:
                 cut_nodes.append(node)
         else:                                     # internal nodes

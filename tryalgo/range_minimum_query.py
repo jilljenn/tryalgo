@@ -56,8 +56,10 @@ class RangeMinQuery:
             return self.INF
         if i <= start and start + span <= k:       # included intervals
             return self.s[p]
-        left = self._range_min(2*p,      start,             span // 2, i, k)
-        right = self._range_min(2*p + 1, start + span // 2, span // 2, i, k)
+        left = self._range_min(2 * p, start, span // 2,
+                               i, k)
+        right = self._range_min(2 * p + 1, start + span // 2, span // 2,
+                                i, k)
         return min(left, right)
 # snip}
 

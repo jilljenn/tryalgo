@@ -19,7 +19,7 @@ def arithm_expr_target(x, target):
     for i in range(n):
         expr[1 << i] = {x[i]: str(x[i])}   # store singletons
     all_ = (1 << n) - 1
-    for S in range(3, all_ + 1): # 3: first number that isn't a power of 2
+    for S in range(3, all_ + 1):  # 3: first num that isn't a power of 2
         if expr[S] != {}:
             continue            # in that case S is a power of 2
         for L in range(1, S):   # decompose set S into non-empty sets L, R

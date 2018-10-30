@@ -22,16 +22,16 @@ def arithm_expr_eval(cell, expr):
     """
     if isinstance(expr, tuple):
         (left, op, right) = expr
-        l = arithm_expr_eval(cell, left)
-        r = arithm_expr_eval(cell, right)
+        lval = arithm_expr_eval(cell, left)
+        rval = arithm_expr_eval(cell, right)
         if op == '+':
-            return l + r
+            return lval + rval
         if op == '-':
-            return l - r
+            return lval - rval
         if op == '*':
-            return l * r
+            return lval * rval
         if op == '/':
-            return l // r
+            return lval // rval
     elif isinstance(expr, int):
         return expr
     else:

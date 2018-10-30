@@ -101,7 +101,7 @@ def dfs_grid(grid, i, j, mark='X', free='.'):
         for i2, j2 in [(i1 + 1, j1), (i1, j1 + 1),
                        (i1 - 1, j1), (i1, j1 - 1)]:
             if (0 <= i2 < height and 0 <= j2 < width and
-                grid[i2][j2] == free):
+                    grid[i2][j2] == free):
                 grid[i2][j2] = mark  # mark path
                 to_visit.append((i2, j2))
 # snip}

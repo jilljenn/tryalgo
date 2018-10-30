@@ -13,18 +13,33 @@ N = 3        # global constants
 N2 = N * N
 N4 = N2 * N2
 
+
 # sets
 def assignation(r, c, v): return r * N4 + c * N2 + v
 
+
 def row(a): return a // N4
+
+
 def col(a): return (a // N2) % N2
+
+
 def val(a): return a % N2
+
+
 def blk(a): return (row(a) // N) * N + col(a) // N
 
-# les éléments à couvrir
+
+# elements to cover
 def rc(a): return row(a) * N2 + col(a)
+
+
 def rv(a): return row(a) * N2 + val(a) + N4
+
+
 def cv(a): return col(a) * N2 + val(a) + 2 * N4
+
+
 def bv(a): return blk(a) * N2 + val(a) + 3 * N4
 
 

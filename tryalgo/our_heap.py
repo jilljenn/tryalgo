@@ -65,7 +65,7 @@ class OurHeap:
             left = 2 * i       # climb down the tree
             right = left + 1
             if (right < n and self.heap[right] < x and
-                              self.heap[right] < self.heap[left]):
+                    self.heap[right] < self.heap[left]):
                 self.heap[i] = self.heap[right]
                 self.rank[self.heap[right]] = i   # go back up right child
                 i = right
