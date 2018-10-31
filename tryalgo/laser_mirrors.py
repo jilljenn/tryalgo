@@ -41,7 +41,7 @@ def laser_mirrors(rows, cols, mir):
             succ[last_i][RIGHT] = i
         last_r, last_i = r, i
     last_c = None
-    for (r, c, i) in sorted(L, key=lambda tup_rci: (tup_rci[1], tup_rci[0])):
+    for (r, c, i) in sorted(L, key=lambda rci: (rci[1], rci[0])):
         if last_c == c:                   # sweep by column
             succ[i][UP] = last_i
             succ[last_i][DOWN] = i
