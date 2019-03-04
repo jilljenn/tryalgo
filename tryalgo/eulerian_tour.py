@@ -107,13 +107,14 @@ def is_eulerian_tour(graph, tour):
        :param graph: directed graph in listlist format, cannot be listdict
        :param tour: vertex list
        :returns: test if tour is eulerian
-       :complexity: `O(|V|*|E|)` under the assumption that set membership is in constant time
+       :complexity: `O(|V|*|E|)` under the assumption that
+       set membership is in constant time
     """
     m = len(tour)-1
     arcs = set((tour[i], tour[i+1]) for i in range(m))
     if len(arcs) != m:
         return False
-    for (u,v) in arcs:
+    for (u, v) in arcs:
         if v not in graph[u]:
             return False
     return True

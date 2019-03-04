@@ -31,7 +31,8 @@ class Cover_query:
         return self.s[1]
 
     def change(self, i, k, delta):
-        """when delta = +1, adds an interval [i, k], when delta = -1, removes it
+        """when delta = +1, adds an interval [i, k],
+        when delta = -1, removes it
         :complexity: O(log L)
         """
         self._change(1, 0, self.N, i, k, delta)

@@ -111,13 +111,14 @@ def write_graph(dotfile, graph, directed=False,
             for v in graph[u]:
                 if not directed and u > v:
                     continue   # don't show twice the edge
-                if arc_label and arc_label[u][v] == None:
+                if arc_label and arc_label[u][v] is None:
                     continue   # suppress arcs with no label
                 if directed:
                     arc = "%d -> %d " % (u, v)
                 else:
                     arc = "%d -- %d " % (u, v)
-                if arc_mark and ( (v,u) in arc_mark or (not directed and (u,v) in arc_mark) ):
+                if arc_mark and ((v, u) in arc_mark or
+                                 (not directed and (u, v) in arc_mark)):
                     pen = 'color="red"'
                 else:
                     pen = ""
@@ -137,7 +138,8 @@ def write_graph(dotfile, graph, directed=False,
 def tree_prec_to_adj(prec, root=0):
     """Transforms a tree given as predecessor table into adjacency list form
 
-    :param prec: predecessor table representing a tree, prec[u] == v iff u is successor of v,
+    :param prec: predecessor table representing a tree, prec[u] == v iff u is
+    successor of v,
                  except for the root where prec[root] == root
     :param root: root vertex of the tree
     :returns: undirected graph in listlist representation
@@ -182,7 +184,8 @@ def add_reverse_arcs(graph, capac=None):
     or graph can be in adjacency dictionary, then capac parameter is ignored.
 
     :param capac: arc capacity matrix
-    :param graph: in listlist representation, or in listdict representation, in this case capac is ignored
+    :param graph: in listlist representation, or in listdict representation,
+    in this case capac is ignored
     :complexity: linear
     :returns: nothing, but graph is modified
     """
@@ -225,7 +228,8 @@ def matrix_to_listlist(weight):
     encoding the directed graph corresponding to the entries of the matrix
     different from None
 
-    :param weight: squared weight matrix, weight[u][v] != None iff arc (u,v) exists
+    :param weight: squared weight matrix, weight[u][v] != None iff arc (u, v)
+    exists
     :complexity: linear
     :returns: the unweighted directed graph in the listlist representation,
                        listlist[u] contains all v for which arc (u,v) exists.
@@ -233,7 +237,7 @@ def matrix_to_listlist(weight):
     graph = [[] for _ in range(len(weight))]
     for u in range(len(graph)):
         for v in range(len(graph)):
-            if weight[u][v] != None:
+            if weight[u][v] is not None:
                 graph[u].append(v)
     return graph
 
@@ -249,9 +253,9 @@ def listlist_and_matrix_to_listdict(graph, weight=None):
     :complexity: linear
     """
     if weight:
-        return [{v:weight[u][v] for v in graph[u]} for u in range(len(graph))]
+        return [{v: weight[u][v] for v in graph[u]} for u in range(len(graph))]
     else:
-        return [{v:None for v in graph[u]} for u in range(len(graph))]
+        return [{v: None for v in graph[u]} for u in range(len(graph))]
 
 
 def listdict_to_listlist_and_matrix(sparse):
@@ -279,7 +283,8 @@ def dictdict_to_listdict(dictgraph):
     :param dictgraph: dictionary mapping vertices to dictionary
            such that dictgraph[u][v] is weight of arc (u,v)
     :complexity: linear
-    :returns: tuple with graph (listdict), name_to_node (dict), node_to_name (list)
+    :returns: tuple with graph (listdict), name_to_node (dict),
+    node_to_name (list)
     """
     n = len(dictgraph)                            # vertices
     node_to_name = [name for name in dictgraph]   # bijection indices <-> names
@@ -310,7 +315,7 @@ def extract_path(prec, v):
     while v is not None:
         L.append(v)
         v = prec[v]
-        assert v not in L   # prevent infinite loops for a bad formed table prec
+        assert v not in L  # prevent infinite loops for a bad formed table prec
     return L[::-1]
 
 
@@ -326,7 +331,7 @@ def make_flow_labels(graph, flow, capac):
     :returns: listdic graph representation, with the arc label strings
     """
     V = range(len(graph))
-    arc_label = [{v:"" for v in graph[u]} for u in V]
+    arc_label = [{v: "" for v in graph[u]} for u in V]
     for u in V:
         for v in graph[u]:
             if flow[u][v] >= 0:

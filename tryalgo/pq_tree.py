@@ -137,14 +137,14 @@ class PQ_tree:
 
     def reduce(self, S):
         queue = deque(self.leafs)
-        cleanup = []                        # we don't need to cleanup leafs
+        cleanup = []                      # we don't need to cleanup leafs
         is_key_node = False
-        while queue and not is_key_node:    # while there are nodes to be processed
+        while queue and not is_key_node:  # while there are nodes to be processed
             x = queue.popleft()
             is_key_node = (x.full_leafs == len(S))
-            x.mark = PARTIAL                # default mark
+            x.mark = PARTIAL              # default mark
             if x.shape == P_shape:
-                E = []                      # group descendants according to marks
+                E = []                    # group descendants according to marks
                 F = []
                 P = []
                 for y in x.sons:
@@ -230,14 +230,14 @@ class PQ_tree:
                 else:
                     x.mark = EMPTY
                     x.full_leafs = 0
-            if not is_key_node:                              # propagate node processing
+            if not is_key_node:                      # propagate node processing
                 z = x.parent
-                z.full_leafs += x.full_leafs                 # cumulate bottom up full leaf numbers
+                z.full_leafs += x.full_leafs         # cumulate bottom up full leaf numbers
                 if z.processed_sons == 0:
-                    cleanup.append(z)                        # first time considered
+                    cleanup.append(z)                # first time considered
                 z.processed_sons += 1
                 if z.processed_sons == len(z.sons):
-                    queue.append(z)                          # otherwise prune tree at z
+                    queue.append(z)                  # otherwise prune tree at z
         for x in cleanup:
             x.full_leafs = 0
             x.processed_sons = 0

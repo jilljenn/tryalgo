@@ -3,7 +3,8 @@
 # louis abraham - 2017-2018
 
 # Inspired by https://kunigami.blog/2012/09/25/skip-lists-in-python/
-# count contains the gap between the positions (https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
+# count contains the gap between the positions
+# (https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
 
 from __future__ import print_function
 from collections import namedtuple

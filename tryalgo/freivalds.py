@@ -11,6 +11,7 @@ from sys import stdin
 __all__ = ["freivalds"]
 #snip{
 
+
 def readint():
     return int(stdin.readline())
 
