@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+"""\
+Setup file
+"""
 
 from distutils.core import setup
 
