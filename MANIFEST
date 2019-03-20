@@ -21,7 +21,6 @@ tryalgo/dilworth.py
 tryalgo/dinic.py
 tryalgo/dist_grid.py
 tryalgo/edmonds_karp.py
-tryalgo/eratosthene.py
 tryalgo/eulerian_tour.py
 tryalgo/fast_exponentiation.py
 tryalgo/fenwick.py
@@ -30,7 +29,6 @@ tryalgo/ford_fulkerson.py
 tryalgo/freivalds.py
 tryalgo/gale_shapley.py
 tryalgo/gauss_jordan.py
-tryalgo/girth.py
 tryalgo/graph.py
 tryalgo/graph01.py
 tryalgo/horn_sat.py
@@ -62,7 +60,9 @@ tryalgo/our_queue.py
 tryalgo/partition_refinement.py
 tryalgo/permutation_rank.py
 tryalgo/polygon.py
+tryalgo/pq_tree.py
 tryalgo/predictive_text.py
+tryalgo/primes.py
 tryalgo/rabin_karp.py
 tryalgo/range_minimum_query.py
 tryalgo/rectangles_from_grid.py
@@ -70,6 +70,8 @@ tryalgo/rectangles_from_histogram.py
 tryalgo/rectangles_from_points.py
 tryalgo/roman_numbers.py
 tryalgo/scalar.py
+tryalgo/shortest_cycle.py
+tryalgo/skip_list.py
 tryalgo/strongly_connected_components.py
 tryalgo/subsetsum.py
 tryalgo/subsetsum_divide.py

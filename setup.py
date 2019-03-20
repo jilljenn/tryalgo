@@ -10,7 +10,7 @@ setup(
     author='Jill-Jênn Vie and Christoph Dürr',
     author_email='christoph.durr@lip6.fr',
     license='MIT',
-    url='http://pythonhosted.org/tryalgo/',
+    url='https://jilljenn.github.io/tryalgo/',
     keywords='algorithms data-structures programming competition',
     packages=['tryalgo'],
     classifiers=[

@@ -1,14 +1,18 @@
 
 # Changelog
 
+
 ## 1.3
 
-- added LazySegmentTree
-- added shortest_cycle
-- functions and classes are now provided also directly by tryalgo without the need to specify the module
+- Changed the web host of the documentation.
+- Renamed eratosthene.py into primes.py. Added the Gries-Misra sieve in this file.
+- Added a Graph class in the module graph, which allows accessing vertices by names instead of indices.
+- Added LazySegmentTree
+- Added shortest_cycle
+- Functions and classes are now provided also directly by tryalgo without the need to specify the module
 
 ## 1.2
 
-- added horn_sat
-- added partition_refinement
-- added left_right_inversions
+- Added horn\_sat
+- Added partition_refinement
+- Added left\_right\_inversions
