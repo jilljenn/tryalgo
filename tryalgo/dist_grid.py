@@ -20,7 +20,6 @@ def dist_grid(grid, source, target=None):
     """
     rows = len(grid)
     cols = len(grid[0])
-    # d_irs = [(0, +1, '>'), (0, -1, '<'), (+1, 0, 'v'), (-1, 0, '^')]
     i, j = source
     grid[i][j] = 's'
     q_ueue = deque()
