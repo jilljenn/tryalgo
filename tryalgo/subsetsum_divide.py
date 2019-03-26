@@ -1,45 +1,47 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Subsetsum by splitting
-# christoph dürr et jill-jênn vie - 2014-2018
-
+"""\
+Subsetsum by splitting
+christoph dürr et jill-jênn vie - 2014-2018
+-------------------------------------------
+"""
 
 # snip{
-def part_sum(x, i=0):
-    """All subsetsums from x[i:]
+def part_sum(x_table, i=0):
+    """All subsetsums from x_table[i:]
 
-    :param x: table of values
-    :param int i: index defining suffix of x to be considered
+    :param x_table: table of values
+    :param int i: index_table defining suffix_table of x_table to be considered
     :iterates: over all values, in arbitrary order
-    :complexity: :math:`O(2^{len(x)-i})`
+    :complexity: :math:`O(2^{len(x_table)-i})`
     """
-    if i == len(x):
+    if i == len(x_table):
         yield 0
     else:
-        for s in part_sum(x, i + 1):
-            yield s
-            yield s + x[i]
+        for s_idx in part_sum(x_table, i + 1):
+            yield s_idx
+            yield s_idx + x_table[i]
 
 
-def subset_sum(x, R):
+def subset_sum(x_table, r_target):
     """Subsetsum by splitting
 
-    :param x: table of values
-    :param R: target value
-    :returns bool: if there is a subsequence of x with total sum R
+    :param x_table: table of values
+    :param r_target: target value
+    :returns bool: if there is a subsequence of x_table with total sum r_target
     :complexity: :math:`O(n^{\\lceil n/2 \\rceil})`
     """
-    k = len(x) // 2             # divide input
-    Y = [v for v in part_sum(x[:k])]
-    Z = [R - v for v in part_sum(x[k:])]
-    Y.sort()                    # test of intersection between Y and Z
-    Z.sort()
+    k = len(x_table) // 2              # divide input
+    y_value = [v for v in part_sum(x_table[:k])]
+    z_value = [r_target - v for v in part_sum(x_table[k:])]
+    y_value.sort()                     # test of intersection between y_value and z_value
+    z_value.sort()
     i = 0
     j = 0
-    while i < len(Y) and j < len(Z):
-        if Y[i] == Z[j]:
+    while i < len(y_value) and j < len(z_value):
+        if y_value[i] == z_value[j]:
             return True
-        elif Y[i] < Z[j]:       # increment index of smallest element
+        if y_value[i] < z_value[j]:  # increment index_table of smallest element
             i += 1
         else:
             j += 1
