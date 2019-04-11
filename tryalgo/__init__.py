@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 """Tryalgo is a python library of algorithms and data structures is implemented
-by Christoph Dürr (CNRS, UPMC, Paris 6)
-and Jill-Jênn Vie (Université Paris-Sud).
+by Christoph Dürr (CNRS, Sorbonne Université, LIP6, Paris)
+and Jill-Jênn Vie (RIKEN Center of Advanced Intelligence Project, Tokyo)
 It is documented in the book "Programmation efficace, 128 Algorithmes qu'il
 faut avoir compris et codés en Python", editor Ellipses.
 """

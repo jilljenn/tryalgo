@@ -13,7 +13,7 @@ def maximum_border_length(w):
     """Maximum string borders by Knuth-Morris-Pratt
 
     :param w: string
-    :returns: table l such that l[i] is the longest border length of w[:i + 1]
+    :returns: table L such that L[i] is the longest border length of w[:i + 1]
     :complexity: linear
     """
     n = len(w)

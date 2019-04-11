@@ -14,22 +14,25 @@ def knuth_morris_pratt(s, t):
     :returns: index i such that s[i: i + len(t)] == t, or -1
     :complexity: O(len(s) + len(t))
     """
-    assert t != ''
+    assert t != ''          # does not work for empty string
     len_s = len(s)
     len_t = len(t)
-    r = [0] * len_t
-    j = r[0] = -1
-    for i in range(1, len_t):
+    r = [0] * len_t         # compute array r
+    j = r[0] = -1           # r[0] is the base case
+    for i in range(1, len_t):  # compute r[i]
         while j >= 0 and t[i - 1] != t[j]:
-            j = r[j]
-        j += 1
+            j = r[j]        # by finding best aligment
+        j += 1              # we know: t[:j] == t[i-j:i]
         r[i] = j
-    j = 0
-    for i in range(len_s):
-        while j >= 0 and s[i] != t[j]:
+    #                       - start actual search of t in s
+    j = 0                   # j ranges in t
+    k = 0                   # k ranges in s
+    while k < len_s:
+        while j >= 0 and s[k] != t[j]:  # find next poss. alignment
             j = r[j]
         j += 1
-        if j == len_t:
-            return i - len_t + 1
-    return -1
+        k += 1              # we know: t[:j] == s[k-j:k]
+        if j == len_t:      # we reached end of t
+            return k - j    # hence found first occurence of t in s
+    return -1               # we reached end of s, hence search failed
 # snip}
