@@ -17,16 +17,16 @@ def maximum_border_length(w):
     :complexity: linear
     """
     n = len(w)
-    L = [0] * n
-    k = 0
-    for i in range(1, n):
+    L = [0] * n                # init L[0] = 0
+    k = 0                      # current longest border length
+    for i in range(1, n):      # compute L[i]
         while w[k] != w[i] and k > 0:
-            k = L[k - 1]
-        if w[k] == w[i]:
-            k += 1
+            k = L[k - 1]       # try shorter lengths
+        if w[k] == w[i]:       # last caracters match
+            k += 1             # we can increment the border length
             L[i] = k
         else:
-            L[i] = 0
+            L[i] = 0           # otherwise we restart with the empty border
     return L
 # snip}
 
@@ -41,7 +41,7 @@ def powerstring_by_border(u):
     """
     L = maximum_border_length(u)
     n = len(u)
-    if n % (n - L[-1]) == 0:
-        return n // (n - L[-1])
+    if n % (n - L[-1]) == 0:       # does the alignment shift divide n ?
+        return n // (n - L[-1])    # we found a power decomposition
     return 1
 # snip}
