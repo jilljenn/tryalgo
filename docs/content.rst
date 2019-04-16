@@ -35,7 +35,7 @@ The generation of mobile phone which existed before the smart phones had the pos
 
 An elegant but not so well known algorithm by Manacher permits to detect all palindromes which are substrings of a given string, see `manacher <tryalgo/tryalgo.html#module-tryalgo.manacher>`__.
 
-A well studied problems on strings, is the problem of finding a searching a string t inside a string s.  This is generally solved using the algorithm by Knuth-Morris-Pratt.  In addition to `knuth_morris_pratt <tryalgo/tryalgo.html#module-tryalgo.knuth_morris_pratt>`__  we show in `knuth_morris_pratt_border <tryalgo/tryalgo.html#module-tryalgo.knuth_morris_pratt_border>`__ how to compute the `longest border <http://algorithmsforcontests.blogspot.fr/2012/08/borders-of-string.html>`_ for each prefix of a  given string w.  An application is to compute for a string x the largest power k such that there is a string y, and x is the result of concatenating k copies of y.
+A well studied problems on strings, is the problem of finding a searching a string t inside a string s.  This is generally solved using the algorithm by `knuth_morris_pratt <tryalgo/tryalgo.html#module-tryalgo.knuth_morris_pratt>`__.  Our implementation is based on the problem of finding the `longest border <http://algorithmsforcontests.blogspot.fr/2012/08/borders-of-string.html>`_ for each prefix of a  given string w., see `maximum_border_length <tryalgo/tryalgo.html#module-tryalgo.knuth_morris_pratt>`__, which permits also to solve many other problems.   One such application is to compute for a string x the largest power k such that there is a string y, and x is the result of concatenating k copies of y.
 
 An alternative algorithm for the string matching problem has been given by `Rabin-Karp <https://en.wikipedia.org/wiki/Rabin%E2%80%93Karp_algorithm>`_, see `rabin_karp <tryalgo/tryalgo.html#module-tryalgo.rabin_karp>`__.  This algorithm has the advantage of generalizing to searching for multiple strings, or to search patterns in 2-dimensions, or even to find the longest common substring to two given strings.
 
@@ -179,7 +179,7 @@ Computing the area of the union of n given rectilinear rectangles can be done in
 Arithmetic
 ::::::::::
 
-All prime numbers less than some given integer n are easily generated with Eratosthene's method, see `primes <tryalgo/tryalgo.html#module-tryalgo.primes>`__.  Its complexity is  :math:`O(n \log\log n)`.  This is improved by the Gries-Misra sieve which not only has complexity  :math:`O(n)`, but also produces a table indicating for every positive integer less than n, its smallest prime factor. 
+All prime numbers less than some given integer n are easily generated with Eratosthene's method, see `primes <tryalgo/tryalgo.html#module-tryalgo.primes>`__.  Its complexity is  :math:`O(n \log\log n)`.  This is improved by the Gries-Misra sieve which not only has complexity  :math:`O(n)`, but also produces a table indicating for every positive integer less than n, its smallest prime factor.
 
 The library contains functions to compute the greatest common divisor (GCD in english or PGCD in french), to compute the Bezot coefficients and the binomial coefficients, see `arithm <tryalgo/tryalgo.html#module-tryalgo.arithm>`__.
 
