@@ -45,7 +45,7 @@ from tryalgo.huffman import huffman
 from tryalgo.interval_tree import interval_tree, intervals_containing
 from tryalgo.interval_cover import interval_cover
 from tryalgo.intervals_union import intervals_union
-from tryalgo.knuth_morris_pratt import maximum_border_length, knuth_morris_pratt, powerstring_by_border, , powerstring_by_find
+from tryalgo.knuth_morris_pratt import maximum_border_length, knuth_morris_pratt, powerstring_by_border, powerstring_by_find
 from tryalgo.kruskal import kruskal
 from tryalgo.kuhn_munkres_n4 import kuhn_munkres as kuhn_munkres_n4
 from tryalgo.kuhn_munkres    import kuhn_munkres as kuhn_munkres_n3

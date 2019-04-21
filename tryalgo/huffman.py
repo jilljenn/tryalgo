@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Huffman code
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Huffman code
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 from heapq import heappush, heappop
 
 
 # snip{
-def huffman(freq):
+def huffman(freq=None):
     """Huffman code
 
     :param freq: dictionary with frequencies for each item
@@ -26,7 +28,7 @@ def huffman(freq):
     return code
 
 
-def extract(code, tree, prefix=[]):
+def extract(code=None, tree=None, prefix=None):
     """Extract Huffman code from a Huffman tree
 
     :param tree: a node of the tree
@@ -34,6 +36,8 @@ def extract(code, tree, prefix=[]):
                     the root to the node `tree`
     :complexity: O(n)
     """
+    if prefix is None:
+        prefix = []
     if isinstance(tree, list):
         l, r = tree
         prefix.append('0')
