@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Evaluate an arithmetic expression
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Evaluate an arithmetic expression
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # IPCELLS
 # http://www.spoj.com/problems/IPCELLS/
@@ -10,6 +12,8 @@ from sys import stdin
 
 
 # snip{ arithm_expr_eval
+# pylint: disable=redefined-outer-name
+# pylint: disable=inconsistent-return-statements
 def arithm_expr_eval(cell, expr):
     """Evaluates a given expression
 
@@ -44,6 +48,7 @@ def arithm_expr_eval(cell, expr):
 priority = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
 
 
+# pylint: disable=redefined-outer-name
 def arithm_expr_parse(line):
     """Constructs an arithmetic expression tree
 

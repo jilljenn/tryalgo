@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Distances in a grid
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Distances in a grid
+jill-jenn vie et christoph durr - 2014-2018
+--------------------------------------------
+"""
 
 from collections import deque
 
@@ -17,17 +20,19 @@ def dist_grid(grid, source, target=None):
     """
     rows = len(grid)
     cols = len(grid[0])
-    dirs = [(0, +1, '>'), (0, -1, '<'), (+1, 0, 'v'), (-1, 0, '^')]
     i, j = source
     grid[i][j] = 's'
     Q = deque()
     Q.append(source)
     while Q:
         i1, j1 = Q.popleft()
-        for di, dj, symbol in dirs:   # explore all directions
+        for di, dj, symbol in [(0, +1, '>'),
+                               (0, -1, '<'),
+                               (+1, 0, 'v'),
+                               (-1, 0, '^')]:   # explore all directions
             i2 = i1 + di
             j2 = j1 + dj
-            if not (0 <= i2 and i2 < rows and 0 <= j2 and j2 < cols):
+            if not (0 <= i2 < rows and 0 <= j2 < cols):
                 continue              # reached the bounds of the grid
             if grid[i2][j2] != ' ':   # inaccessible or already visited
                 continue

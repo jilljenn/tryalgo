@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Minimum spanning tree by kruskal
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Minimum spanning tree by kruskal
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 from math import sqrt
 import random
@@ -21,9 +23,8 @@ class UnionFind:
         """
         if self.up[x] == x:
             return x
-        else:
-            self.up[x] = self.find(self.up[x])
-            return self.up[x]
+        self.up[x] = self.find(self.up[x])
+        return self.up[x]
 
     def union(self, x, y):
         """Merges part that contain x and part containing y
@@ -47,6 +48,7 @@ class UnionFind:
 
 
 # snip{ kruskal
+# pylint: disable=redefined-outer-name
 def kruskal(graph, weight):
     """Minimum spanning tree by Kruskal
 
@@ -57,7 +59,7 @@ def kruskal(graph, weight):
     """
     uf = UnionFind(len(graph))
     edges = []
-    for u in range(len(graph)):
+    for u, _ in enumerate(graph):
         for v in graph[u]:
             edges.append((weight[u][v], u, v))
     edges.sort()
@@ -68,13 +70,18 @@ def kruskal(graph, weight):
     return mst
 # snip}
 
+def dist(a, b):
+    """
+    distance between point a and point b
+    """
+    return sqrt(sum([(a[i] - b[i]) * (a[i] - b[i])
+                     for i in range(len(a))]))
 
+# pylint: disable=pointless-string-statement
 if __name__ == "__main__":
-
-    def dist(a, b):
-        return sqrt(sum([(a[i] - b[i]) * (a[i] - b[i])
-                         for i in range(len(a))]))
-
+    """
+    main function
+    """
     N = 256
     points = [[random.random() * 5, random.random() * 5] for _ in range(N)]
     weight = [[dist(points[i], points[j]) for j in range(N)]

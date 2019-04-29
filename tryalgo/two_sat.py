@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Solving 2-SAT boolean formulas
-# jill-jenn vie et christoph durr - 2015-2018
+"""\
+Solving 2-SAT boolean formulas
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 from tryalgo.strongly_connected_components import tarjan
 
@@ -10,8 +12,7 @@ from tryalgo.strongly_connected_components import tarjan
 def _vertex(lit):  # integer encoding of a litteral
     if lit > 0:
         return 2 * (lit - 1)
-    else:
-        return 2 * (-lit - 1) + 1
+    return 2 * (-lit - 1) + 1
 
 
 def two_sat(formula):

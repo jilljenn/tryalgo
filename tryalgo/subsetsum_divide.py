@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Subsetsum by splitting
-# christoph dürr et jill-jênn vie - 2014-2018
-
+"""\
+Subsetsum by splitting
+christoph dürr et jill-jênn vie - 2014-2018
+"""
 
 # snip{
 def part_sum(x, i=0):
@@ -39,7 +40,7 @@ def subset_sum(x, R):
     while i < len(Y) and j < len(Z):
         if Y[i] == Z[j]:
             return True
-        elif Y[i] < Z[j]:       # increment index of smallest element
+        if Y[i] < Z[j]:       # increment index of smallest element
             i += 1
         else:
             j += 1
