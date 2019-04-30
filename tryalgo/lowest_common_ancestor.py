@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Lowest common ancestor
-# jill-jenn vie et christoph durr - 2014-2018
-# http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
+"""\
+Lowest common ancestor
+jill-jenn vie et christoph durr - 2014-2018
+http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
+"""
 
 from tryalgo.range_minimum_query import RangeMinQuery
 
@@ -23,6 +25,7 @@ def log2ceil(n):
 
 
 # snip{ lowest_common_ancestor_by_shortcuts
+# pylint: disable=too-few-public-methods
 class LowestCommonAncestorShortcuts:
     """Lowest common ancestor data structure using shortcuts to ancestors
     """

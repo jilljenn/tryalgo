@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Range minimum query
-# Minimum d'une plage --- range minimum query
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Range minimum query
+Minimum d'une plage --- range minimum query
+jill-jenn vie et christoph durr - 2014-2018
+"""
+# pylint: disable=bad-continuation, bad-whitespace, redefined-outer-name
+# pylint: disable=too-many-arguments
 
 from __future__ import print_function
 
 
 # snip{
+# pylint: disable=consider-using-enumerate
 class RangeMinQuery:
     """Range minimum query
 
@@ -63,7 +67,8 @@ class RangeMinQuery:
         return min(left, right)
 # snip}
 
-
+# pylint: disable=missing-docstring, no-else-return,
+# pylint: disable=anomalous-backslash-in-string
 class LazySegmentTree:
     """maintains a tree to allow quick updates and queries on a table.
 
@@ -242,7 +247,7 @@ class LazySegmentTree:
         print("}", file=f)
         f.close()
 
-
+# pylint: disable=protected-access
 if __name__ == '__main__':
     # execute with: rlwrap python3 range_minimum_query.py
     import sys
@@ -259,7 +264,8 @@ if __name__ == '__main__':
         i = int(t[0])
         j = int(t[1])
         if t[2] == '?':
-            print("[%i,%i] max=%s min=%s sum=%s" % (i, j, tree.max(i,j), tree.min(i,j), tree.sum(i,j)))
+            print("[%i,%i] max=%s min=%s sum=%s" %
+                    (i, j, tree.max(i,j), tree.min(i,j), tree.sum(i,j)))
         elif t[2] == '+':
             tree.add(i, j, int(t[3]))
         elif t[2] == '=':

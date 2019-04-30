@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+kuhn_munkres_n4
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 __all__ = ["kuhn_munkres"]
 
 
 # snip{
+# pylint: disable=too-many-arguments
 def improve_matching(G, u, mu, mv, au, av, lu, lv):
+    """improve matching"""
     assert not au[u]
     au[u] = True
     for v in range(len(G)):
@@ -19,8 +24,9 @@ def improve_matching(G, u, mu, mv, au, av, lu, lv):
                 return True
     return False
 
-
+# pylint: disable=bad-continuation, superfluous-parens
 def improve_labels(G, au, av, lu, lv):
+    """improve labels"""
     U = V = range(len(G))
     delta = min(min(lu[u] + lv[v] - G[u][v]
                 for v in V if not av[v]) for u in U if au[u])
@@ -54,5 +60,5 @@ def kuhn_munkres(G):      # maximum profit bipartite matching in O(n^4)
                 if improve_matching(G, u0, mu, mv, au, av, lu, lv):
                     break
                 improve_labels(G, au, av, lu, lv)
-    return (mu,  sum(lu) + sum(lv))
+    return (mu, sum(lu) + sum(lv))
 # snip}

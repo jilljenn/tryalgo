@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Strongly connected components
-# composantes fortement connexes
-# jill-jênn vie et christoph dürr - 2015-2018
+"""\
+Strongly connected components
+composantes fortement connexes
+jill-jênn vie et christoph dürr - 2015-2018
+"""
 
 __all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
 
 
 # snip{ sccp-tarjan-recursif
+# pylint: disable=global-variable-undefined
 def tarjan_recursif(graph):
     """Strongly connected components by Tarjan, recursive implementation
 
@@ -52,6 +55,7 @@ def tarjan_recursif(graph):
 
 
 # snip{ sccp-tarjan
+# pylint: disable=too-many-locals, redefined-outer-name, too-many-nested-blocks
 def tarjan(graph):
     """Strongly connected components by Tarjan, iterative implementation
 
@@ -107,6 +111,9 @@ def tarjan(graph):
 
 # snip{ sccp-kosaraju
 def kosaraju_dfs(graph, nodes, order, sccp):
+    """
+    kosaraju depth-first-search over graph
+    """
     times_seen = [-1] * len(graph)
     for start in nodes:
         if times_seen[start] == -1:                     # initiate DFS
@@ -131,7 +138,7 @@ def kosaraju_dfs(graph, nodes, order, sccp):
 def reverse(graph):
     """replace all arcs (u, v) by arcs (v, u) in a graph"""
     rev_graph = [[] for node in graph]
-    for node in range(len(graph)):
+    for node, _ in enumerate(graph):
         for neighbor in graph[node]:
             rev_graph[neighbor].append(node)
     return rev_graph

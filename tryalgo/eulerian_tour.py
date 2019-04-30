@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Eulerian cycle
-# jill-jenn vie et christoph durr - 2015-2018
+"""\
+Eulerian cycle
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 import random
 from tryalgo.graph import write_graph
@@ -113,7 +115,7 @@ def is_eulerian_tour(graph, tour):
     arcs = set((tour[i], tour[i+1]) for i in range(m))
     if len(arcs) != m:
         return False
-    for (u,v) in arcs:
+    for (u, v) in arcs:
         if v not in graph[u]:
             return False
     return True

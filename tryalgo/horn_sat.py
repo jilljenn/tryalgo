@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Solving Horn SAT
+"""\
+Solving Horn SAT
 
-# christoph dürr - 2016-2018
+christoph dürr - 2016-2018
+"""
 
 
 """
@@ -51,7 +53,7 @@ def read(filename):
         formula.append((posvar, negvars))
     return formula
 
-
+# pylint: disable=line-too-long
 def horn_sat(formula):
     """ Solving a HORN Sat formula
 
@@ -96,7 +98,7 @@ def horn_sat(formula):
     return solution
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     F = read(sys.argv[1])
     sol = horn_sat(F)
     if sol is None:

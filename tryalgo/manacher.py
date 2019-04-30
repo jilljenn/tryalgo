@@ -1,24 +1,25 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Longest palindrome in a string by Manacher
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Longest palindrome in a string by Manacher
+jill-jenn vie et christoph durr - 2014-2018
 
-# http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
+http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
 
-# Algorithme de Manacher
-# problème: plus long palindrome
-# entrée: chaîne s
-# sortie: indices i, j tel que s[i:j] est un palindrome
-#         et que j-i est maximal et i maximal
-# complexité: temps linéaire
+Algorithme de Manacher
+problème: plus long palindrome
+entrée: chaîne s
+sortie: indices i, j tel que s[i:j] est un palindrome
+        et que j-i est maximal et i maximal
+complexité: temps linéaire
 
-# tous les indices réfèrent à une chaîne fictive t
-# de la forme "^#a#b#a#a#$" si s="abaa"
-# invariant: pour chaque préfixe vu
-# on maintient un palindrome centré en c et de bord droit r
-# qui maximise r
-# ainsi que p[i] = plus grand rayon d'un palindrome centré en i
-
+tous les indices réfèrent à une chaîne fictive t
+de la forme "^#a#b#a#a#$" si s="abaa"
+invariant: pour chaque préfixe vu
+on maintient un palindrome centré en c et de bord droit r
+qui maximise r
+ainsi que p[i] = plus grand rayon d'un palindrome centré en i
+"""
 
 # snip{
 def manacher(s):

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Fenwick tree
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Fenwick tree
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{
@@ -17,6 +19,7 @@ class Fenwick:
         for i in range(1, len(t)):
             self.add(i, t[i])
 
+    # pylint: disable=redefined-builtin
     def prefixSum(self, i):
         """
         :param int i: non negative
@@ -35,7 +38,7 @@ class Fenwick:
         """
         return self.prefixSum(b) - self.prefixSum(a-1)
 
-    def add(self,  i, val):
+    def add(self, i, val):
         """
         :param int i: positive
         :modifies: adds val to t[i]
@@ -46,7 +49,7 @@ class Fenwick:
             i += (i & -i)
 
     # variante:
-
+    # pylint: disable=bad-whitespace
     def intervalAdd(self, a, b, val):
         """Variant, adds val to t[a], to t[a + 1] ... and to t[b]
 

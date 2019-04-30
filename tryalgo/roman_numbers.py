@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Evaluate an arithmetic expression
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Evaluate an arithmetic expression
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # convert roman numbers
-
+# pylint: disable=bad-whitespace
 roman = [['', 'I', 'II', 'III', 'IV' , 'V',   'VI',  'VII', 'VIII', 'IX'],
          ['', 'X', 'XX', 'XXX', 'XL' , 'L',   'LX',  'LXX', 'LXXX', 'XC'],
          ['', 'C', 'CC', 'CCC', 'CD',  'D',   'DC',  'DCC', 'DCCC', 'CM'],
@@ -22,7 +24,7 @@ def roman2int(s):
     pos10 = 1000
     beg = 0
     for pos in range(3, -1, -1):
-        for digit in range(9,-1,-1):
+        for digit in range(9, -1, -1):
             r = roman[pos][digit]
             if s.startswith(r, beg):  # footnote 1
                 beg += len(r)
@@ -31,14 +33,14 @@ def roman2int(s):
         pos10 //= 10
     return val
 
-# footnote 1: 
+# footnote 1:
 # in C one would write
 #
 # if (strncmp(s + beg, r, strlen(r)) == 0)
 #
-# in C++ the starts_with method does not allow a selection 
+# in C++ the starts_with method does not allow a selection
 # of a substring in s, where the search should start.
-# so you need to write your onwn function, something like:
+# so you need to write your own function, something like:
 #
 # bool starts_with(const string &s, const string &r, int beg) {
 #     for (int i = 0; i < r.size(); i++) {

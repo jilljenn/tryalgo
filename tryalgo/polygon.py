@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Area of polygone
-# mesures polygone
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Area of polygone
+mesures polygone
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 from tryalgo.range_minimum_query import RangeMinQuery
@@ -18,13 +20,14 @@ def area(p):
     :complexity: linear
     """
     A = 0
-    for i in range(len(p)):
+    for i, _ in enumerate(p):
         A += p[i - 1][0] * p[i][1] - p[i][0] * p[i - 1][1]
     return A / 2.
 # snip}
 
 
 # snip{ is_simple
+# pylint: disable=too-many-locals
 def is_simple(polygon):
     """Test if a rectilinear polygon is is_simple
 
