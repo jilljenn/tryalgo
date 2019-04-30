@@ -48,7 +48,7 @@ class UnionFind:
 
 
 # snip{ kruskal
-# pylint: disable=redefined-outer-name
+# pylint: disable=redefined-outer-name, unused-variable
 def kruskal(graph, weight):
     """Minimum spanning tree by Kruskal
 

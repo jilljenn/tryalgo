@@ -16,7 +16,7 @@ RIGHT = 3
 # destination UP          LEFT        DOWN           RIGHT
 reflex = [[RIGHT, LEFT], [DOWN, UP], [LEFT, RIGHT], [UP, DOWN]]
 
-# pylint: disable=unused-variable
+# pylint: disable=unused-variable, unused-argument
 def laser_mirrors(rows, cols, mir):
     """Orienting mirrors to allow reachability by laser beam
 
@@ -77,6 +77,5 @@ def solve(succ, orien, i, direc):
                 return True
         orien[j] = None
         return False
-    else:
-        return solve(succ, orien, j, reflex[direc][orien[j]])
+    return solve(succ, orien, j, reflex[direc][orien[j]])
 # snip}

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# subsetsum
-# jill-jenn vie et christoph durr - 2015-2018
-
+"""\
+subsetsum
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 # snip{
 def three_partition(x):
@@ -13,7 +14,7 @@ def three_partition(x):
     :complexity: :math:`O(2^{2n})`
     """
     f = [0] * (1 << len(x))
-    for i in range(len(x)):
+    for i, _ in enumerate(x):
         for S in range(1 << i):
             f[S | (1 << i)] = f[S] + x[i]
     for A in range(1 << len(x)):

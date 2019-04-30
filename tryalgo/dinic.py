@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Maximum flow by Dinic
-# jill-jênn vie et christoph dürr - 2015-2018
-
+"""\
+Maximum flow by Dinic
+jill-jênn vie et christoph dürr - 2015-2018
+"""
 
 from collections import deque
 from sys import setrecursionlimit
@@ -46,7 +47,7 @@ def dinic(graph, capacity, source, target):
         total += _dinic_step(graph, capacity, lev, flow, source, target,
                              up_bound)
 
-
+# pylint: disable=too-many-arguments
 def _dinic_step(graph, capacity, lev, flow, u, target, limit):
     """ tenter de pousser le plus de flot de u à target, sans dépasser limit
     """

@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Bipartie maximum matching
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Bipartie maximum matching
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 __all__ = ["max_bipartite_matching", "max_bipartite_matching2"]
 
 
 # snip{
 def augment(u, bigraph, visit, match):
+    """augment """
     for v in bigraph[u]:
         if not visit[v]:
             visit[v] = True

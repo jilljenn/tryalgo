@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Topological order
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Topological order
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # snip{ topological_order_dfs
 def topological_order_dfs(graph):

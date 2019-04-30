@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Interval tree
-# christoph dürr - jill-jênn vie - 2013-2018
+"""\
+Interval tree
+christoph dürr - jill-jênn vie - 2013-2018
+"""
 
 from bisect import bisect_right
 
 
 # snip{
+# pylint: disable=too-many-arguments, too-few-public-methods
 class _Node:
     def __init__(self, center, by_low, by_high, left, right):
         self.center = center

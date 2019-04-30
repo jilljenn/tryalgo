@@ -53,11 +53,8 @@ def gries_misra(n):
 # snip}
 
 
-# pylint: disable=redefined-outer-name
+# pylint: disable=redefined-outer-name, missing-docstring
 if __name__ == "__main__":
-    """
-    main function
-    """
 
     # compare the running times and show the ratio between the performances
 

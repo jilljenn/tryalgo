@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Linear equation system Ax=b by Gauss-Jordan
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Linear equation system Ax=b by Gauss-Jordan
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 __all__ = ["gauss_jordan", "GJ_ZERO_SOLUTIONS", "GJ_SINGLE_SOLUTION",
            "GJ_SEVERAL_SOLUTIONS"]
 
 
 # snip{
+# pylint: disable=chained-comparison
 def is_zero(x):                    # tolerance
     """error tolerant zero test
     """
@@ -55,6 +58,7 @@ def gauss_jordan(A, x, b):
 
 
 def diagonalize(S, n, m):
+    """diagonalize """
     for k in range(min(n, m)):
         val, i, j = max((abs(S[i][j]), i, j)
                         for i in range(k, m) for j in range(k, n))

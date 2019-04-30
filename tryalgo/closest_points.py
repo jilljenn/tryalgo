@@ -6,6 +6,7 @@ trouver la paire de points la plus proche
 jill-jenn vie et christoph durr et louis abraham - 2014-2018
 """
 # pylint: disable=missing-docstring, redefined-outer-name, redefined-outer-name
+# pylint: disable=no-name-in-module, ungrouped-imports
 
 
 from random import randint

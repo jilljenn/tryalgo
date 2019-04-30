@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Stable matching by Gale-Shapley
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Stable matching by Gale-Shapley
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{
 from collections import deque
 
-
+# pylint: disable=no-member
 def gale_shapley(men, women):
     """Stable matching by Gale-Shapley
 

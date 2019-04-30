@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Partition refinement
-# christoph durr - 2016-2018
+"""\
+Partition refinement
+christoph durr - 2016-2018
 
-#log: 10/11/2016 modified to preserve class order after refinement
-#     15/11/2016 this was non sense, moved back
+log: 10/11/2016 modified to preserve class order after refinement
+     15/11/2016 this was non sense, moved back
+"""
 
 
 __all__ = ["PartitionRefinement"]
 
-
+# pylint: disable=missing-docstring
 class DoubleLinkedListItem:
     """Item of a circular double linked list
     """

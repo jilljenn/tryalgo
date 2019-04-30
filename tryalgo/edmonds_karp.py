@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Maximum flow by Edmonds-Karp
-# jill-jenn vie et christoph durr - 2015-2018
+"""\
+Maximum flow by Edmonds-Karp
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 from collections import deque
 from tryalgo.graph import add_reverse_arcs

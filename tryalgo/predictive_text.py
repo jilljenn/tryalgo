@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Predictive text for mobile phones
-# jill-jenn vie et christoph durr and louis abraham - 2014-2018
+"""\
+Predictive text for mobile phones
+jill-jenn vie et christoph durr and louis abraham - 2014-2018
+"""
 
 __all__ = ["predictive_text", "propose"]
 
@@ -51,6 +53,5 @@ def propose(prop, seq):
     """wrapper to access a dictionary even for non-present keys"""
     if seq in prop:
         return prop[seq]
-    else:
-        return None
+    return None
 # snip}

@@ -8,7 +8,8 @@ count contains the gap between the positions (https://www.cs.bgu.ac.il/~ds112/wi
 """
 # pylint: disable=line-too-long, missing-docstring, redefined-outer-name
 # pylint: disable=fixme, super-init-not-called, notimplemented-raised
-# pylint: disable=raising-bad-type, no-member
+# pylint: disable=raising-bad-type, no-member, line-too-long
+# pylint: disable=self-cls-assignment, no-else-raise
 
 from __future__ import print_function
 from collections import namedtuple

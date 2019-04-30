@@ -4,7 +4,7 @@
 Solving Sudoku (nanpure)
 jill-jenn vie et christoph durr - 2014-2018
 """
-# pylint: disable=missing-docstring, multiple-statements
+# pylint: disable=missing-docstring, multiple-statements, global-statement
 
 from tryalgo.dancing_links import dancing_links
 
@@ -65,6 +65,5 @@ def sudoku(G):
             if a < len(S):
                 G[row(a)][col(a)] = val(a) + 1
         return True
-    else:
-        return False
+    return False
 # snip}

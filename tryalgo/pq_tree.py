@@ -35,7 +35,7 @@ c.durr - 2017-2018
 
 from collections import deque
 
-
+# pylint: disable=unnecessary-pass
 class IsNotC1P(Exception):
     """The given instance does not have the all consecutive ones property"""
     pass
@@ -103,6 +103,7 @@ class PQ_node:
             for x in self.sons:
                 x.border(L)
 
+# pylint: disable=no-else-return
     def __str__(self):
         if self.shape == L_shape:
             return str(self.value)
@@ -113,7 +114,7 @@ class PQ_node:
         else:
             return "[" + ",".join(map(str, self.sons)) + "]"
 
-
+# pylint: disable=too-many-statements
 class PQ_tree:
 
     def __init__(self, universe):
@@ -206,7 +207,7 @@ class PQ_tree:
                     state = automaton[state][y.mark]
                     if state == -1:
                         raise IsNotC1P
-                    elif (state == 3 or state == 6) and y.mark == PARTIAL:
+                    elif (state in (3, 6)) and y.mark == PARTIAL:
                         assert y.shape == Q_shape
                         L += reversed(y.sons)
                     elif state == 6 and previous == 4:
