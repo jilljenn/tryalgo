@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# arithmetic functions
-# christoph dürr - jill-jênn vie - 2013-2018
-
+"""\
+arithmetic functions
+christoph dürr - jill-jênn vie - 2013-2018
+"""
+# pylint: disable=anomalous-backslash-in-string
 
 # snip{ pgcd
 def pgcd(a, b):
@@ -24,9 +26,8 @@ def bezout(a, b):
     """
     if b == 0:
         return (1, 0)
-    else:
-        u, v = bezout(b, a % b)
-        return (v, u - (a // b) * v)
+    u, v = bezout(b, a % b)
+    return (v, u - (a // b) * v)
 
 
 def inv(a, p):

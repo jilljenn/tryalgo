@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Permute vector to minimize scalar product
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Permute vector to minimize scalar product
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{

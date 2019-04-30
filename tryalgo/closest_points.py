@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Closest pair of points
-# trouver la paire de points la plus proche
-# jill-jenn vie et christoph durr et louis abraham - 2014-2018
+"""\
+Closest pair of points
+trouver la paire de points la plus proche
+jill-jenn vie et christoph durr et louis abraham - 2014-2018
+"""
+# pylint: disable=missing-docstring, redefined-outer-name, redefined-outer-name
 
 
 from random import randint
@@ -72,7 +75,7 @@ if __name__ == "__main__":
             print("\\filldraw[black] (%f, %f) circle (1pt);" % p)
 
     def tikz_polygone(S):
-        for i in range(len(S)):
+        for i, _ in enumerate(S):
             print('\\draw (%f, %f) -- (%f, %f);' % (S[i - 1] + S[i]))
 
     S = [(randint(0, 400) / 100, randint(0, 400) / 100) for _ in range(32)]

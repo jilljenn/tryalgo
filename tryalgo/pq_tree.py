@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# c.durr - 2017-2018
+"""\
+c.durr - 2017-2018
 
 
-""" Solve the consecutive all ones column problem using PQ-trees
+    Solve the consecutive all ones column problem using PQ-trees
 
     In short, a PQ-tree represents sets of total orders over a ground set. The
     leafs are the values of the ground set. Inner nodes are of type P or Q. P
@@ -29,7 +30,8 @@
     And also there are more recent and easier algorithms for this problem.
 
 """
-
+# pylint: disable=bad-whitespace, missing-docstring, len-as-condition
+# pylint: disable=too-many-nested-blocks, no-else-raise, too-many-branches
 
 from collections import deque
 

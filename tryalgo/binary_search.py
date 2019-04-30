@@ -1,7 +1,10 @@
 #!/usr/bin/env pypy3
 # -*- coding: utf-8 -*-
-# Binary search
-# jill-jenn vie et christoph durr et louis abraham - 2014-2018
+"""\
+Binary search
+jill-jenn vie et christoph durr et louis abraham - 2014-2018
+"""
+# pylint: disable=redefined-outer-name
 
 from sys import stdin
 
@@ -13,11 +16,12 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 # http://www.spoj.com/problems/CISTFILL/
 # [!] python3 is too slow for this problem
 
-
+# pylint: disable=missing-docstring
 def _readint():
     return int(stdin.readline())
 
 
+# pylint: disable=missing-docstring
 def _readarray(f):
     return tuple(map(f, stdin.readline().split()))
 
@@ -124,7 +128,7 @@ def ternary_search(f, lo, hi, gap=1e-10):
             hi -= step
     return lo
 
-
+# pylint: disable=cell-var-from-loop
 if __name__ == "__main__":
     def volume(level):
         vol = 0

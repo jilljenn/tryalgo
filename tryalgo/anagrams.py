@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Anagrams
-
-# christoph dürr - jill-jênn vie - 2013-2018
+"""\
+Anagrams
+christoph dürr - jill-jênn vie - 2013-2018
+"""
 
 
 # snip{
+# pylint: disable=anomalous-backslash-in-string
 def anagrams(w):
     """group a list of words into anagrams
 
@@ -18,7 +20,7 @@ def anagrams(w):
     """
     w = list(set(w))             # remove duplicates
     d = {}                       # group words according to some signature
-    for i in range(len(w)):
+    for i, _ in enumerate(w):
         s = ''.join(sorted(w[i]))  # signature
         if s in d:
             d[s].append(i)

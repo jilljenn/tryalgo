@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Longest increasing subsequence
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Longest increasing subsequence
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # snip{
 from bisect import bisect_left

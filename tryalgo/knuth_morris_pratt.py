@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Find the length of maximal borders by Knuth-Morris-Pratt
+"""\
+Find the length of maximal borders by Knuth-Morris-Pratt
 
-# jill-jênn vie et christoph dürr et louis abraham - 2014-2018
-# inspired from a practical lesson (TP) from Yves Lemaire
-
+jill-jênn vie et christoph dürr et louis abraham - 2014-2018
+inspired from a practical lesson (TP) from Yves Lemaire
+"""
+# pylint: disable=undefined-variable
 
 # snip{ maximum_border_length
 def maximum_border_length(w):

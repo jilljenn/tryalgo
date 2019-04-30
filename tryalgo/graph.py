@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Reading graphs from files and writing into files
-# jill-jênn vie et christoph dürr - 2015-2018
+"""\
+Reading graphs from files and writing into files
+jill-jênn vie et christoph dürr - 2015-2018
+"""
+# pylint: disable=bad-whitespace, line-too-long, missing-docstring
+# pylint: disable=dangerous-default-value, too-many-locals, too-many-branches
 
 
 def readval(file, ty):

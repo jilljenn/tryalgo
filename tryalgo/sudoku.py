@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Solving Sudoku
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Solving Sudoku (nanpure)
+jill-jenn vie et christoph durr - 2014-2018
+"""
+# pylint: disable=missing-docstring, multiple-statements
 
 from tryalgo.dancing_links import dancing_links
 

@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
-# skip-list
-# louis abraham - 2017-2018
+"""\
+skip-list
+louis abraham - 2017-2018
 
-# Inspired by https://kunigami.blog/2012/09/25/skip-lists-in-python/
-# count contains the gap between the positions (https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
+Inspired by https://kunigami.blog/2012/09/25/skip-lists-in-python/
+count contains the gap between the positions (https://www.cs.bgu.ac.il/~ds112/wiki.files/ds112_ps7.pdf)
+"""
+# pylint: disable=line-too-long, missing-docstring, redefined-outer-name
+# pylint: disable=fixme, super-init-not-called, notimplemented-raised
+# pylint: disable=raising-bad-type, no-member
 
 from __future__ import print_function
 from collections import namedtuple

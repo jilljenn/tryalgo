@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Exact set cover by the dancing links algorithm
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Exact set cover by the dancing links algorithm
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 __all__ = ["dancing_links"]
 
 
 # snip{ liens-dansants-cell
+# pylint: disable=missing-docstring
 class Cell:
     def __init__(self, horiz, verti, S, C):
         self.S = S
@@ -87,7 +90,7 @@ def dancing_links(size_universe, sets):
     col = []
     for j in range(size_universe):
         col.append(Cell(header, None, 0, None))
-    for i in range(len(sets)):
+    for i, _ in enumerate(sets):
         row = None
         for j in sets[i]:
             col[j].S += 1               # one more entry in this column
@@ -95,10 +98,9 @@ def dancing_links(size_universe, sets):
     sol = []
     if solve(header, sol):
         return sol
-    else:
-        return None
+    return None
 
-
+# pylint: disable=missing-docstring
 def solve(header, sol):
     if header.R == header:     # the instance is empty => solution found
         return True

@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Largest Rectangular Area in a Histogram
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Largest Rectangular Area in a Histogram
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{
+# pylint: disable=len-as-condition
 def rectangles_from_histogram(H):
     """Largest Rectangular Area in a Histogram
 
@@ -15,7 +18,7 @@ def rectangles_from_histogram(H):
     best = (float('-inf'), 0, 0, 0)
     S = []
     H2 = H + [float('-inf')]  # extra element to empty the queue
-    for right in range(len(H2)):
+    for right, _ in enumerate(H2):
         x = H2[right]
         left = right
         while len(S) > 0 and S[-1][1] >= x:

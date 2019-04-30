@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Largest area rectangle in a binary matrix
-# plus grand rectangle monochromatique
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Largest area rectangle in a binary matrix
+plus grand rectangle monochromatique
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 from tryalgo.rectangles_from_histogram import rectangles_from_histogram
 

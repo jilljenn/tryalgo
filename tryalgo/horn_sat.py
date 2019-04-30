@@ -4,10 +4,7 @@
 Solving Horn SAT
 
 christoph dürr - 2016-2018
-"""
 
-
-"""
 clauses are numbered starting from 0
 variables are strings (identifier)
 
@@ -48,7 +45,7 @@ def read(filename):
             if posvar == '':
                 posvar = None
             negvars = lit[1].split(',')
-            for i in range(len(negvars)):
+            for i, _ in enumerate(negvars):
                 negvars[i] = negvars[i].strip()
         formula.append((posvar, negvars))
     return formula
@@ -86,7 +83,7 @@ def horn_sat(formula):
     while pool[0]:
         curr = pool[0].pop()                    # arbitrary zero score clause
         v = posvar_in_clause[curr]
-        if v == None:                           # formula is not satisfiable
+        if v is None:                           # formula is not satisfiable
             return None
         if v in solution or curr in clauses_with_negvar[v]:
             continue                            # clause is already satisfied
