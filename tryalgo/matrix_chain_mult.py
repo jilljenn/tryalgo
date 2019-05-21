@@ -49,12 +49,13 @@ def _apply_order(M, arg, i, j):
     # --- multiply matrices from M[i] to M[j] included
     if i == j:
         return M[i]
-    k = arg[i][j]        # --- follow placement of parentheses
-    A = _apply_order(M, arg, i, k)
-    B = _apply_order(M, arg, k + 1, j)
-    row_A = range(len(A))
-    row_B = range(len(B))
-    col_B = range(len(B[0]))
-    return [[sum(A[a][b] * B[b][c] for b in row_B)
-             for c in col_B] for a in row_A]
+    else:
+        k = arg[i][j]        # --- follow placement of parentheses
+        A = _apply_order(M, arg, i, k)
+        B = _apply_order(M, arg, k + 1, j)
+        row_A = range(len(A))
+        row_B = range(len(B))
+        col_B = range(len(B[0]))
+        return [[sum(A[a][b] * B[b][c] for b in row_B)
+                 for c in col_B] for a in row_A]
 # snip}

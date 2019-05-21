@@ -40,7 +40,7 @@ def subset_sum(x, R):
     while i < len(Y) and j < len(Z):
         if Y[i] == Z[j]:
             return True
-        if Y[i] < Z[j]:       # increment index of smallest element
+        elif Y[i] < Z[j]:       # increment index of smallest element
             i += 1
         else:
             j += 1

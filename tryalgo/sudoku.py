@@ -65,5 +65,6 @@ def sudoku(G):
             if a < len(S):
                 G[row(a)][col(a)] = val(a) + 1
         return True
-    return False
+    else:
+        return False
 # snip}

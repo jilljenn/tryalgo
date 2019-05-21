@@ -50,7 +50,8 @@ def laser_mirrors(rows, cols, mir):
         last_c, last_i = c, i
     if solve(succ, orien, n, RIGHT):      # exploration
         return orien[:n]
-    return None
+    else:
+        return None
 # snip}
 
 
@@ -77,5 +78,6 @@ def solve(succ, orien, i, direc):
                 return True
         orien[j] = None
         return False
-    return solve(succ, orien, j, reflex[direc][orien[j]])
+    else:
+        return solve(succ, orien, j, reflex[direc][orien[j]])
 # snip}

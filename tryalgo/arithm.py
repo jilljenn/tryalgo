@@ -26,8 +26,9 @@ def bezout(a, b):
     """
     if b == 0:
         return (1, 0)
-    u, v = bezout(b, a % b)
-    return (v, u - (a // b) * v)
+    else:
+        u, v = bezout(b, a % b)
+        return (v, u - (a // b) * v)
 
 
 def inv(a, p):

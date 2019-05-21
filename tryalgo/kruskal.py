@@ -23,8 +23,9 @@ class UnionFind:
         """
         if self.up[x] == x:
             return x
-        self.up[x] = self.find(self.up[x])
-        return self.up[x]
+        else:
+            self.up[x] = self.find(self.up[x])
+            return self.up[x]
 
     def union(self, x, y):
         """Merges part that contain x and part containing y

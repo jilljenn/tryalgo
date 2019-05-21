@@ -53,5 +53,6 @@ def propose(prop, seq):
     """wrapper to access a dictionary even for non-present keys"""
     if seq in prop:
         return prop[seq]
-    return None
+    else:
+        return None
 # snip}

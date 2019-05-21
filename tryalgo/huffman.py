@@ -28,7 +28,7 @@ def huffman(freq=None):
     return code
 
 
-def extract(code=None, tree=None, prefix=None):
+def extract(code=None, tree=None, prefix=[]):
     """Extract Huffman code from a Huffman tree
 
     :param tree: a node of the tree
@@ -36,8 +36,6 @@ def extract(code=None, tree=None, prefix=None):
                     the root to the node `tree`
     :complexity: O(n)
     """
-    if prefix is None:
-        prefix = []
     if isinstance(tree, list):
         l, r = tree
         prefix.append('0')

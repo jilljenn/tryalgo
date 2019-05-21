@@ -12,7 +12,8 @@ from tryalgo.strongly_connected_components import tarjan
 def _vertex(lit):  # integer encoding of a litteral
     if lit > 0:
         return 2 * (lit - 1)
-    return 2 * (-lit - 1) + 1
+    else:
+        return 2 * (-lit - 1) + 1
 
 
 def two_sat(formula):
