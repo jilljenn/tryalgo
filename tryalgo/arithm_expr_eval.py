@@ -1,63 +1,66 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Evaluate an arithmetic expression
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Evaluate an arithmetic expression
+jill-jenn vie et christoph durr - 2014-2018
+-------------------------------------------
 
-# IPCELLS
-# http://www.spoj.com/problems/IPCELLS/
+IPCELLS
+http://www.spoj.com/problems/IPCELLS/
+"""
 
 from sys import stdin
 
 
 # snip{ arithm_expr_eval
-def arithm_expr_eval(cell, expr):
+def arithm_expr_eval(cell_formula, expr):
     """Evaluates a given expression
 
     :param expr: expression
-    :param cell: dictionary variable name -> expression
+    :param cell_formula: dictionary variable name -> expression
 
     :returns: numerical value of expression
 
     :complexity: linear
     """
     if isinstance(expr, tuple):
-        (left, op, right) = expr
-        lval = arithm_expr_eval(cell, left)
-        rval = arithm_expr_eval(cell, right)
-        if op == '+':
+        (left, operand, right) = expr
+        lval = arithm_expr_eval(cell_formula, left)
+        rval = arithm_expr_eval(cell_formula, right)
+        if operand == '+':
             return lval + rval
-        if op == '-':
+        if operand == '-':
             return lval - rval
-        if op == '*':
+        if operand == '*':
             return lval * rval
-        if op == '/':
+        if operand == '/':
             return lval // rval
     elif isinstance(expr, int):
         return expr
     else:
-        cell[expr] = arithm_expr_eval(cell, cell[expr])
-        return cell[expr]
+        cell_formula[expr] = arithm_expr_eval(cell_formula, cell_formula[expr])
+        return cell_formula[expr]
 # snip}
 
 
 # snip{ arithm_expr_parse
-priority = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
+PRIORITY = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
 
 
-def arithm_expr_parse(line):
+def arithm_expr_parse(line_tokens):
     """Constructs an arithmetic expression tree
 
-    :param line: list of token strings containing the expression
+    :param line_tokens: list of token strings containing the expression
     :returns: expression tree
 
-    :complexity:     linear
+    :complexity:     line_tokensar
     """
     vals = []
     ops = []
-    for tok in line + [';']:
-        if tok in priority:  # tok is an operator
+    for tok in line_tokens + [';']:
+        if tok in PRIORITY:  # tok is an operator
             while (tok != '(' and ops and
-                   priority[ops[-1]] >= priority[tok]):
+                   PRIORITY[ops[-1]] >= PRIORITY[tok]):
                 right = vals.pop()
                 left = vals.pop()
                 vals.append((left, ops.pop(), right))

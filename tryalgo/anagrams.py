@@ -13,8 +13,8 @@ def anagrams(w):
     :returns: list of lists
 
     :complexity:
-        :math:`O(n k \log k)` in average, for n words of length at most k.
-        :math:`O(n^2 k \log k)` in worst case due to the usage of a dictionary.
+        :math:`O(n k log k)` in average, for n words of length at most k.
+        :math:`O(n^2 k log k)` in worst case due to the usage of a dictionary.
     """
     w = list(set(w))             # remove duplicates
     d = {}                       # group words according to some signature

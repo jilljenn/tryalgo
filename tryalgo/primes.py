@@ -66,5 +66,5 @@ if __name__ == "__main__":
     for _ in range(30):
         E = test(eratosthene, n)
         G = test(gries_misra, n)
-        print("%f\t%f\t%f" % (E, G, G / E) )
+        print("%f\t%f\t%f" % (E, G, G / E))
         n *= 2

@@ -4,7 +4,6 @@
 # jill-jenn vie et christoph durr - 2014-2018
 
 
-
 # snip{
 from collections import deque
 

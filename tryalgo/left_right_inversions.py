@@ -32,9 +32,10 @@ def left_right_inversions(tab):
     """ Compute left and right inversions of each element of a table.
 
     :param tab: list with comparable elements
-    :returns: lists left and right. left[j] = the number of i<j such that tab[i] > tab[j].
+    :returns: lists left and right. left[j] = the number of
+    i<j such that tab[i] > tab[j].
               right[i] = the number of i<j such that tab[i] > tab[j].
-    :complexity: `O(n \log n)`
+    :complexity: `O(n log n)`
     """
     n = len(tab)
     left = [0] * n

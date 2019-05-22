@@ -47,7 +47,7 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
                       is considered as being zero.
                       If G consists of integer or fractional values
                       then TOLERANCE can be chosen 0.
-    :requires: graph (U,V,E) is complete bi-partite graph with len(U) <= len(V).
+    :requires: graph (U,V,E) is complete bi-partite graph with len(U) <= len(V)
                float('-inf') or float('inf') entries in G
                are allowed but not None.
     :returns: matching table from U to V, value of matching

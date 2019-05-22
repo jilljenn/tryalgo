@@ -84,7 +84,7 @@ def horn_sat(formula):
     while pool[0]:
         curr = pool[0].pop()                    # arbitrary zero score clause
         v = posvar_in_clause[curr]
-        if v == None:                           # formula is not satisfiable
+        if v is None:                           # formula is not satisfiable
             return None
         if v in solution or curr in clauses_with_negvar[v]:
             continue                            # clause is already satisfied
@@ -96,7 +96,7 @@ def horn_sat(formula):
     return solution
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     F = read(sys.argv[1])
     sol = horn_sat(F)
     if sol is None:

@@ -31,12 +31,12 @@ def roman2int(s):
         pos10 //= 10
     return val
 
-# footnote 1: 
+# footnote 1:
 # in C one would write
 #
 # if (strncmp(s + beg, r, strlen(r)) == 0)
 #
-# in C++ the starts_with method does not allow a selection 
+# in C++ the starts_with method does not allow a selection
 # of a substring in s, where the search should start.
 # so you need to write your onwn function, something like:
 #

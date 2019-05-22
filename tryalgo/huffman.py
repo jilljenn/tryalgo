@@ -1,32 +1,35 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Huffman code
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Huffman code
+jill-jenn vie et christoph durr - 2014-2018
+-------------------------------------------
+"""
 
 from heapq import heappush, heappop
 
 
 # snip{
-def huffman(freq):
+def huffman(freq=None):
     """Huffman code
 
     :param freq: dictionary with frequencies for each item
     :returns: dictionary with binary code string for each item
     :complexity: O(n log n)
     """
-    h = []
-    for a in freq:
-        heappush(h, (freq[a], a))
-    while len(h) > 1:
-        (fl, l) = heappop(h)
-        (fr, r) = heappop(h)
-        heappush(h, (fl + fr, [l, r]))
+    h_u = []
+    for item in freq:
+        heappush(h_u, (freq[item], item))
+    while len(h_u) > 1:
+        (f_l, left) = heappop(h_u)
+        (f_r, right) = heappop(h_u)
+        heappush(h_u, (f_l + f_r, [left, right]))
     code = {}
-    extract(code, h[0][1])
+    extract(code, h_u[0][1])
     return code
 
 
-def extract(code, tree, prefix=[]):
+def extract(code=None, tree=None, prefix=None):
     """Extract Huffman code from a Huffman tree
 
     :param tree: a node of the tree
@@ -34,13 +37,15 @@ def extract(code, tree, prefix=[]):
                     the root to the node `tree`
     :complexity: O(n)
     """
+    if prefix is None:
+        prefix = []
     if isinstance(tree, list):
-        l, r = tree
+        left, right = tree
         prefix.append('0')
-        extract(code, l, prefix)
+        extract(code, left, prefix)
         prefix.pop()
         prefix.append('1')
-        extract(code, r, prefix)
+        extract(code, right, prefix)
         prefix.pop()
     else:
         code[tree] = ''.join(prefix)
