@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Longest increasing subsequence
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Longest increasing subsequence
+jill-jenn vie et christoph durr - 2014-2018
+"""
+# pylint: disable=bad-whitespace
 
 # snip{
 def longest_common_subsequence(x, y):

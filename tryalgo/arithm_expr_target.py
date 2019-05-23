@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Create arithmetic expression approaching target value
-# jill-jenn vie et christoph durr et jean-christophe filliatre - 2014-2018
-
+"""\
+Create arithmetic expression approaching target value
+jill-jenn vie et christoph durr et jean-christophe filliatre - 2014-2018
+"""
 
 # snip{
+# pylint: disable=too-many-locals, too-many-nested-blocks, unnecessary-pass
+# pylint: disable=inconsistent-return-statements, too-many-branches
 def arithm_expr_target(x, target):
     """ Create arithmetic expression approaching target value
     :param x: allowed constants

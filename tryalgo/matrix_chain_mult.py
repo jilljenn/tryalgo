@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Matrix chain multiplication
-# multiplication de matrices
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Matrix chain multiplication
+multiplication de matrices
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{
@@ -31,7 +33,7 @@ def matrix_mult_opt_order(M):
                     arg[i][j] = k
     return opt, arg
 
-
+# pylint: disable=unused-variable
 def matrix_chain_mult(M):
     """Matrix chain multiplication
 

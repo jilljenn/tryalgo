@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
+"""\
+christoph durr and finn voelkel and louis abraham - 2016-2018
 
-# christoph durr and finn voelkel and louis abraham - 2016-2018
-
-# Find shortest simple cycle
-# O(V*E)
-# footnote (1) here you can add parity check of cycle_len
-# if only even cycles are requested
-
+Find shortest simple cycle
+O(V*E)
+footnote (1) here you can add parity check of cycle_len if only even cycles are requested
+"""
+# pylint: disable=bad-whitespace, missing-docstring, multiple-statements
 
 from collections import deque
 from sys import stdin

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Permutation rank
-# christoph durr - 2016-2018
+"""\
+Permutation rank
+christoph durr - 2016-2018
+"""
 
-
+# pylint: disable=line-too-long
 def permutation_rank(p):
     """Given a permutation of {0,..,n-1} find its rank according to
     lexicographical order

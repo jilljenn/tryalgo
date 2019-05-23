@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Depth first search - DFS
-# jill-jenn vie et christoph durr - 2015-2018
-
+"""\
+Depth first search - DFS
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 # snip{ dfs-recursive
 def dfs_recursive(graph, node, seen):
@@ -106,7 +107,7 @@ def dfs_grid(grid, i, j, mark='X', free='.'):
                 to_visit.append((i2, j2))
 # snip}
 
-
+# pylint: disable=too-many-nested-blocks, no-else-return
 def find_cycle(graph):
     """find a cycle in an undirected graph
 
@@ -126,7 +127,7 @@ def find_cycle(graph):
                     if v != prec[u]:  # except arcs to father in DFS tree
                         if prec[v] is not None:
                             cycle = [v, u]  # cycle found, (u,v) back edge
-                            while u != prec[v] and u != prec[u]:  # directed
+                            while u not in (prec[v], prec[u]):  # directed
                                 u = prec[u]  # climb up the tree
                                 cycle.append(u)
                             return cycle

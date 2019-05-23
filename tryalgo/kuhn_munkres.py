@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Maximum profit bipartite matching by Kuhn-Munkres
-# jill-jenn vie, christoph durr and samuel tardieu - 2014-2018
+"""\
+Maximum profit bipartite matching by Kuhn-Munkres
+jill-jenn vie, christoph durr and samuel tardieu - 2014-2018
 
-"""
 primal LP
 
     max sum_{u,v} w[u,v] * x[u,v]
@@ -39,6 +39,7 @@ primal-dual algorithm:
 
 
 # snip{
+# pylint: disable=too-many-locals, too-many-branches
 def kuhn_munkres(G, TOLERANCE=1e-6):
     """Maximum profit bipartite matching by Kuhn-Munkres
 
@@ -101,5 +102,5 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
             mv[v] = u                # augment matching
             mu[u] = v
             v = prec
-    return (mu,  sum(lu) + sum(lv))
+    return (mu, sum(lu) + sum(lv))
 # snip}

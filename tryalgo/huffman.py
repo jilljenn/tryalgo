@@ -3,7 +3,6 @@
 """\
 Huffman code
 jill-jenn vie et christoph durr - 2014-2018
--------------------------------------------
 """
 
 from heapq import heappush, heappop
@@ -29,7 +28,7 @@ def huffman(freq=None):
     return code
 
 
-def extract(code=None, tree=None, prefix=None):
+def extract(code=None, tree=None, prefix=[]):
     """Extract Huffman code from a Huffman tree
 
     :param tree: a node of the tree

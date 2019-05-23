@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Majority
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Majority
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # snip{
+# pylint: disable=unused-variable
 def majority(L):
     # snip}
     """Majority

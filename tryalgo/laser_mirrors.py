@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Orienting mirrors to allow connectivity by a laser beam
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Orienting mirrors to allow connectivity by a laser beam
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # snip{ laser-miroir-preparation
 # directions
@@ -11,10 +13,10 @@ DOWN = 2
 RIGHT = 3
 # orientations None:? 0:/ 1:\
 
-# destination UP          LEFT         DOWN           RIGHT
-reflex = [[RIGHT, LEFT], [DOWN, UP],  [LEFT, RIGHT], [UP, DOWN]]
+# destination UP          LEFT        DOWN           RIGHT
+reflex = [[RIGHT, LEFT], [DOWN, UP], [LEFT, RIGHT], [UP, DOWN]]
 
-
+# pylint: disable=unused-variable, unused-argument
 def laser_mirrors(rows, cols, mir):
     """Orienting mirrors to allow reachability by laser beam
 

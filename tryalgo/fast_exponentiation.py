@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Fast Exponentiation
-# jill-jenn vie et christoph durr and louis abraham - 2014-2018
+"""\
+Fast Exponentiation
+jill-jenn vie et christoph durr and louis abraham - 2014-2018
+"""
 
 
 def fast_exponentiation2(a, b, q):

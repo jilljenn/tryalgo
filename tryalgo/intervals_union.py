@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Union of intervals
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Union of intervals
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # snip{
 def intervals_union(S):

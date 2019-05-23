@@ -3,7 +3,6 @@
 """\
 Minimum spanning tree by kruskal
 jill-jenn vie et christoph durr - 2014-2018
--------------------------------------------
 """
 
 from math import sqrt
@@ -50,19 +49,20 @@ class UnionFind:
 
 
 # snip{ kruskal
-def kruskal(kk_graph, kk_weight):
-    """
-    Minimum spanning tree by Kruskal
-    :param kk_graph: undirected kk_graph in listlist or listdict format
-    :param kk_weight: in matrix format or same listdict kk_graph
+# pylint: disable=redefined-outer-name, unused-variable
+def kruskal(graph, weight):
+    """Minimum spanning tree by Kruskal
+
+    :param graph: undirected graph in listlist or listdict format
+    :param weight: in matrix format or same listdict graph
     :returns: list of edges of the tree
     :complexity: ``O(|E|log|E|)``
     """
     u_f = UnionFind(len(kk_graph))
     edges = []
-    for u_idx, _ in enumerate(kk_graph):
-        for v_idx in kk_graph[u_idx]:
-            edges.append((kk_weight[u_idx][v_idx], u_idx, v_idx))
+    for u, _ in enumerate(graph):
+        for v in graph[u]:
+            edges.append((weight[u][v], u, v))
     edges.sort()
     min_span_tree = []
     for w_idx, u_idx, v_idx in edges:
@@ -71,22 +71,23 @@ def kruskal(kk_graph, kk_weight):
     return min_span_tree
 # snip}
 
-def dist(a_point, b_point):
+def dist(a, b):
     """
     distance between point a and point b
     """
-    return sqrt(sum([(a_point[i] - b_point[i]) * (a_point[i] - b_point[i])
-                     for i in range(len(a_point))]))
+    return sqrt(sum([(a[i] - b[i]) * (a[i] - b[i])
+                     for i in range(len(a))]))
 
-def main():
+# pylint: disable=pointless-string-statement
+if __name__ == "__main__":
     """
     main function
     """
-    size = 256
-    points = [[random.random() * 5, random.random() * 5] for _ in range(size)]
-    weight = [[dist(points[i], points[j]) for j in range(size)]
-              for i in range(size)]
-    graph = [[j for j in range(size) if i != j] for i in range(size)]
+    N = 256
+    points = [[random.random() * 5, random.random() * 5] for _ in range(N)]
+    weight = [[dist(points[i], points[j]) for j in range(N)]
+              for i in range(N)]
+    graph = [[j for j in range(N) if i != j] for i in range(N)]
 
     with open('../data/kruskal-points.tex', 'w') as infile:
         min_span_tree = kruskal(graph, weight)

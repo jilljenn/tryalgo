@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Breadth-first-search, bfs and OurQueue
-# christoph dürr - jill-jênn vie - 2015-2018
+"""\
+Breadth-first-search, bfs and OurQueue
+christoph dürr - jill-jênn vie - 2015-2018
+"""
 
 # snip{
 from collections import deque

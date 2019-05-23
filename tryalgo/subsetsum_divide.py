@@ -3,7 +3,6 @@
 """\
 Subsetsum by splitting
 christoph dürr et jill-jênn vie - 2014-2018
--------------------------------------------
 """
 
 # snip{

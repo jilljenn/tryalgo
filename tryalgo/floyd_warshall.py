@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# All pairs shortest paths by Floyd-Warshall
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+All pairs shortest paths by Floyd-Warshall
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{

@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# How many rectangles can be formed from a set of points
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+How many rectangles can be formed from a set of points
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{
@@ -14,7 +16,7 @@ def rectangles_from_points(S):
     """
     answ = 0
     pairs = {}
-    for j in range(len(S)):
+    for j, _ in enumerate(S):
         for i in range(j):
             px, py = S[i]
             qx, qy = S[j]

@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Convex hull by Andrew
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Convex hull by Andrew
+jill-jenn vie et christoph durr - 2014-2018
+"""
+
+# pylint: disable=redefined-outer-name
 
 from random import randint
 
@@ -11,6 +15,7 @@ __all__ = ["andrew"]
 
 # snip{ left-turn
 def left_turn(a, b, c):
+    """function left-turn"""
     return ((a[0] - c[0]) * (b[1] - c[1]) -
             (a[1] - c[1]) * (b[0] - c[0]) > 0)
 # snip}
@@ -38,20 +43,19 @@ def andrew(S):
     return bot[:-1] + top[:0:-1]
 # snip}
 
-
+# pylint: disable=missing-docstring
 if __name__ == "__main__":
 
     def gnuplot(L):
         for x, y in L:
             print(x, y)
-        print
 
     def tikz_points(S):
         for p in S:
             print('\\filldraw[black] (%f, %f) circle (1pt);' % p)
 
     def tikz_polygone(S):
-        for i in range(len(S)):
+        for i, _ in enumerate(S):
             print('\\draw[blue] (%f, %f) -- (%f, %f);' % (S[i - 1] + S[i]))
 
     S = [(randint(0, 25)/10., randint(0, 25)/10.) for _ in range(32)]

@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Shortest paths by Dijkstra
-# jill-jênn vie et christoph dürr - 2015-2018
+"""\
+Shortest paths by Dijkstra
+jill-jênn vie et christoph dürr - 2015-2018
+"""
+# pylint: disable=wrong-import-position
 
 from heapq import heappop, heappush
 from tryalgo.our_heap import OurHeap

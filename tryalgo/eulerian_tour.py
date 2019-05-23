@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Eulerian cycle
-# jill-jenn vie et christoph durr - 2015-2018
+"""\
+Eulerian cycle
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 import random
 from tryalgo.graph import write_graph

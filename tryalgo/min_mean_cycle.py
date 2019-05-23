@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Minimum mean cycle by Karp
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Minimum mean cycle by Karp
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{
+# pylint: disable=too-many-locals
 def min_mean_cycle(graph, weight, start=0):
     """Minimum mean cycle by Karp
 

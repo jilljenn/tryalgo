@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# A min heap
-# christoph durr et jill-jenn vie - 2015-2018
-
+"""\
+A min heap
+christoph durr et jill-jenn vie - 2015-2018
+"""
 
 # snip{
 class OurHeap:

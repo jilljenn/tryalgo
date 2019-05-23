@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Next permutation
-# prochaine permuation
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Next permutation
+prochaine permuation
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 from sys import stdin, argv
 
 
 # snip{
+# pylint: disable=redefined-outer-name
 def next_permutation(tab):
     """find the next permutation of tab in the lexicographical order
 
@@ -37,16 +40,21 @@ def next_permutation(tab):
 # snip}
 
 
-# solves a cryptogram in the style SEND + MORE = MONEY
 # snip{ word_addition
+# pylint: disable=redefined-outer-name
 def convert(word, ass):
+    """
+    solves a cryptogram in the style SEND + MORE = MONEY
+    """
     retval = 0
     for x in word:
         retval = 10 * retval + ass[x]
     return retval
 
 
+# pylint: disable=redefined-outer-name
 def solve_word_addition(S):         # returns number of solutions
+    """returns number of solutions"""
     n = len(S)
     letters = sorted(list(set(''.join(S))))
     not_zero = ''                   # letters that cannot be 0

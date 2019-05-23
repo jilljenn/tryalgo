@@ -3,7 +3,6 @@
 """\
 bi-connected components, cut vertices and cut cut-nodes
 jill-jenn vie et christoph durr et louis abraham - 2015-2018
-------------------------------------------------------------
 """
 
 from sys import getrecursionlimit, setrecursionlimit
@@ -11,6 +10,9 @@ from sys import getrecursionlimit, setrecursionlimit
 
 # snip{
 # to ease readiness, variables do not have dfs_ prefix
+# pylint: disable=too-many-locals
+# pylint: disable=too-many-nested-blocks
+# pylint: disable=too-many-branches
 def cut_nodes_edges(graph):
     """Bi-connected components
 
@@ -89,6 +91,7 @@ def cut_nodes_edges2(graph):
     FIN = -3  # already visited
     marked = [NOT] * N  # if >= 0, it means depth within the DFS
 
+    # pylint: disable=inconsistent-return-statements
     def DFS(n, prof=0):
         """
         Recursively search graph, update edge list and returns the first

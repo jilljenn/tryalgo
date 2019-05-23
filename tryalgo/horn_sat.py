@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Solving Horn SAT
+"""\
+Solving Horn SAT
 
-# christoph dürr - 2016-2018
+christoph dürr - 2016-2018
 
-
-"""
 clauses are numbered starting from 0
 variables are strings (identifier)
 
@@ -46,12 +45,12 @@ def read(filename):
             if posvar == '':
                 posvar = None
             negvars = lit[1].split(',')
-            for i in range(len(negvars)):
+            for i, _ in enumerate(negvars):
                 negvars[i] = negvars[i].strip()
         formula.append((posvar, negvars))
     return formula
 
-
+# pylint: disable=line-too-long
 def horn_sat(formula):
     """ Solving a HORN Sat formula
 

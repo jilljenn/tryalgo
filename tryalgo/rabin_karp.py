@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Find substrings by Rabin-Karp
-# jill-jenn vie et christoph durr - 2015-2018
+"""\
+Find substrings by Rabin-Karp
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 # http://www.wolframalpha.com/input/?i=nearest+prime+number+to+2**56
 # snip{ rabin_karp_roll_hash
@@ -10,6 +12,7 @@ DOMAIN = 128
 
 
 def roll_hash(old_val, out_digit, in_digit, last_pos):
+    """roll_hash """
     val = (old_val - out_digit * last_pos + DOMAIN * PRIME) % PRIME
     val = (val * DOMAIN) % PRIME
     return (val + in_digit) % PRIME

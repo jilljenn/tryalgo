@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Reading graphs from files and writing into files
-# jill-jênn vie et christoph dürr - 2015-2018
+"""\
+Reading graphs from files and writing into files
+jill-jênn vie et christoph dürr - 2015-2018
+"""
+# pylint: disable=bad-whitespace, line-too-long, missing-docstring
+# pylint: disable=dangerous-default-value, too-many-locals, too-many-branches
 
 
 def readval(file, ty):
@@ -24,7 +28,7 @@ def readtab(fi, ty):
     """
     return tuple(map(ty, fi.readline().split()))
 
-
+# pylint: disable=no-else-return
 def read_graph(filename, directed=False, weighted=False, default_weight=None):
     """Read a graph from a text file
 
@@ -69,7 +73,7 @@ def read_graph(filename, directed=False, weighted=False, default_weight=None):
                     graph[v].append(u)
             return graph
 
-
+# pylint: disable=too-many-arguments, singleton-comparison
 def write_graph(dotfile, graph, directed=False,
                 node_label=None, arc_label=None, comment="",
                 node_mark=set(), arc_mark=set()):
@@ -177,6 +181,7 @@ def tree_adj_to_prec(graph, root=0):
 
 
 # snip{ add_reverse_arcs
+# pylint: disable=unidiomatic-typecheck
 def add_reverse_arcs(graph, capac=None):
     """Utility function for flow algorithms that need for every arc (u,v),
     the existence of an (v,u) arc, by default with zero capacity.
@@ -189,7 +194,7 @@ def add_reverse_arcs(graph, capac=None):
     :complexity: linear
     :returns: nothing, but graph is modified
     """
-    for u in range(len(graph)):
+    for u, _ in enumerate(graph):
         for v in graph[u]:
             if u not in graph[v]:
                 if type(graph[v]) is list:
@@ -222,7 +227,7 @@ def add_reverse_arcs(graph, capac=None):
 #        otherwise it is the weight of the arc.
 #        Value M[u][v]=True can be used for unweighted graphs.
 
-
+# pylint: disable=no-else-return
 def matrix_to_listlist(weight):
     """transforms a squared weight matrix in a adjacency table of type listlist
     encoding the directed graph corresponding to the entries of the matrix
@@ -235,7 +240,7 @@ def matrix_to_listlist(weight):
                        listlist[u] contains all v for which arc (u,v) exists.
     """
     graph = [[] for _ in range(len(weight))]
-    for u in range(len(graph)):
+    for u, _ in enumerate(graph):
         for v in range(len(graph)):
             if weight[u][v] is not None:
                 graph[u].append(v)

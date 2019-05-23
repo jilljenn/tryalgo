@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# A FIFO queue
-# christoph dürr - jill-jênn vie - 2015-2018
-
+"""\
+A FIFO queue
+christoph dürr - jill-jênn vie - 2015-2018
+"""
 
 # snip{ OurQueue
+# pylint: disable=missing-docstring
 class OurQueue:
     """A FIFO queue
 

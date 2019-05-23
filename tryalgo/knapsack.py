@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Knapsack
-# jill-jenn vie et christoph durr - 2015-2018
-
+"""\
+Knapsack
+jill-jenn vie et christoph durr - 2015-2018
+"""
 
 # snip{
 def knapsack(p, v, cmax):

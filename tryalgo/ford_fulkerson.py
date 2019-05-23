@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Maximum flow by Ford-Fulkerson
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Maximum flow by Ford-Fulkerson
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 from tryalgo.graph import add_reverse_arcs
 
 
 # snip{
+# pylint: disable=too-many-arguments
 def _augment(graph, capacity, flow, val, u, target, visit):
     """Find an augmenting path from u to target with value at most val"""
     visit[u] = True

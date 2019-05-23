@@ -22,19 +22,19 @@ def dist_grid(grid, source, target=None):
     cols = len(grid[0])
     i, j = source
     grid[i][j] = 's'
-    q_ueue = deque()
-    q_ueue.append(source)
-    while q_ueue:
-        i_1, j_1 = q_ueue.popleft()
-        for d_i, d_j, symbol in [(0, +1, '>'),
-                                 (0, -1, '<'),
-                                 (+1, 0, 'v'),
-                                 (-1, 0, '^')]:   # explore all d_irections
-            i_2 = i_1 + d_i
-            j_2 = j_1 + d_j
-            if not (0 <= i_2 < rows and 0 <= j_2 < cols):
-                continue                # reached the bounds of the grid
-            if grid[i_2][j_2] != ' ':   # inaccessible or already visited
+    Q = deque()
+    Q.append(source)
+    while Q:
+        i1, j1 = Q.popleft()
+        for di, dj, symbol in [(0, +1, '>'),
+                               (0, -1, '<'),
+                               (+1, 0, 'v'),
+                               (-1, 0, '^')]:   # explore all directions
+            i2 = i1 + di
+            j2 = j1 + dj
+            if not (0 <= i2 < rows and 0 <= j2 < cols):
+                continue              # reached the bounds of the grid
+            if grid[i2][j2] != ' ':   # inaccessible or already visited
                 continue
             grid[i_2][j_2] = symbol     # mark visit
             if (i_2, j_2) == target:

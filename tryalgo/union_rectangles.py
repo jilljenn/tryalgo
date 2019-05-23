@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Union of rectangles
-# jill-jenn vie et christoph durr - 2014-2018
-
+"""\
+Union of rectangles
+jill-jenn vie et christoph durr - 2014-2018
+"""
+# pylint: disable=too-many-arguments, too-many-locals
 
 # snip{ cover-query
 class Cover_query:
@@ -20,7 +22,7 @@ class Cover_query:
         self.c = [0] * (2 * self.N)         # --- covered
         self.s = [0] * (2 * self.N)         # --- score
         self.w = [0] * (2 * self.N)         # --- length
-        for i in range(len(L)):
+        for i, _ in enumerate(L):
             self.w[self.N + i] = L[i]
         for p in range(self.N - 1, 0, -1):
             self.w[p] = self.w[2 * p] + self.w[2 * p + 1]
@@ -69,7 +71,7 @@ def union_rectangles(R):
         return 0
     X = []
     Y = []
-    for j in range(len(R)):
+    for j, _ in enumerate(R):
         (x1, y1, x2, y2) = R[j]
         assert x1 <= x2 and y1 <= y2
         X.append(x1)

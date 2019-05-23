@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Minimum interval cover
-# jill-jênn vie et christoph dürr - 2014-2018
+"""\
+Minimum interval cover
+jill-jênn vie et christoph dürr - 2014-2018
+"""
 
 from sys import stdin
 from math import sqrt
 
 
-def _readarray(f): return map(f, stdin.readline().split())
+def _readarray(f):
+    return map(f, stdin.readline().split())
 
-
+# pylint: disable=redefined-outer-name
 def _solve(iles, rayon):
     II = []
     for x, y in iles:

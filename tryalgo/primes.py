@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Prime numbers by Eratosthene
-# nombre premiers <n
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+Prime numbers by Eratosthene
+nombre premiers <n
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 
 # snip{ eratosthene
+# pylint: disable=redefined-outer-name
 def eratosthene(n):
     """Prime numbers by sieve of Eratosthene
 
@@ -26,6 +29,7 @@ def eratosthene(n):
 
 
 # snip{ gries_misra
+# pylint: disable=redefined-outer-name
 def gries_misra(n):
     """Prime numbers by the sieve of Gries-Misra
     Computes both the list of all prime numbers less than n,
@@ -49,6 +53,7 @@ def gries_misra(n):
 # snip}
 
 
+# pylint: disable=redefined-outer-name, missing-docstring
 if __name__ == "__main__":
 
     # compare the running times and show the ratio between the performances

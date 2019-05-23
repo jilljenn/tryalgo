@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# trie - correcteur orthographique
-# jill-jenn vie et christoph durr - 2014-2018
+"""\
+trie - correcteur orthographique
+jill-jenn vie et christoph durr - 2014-2018
+"""
 
 # Don't write a Trie class otherwise you cannot represent leaves with None
 
 # snip{
 from string import ascii_letters    # in Python 2 one would import letters
 
-
+# pylint: disable=missing-docstring, too-few-public-methods
 class Trie_Node:
     def __init__(self):
         self.isWord = False
@@ -59,7 +61,7 @@ def spell_check(T, w):
             return u
         dist += 1
 
-
+# pylint: disable=too-many-return-statements, no-else-return
 def search(T, dist, w, i=0):
     """Searches for w[i:] in trie T with distance at most dist
     """
