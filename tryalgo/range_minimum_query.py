@@ -75,7 +75,7 @@ class LazySegmentTree:
     This is more general than a Fenwick tree or a tree for MinRangeQuery. Here
     queries and updates act on index ranges. Updates can be set a range to a
     value or add a value to a range. Queries can be max, min and sum over an
-    index range. All operations run in time O(\log n) for a the table size n.
+    index range. All operations run in time O(log n) for a the table size n.
     The given ranges are in the form [i,j] where i is included and j excluded.
     In the recursive calls, node is the index of a node in the tree, and left,
     right its range. Values can be any numerical values allowing max, min, and
@@ -105,7 +105,7 @@ class LazySegmentTree:
         self.sumval = [0] * 2 * self.N
         self.lazyset = [None] * 2 * self.N
         self.lazyadd = [0] * 2 * self.N
-        for i, tabi in enumerate(tab):             # initialize with given table
+        for i, tabi in enumerate(tab):            # initialize with given table
             j = self.N + i
             self.maxval[j] = self.minval[j] = self.sumval[j] = tabi
         for node in range(self.N - 1, 0, -1):
@@ -116,17 +116,17 @@ class LazySegmentTree:
         :promize: the lazy values are None/0 for this node
         """
         # requires node and its direct descends to be clean
-        l = 2 * node
+        ll = 2 * node
         r = 2 * node + 1
         assert self.lazyset[node] is None
         assert self.lazyadd[node] == 0
-        assert self.lazyset[l] is None
-        assert self.lazyadd[l] == 0
+        assert self.lazyset[ll] is None
+        assert self.lazyadd[ll] == 0
         assert self.lazyset[r] is None
         assert self.lazyadd[r] == 0
-        self.maxval[node] = max(self.maxval[l], self.maxval[r])
-        self.minval[node] = min(self.minval[l], self.minval[r])
-        self.sumval[node] = self.sumval[l] + self.sumval[r]
+        self.maxval[node] = max(self.maxval[ll], self.maxval[r])
+        self.minval[node] = min(self.minval[ll], self.minval[r])
+        self.sumval[node] = self.sumval[ll] + self.sumval[r]
 
     def _clear(self, node, left, right):
         """propagates the lazy updates for this node to the subtrees.
@@ -140,7 +140,7 @@ class LazySegmentTree:
             self.sumval[node] = val * (right - left)
             self.lazyset[node] = None
             if left < right - 1:            # not a leaf
-                self.lazyset[2 * node] = val    # propagate to direct descendents
+                self.lazyset[2 * node] = val  # propagate to direct descendents
                 self.lazyadd[2 * node] = 0
                 self.lazyset[2 * node + 1] = val
                 self.lazyadd[2 * node + 1] = 0
@@ -151,7 +151,7 @@ class LazySegmentTree:
             self.sumval[node] += val * (right - left)
             self.lazyadd[node] = 0
             if left < right - 1:            # not at a leaf
-                self.lazyadd[2 * node] += val     # propagate to direct descendents
+                self.lazyadd[2 * node] += val  # propagate to direct descendents
                 self.lazyadd[2 * node + 1] += val
 
     def add(self, i, j, val):

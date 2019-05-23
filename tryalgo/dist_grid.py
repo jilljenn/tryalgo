@@ -14,7 +14,7 @@ def dist_grid(grid, source, target=None):
     """Distances in a grid by BFS
 
     :param grid: matrix with 4-neighborhood
-    :param (int,int) source: pair of row, column indices
+    :param (int,int) source: pair of row, column ind_ices
     :param (int,int) target: exploration stops if target is reached
     :complexity: linear in grid size
     """
@@ -36,9 +36,9 @@ def dist_grid(grid, source, target=None):
                 continue              # reached the bounds of the grid
             if grid[i2][j2] != ' ':   # inaccessible or already visited
                 continue
-            grid[i2][j2] = symbol     # mark visit
-            if (i2, j2) == target:
-                grid[i2][j2] = 't'    # goal is reached
+            grid[i_2][j_2] = symbol     # mark visit
+            if (i_2, j_2) == target:
+                grid[i_2][j_2] = 't'    # goal is reached
                 return
-            Q.append((i2, j2))
+            q_ueue.append((i_2, j_2))
 # snip}

@@ -14,16 +14,16 @@ def _readarray(f):
 
 # pylint: disable=redefined-outer-name
 def _solve(iles, rayon):
-    I = []
+    II = []
     for x, y in iles:
         if y > rayon:
             return -1               # island is too far
         z = sqrt(rayon * rayon - y * y)   # find the interval
-        I.append((x + z, x - z))
-    I.sort()                        # sort by right side
+        II.append((x + z, x - z))
+    II.sort()                        # sort by right side
     sol = 0
     last = float('-inf')
-    for right, left in I:
+    for right, left in II:
         if last < left:             # uncovered interval
             sol += 1
             last = right            # put an antenna

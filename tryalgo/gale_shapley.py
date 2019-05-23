@@ -5,7 +5,6 @@ Stable matching by Gale-Shapley
 jill-jenn vie et christoph durr - 2014-2018
 """
 
-
 # snip{
 from collections import deque
 

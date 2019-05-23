@@ -8,7 +8,8 @@ jill-jenn vie et christoph durr - 2014-2018
 # snip{
 # pylint: disable=bad-whitespace
 def max_interval_intersec(S):
-    """determine a value that is contained in a largest number of given intervals
+    """determine a value that is contained in a largest number
+    of given intervals
 
     :param S: list of half open intervals
     :complexity: O(n log n), where n = len(S)

@@ -16,7 +16,8 @@ from sys import getrecursionlimit, setrecursionlimit
 def cut_nodes_edges(graph):
     """Bi-connected components
 
-    :param graph: undirected graph. in listlist format. Cannot be in listdict format.
+    :param graph: undirected graph. in listlist format. Cannot be in listdict
+    format.
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)`
     """
@@ -72,10 +73,13 @@ def cut_nodes_edges(graph):
 def cut_nodes_edges2(graph):
     """Bi-connected components, alternative recursive implementation
 
-    :param graph: undirected graph. in listlist format. Cannot be in listdict format.
-    :assumes: graph has about 5000 vertices at most, otherwise memory limit is reached
+    :param graph: undirected graph. in listlist format. Cannot be in listdict
+    format.
+    :assumes: graph has about 5000 vertices at most, otherwise memory limit is
+    reached
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
-    :complexity: `O(|V|+|E|)` in average, `O(|V|+|E|^2)` in worst case due to use of dictionary
+    :complexity: `O(|V|+|E|)` in average, `O(|V|+|E|^2)` in worst case due to
+    use of dictionary
     """
     N = len(graph)
     assert N <= 5000

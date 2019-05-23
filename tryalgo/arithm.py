@@ -32,7 +32,7 @@ def bezout(a, b):
 
 
 def inv(a, p):
-    """Inverse of a in :math:`{\mathbb Z}_p`
+    """Inverse of a in :math:`{mathbb Z}_p`
 
     :param a,p: non-negative integers
     :complexity: O(log a + log p)
@@ -43,7 +43,7 @@ def inv(a, p):
 
 # snip{ binom
 def binom(n, k):
-    """Binomial coefficients for :math:`n \choose k`
+    """Binomial coefficients for :math:`n choose k`
 
     :param n,k: non-negative integers
     :complexity: O(k)
@@ -57,7 +57,7 @@ def binom(n, k):
 
 # snip{ binom_modulo
 def binom_modulo(n, k, p):
-    """Binomial coefficients for :math:`n \choose k`, modulo p
+    """Binomial coefficients for :math:`n choose k`, modulo p
 
     :param n,k: non-negative integers
     :complexity: O(k)

@@ -12,9 +12,14 @@ from collections import deque
 from sys import stdin
 from . floyd_warshall import floyd_warshall
 
-def readstr():    return stdin.readline().strip()
-def readints():   return map(int, stdin.readline().split())
-def readint():    return int(stdin.readline())
+
+def readstr(): return stdin.readline().strip()
+
+
+def readints(): return map(int, stdin.readline().split())
+
+
+def readint(): return int(stdin.readline())
 
 
 __all__ = ["shortest_cycle", "powergraph"]
@@ -22,18 +27,19 @@ __all__ = ["shortest_cycle", "powergraph"]
 
 def bfs(graph, root, prune_level):
     """make a pruned BFS search of the graph starting at root.
-    returns the BFS tree, and possibly a traversal edge (u,v) that with the tree
-    forms a cycle of some length.
+    returns the BFS tree, and possibly a traversal edge (u,v)
+    that with the tree forms a cycle of some length.
 
     :param graph: undirected graph in listlist or listdict format
     :param root:  vertex where BFS exploration starts
-    :param prune_level: exploration is done only up to the prune_level (included)
+    :param prune_level: exploration is done only up to
+    the prune_level (included)
     :complexity: O(V + E)
     """
     n = len(graph)
     level = [-1] * n                      # -1 == not seen
     tree = [None] * n                     # pointers to predecessors
-    to_visit = deque([root])               # queue for BFS
+    to_visit = deque([root])              # queue for BFS
     level[root] = 0
     tree[root] = root
     best_cycle = float('inf')             # start with infinity
@@ -50,7 +56,7 @@ def bfs(graph, root, prune_level):
                 level[v] = level[u] + 1
                 to_visit.append(v)
                 tree[v] = u
-            else:                         # vertex already seen - traversal edge
+            else:                        # vertex already seen - traversal edge
                 prune_level = level[v] - 1
                 cycle_len = level[u] + 1 + level[v]
                 if cycle_len < best_cycle:  # footnote (1)
@@ -99,7 +105,8 @@ def shortest_cycle(graph):
 
 
 def powergraph(graph, k):
-    """Compute the k-th `powergraph <https://en.wikipedia.org/wiki/Graph_power>`_
+    """Compute the k-th
+       `powergraph <https://en.wikipedia.org/wiki/Graph_power>`_
        which has an edge u,v for every vertex pair
        of distance at most k in the given graph.
 

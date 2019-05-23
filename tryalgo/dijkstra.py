@@ -6,8 +6,10 @@ jill-jênn vie et christoph dürr - 2015-2018
 """
 # pylint: disable=wrong-import-position
 
-# snip{
 from heapq import heappop, heappush
+from tryalgo.our_heap import OurHeap
+
+# snip{
 
 
 def dijkstra(graph, weight, source=0, target=None):
@@ -48,7 +50,6 @@ def dijkstra(graph, weight, source=0, target=None):
 
 
 # snip{ dijkstra_update_heap
-from tryalgo.our_heap import OurHeap
 
 
 # snip}

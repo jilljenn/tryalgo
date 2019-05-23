@@ -7,7 +7,8 @@ jill-jenn vie et christoph durr - 2015-2018
 
 # snip{
 def knapsack(p, v, cmax):
-    """Knapsack problem: select maximum value set of items if total size not more than capacity
+    """Knapsack problem: select maximum value set of items if total size not
+    more than capacity
 
     :param p: table with size of items
     :param v: table with value of items
@@ -44,7 +45,8 @@ def knapsack(p, v, cmax):
 
 
 def knapsack2(p, v, cmax):
-    """Knapsack problem: select maximum value set of items if total size not more than capacity.
+    """Knapsack problem: select maximum value set of items if total size not
+    more than capacity.
     alternative implementation with same behavior.
 
     :param p: table with size of items

@@ -13,6 +13,7 @@ from sys import stdin
 __all__ = ["freivalds"]
 #snip{
 
+
 def readint():
     """
     function to read an integer from stdin
