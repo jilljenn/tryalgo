@@ -58,7 +58,7 @@ def kruskal(graph, weight):
     :returns: list of edges of the tree
     :complexity: ``O(|E|log|E|)``
     """
-    u_f = UnionFind(len(kk_graph))
+    u_f = UnionFind(len(graph))
     edges = []
     for u, _ in enumerate(graph):
         for v in graph[u]:

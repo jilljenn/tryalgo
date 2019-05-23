@@ -36,9 +36,9 @@ def dist_grid(grid, source, target=None):
                 continue              # reached the bounds of the grid
             if grid[i2][j2] != ' ':   # inaccessible or already visited
                 continue
-            grid[i_2][j_2] = symbol     # mark visit
-            if (i_2, j_2) == target:
-                grid[i_2][j_2] = 't'    # goal is reached
+            grid[i2][j2] = symbol     # mark visit
+            if (i2, j2) == target:
+                grid[i2][j2] = 't'    # goal is reached
                 return
-            q_ueue.append((i_2, j_2))
+            Q.append((i2, j2))
 # snip}

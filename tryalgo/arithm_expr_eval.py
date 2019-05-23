@@ -3,7 +3,6 @@
 """\
 Evaluate an arithmetic expression
 jill-jenn vie et christoph durr - 2014-2018
-"""
 
 IPCELLS
 http://www.spoj.com/problems/IPCELLS/
@@ -19,7 +18,7 @@ def arithm_expr_eval(cell, expr):
     """Evaluates a given expression
 
     :param expr: expression
-    :param cell_formula: dictionary variable name -> expression
+    :param cell: dictionary variable name -> expression
 
     :returns: numerical value of expression
 
@@ -27,8 +26,8 @@ def arithm_expr_eval(cell, expr):
     """
     if isinstance(expr, tuple):
         (left, operand, right) = expr
-        lval = arithm_expr_eval(cell_formula, left)
-        rval = arithm_expr_eval(cell_formula, right)
+        lval = arithm_expr_eval(cell, left)
+        rval = arithm_expr_eval(cell, right)
         if operand == '+':
             return lval + rval
         if operand == '-':
@@ -40,8 +39,8 @@ def arithm_expr_eval(cell, expr):
     elif isinstance(expr, int):
         return expr
     else:
-        cell_formula[expr] = arithm_expr_eval(cell_formula, cell_formula[expr])
-        return cell_formula[expr]
+        cell[expr] = arithm_expr_eval(cell, cell[expr])
+        return cell[expr]
 # snip}
 
 
@@ -50,13 +49,13 @@ PRIORITY = {';': 0, '(': 1, ')': 2, '-': 3, '+': 3, '*': 4, '/': 4}
 
 
 # pylint: disable=redefined-outer-name
-def arithm_expr_parse(line):
+def arithm_expr_parse(line_tokens):
     """Constructs an arithmetic expression tree
 
     :param line_tokens: list of token strings containing the expression
     :returns: expression tree
 
-    :complexity:     line_tokensar
+    :complexity: linear
     """
     vals = []
     ops = []
