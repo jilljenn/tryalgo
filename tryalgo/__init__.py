@@ -45,7 +45,6 @@ from . interval_tree import *
 from . intervals_union import *
 from . knapsack import *
 from . knuth_morris_pratt import *
-from . knuth_morris_pratt_border import *
 from . kruskal import *
 from . kuhn_munkres import *
 from . kuhn_munkres_n4 import *
