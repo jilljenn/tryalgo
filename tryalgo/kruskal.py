@@ -100,6 +100,3 @@ if __name__ == "__main__":
             infile.write('\\filldraw[black] (%f, %f) circle (1pt);\n'
                          % tuple(point))
         print(val)
-
-if __name__ == "__main__":
-    main()
