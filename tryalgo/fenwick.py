@@ -26,9 +26,9 @@ class Fenwick:
         :returns: t[1] + ... + t[i]
         """
         sum = 0
-        while i > 0:
+        while i > 0:            # loops over neighbors
             sum += self.s[i]
-            i -= (i & -i)
+            i -= (i & -i)       # neighbor
         return sum
 
     def intervalSum(self, a, b):
@@ -44,9 +44,9 @@ class Fenwick:
         :modifies: adds val to t[i]
         """
         assert i > 0
-        while i < len(self.s):
+        while i < len(self.s):   # loops over parents
             self.s[i] += val
-            i += (i & -i)
+            i += (i & -i)        # parent
 
     # variante:
     # pylint: disable=bad-whitespace
