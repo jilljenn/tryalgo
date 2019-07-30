@@ -33,7 +33,7 @@ from tryalgo.edmonds_karp import edmonds_karp
 from tryalgo.eulerian_tour import eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick
-from tryalgo.floyd_warshall import floyd_warshall
+from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
 from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.freivalds import freivalds
 from tryalgo.gale_shapley import gale_shapley
@@ -627,14 +627,15 @@ t##
         self.assertEqual( bin(F.intervalSum(2, 5)), "0b10110" )
 
     def test_floyd_warshall(self):
-        # https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm#/media/File:Floyd-Warshall_example.svg
-        _ = float('inf')
-        weight = [[ _, _,-2, _],
-                  [ 4, _, 3, _],
-                  [ _, _, _, 2],
-                  [ _,-1, _, _]]
-        self.assertFalse(floyd_warshall(weight))
-        self.assertEqual(weight,  [[3, -1, -2, 0], [4, 3, 2, 4], [5, 1, 3, 2], [3, -1, 1, 3]])
+        for FW in [floyd_warshall, floyd_warshall2]:
+            # https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm#/media/File:Floyd-Warshall_example.svg
+            _ = float('inf')
+            weight = [[ _, _,-2, _],
+                      [ 4, _, 3, _],
+                      [ _, _, _, 2],
+                      [ _,-1, _, _]]
+            self.assertFalse(FW(weight))
+            self.assertEqual(weight,  [[3, -1, -2, 0], [4, 3, 2, 4], [5, 1, 3, 2], [3, -1, 1, 3]])
 
     def test_freivalds(self):
         A = [[2,3], [3,4]]

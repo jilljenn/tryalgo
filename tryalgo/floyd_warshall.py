@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 All pairs shortest paths by Floyd-Warshall
-jill-jenn vie et christoph durr - 2014-2018
+jill-jenn vie et christoph durr et Pascal-Ortiz - 2014-2019
 """
 
 
@@ -26,3 +26,23 @@ def floyd_warshall(weight):
             return True
     return False
 # snip}
+
+def floyd_warshall2(weight):
+    """All pairs shortest paths by Floyd-Warshall.
+    An improved implementation by Pascal-Ortiz
+
+    :param weight: edge weight matrix
+    :modifies: weight matrix to contain distances in graph
+    :returns: True if there are negative cycles
+    :complexity: :math:`O(|V|^3)`
+    """
+    for k, Wk in enumerate(weight):
+        for u, Wu in enumerate(weight):
+            for v, Wuv in enumerate(Wu):
+                alt = Wu[k] + Wk[v]
+                if alt < Wuv:
+                    Wu[v] = alt
+    for v, Wv in enumerate(weight):
+        if Wv[v] < 0:      # negative cycle found
+            return True
+    return False
