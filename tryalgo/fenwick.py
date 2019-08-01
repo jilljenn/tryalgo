@@ -15,9 +15,9 @@ class Fenwick:
 
         :param array t: of positive length
         """
-        self.s = [0] * len(t)
+        self.s = [0] * len(t)      # create internal storage
         for i in range(1, len(t)):
-            self.add(i, t[i])
+            self.add(i, t[i])      # initialize
 
     # pylint: disable=redefined-builtin
     def prefixSum(self, i):
@@ -26,9 +26,9 @@ class Fenwick:
         :returns: t[1] + ... + t[i]
         """
         sum = 0
-        while i > 0:            # loops over neighbors
-            sum += self.s[i]
-            i -= (i & -i)       # neighbor
+        while i > 0:               # loops over neighbors
+            sum += self.s[i]       # cumulative sum
+            i -= (i & -i)          # left neighbor
         return sum
 
     def intervalSum(self, a, b):
@@ -44,9 +44,9 @@ class Fenwick:
         :modifies: adds val to t[i]
         """
         assert i > 0
-        while i < len(self.s):   # loops over parents
-            self.s[i] += val
-            i += (i & -i)        # parent
+        while i < len(self.s):     # loops over parents
+            self.s[i] += val       # update node
+            i += (i & -i)          # parent
 
     # variante:
     # pylint: disable=bad-whitespace
