@@ -11,39 +11,41 @@ class Fenwick:
     """maintains a tree to allow quick updates and queries
     """
     def __init__(self, t):
-        """stores an integer table t, index 0 is ignored
+        """stores a table t and allows updates and queries
+        of prefix sums in logarithmic time.
 
-        :param array t: of positive length
+        :param array t: with numerical values
         """
-        self.s = [0] * len(t)      # create internal storage
-        for i in range(1, len(t)):
-            self.add(i, t[i])      # initialize
+        self.s = [0] * (len(t) + 1)  # create internal storage
+        for a in range(len(t)):
+            self.add(a, t[a])        # initialize
 
     # pylint: disable=redefined-builtin
-    def prefixSum(self, i):
+    def prefixSum(self, a):
         """
-        :param int i: non negative
-        :returns: t[1] + ... + t[i]
+        :param int a: index in t, negative a will return 0
+        :returns: t[0] + ... + t[a]
         """
-        sum = 0
+        i = a + 1                  # internal index starts at 1
+        total = 0
         while i > 0:               # loops over neighbors
-            sum += self.s[i]       # cumulative sum
+            total += self.s[i]     # cumulative sum
             i -= (i & -i)          # left neighbor
-        return sum
+        return total
 
     def intervalSum(self, a, b):
         """
-        :param int a b: with 1 <= a <= b
+        :param int a b: with 0 <= a <= b
         :returns: t[a] + ... + t[b]
         """
         return self.prefixSum(b) - self.prefixSum(a-1)
 
-    def add(self, i, val):
+    def add(self, a, val):
         """
-        :param int i: positive
-        :modifies: adds val to t[i]
+        :param int a: index in t
+        :modifies: adds val to t[a]
         """
-        assert i > 0
+        i = a + 1                  # internal index starts at 1
         while i < len(self.s):     # loops over parents
             self.s[i] += val       # update node
             i += (i & -i)          # parent
@@ -53,15 +55,15 @@ class Fenwick:
     def intervalAdd(self, a, b, val):
         """Variant, adds val to t[a], to t[a + 1] ... and to t[b]
 
-        :param int a b: with 1 <= a <= b
+        :param int a b: with 0 <= a <= b < len(t)
         """
         self.add(a,     +val)
         self.add(b + 1, -val)
 
-    def get(self, i):
-        """Variant, reads t[i]
+    def get(self, a):
+        """Variant, reads t[a]
 
-        :param int i: positive
+        :param int i: negative a will return 0
         """
-        return self.prefixSum(i)
+        return self.prefixSum(a)
 # snip}

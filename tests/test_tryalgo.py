@@ -619,12 +619,12 @@ t##
             self.assertEqual( f(7, 2323474, 1000000000), 428796849 )
 
     def test_fenwick(self):
-        F = Fenwick([0, 1, 2, 4, 8, 16, 32, 64, 128, 256])
-        self.assertEqual( bin(F.intervalSum(3, 7)), "0b1111100" )
-        self.assertEqual( bin(F.intervalSum(2, 5)), "0b11110" )
-        F.add(4, -8)
-        self.assertEqual( bin(F.intervalSum(3, 7)), "0b1110100" )
-        self.assertEqual( bin(F.intervalSum(2, 5)), "0b10110" )
+        F = Fenwick([1, 2, 4, 8, 16, 32, 64, 128, 256, 512])
+        self.assertEqual( bin(F.intervalSum(2, 6)), "0b1111100" )
+        self.assertEqual( bin(F.intervalSum(1, 4)), "0b11110" )
+        F.add(3, -8)
+        self.assertEqual( bin(F.intervalSum(2, 6)), "0b1110100" )
+        self.assertEqual( bin(F.intervalSum(1, 4)), "0b10110" )
 
     def test_floyd_warshall(self):
         for FW in [floyd_warshall, floyd_warshall2]:
