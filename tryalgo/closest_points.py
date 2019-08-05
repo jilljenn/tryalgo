@@ -27,19 +27,20 @@ def cell(point, pas):
     x, y = point
     # beware: in other languages negative coordinates need special care
     # in C++ for example int(-1.5) == -1 and not -2 as we need
-    return (int(x // pas), int(y // pas))
+    # hence we need floor(x / pas) in C++ using #include <cmath>
+    return (x // pas, y // pas)
 
 
 def improve(S, d):
     G = {}            # grid
-    for p in S:
-        a, b = cell(p, d / 2)
+    for p in S:                         # for every point
+        a, b = cell(p, d / 2)           # determine its grid cell
         for a1 in range(a - 2, a + 3):
             for b1 in range(b - 2, b + 3):
-                if (a1, b1) in G:
-                    q = G[a1, b1]
+                if (a1, b1) in G:       # compare with points
+                    q = G[a1, b1]       # in surrounding cells
                     pq = dist(p, q)
-                    if pq < d:
+                    if pq < d:          # improvement found
                         return pq, p, q
         G[a, b] = p
     return None
@@ -61,9 +62,9 @@ def closest_points(S):
     d = dist(p, q)
     while d > 0:
         r = improve(S, d)
-        if r:
+        if r:               # distance improved
             d, p, q = r
-        else:
+        else:               # r is None: could not improve
             break
     return p, q
 # snip}

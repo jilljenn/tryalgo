@@ -45,19 +45,21 @@ def rabin_karp_matching(s, t):
     len_s = len(s)
     len_t = len(t)
     last_pos = pow(DOMAIN, len_t - 1) % PRIME
-    if len_s < len_t:
+    if len_s < len_t:              # needle string too long
         return -1
     for i in range(len_t):         # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
         hash_t = (DOMAIN * hash_t + ord(t[i])) % PRIME
     for i in range(len_s - len_t + 1):
-        if hash_s == hash_t:       # check character by character
+        if hash_s == hash_t:       # hashes match
+            # check character by character
             if matches(s, t, i, 0, len_t):
                 return i
         if i < len_s - len_t:
+            # shift window and calculate new hash on s
             hash_s = roll_hash(hash_s, ord(s[i]), ord(s[i + len_t]),
                                last_pos)
-    return -1
+    return -1                      # found no match
 # snip}
 
 
