@@ -16,23 +16,28 @@ from random import randint
 from math import hypot   # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
 from random import shuffle
 
+# snip}
 __all__ = ["closest_points"]
-
+# snip{
 
 def dist(p, q):
-    return hypot(p[0] - q[0], p[1] - q[1])
+    return hypot(p[0] - q[0], p[1] - q[1])  # Euclidean dist.
 
 
-def cell(point, pas):
-    x, y = point
-    # beware: in other languages negative coordinates need special care
-    # in C++ for example int(-1.5) == -1 and not -2 as we need
-    # hence we need floor(x / pas) in C++ using #include <cmath>
-    return (x // pas, y // pas)
+def cell(point, size):
+    """ returns the grid cell coordinates containing the given point.
+    size is the side length of a grid cell
+
+    beware: in other languages negative coordinates need special care
+    in C++ for example int(-1.5) == -1 and not -2 as we need
+    hence we need floor(x / pas) in C++ using #include <cmath>
+    """
+    x, y = point                        # size = grid cell side length
+    return (int(x // size), int(y // size))
 
 
 def improve(S, d):
-    G = {}            # grid
+    G = {}                              # maps grid cell to its point
     for p in S:                         # for every point
         a, b = cell(p, d / 2)           # determine its grid cell
         for a1 in range(a - 2, a + 3):
@@ -57,10 +62,10 @@ def closest_points(S):
     """
     shuffle(S)
     assert len(S) >= 2
-    p = S[0]
-    q = S[1]
+    p = S[0]                # start with distance between
+    q = S[1]                # first two points
     d = dist(p, q)
-    while d > 0:
+    while d > 0:            # distance 0 cannot be improved
         r = improve(S, d)
         if r:               # distance improved
             d, p, q = r
@@ -71,6 +76,7 @@ def closest_points(S):
 
 
 if __name__ == "__main__":
+    # generates the figure for the book
 
     def tikz_points(S):
         for p in S:
