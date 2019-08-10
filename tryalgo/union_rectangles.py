@@ -6,6 +6,7 @@ jill-jenn vie et christoph durr - 2014-2018
 """
 # pylint: disable=too-many-arguments, too-many-locals
 
+
 # snip{ cover-query
 class Cover_query:
     """Segment tree to maintain a set of integer intervals
@@ -58,6 +59,21 @@ class Cover_query:
 # snip}
 
 
+def union_intervals(intervals):
+    intervals.sort()
+    furthest_x2 = float('-inf')
+    length = 0
+    for x1, x2 in intervals:
+        if x2 <= furthest_x2:
+            continue  # Ignore the interval
+        elif x1 > furthest_x2:
+            length += x2 - x1
+        else:
+            length += x2 - furthest_x2
+        furthest_x2 = x2
+    return length
+
+
 # snip{ union_rectangles
 def union_rectangles(R):
     """Area of union of rectangles
@@ -65,7 +81,36 @@ def union_rectangles(R):
     :param R: list of rectangles defined by (x1, y1, x2, y2)
        where (x1, y1) is top left corner and (x2, y2) bottom right corner
     :returns: area
-    :complexity: :math:`O(n^2)`
+    :complexity: :math:`O(n^2 \\log n)`
+    """
+    events = []
+    for x1, y1, x2, y2 in R:
+        events.append((y1, 1, x1, x2))  # 1 means opening
+        events.append((y2, 0, x1, x2))  # 0 means closing, higher priority
+    events.sort()
+    previous_y = None
+    current_intervals = {}
+    area = 0
+    for y, op, x1, x2 in events:
+        if previous_y is not None and y > previous_y:
+            area += (y - previous_y) * union_intervals(list(current_intervals))
+        if op == 1:
+            current_intervals[x1, x2] = 1
+        else:
+            del current_intervals[x1, x2]
+        previous_y = y
+    return area
+# snip}
+
+
+# snip{ union_rectangles_fast
+def union_rectangles_fast(R):
+    """Area of union of rectangles
+
+    :param R: list of rectangles defined by (x1, y1, x2, y2)
+       where (x1, y1) is top left corner and (x2, y2) bottom right corner
+    :returns: area
+    :complexity: :math:`O(n \\log n)`
     """
     if R == []:
         return 0
