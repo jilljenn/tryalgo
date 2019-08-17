@@ -110,6 +110,50 @@ def union_rectangles_fast(R):
     :param R: list of rectangles defined by (x1, y1, x2, y2)
        where (x1, y1) is top left corner and (x2, y2) bottom right corner
     :returns: area
+    :complexity: :math:`O(n^2)`
+    """
+    X = set()
+    events = []
+    for x1, y1, x2, y2 in R:
+        assert x1 <= x2 and y1 <= y2
+        X.add(x1)
+        X.add(x2)
+        events.append((y1, 1, x1, x2))  # 1 means opening
+        events.append((y2, 0, x1, x2))  # 0 means closing, higher priority
+    X = list(X)
+    X.sort()
+    X2i = {X[i]: i for i in range(len(X))}
+    nb_current_rectangles = [0] * (len(X) - 1)
+    events.sort()
+    previous_y = None
+    area = 0
+    for y, op, x1, x2 in events:
+        length = 0
+        for i, nb in enumerate(nb_current_rectangles):
+            if nb > 0:
+                length += X[i + 1] - X[i]
+        if previous_y is not None and y > previous_y:
+            area += (y - previous_y) * length
+        i = X2i[x1]
+        k = X2i[x2]
+        if op == 1:
+            for j in range(i, k):
+                nb_current_rectangles[j] += 1
+        else:
+            for j in range(i, k):
+                nb_current_rectangles[j] -= 1
+        previous_y = y
+    return area
+# snip}
+
+
+# snip{ union_rectangles_fastest
+def union_rectangles_fastest(R):
+    """Area of union of rectangles
+
+    :param R: list of rectangles defined by (x1, y1, x2, y2)
+       where (x1, y1) is top left corner and (x2, y2) bottom right corner
+    :returns: area
     :complexity: :math:`O(n \\log n)`
     """
     if R == []:
@@ -137,5 +181,41 @@ def union_rectangles_fast(R):
         i = X2i[x1]
         k = X2i[x2]
         C.change(i, k, delta)
+    return area
+# snip}
+
+
+def intersect(r1, r2):
+    x1a, y1a, x2a, y2a = r1
+    x1b, y1b, x2b, y2b = r2
+    return not (x2a <= x1b or x2b <= x1a or y2a <= y1b or y2b <= y1a)
+
+
+# snip{ union_rectangles_naive
+def union_rectangles_naive(R):
+    """Area of union of rectangles
+
+    :param R: list of rectangles defined by (x1, y1, x2, y2)
+       where (x1, y1) is top left corner and (x2, y2) bottom right corner
+    :returns: area
+    :complexity: :math:`O(n^3)`
+    """
+    X = set()
+    Y = set()
+    for x1, y1, x2, y2 in R:
+        assert x1 <= x2 and y1 <= y2
+        X.add(x1)
+        X.add(x2)
+        Y.add(y1)
+        Y.add(y2)
+    X = list(X)
+    Y = list(Y)
+    X.sort()
+    Y.sort()
+    area = 0
+    for i in range(len(Y) - 1):
+        for j in range(len(X) - 1):
+            if any(intersect(r, (X[j], Y[i], X[j + 1], Y[i + 1])) for r in R):
+                area += (Y[i + 1] - Y[i]) * (X[j + 1] - X[j])
     return area
 # snip}

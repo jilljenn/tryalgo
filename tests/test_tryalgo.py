@@ -88,7 +88,7 @@ from tryalgo.three_partition import three_partition
 from tryalgo.topological_order import topological_order_dfs, topological_order
 from tryalgo.trie import Trie, spell_check
 from tryalgo.two_sat import two_sat
-from tryalgo.union_rectangles import union_rectangles
+from tryalgo.union_rectangles import union_rectangles_naive, union_rectangles, union_rectangles_fast, union_rectangles_fastest
 from tryalgo.windows_k_distinct import windows_k_distinct
 
 
@@ -1579,9 +1579,10 @@ t##
 
     def test_union_rectangles(self):
         R = [(0, 0, 3, 5), (1, 3, 2, 4), (0, 2, 5, 4), (4, 0, 6, 2), (7, 2, 10, 3)]
-        self.assertEqual(union_rectangles([]), 0)
-        self.assertEqual(union_rectangles([(0, 0, 5, 10)]), 50)
-        self.assertEqual(union_rectangles(R), 26)
+        for union in [union_rectangles, union_rectangles_naive, union_rectangles_fast, union_rectangles_fastest]:
+          self.assertEqual(union([]), 0)
+          self.assertEqual(union([(0, 0, 5, 10)]), 50)
+          self.assertEqual(union(R), 26)
 
     def test_windows_k_distinct(self):
         L = [("abbaca", 2), ("abbaca", 1), ("abbabacccabaabaccacab", 2)]
