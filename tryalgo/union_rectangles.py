@@ -8,6 +8,8 @@ jill-jenn vie et christoph durr - 2014-2018
 
 
 # snip{ cover-query
+
+# weighted variant of tryalgo.range_minimum_query.LazySegmentTree
 class Cover_query:
     """Segment tree to maintain a set of integer intervals
     and permitting to query the size of their union.
@@ -60,21 +62,28 @@ class Cover_query:
 
 
 def union_intervals(intervals):
-    intervals.sort()
-    furthest_x2 = float('-inf')
-    length = 0
-    for x1, x2 in intervals:
-        if x2 <= furthest_x2:
-            continue  # Ignore the interval
-        elif x1 > furthest_x2:
-            length += x2 - x1
-        else:
-            length += x2 - furthest_x2
-        furthest_x2 = x2
+    """Size of the union of a set of intervals
+
+    :param intervals: list or set of integer pairs (left, right)
+    :returns: size of the union of those intervals
+    :complexity: :math:`O(n \\log n)`
+    """
+    furthest = float('-inf')  # furthest interval endpoint seen so far
+    length = 0                              # size of union
+    for left, right in sorted(intervals):
+        if right > furthest:                # union increases
+            if left > furthest:             # interval disjoint from
+                length += right - left      #   current union
+            else:                           # interval intersects the
+                length += right - furthest  #   current union
+        furthest = right                    # update
     return length
 
 
 # snip{ union_rectangles
+OPENING = +1  # constants for events
+CLOSING = -1  # -1 has higher priority
+
 def union_rectangles(R):
     """Area of union of rectangles
 
@@ -84,20 +93,20 @@ def union_rectangles(R):
     :complexity: :math:`O(n^2 \\log n)`
     """
     events = []
-    for x1, y1, x2, y2 in R:
-        events.append((y1, 1, x1, x2))  # 1 means opening
-        events.append((y2, 0, x1, x2))  # 0 means closing, higher priority
-    events.sort()
-    previous_y = None
-    current_intervals = {}
+    for x1, y1, x2, y2 in R:                     # initialize events
+        assert x1 <= x2 and y1 <= y2
+        events.append((y1, OPENING, x1, x2))
+        events.append((y2, CLOSING, x1, x2))
+    current_intervals = set()
     area = 0
-    for y, op, x1, x2 in events:
-        if previous_y is not None and y > previous_y:
-            area += (y - previous_y) * union_intervals(list(current_intervals))
-        if op == 1:
-            current_intervals[x1, x2] = 1
-        else:
-            del current_intervals[x1, x2]
+    previous_y = 0 # arbitrary initial value,
+    #                because union_intervals is 0 at first iteration
+    for y, op, x1, x2 in sorted(events):         # sweep top down
+        area += (y - previous_y) * union_intervals(current_intervals)
+        if op == OPENING:
+            current_intervals.add((x1, x2))
+        else: #  CLOSING
+            current_intervals.remove((x1, x2))
         previous_y = y
     return area
 # snip}
@@ -112,36 +121,34 @@ def union_rectangles_fast(R):
     :returns: area
     :complexity: :math:`O(n^2)`
     """
-    X = set()
-    events = []
+    X = set()                 # set of all x coordinates in the input
+    events = []               # events for the sweep line
     for x1, y1, x2, y2 in R:
         assert x1 <= x2 and y1 <= y2
         X.add(x1)
         X.add(x2)
-        events.append((y1, 1, x1, x2))  # 1 means opening
-        events.append((y2, 0, x1, x2))  # 0 means closing, higher priority
-    X = list(X)
-    X.sort()
-    X2i = {X[i]: i for i in range(len(X))}
-    nb_current_rectangles = [0] * (len(X) - 1)
-    events.sort()
-    previous_y = None
+        events.append((y1, OPENING, x1, x2))
+        events.append((y2, CLOSING, x1, x2))
+    # array of x coordinates in left to right order
+    i_to_x = list(sorted(X))
+    # inverse dictionnary maps x coordinate to its rank
+    x_to_i = {xi: i for i, xi in enumerate(i_to_x)}
+    # nb_current_rectangles[i] = number of rectangles intersected
+    # by the sweepline in interval [i_to_x[i], i_to_x[i + 1]]
+    nb_current_rectangles = [0] * (len(i_to_x) - 1)
     area = 0
-    for y, op, x1, x2 in events:
-        length = 0
+    previous_y = 0 # arbitrary initial value,
+    #                because length is 0 at first iteration
+    for y, delta, x1, x2 in sorted(events):
+        length = 0              # size of union of intervals
         for i, nb in enumerate(nb_current_rectangles):
-            if nb > 0:
-                length += X[i + 1] - X[i]
-        if previous_y is not None and y > previous_y:
-            area += (y - previous_y) * length
-        i = X2i[x1]
-        k = X2i[x2]
-        if op == 1:
-            for j in range(i, k):
-                nb_current_rectangles[j] += 1
-        else:
-            for j in range(i, k):
-                nb_current_rectangles[j] -= 1
+            if nb > 0:          # there is an intersection
+                length += i_to_x[i + 1] - i_to_x[i]
+        area += (y - previous_y) * length
+        i1 = x_to_i[x1]
+        i2 = x_to_i[x2]         # update nb_current_rectangles
+        for j in range(i1, i2):
+            nb_current_rectangles[j] += delta
         previous_y = y
     return area
 # snip}
@@ -156,40 +163,43 @@ def union_rectangles_fastest(R):
     :returns: area
     :complexity: :math:`O(n \\log n)`
     """
-    if R == []:
+    if R == []:               # segment tree would fail on an empty list
         return 0
-    X = []
-    Y = []
-    for j, _ in enumerate(R):
-        (x1, y1, x2, y2) = R[j]
+    X = set()                 # set of all x coordinates in the input
+    events = []               # events for the sweep line
+    for j, Rj in enumerate(R):
+        (x1, y1, x2, y2) = Rj
         assert x1 <= x2 and y1 <= y2
-        X.append(x1)
-        X.append(x2)
-        Y.append((y1, +1, j))    # generate events
-        Y.append((y2, -1, j))
-    X.sort()
-    Y.sort()
-    X2i = {X[i]: i for i in range(len(X))}
-    L = [X[i + 1] - X[i] for i in range(len(X) - 1)]
+        X.add(x1)
+        X.add(x2)
+        events.append((y1, OPENING, x1, x2))
+        events.append((y2, CLOSING, x1, x2))
+    i_to_x = list(sorted(X))
+    # inverse dictionnary
+    x_to_i = {i_to_x[i]: i for i in range(len(i_to_x))}
+    L = [i_to_x[i + 1] - i_to_x[i] for i in range(len(i_to_x) - 1)]
     C = Cover_query(L)
     area = 0
-    last = 0
-    for (y, delta, j) in Y:
-        area += (y - last) * C.cover()
-        last = y
-        (x1, y1, x2, y2) = R[j]
-        i = X2i[x1]
-        k = X2i[x2]
-        C.change(i, k, delta)
+    previous_y = 0 # arbitrary initial value,
+    #                because C.cover() is 0 at first iteration
+    for y, delta, x1, x2 in sorted(events):
+        area += (y - previous_y) * C.cover()
+        i1 = x_to_i[x1]
+        i2 = x_to_i[x2]
+        C.change(i1, i2, delta)
+        previous_y = y
     return area
 # snip}
 
 
-def intersect(r1, r2):
-    x1a, y1a, x2a, y2a = r1
-    x1b, y1b, x2b, y2b = r2
-    return not (x2a <= x1b or x2b <= x1a or y2a <= y1b or y2b <= y1a)
-
+def rectangles_contains_point(R, x, y):
+    """Decides if at least one of the given rectangles contains a given point
+    either strictly or on its left or top border
+    """
+    for x1, y1, x2, y2 in R:
+        if x1 <= x < x2 and y1 <= y < y2:
+            return True
+    return False
 
 # snip{ union_rectangles_naive
 def union_rectangles_naive(R):
@@ -200,22 +210,25 @@ def union_rectangles_naive(R):
     :returns: area
     :complexity: :math:`O(n^3)`
     """
-    X = set()
-    Y = set()
+    X = set()        # set of all x coordinates in the input
+    Y = set()        # same for y
     for x1, y1, x2, y2 in R:
         assert x1 <= x2 and y1 <= y2
         X.add(x1)
         X.add(x2)
         Y.add(y1)
         Y.add(y2)
-    X = list(X)
-    Y = list(Y)
-    X.sort()
-    Y.sort()
+    j_to_x = list(sorted(X))
+    i_to_y = list(sorted(Y))
+    # X and Y partition space into a grid
     area = 0
-    for i in range(len(Y) - 1):
-        for j in range(len(X) - 1):
-            if any(intersect(r, (X[j], Y[i], X[j + 1], Y[i + 1])) for r in R):
-                area += (Y[i + 1] - Y[i]) * (X[j + 1] - X[j])
+    for j in range(len(j_to_x) - 1):     # loop over columns in grid
+        x1 = j_to_x[j]
+        x2 = j_to_x[j + 1]
+        for i in range(len(i_to_y) - 1): # loop over rows
+            y1 = i_to_y[i]               # (x1,...,y2) is the grid cell
+            y2 = i_to_y[i + 1]
+            if rectangles_contains_point(R, x1, y1):
+                area += (y2 - y1) * (x2 - x1)  # cell is covered
     return area
 # snip}
