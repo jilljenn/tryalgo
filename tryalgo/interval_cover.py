@@ -39,6 +39,7 @@ def interval_cover(I):
     :complexity: O(n log n)
     """
     S = []
+    # sort by right endpoints   
     for start, end in sorted(I, key=lambda v: v[1]):
         if not S or S[-1] < start:
             S.append(end)

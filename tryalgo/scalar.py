@@ -15,7 +15,7 @@ def min_scalar_prod(x, y):
     :returns: min sum x[i] * y[sigma[i]] over all permutations sigma
     :complexity: O(n log n)
     """
-    x = sorted(x)  # make copies
-    y = sorted(y)  # to save arguments
-    return sum(x[i] * y[-i - 1] for i in range(len(x)))
+    x1 = sorted(x)  # make copies to preserve
+    y1 = sorted(y)  #    the  input arguments
+    return sum(x1[i] * y1[-i - 1] for i in range(len(x1)))
 # snip}

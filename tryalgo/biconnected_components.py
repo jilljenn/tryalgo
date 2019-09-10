@@ -25,8 +25,8 @@ def cut_nodes_edges(graph):
     time = 0
     num = [None] * n
     low = [n] * n
-    father = [None] * n        # father[v] = None if root else father of v
-    critical_childs = [0] * n  # c_c[u] = #childs v s.t. low[v] >= num[u]
+    parent = [None] * n        # parent[v] = None if root else parent of v
+    critical_children = [0] * n  # c_c[u] = #children v s.t. low[v] >= num[u]
     times_seen = [-1] * n
     for start in range(n):
         if times_seen[start] == -1:               # init DFS path
@@ -41,31 +41,31 @@ def cut_nodes_edges(graph):
                 children = graph[node]
                 if times_seen[node] == len(children):  # end processing
                     to_visit.pop()
-                    up = father[node]            # propagate low to father
+                    up = parent[node]            # propagate low to parent
                     if up is not None:
                         low[up] = min(low[up], low[node])
                         if low[node] >= num[up]:
-                            critical_childs[up] += 1
+                            critical_children[up] += 1
                 else:
                     child = children[times_seen[node]]   # next arrow
                     times_seen[node] += 1
                     if times_seen[child] == -1:   # not visited yet
-                        father[child] = node      # link arrow
+                        parent[child] = node      # link arrow
                         times_seen[child] = 0
                         to_visit.append(child)    # (below) back arrow
-                    elif num[child] < num[node] and father[node] != child:
+                    elif num[child] < num[node] and parent[node] != child:
                         low[node] = min(low[node], num[child])
     cut_edges = []
     cut_nodes = []                                # extract solution
     for node in range(n):
-        if father[node] is None:                  # characteristics
-            if critical_childs[node] >= 2:
+        if parent[node] is None:                  # characteristics
+            if critical_children[node] >= 2:
                 cut_nodes.append(node)
         else:                                     # internal nodes
-            if critical_childs[node] >= 1:
+            if critical_children[node] >= 1:
                 cut_nodes.append(node)
             if low[node] >= num[node]:
-                cut_edges.append((father[node], node))
+                cut_edges.append((parent[node], node))
     return cut_nodes, cut_edges
 # snip}
 

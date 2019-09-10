@@ -18,14 +18,14 @@ def anagrams(w):
         :math:`O(n k log k)` in average, for n words of length at most k.
         :math:`O(n^2 k log k)` in worst case due to the usage of a dictionary.
     """
-    w = list(set(w))             # remove duplicates
-    d = {}                       # group words according to some signature
-    for i, _ in enumerate(w):
-        s = ''.join(sorted(w[i]))  # signature
+    w = list(set(w))               # use set() to remove duplicates
+    d = {}                       
+    for i in range(len(w)):        # group words according to the signature
+        s = ''.join(sorted(w[i]))  # calculate the signature
         if s in d:
-            d[s].append(i)
+            d[s].append(i)         # append a word to an existing signature
         else:
-            d[s] = [i]
+            d[s] = [i]             # add a new signature and its first word
     # -- extract anagrams
     answer = []
     for s in d:

@@ -26,9 +26,9 @@ class RangeMinQuery:
         while self.N < len(t):                     # find size N
             self.N *= 2
         self.s = [self.INF] * (2 * self.N)
-        for i in range(len(t)):                    # put t at leaves
-            self.s[self.N + i] = t[i]
-        for p in range(self.N - 1, 0, -1):         # fill nodes
+        for i in range(len(t)):                    # store values of t 
+            self.s[self.N + i] = t[i]              #   in the leaf nodes
+        for p in range(self.N - 1, 0, -1):         # fill inner nodes
             self.s[p] = min(self.s[2 * p], self.s[2 * p + 1])
 
     def __getitem__(self, i):
@@ -58,7 +58,7 @@ class RangeMinQuery:
         """
         if start + span <= i or k <= start:        # disjoint intervals
             return self.INF
-        if i <= start and start + span <= k:       # included intervals
+        if i <= start and start + span <= k:       # contained intervals
             return self.s[p]
         left = self._range_min(2 * p, start, span // 2,
                                i, k)

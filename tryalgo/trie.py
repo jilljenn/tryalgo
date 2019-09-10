@@ -12,12 +12,12 @@ from string import ascii_letters    # in Python 2 one would import letters
 
 # pylint: disable=missing-docstring, too-few-public-methods
 class Trie_Node:
-    def __init__(self):
-        self.isWord = False
-        self.s = {c: None for c in ascii_letters}
+    def __init__(self):                            # each node will have
+        self.isWord = False                        #  52 children - 
+        self.s = {c: None for c in ascii_letters}  # most will remain empty!
 
 
-def add(T, w, i=0):
+def add(T, w, i=0):  # Add a word to the trie
     """
     :param T: trie
     :param string w: word to be added to T
@@ -33,7 +33,7 @@ def add(T, w, i=0):
     return T
 
 
-def Trie(S):
+def Trie(S):  # Build the trie for the words in the dictionary S
     """
     :param S: set of words
     :returns: trie containing all words from S
@@ -45,7 +45,7 @@ def Trie(S):
     return T
 
 
-def spell_check(T, w):
+def spell_check(T, w):  # Spell check a word against the trie
     """Spellchecker
 
     :param T: trie encoding the dictionary
@@ -55,11 +55,11 @@ def spell_check(T, w):
     """
     assert T is not None
     dist = 0
-    while True:   # Try increasing distances
+    while True:   
         u = search(T, dist, w)
-        if u is not None:
+        if u is not None: # Match at distance dist
             return u
-        dist += 1
+        dist += 1         # No match - try increasing the distance
 
 # pylint: disable=too-many-return-statements, no-else-return
 def search(T, dist, w, i=0):

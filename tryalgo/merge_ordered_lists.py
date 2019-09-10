@@ -22,7 +22,7 @@ def merge(x, y):
             z.append(x[i])
             i += 1
         else:
-            z.append(y[j])
+            z.append(y[j])                              # now switch to y
             j += 1
     return z
 # snip}

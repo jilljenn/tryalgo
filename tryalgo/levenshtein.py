@@ -17,7 +17,9 @@ def levenshtein(x, y):
     """
     n = len(x)
     m = len(y)
-    #                         initializing row 0 and column 0
+    # Create the table A
+    #   Row 0 and column 0 are initialized as required
+    #   The remaining entries will be overwritten during the computation
     A = [[i + j for j in range(m + 1)] for i in range(n + 1)]
     for i in range(n):
         for j in range(m):

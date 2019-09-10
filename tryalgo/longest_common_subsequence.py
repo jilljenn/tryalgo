@@ -19,6 +19,7 @@ def longest_common_subsequence(x, y):
     """
     n = len(x)
     m = len(y)
+
     #                      -- compute optimal length
     A = [[0 for j in range(m + 1)] for i in range(n + 1)]
     for i in range(n):
@@ -27,7 +28,8 @@ def longest_common_subsequence(x, y):
                 A[i + 1][j + 1] = A[i][j] + 1
             else:
                 A[i + 1][j + 1] = max(A[i][j + 1],  A[i + 1][j])
-    #                      -- extract solution
+
+    #                      -- extract solution in reverse order
     sol = []
     i, j = n, m
     while A[i][j] > 0:
@@ -39,5 +41,5 @@ def longest_common_subsequence(x, y):
             i -= 1
             j -= 1
             sol.append(x[i])
-    return ''.join(sol[::-1])    # inverse solution
+    return ''.join(sol[::-1]) # reverse the list to obtain the solution
 # snip}

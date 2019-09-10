@@ -41,8 +41,8 @@ class OurHeap:
         del self.rank[root]
         x = self.heap.pop()    # remove last leaf
         if self:               # if heap is not empty
-            self.heap[1] = x   # put last leaf to root
-            self.rank[x] = 1
+            self.heap[1] = x   #   move the last leaf
+            self.rank[x] = 1   #   to the root
             self.down(1)       # maintain heap order
         return root
     # snip}
@@ -68,11 +68,11 @@ class OurHeap:
             if (right < n and self.heap[right] < x and
                     self.heap[right] < self.heap[left]):
                 self.heap[i] = self.heap[right]
-                self.rank[self.heap[right]] = i   # go back up right child
+                self.rank[self.heap[right]] = i   # move right child up
                 i = right
             elif left < n and self.heap[left] < x:
                 self.heap[i] = self.heap[left]
-                self.rank[self.heap[left]] = i    # go back up left child
+                self.rank[self.heap[left]] = i    # move left child up
                 i = left
             else:
                 self.heap[i] = x   # insertion index found

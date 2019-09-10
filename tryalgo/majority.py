@@ -18,14 +18,16 @@ def majority(L):
                  where n = len(L) and k = max(w for w in L)
                  :math:`O(n^2k)` in worst case due to the use of a dictionary
     """
-    assert L    # majorité n'est pas définie sur ensemble vide
+    assert L    # majority is undefined on the empty set
     # snip{
     count = {}
     for word in L:
         if word in count:
             count[word] += 1
         else:
-            count[word] = 1
-    valmin, argmin = min((-count[word], word) for word in count)
-    return argmin
+            count[word] = 1        
+    # Using min() like this gives the first word with
+    #   maximal count "for free"        
+    val_firstmax, arg_firstmax = min((-count[word], word) for word in count) 
+    return arg_firstmax
 # snip}

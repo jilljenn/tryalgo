@@ -17,16 +17,16 @@ def rectangles_from_points(S):
     answ = 0
     pairs = {}
     for j, _ in enumerate(S):
-        for i in range(j):
+        for i in range(j):      # loop over point pairs (p,q)
             px, py = S[i]
             qx, qy = S[j]
             center = (px + qx, py + qy)
             dist = (px - qx) ** 2 + (py - qy) ** 2
-            sign = (center, dist)
-            if sign in pairs:
-                answ += len(pairs[sign])
-                pairs[sign].append((i, j))
+            signature = (center, dist)
+            if signature in pairs:
+                answ += len(pairs[signature])
+                pairs[signature].append((i, j))
             else:
-                pairs[sign] = [(i, j)]
+                pairs[signature] = [(i, j)]
     return answ
 # snip}

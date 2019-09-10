@@ -31,11 +31,11 @@ def longest_increasing_subsequence(x):
             h[k] = i
             b[k] = x[i]
             p[i] = h[k - 1]
-    # extract solution
+    # extract solution in reverse order
     q = h[-1]
     s = []
     while q is not None:
         s.append(x[q])
         q = p[q]
-    return s[::-1]
+    return s[::-1]  # reverse the list to obtain the solution
 # snip}

@@ -18,23 +18,24 @@ def eulerian_tour_undirected(graph):
        :returns: eulerian cycle as a vertex list
        :complexity: `O(|V|+|E|)`
     """
-    P = []
-    Q = [0]
-    R = []
-    succ = [0] * len(graph)
-    seen = [set() for _ in graph]
+    P = []                            # resulting tour
+    Q = [0]                           # vertices to be explored, start at 0
+    R = []                            # path from start node
+    next = [0] * len(graph)           # initialize next to 0 for each node
+    seen = [set() for _ in graph]     # mark backward arcs
     while Q:
-        node = Q.pop()
-        P.append(node)
-        while succ[node] < len(graph[node]):
-            neighbor = graph[node][succ[node]]
-            succ[node] += 1
-            if neighbor not in seen[node]:
-                seen[neighbor].add(node)
-                R.append(neighbor)
-                node = neighbor
-        while R:
-            Q.append(R.pop())
+        start = Q.pop()               # explore a cycle from start node
+        node = start                            # current node on cycle
+        while next[node] < len(graph[node]):    # visit all allowable arcs
+            neighbor = graph[node][next[node]]  # traverse an arc
+            next[node] += 1                     # mark arc traversed
+            if neighbor not in seen[node]:      # not yet traversed 
+                seen[neighbor].add(node)        # mark backward arc
+                R.append(neighbor)              # append to path from start
+                node = neighbor                 # move on
+        while R: 
+            Q.append(R.pop())         # add to Q the discovered cycle R
+        P.append(start)               # resulting path P is extended 
     return P
 # snip}
 
@@ -48,20 +49,21 @@ def eulerian_tour_directed(graph):
        :returns: eulerian cycle as a vertex list
        :complexity: `O(|V|+|E|)`
     """
-    P = []
-    Q = [0]
-    R = []
-    succ = [0] * len(graph)
+    P = []                            # resulting tour
+    Q = [0]                           # vertices to be explored, start at 0
+    R = []                            # path from start node
+    next = [0] * len(graph)           # initialize next to 0 for each node
     while Q:
-        node = Q.pop()
-        P.append(node)
-        while succ[node] < len(graph[node]):
-            neighbor = graph[node][succ[node]]
-            succ[node] += 1
-            R.append(neighbor)
-            node = neighbor
-        while R:
-            Q.append(R.pop())
+        start = Q.pop()               # explore a cycle from start node
+        node = start                            # current node on cycle
+        while next[node] < len(graph[node]):    # visit all allowable arcs
+            neighbor = graph[node][next[node]]  # traverse an arc
+            next[node] += 1                     # mark arc traversed
+            R.append(neighbor)                  # append to path from start
+            node = neighbor                     # move on
+        while R: 
+            Q.append(R.pop())         # add to Q the discovered cycle R
+        P.append(start)               # resulting path P is extended 
     return P
 # snip}
 

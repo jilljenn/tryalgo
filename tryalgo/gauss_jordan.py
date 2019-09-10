@@ -70,7 +70,7 @@ def diagonalize(S, n, m):
         pivot = float(S[k][k])     # without float if Fraction elements
         for j in range(k, n + 1):
             S[k][j] /= pivot       # divide line k by pivot
-        for i in range(m):         # remove line k weighted with line i
+        for i in range(m):         # remove line k scaled by line i
             if i != k:
                 fact = S[i][k]
                 for j in range(k, n + 1):

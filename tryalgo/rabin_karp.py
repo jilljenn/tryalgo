@@ -20,8 +20,8 @@ def roll_hash(old_val, out_digit, in_digit, last_pos):
 
 
 # snip{ rabin_karp_matches
-def matches(s, t, i, j, k):
-    """tests if s[i:i + k] equals t[j:j + k]"""
+def matches(s, t, i, j, k):  
+    # tests if s[i:i + k] equals t[j:j + k]
     for d in range(k):
         if s[i + d] != t[j + d]:
             return False
@@ -45,13 +45,13 @@ def rabin_karp_matching(s, t):
     len_s = len(s)
     len_t = len(t)
     last_pos = pow(DOMAIN, len_t - 1) % PRIME
-    if len_s < len_t:              # needle string too long
+    if len_s < len_t:              # substring too long
         return -1
     for i in range(len_t):         # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
         hash_t = (DOMAIN * hash_t + ord(t[i])) % PRIME
     for i in range(len_s - len_t + 1):
-        if hash_s == hash_t:       # hashes match
+        if hash_s == hash_t:                # hashes match
             # check character by character
             if matches(s, t, i, 0, len_t):
                 return i
@@ -59,7 +59,7 @@ def rabin_karp_matching(s, t):
             # shift window and calculate new hash on s
             hash_s = roll_hash(hash_s, ord(s[i]), ord(s[i + len_t]),
                                last_pos)
-    return -1                      # found no match
+    return -1                               # no match
 # snip}
 
 
@@ -81,16 +81,21 @@ def rabin_karp_factor(s, t, k):
     if len(s) < k or len(t) < k:
         return None
     hash_t = 0
-    for j in range(k):         # store hashing values
+
+    #First calculate hash values of factors of t
+    for j in range(k):         
         hash_t = (DOMAIN * hash_t + ord(t[j])) % PRIME
     for j in range(len(t) - k + 1):
+        #store the start position with the hash value
         if hash_t in pos:
             pos[hash_t].append(j)
         else:
             pos[hash_t] = [j]
         if j < len(t) - k:
             hash_t = roll_hash(hash_t, ord(t[j]), ord(t[j + k]), last_pos)
+
     hash_s = 0
+    # Now check for matching factors in s
     for i in range(k):         # preprocessing
         hash_s = (DOMAIN * hash_s + ord(s[i])) % PRIME
     for i in range(len(s) - k + 1):

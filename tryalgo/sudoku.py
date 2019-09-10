@@ -18,7 +18,7 @@ N4 = N2 * N2
 
 
 # sets
-def assignation(r, c, v): return r * N4 + c * N2 + v
+def assignment(r, c, v): return r * N4 + c * N2 + v
 
 
 def row(a): return a // N4
@@ -57,14 +57,14 @@ def sudoku(G):
     global N, N2, N4
     if len(G) == 16:              # for a 16 x 16 sudoku grid
         N, N2, N4 = 4, 16, 256
-    e = 4 * N4
+    e = N * N4
     universe = e + 1
     S = [[rc(a), rv(a), cv(a), bv(a)] for a in range(N4 * N2)]
     A = [e]
     for r in range(N2):
         for c in range(N2):
             if G[r][c] != 0:
-                a = assignation(r, c, G[r][c] - 1)
+                a = assignment(r, c, G[r][c] - 1)
                 A += S[a]
     sol = dancing_links(universe, S + [A])
     if sol:

@@ -59,8 +59,7 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
     :complexity: `O(log((hi-lo)/gap))`
     """
     while hi - lo > gap:
-        # in other languages you can force floating division by using 2.0
-        mid = (lo + hi) / 2.
+        mid = (lo + hi) / 2.0
         if f(mid):
             hi = mid
         else:
