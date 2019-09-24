@@ -46,3 +46,31 @@ def subset_sum(x_table, r_target):
             j += 1
     return False
 # snip}
+
+
+# snip{ subset_sum2
+def part_sum2(x_table):
+    """All subsetsums from a list x
+
+    :param x_table: list of values
+    :complexity: :math:`O(2^{len(x)})`
+    """
+    answer = set([0])        # 0 = value of empty set
+    for xi in x_table:
+        answer |= set(value + xi for value in answer)
+    return answer
+
+
+def subset_sum2(x_table, r_target):
+    """Subsetsum by splitting
+
+    :param x_table: table of values
+    :param r_target: target value
+    :returns bool: if there is a subsequence of x_table with total sum r_target
+    :complexity: :math:`O(n^{\\lceil n/2 \\rceil})`
+    """
+    k = len(x_table) // 2              # divide input
+    y_set = part_sum(x_table[:k])
+    z_set = [r_target - value for value in part_sum(x_table[k:])]
+    return y_set & z_set               # test intersection
+# snip}
