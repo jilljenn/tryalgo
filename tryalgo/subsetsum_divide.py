@@ -70,7 +70,7 @@ def subset_sum2(x_table, r_target):
     :complexity: :math:`O(n^{\\lceil n/2 \\rceil})`
     """
     k = len(x_table) // 2              # divide input
-    y_set = part_sum(x_table[:k])
-    z_set = [r_target - value for value in part_sum(x_table[k:])]
-    return y_set & z_set               # test intersection
+    y_set = part_sum2(x_table[:k])
+    z_set = set(r_target - value for value in part_sum2(x_table[k:]))
+    return len(y_set & z_set)>0        # test intersection
 # snip}

@@ -82,7 +82,8 @@ from tryalgo.shortest_cycle import shortest_cycle, powergraph
 from tryalgo.skip_list import SortedSet, SortedDict
 from tryalgo.strongly_connected_components import tarjan, kosaraju, tarjan_recursif
 from tryalgo.subsetsum_divide import subset_sum as subset_sum1
-from tryalgo.subsetsum import subset_sum as subset_sum2, coin_change
+from tryalgo.subsetsum_divide import subset_sum2 as subset_sum2
+from tryalgo.subsetsum import subset_sum as subset_sum3, coin_change
 from tryalgo.sudoku import sudoku
 from tryalgo.three_partition import three_partition
 from tryalgo.topological_order import topological_order_dfs, topological_order
@@ -1261,12 +1262,12 @@ t##
         G2 = [[0], []]
         self.assertEqual(powergraph(G1, 1), G1)
         self.assertEqual(powergraph(G1, 2), G1)
-        """ 0---1---2---4
-             \ /        U
-              3
+        r""" 0---1---2---4
+              \ /        U
+               3
         """
         G1 = [[0, 1, 3], [0, 1, 2, 3], [1, 2, 4], [0, 1, 3], [2, 4]]
-        """   0---1
+        r"""  0---1
               |\ /| \    .
               |/ \|  \   .
               3---2---4
@@ -1396,14 +1397,14 @@ t##
                     return True
             return False
 
-        """  0---2---3
+        r""" 0---2---3
               \ /
                1
         """
         graph = [[1, 2], [0, 2], [0, 1, 3], [2]]
         cycle = shortest_cycle(graph)
         check(graph, cycle)
-        """  0---2---3
+        r""" 0---2---3
                 /
                1
         """
@@ -1460,7 +1461,7 @@ t##
 
     def test_subsetsum(self):
         L = [2, 4, 8, 16, 32]
-        for subset_sum in [subset_sum1, subset_sum2]:
+        for subset_sum in [subset_sum1, subset_sum2, subset_sum3]:
             self.assertEqual(subset_sum(L, 27), False)
             self.assertEqual(subset_sum(L, 28), True)
         C = [3, 5, 11]
