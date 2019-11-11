@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Maximum profit bipartite matching by Kuhn-Munkres
-jill-jenn vie, christoph durr and samuel tardieu - 2014-2018
+jill-jenn vie, christoph durr and samuel tardieu - 2014-2019
 
 primal LP
 
@@ -72,7 +72,7 @@ def kuhn_munkres(G, TOLERANCE=1e-6):
         # with fixed u and v being the corresponding vertex
         slack = [(lu[root] + lv[v] - G[root][v], root) for v in V]
         while True:
-            ((delta, u), v) = min((slack[v], v) for v in V if Av[v] is None)
+            (delta, u), v = min((slack[v], v) for v in V if Av[v] is None)
             assert au[u]
             if delta > TOLERANCE:   # tree is full
                 for u0 in U:        # improve labels

@@ -3,16 +3,18 @@
 """\
 Solving Horn SAT
 
-christoph dürr - 2016-2018
+christoph dürr - 2016-2019
 
 clauses are numbered starting from 0
 variables are strings (identifier)
 
 solution  : set of variables that are set to true
-posvar_in_clause : maps clause to the unique positive variable in clause (or None)
+posvar_in_clause : maps clause to the unique positive variable in clause
+(or None)
 clause_with_negvar : maps variable v to all clauses that contain not(v)
 
-every clause has a score: number of its negative variables that are not in solution sol
+every clause has a score: number of its negative variables
+that are not in solution sol
 pool : maps score to clauses of that score
 """
 

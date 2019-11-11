@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 bi-connected components, cut vertices and cut cut-nodes
-jill-jenn vie et christoph durr et louis abraham - 2015-2018
+jill-jenn vie, christoph durr et louis abraham - 2015-2019
 """
 
 from sys import getrecursionlimit, setrecursionlimit
@@ -26,7 +26,7 @@ def cut_nodes_edges(graph):
     num = [None] * n
     low = [n] * n
     parent = [None] * n        # parent[v] = None if root else parent of v
-    critical_children = [0] * n  # c_c[u] = #children v s.t. low[v] >= num[u]
+    critical_children = [0] * n  # c_c[u] = #{children v | low[v] ≥ num[u]}
     times_seen = [-1] * n
     for start in range(n):
         if times_seen[start] == -1:               # init DFS path

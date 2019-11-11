@@ -3,7 +3,7 @@
 """\
 Range minimum query
 Minimum d'une plage --- range minimum query
-jill-jenn vie et christoph durr - 2014-2018
+jill-jenn vie et christoph durr - 2014-2019
 """
 # pylint: disable=bad-continuation, bad-whitespace, redefined-outer-name
 # pylint: disable=too-many-arguments
@@ -140,7 +140,7 @@ class LazySegmentTree:
             self.sumval[node] = val * (right - left)
             self.lazyset[node] = None
             if left < right - 1:            # not a leaf
-                self.lazyset[2 * node] = val  # propagate to direct descendents
+                self.lazyset[2 * node] = val  # propagate to direct childs
                 self.lazyadd[2 * node] = 0
                 self.lazyset[2 * node + 1] = val
                 self.lazyadd[2 * node + 1] = 0
@@ -151,7 +151,7 @@ class LazySegmentTree:
             self.sumval[node] += val * (right - left)
             self.lazyadd[node] = 0
             if left < right - 1:            # not at a leaf
-                self.lazyadd[2 * node] += val  # propagate to direct descendents
+                self.lazyadd[2 * node] += val  # propagate to direct childs
                 self.lazyadd[2 * node + 1] += val
 
     def add(self, i, j, val):

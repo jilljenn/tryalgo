@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 trie - correcteur orthographique
-jill-jenn vie et christoph durr - 2014-2018
+jill-jenn vie et christoph durr - 2014-2019
 """
 
 # Don't write a Trie class otherwise you cannot represent leaves with None
@@ -10,11 +10,12 @@ jill-jenn vie et christoph durr - 2014-2018
 # snip{
 from string import ascii_letters    # in Python 2 one would import letters
 
+
 # pylint: disable=missing-docstring, too-few-public-methods
 class Trie_Node:
     def __init__(self):                            # each node will have
-        self.isWord = False                        #  52 children - 
-        self.s = {c: None for c in ascii_letters}  # most will remain empty!
+        self.isWord = False                        # 52 children -
+        self.s = {c: None for c in ascii_letters}  # most will remain empty
 
 
 def add(T, w, i=0):  # Add a word to the trie
@@ -55,11 +56,12 @@ def spell_check(T, w):  # Spell check a word against the trie
     """
     assert T is not None
     dist = 0
-    while True:   
+    while True:
         u = search(T, dist, w)
-        if u is not None: # Match at distance dist
+        if u is not None:  # Match at distance dist
             return u
-        dist += 1         # No match - try increasing the distance
+        dist += 1          # No match - try increasing the distance
+
 
 # pylint: disable=too-many-return-statements, no-else-return
 def search(T, dist, w, i=0):

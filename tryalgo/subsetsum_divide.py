@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Subsetsum by splitting
-christoph dürr et jill-jênn vie - 2014-2018
+christoph dürr et jill-jênn vie - 2014-2019
 """
+
 
 # snip{
 def part_sum(x_table, i=0):
@@ -33,14 +34,14 @@ def subset_sum(x_table, r_target):
     k = len(x_table) // 2              # divide input
     y_value = [v for v in part_sum(x_table[:k])]
     z_value = [r_target - v for v in part_sum(x_table[k:])]
-    y_value.sort()                     # test of intersection between y_value and z_value
+    y_value.sort()       # test of intersection between y_value and z_value
     z_value.sort()
     i = 0
     j = 0
     while i < len(y_value) and j < len(z_value):
         if y_value[i] == z_value[j]:
             return True
-        if y_value[i] < z_value[j]:  # increment index_table of smallest element
+        if y_value[i] < z_value[j]:  # increment index of smallest element
             i += 1
         else:
             j += 1
@@ -72,5 +73,5 @@ def subset_sum2(x_table, r_target):
     k = len(x_table) // 2              # divide input
     y_set = part_sum2(x_table[:k])
     z_set = set(r_target - value for value in part_sum2(x_table[k:]))
-    return len(y_set & z_set)>0        # test intersection
+    return len(y_set & z_set) > 0        # test intersection
 # snip}

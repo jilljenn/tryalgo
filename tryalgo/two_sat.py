@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Solving 2-SAT boolean formulas
-jill-jenn vie et christoph durr - 2015-2018
+jill-jenn vie et christoph durr - 2015-2019
 """
 
 from tryalgo.strongly_connected_components import tarjan
@@ -25,13 +25,14 @@ def two_sat(formula):
     :complexity: linear
     """
     # num_variables is the number of variables
-    num_variables = max(abs(clause[p]) for p in (0, 1) for clause in formula)
+    num_variables = max(abs(clause[p])
+                        for p in (0, 1) for clause in formula)
     graph = [[] for node in range(2 * num_variables)]
     for x_idx, y_idx in formula:                           # x_idx or y_idx
-        graph[_vertex(-x_idx)].append(_vertex(y_idx))      # -x_idx => y_idx
-        graph[_vertex(-y_idx)].append(_vertex(x_idx))      # -y_idx => x_idx
+        graph[_vertex(-x_idx)].append(_vertex(y_idx))     # -x_idx => y_idx
+        graph[_vertex(-y_idx)].append(_vertex(x_idx))     # -y_idx => x_idx
     sccp = tarjan(graph)
-    comp_id = [None] * (2 * num_variables)     # for each node the ID of its component
+    comp_id = [None] * (2 * num_variables)  # each node's component ID
     assignment = [None] * (2 * num_variables)
     for component in sccp:
         rep = min(component)             # representative of the component

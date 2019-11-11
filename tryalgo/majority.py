@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Majority
-jill-jenn vie et christoph durr - 2014-2018
+jill-jenn vie et christoph durr - 2014-2019
 """
+
 
 # snip{
 # pylint: disable=unused-variable
@@ -25,9 +26,9 @@ def majority(L):
         if word in count:
             count[word] += 1
         else:
-            count[word] = 1        
+            count[word] = 1
     # Using min() like this gives the first word with
-    #   maximal count "for free"        
-    val_firstmax, arg_firstmax = min((-count[word], word) for word in count) 
-    return arg_firstmax
+    #   maximal count "for free"
+    val_1st_max, arg_1st_max = min((-count[word], word) for word in count)
+    return arg_1st_max
 # snip}
