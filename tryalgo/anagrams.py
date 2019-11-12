@@ -8,7 +8,7 @@ christoph dürr - jill-jênn vie - 2013-2018
 
 # snip{
 # pylint: disable=anomalous-backslash-in-string
-def anagrams(w):
+def anagrams(w):                   # w is a list of strings
     """group a list of words into anagrams
 
     :param w: list of strings
