@@ -21,14 +21,14 @@ def eulerian_tour_undirected(graph):
     P = []                            # resulting tour
     Q = [0]                           # vertices to be explored, start at 0
     R = []                            # path from start node
-    next = [0] * len(graph)           # initialize next to 0 for each node
+    next_ = [0] * len(graph)          # initialize next_ to 0 for each node
     seen = [set() for _ in graph]     # mark backward arcs
     while Q:
         start = Q.pop()               # explore a cycle from start node
         node = start                            # current node on cycle
-        while next[node] < len(graph[node]):    # visit all allowable arcs
-            neighbor = graph[node][next[node]]  # traverse an arc
-            next[node] += 1                     # mark arc traversed
+        while next_[node] < len(graph[node]):   # visit all allowable arcs
+            neighbor = graph[node][next_[node]]  # traverse an arc
+            next_[node] += 1                     # mark arc traversed
             if neighbor not in seen[node]:      # not yet traversed 
                 seen[neighbor].add(node)        # mark backward arc
                 R.append(neighbor)              # append to path from start
@@ -52,13 +52,13 @@ def eulerian_tour_directed(graph):
     P = []                            # resulting tour
     Q = [0]                           # vertices to be explored, start at 0
     R = []                            # path from start node
-    next = [0] * len(graph)           # initialize next to 0 for each node
+    next_ = [0] * len(graph)          # initialize next_ to 0 for each node
     while Q:
         start = Q.pop()               # explore a cycle from start node
         node = start                            # current node on cycle
-        while next[node] < len(graph[node]):    # visit all allowable arcs
-            neighbor = graph[node][next[node]]  # traverse an arc
-            next[node] += 1                     # mark arc traversed
+        while next_[node] < len(graph[node]):   # visit all allowable arcs
+            neighbor = graph[node][next_[node]]  # traverse an arc
+            next_[node] += 1                     # mark arc traversed
             R.append(neighbor)                  # append to path from start
             node = neighbor                     # move on
         while R: 
