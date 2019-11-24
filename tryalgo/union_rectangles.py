@@ -192,6 +192,7 @@ def union_rectangles_fastest(R):
 # snip}
 
 
+# snip{ union_rectangles_naive
 def rectangles_contains_point(R, x, y):
     """Decides if at least one of the given rectangles contains a given point
     either strictly or on its left or top border
@@ -202,7 +203,6 @@ def rectangles_contains_point(R, x, y):
     return False
 
 
-# snip{ union_rectangles_naive
 def union_rectangles_naive(R):
     """Area of union of rectangles
 
