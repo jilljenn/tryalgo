@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Convex hull by Andrew
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
 
 # pylint: disable=redefined-outer-name
@@ -42,6 +42,7 @@ def andrew(S):
         bot.append(p)
     return bot[:-1] + top[:0:-1]
 # snip}
+
 
 # pylint: disable=missing-docstring
 if __name__ == "__main__":

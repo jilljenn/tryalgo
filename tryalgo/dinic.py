@@ -47,6 +47,7 @@ def dinic(graph, capacity, source, target):
         total += _dinic_step(graph, capacity, level, flow, source, target,
                              up_bound)
 
+
 # pylint: disable=too-many-arguments
 def _dinic_step(graph, capacity, level, flow, u, target, limit):
     """ tenter de pousser le plus de flot de u à target, sans dépasser limit

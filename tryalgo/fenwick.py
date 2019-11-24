@@ -17,8 +17,8 @@ class Fenwick:
         :param array t: with numerical values
         """
         self.s = [0] * (len(t) + 1)  # create internal storage
-        for a in range(len(t)):
-            self.add(a, t[a])        # initialize
+        for a, v in enumerate(t):
+            self.add(a, v)           # initialize
 
     # pylint: disable=redefined-builtin
     def prefixSum(self, a):

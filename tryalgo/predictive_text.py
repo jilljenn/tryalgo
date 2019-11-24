@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Predictive text for mobile phones
-jill-jenn vie et christoph durr and louis abraham - 2014-2018
+jill-jenn vie et christoph durr and louis abraham - 2014-2019
 """
 
 __all__ = ["predictive_text", "propose"]
@@ -32,7 +32,7 @@ def predictive_text(dic):
     :complexity: linear in total word length
     """
     # total_weight[p] = total weight of words having prefix p
-    total_weight = {}  
+    total_weight = {}
     for word, weight in dic:
         prefix = ""
         for x in word:
@@ -45,7 +45,7 @@ def predictive_text(dic):
     prop = {}
     for prefix in total_weight:
         code = code_word(prefix)
-        if (code not in prop 
+        if (code not in prop
                 or total_weight[prop[code]] < total_weight[prefix]):
             prop[code] = prefix
     return prop
@@ -55,6 +55,5 @@ def propose(prop, seq):
     """wrapper to access a dictionary even for non-present keys"""
     if seq in prop:
         return prop[seq]
-    else:
-        return None
+    return None
 # snip}

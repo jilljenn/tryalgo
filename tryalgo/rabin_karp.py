@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Find substrings by Rabin-Karp
-jill-jenn vie et christoph durr - 2015-2018
+jill-jenn vie et christoph durr - 2015-2019
 """
 
 # http://www.wolframalpha.com/input/?i=nearest+prime+number+to+2**56
@@ -20,7 +20,11 @@ def roll_hash(old_val, out_digit, in_digit, last_pos):
 
 
 # snip{ rabin_karp_matches
-def matches(s, t, i, j, k):  
+def matches(s, t, i, j, k):
+    """
+    Checks whether s[i:i + k] is equal to t[j:j + k].
+    We used a loop to ease the implementation in other languages.
+    """
     # tests if s[i:i + k] equals t[j:j + k]
     for d in range(k):
         if s[i + d] != t[j + d]:
@@ -82,11 +86,11 @@ def rabin_karp_factor(s, t, k):
         return None
     hash_t = 0
 
-    #First calculate hash values of factors of t
-    for j in range(k):         
+    # First calculate hash values of factors of t
+    for j in range(k):
         hash_t = (DOMAIN * hash_t + ord(t[j])) % PRIME
     for j in range(len(t) - k + 1):
-        #store the start position with the hash value
+        # store the start position with the hash value
         if hash_t in pos:
             pos[hash_t].append(j)
         else:

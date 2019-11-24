@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 All pairs shortest paths by Floyd-Warshall
-jill-jenn vie et christoph durr et Pascal-Ortiz - 2014-2019
+jill-jênn vie, christoph dürr et pascal ortiz - 2014-2019
 """
 
 
@@ -27,6 +27,7 @@ def floyd_warshall(weight):
     return False
 # snip}
 
+
 def floyd_warshall2(weight):
     """All pairs shortest paths by Floyd-Warshall.
     An improved implementation by Pascal-Ortiz
@@ -37,7 +38,7 @@ def floyd_warshall2(weight):
     :complexity: :math:`O(|V|^3)`
     """
     for k, Wk in enumerate(weight):
-        for u, Wu in enumerate(weight):
+        for _, Wu in enumerate(weight):
             for v, Wuv in enumerate(Wu):
                 alt = Wu[k] + Wk[v]
                 if alt < Wuv:

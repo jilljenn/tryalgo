@@ -2,14 +2,15 @@
 # -*- coding: utf-8 -*-
 """\
 Partition refinement
-christoph durr - 2016-2018
+christoph dürr - 2016-2019
 
 log: 10/11/2016 modified to preserve class order after refinement
-     15/11/2016 this was non sense, moved back
+     15/11/2016 this was nonsense, moved back
 """
 
 
 __all__ = ["PartitionRefinement"]
+
 
 # pylint: disable=missing-docstring
 class DoubleLinkedListItem:
@@ -97,7 +98,7 @@ class PartitionRefinement:
         """
         c = PartitionClass()   # initially there is a single class of size n
         self.classes = c       # reference to first class in class list
-        self.items = [PartitionItem(i, c) for i in range(n)]   # value ordered list of items
+        self.items = [PartitionItem(i, c) for i in range(n)]  # value-ordered
 
     def refine(self, pivot):
         """Split every class C in the partition into C intersection pivot
@@ -111,7 +112,7 @@ class PartitionRefinement:
                 if not c.split:               # possibly create new split class
                     c.split = PartitionClass(c)
                     if self.classes is c:
-                        self.classes = c.split   # always make self.classes point to the first class
+                        self.classes = c.split   # always point to 1st class
                     has_split.append(c)
                 x.remove()                    # remove from its class
                 x.theclass = c.split

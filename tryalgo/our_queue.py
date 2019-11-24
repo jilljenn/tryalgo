@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 A FIFO queue
-christoph dürr - jill-jênn vie - 2015-2018
+christoph dürr - jill-jênn vie - 2015-2019
 """
+
 
 # snip{ OurQueue
 # pylint: disable=missing-docstring
@@ -26,10 +27,10 @@ class OurQueue:
 
     def pop(self):
         if not self.out_stack:    # head is empty
-            # Note that the in_stack is assigned to the out_stack 
-            #  in reverse order. This is because the in_stack stores 
+            # Note that the in_stack is assigned to the out_stack
+            #  in reverse order. This is because the in_stack stores
             #  elements from oldest to newest whereas the out_stack
-            #  needs to pop elements from newest to oldest          
+            #  needs to pop elements from newest to oldest
             self.out_stack = self.in_stack[::-1]
             self.in_stack = []
         return self.out_stack.pop()

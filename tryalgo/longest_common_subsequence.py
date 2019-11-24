@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """\
 Longest increasing subsequence
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
 # pylint: disable=bad-whitespace
+
 
 # snip{
 def longest_common_subsequence(x, y):
@@ -41,5 +42,5 @@ def longest_common_subsequence(x, y):
             i -= 1
             j -= 1
             sol.append(x[i])
-    return ''.join(sol[::-1]) # reverse the list to obtain the solution
+    return ''.join(sol[::-1])  # reverse the list to obtain the solution
 # snip}

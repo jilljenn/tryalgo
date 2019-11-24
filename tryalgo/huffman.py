@@ -31,7 +31,7 @@ def huffman(freq):
 def extract(code, tree, prefix):
     """Extract Huffman code from a Huffman tree
 
-    :param code: a dictionnary that will contain the constructed code.
+    :param code: a dictionary that will contain the constructed code.
                  should initially be empty.
     :param tree: a node of the tree.
                  Leafs are of the form (frequency, symbol).

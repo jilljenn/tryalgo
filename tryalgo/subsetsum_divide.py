@@ -32,7 +32,7 @@ def subset_sum(x_table, r_target):
     :complexity: :math:`O(n^{\\lceil n/2 \\rceil})`
     """
     k = len(x_table) // 2              # divide input
-    y_value = [v for v in part_sum(x_table[:k])]
+    y_value = list(part_sum(x_table[:k]))
     z_value = [r_target - v for v in part_sum(x_table[k:])]
     y_value.sort()       # test of intersection between y_value and z_value
     z_value.sort()

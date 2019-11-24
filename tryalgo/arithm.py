@@ -2,9 +2,10 @@
 # -*- coding: utf-8 -*-
 """\
 arithmetic functions
-christoph dürr - jill-jênn vie - 2013-2018
+christoph dürr - jill-jênn vie - 2013-2019
 """
 # pylint: disable=anomalous-backslash-in-string
+
 
 # snip{ pgcd
 def pgcd(a, b):
@@ -19,16 +20,15 @@ def pgcd(a, b):
 
 # snip{ bezout
 def bezout(a, b):
-    """Bezout coefficients for a and b
+    """Bézout coefficients for a and b
 
     :param a,b: non-negative integers
     :complexity: O(log a + log b)
     """
     if b == 0:
         return (1, 0)
-    else:
-        u, v = bezout(b, a % b)
-        return (v, u - (a // b) * v)
+    u, v = bezout(b, a % b)
+    return (v, u - (a // b) * v)
 
 
 def inv(a, p):

@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Union of intervals
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
+
 
 # snip{
 def intervals_union(S):

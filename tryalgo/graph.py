@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Reading graphs from files and writing into files
-jill-jênn vie et christoph dürr - 2015-2018
+jill-jênn vie et christoph dürr - 2015-2019
 """
 # pylint: disable=bad-whitespace, line-too-long, missing-docstring
 # pylint: disable=dangerous-default-value, too-many-locals, too-many-branches
@@ -27,6 +27,7 @@ def readtab(fi, ty):
     :returns: a tuple with elements of type ty
     """
     return tuple(map(ty, fi.readline().split()))
+
 
 # pylint: disable=no-else-return
 def read_graph(filename, directed=False, weighted=False, default_weight=None):
@@ -72,6 +73,7 @@ def read_graph(filename, directed=False, weighted=False, default_weight=None):
                 if not directed:
                     graph[v].append(u)
             return graph
+
 
 # pylint: disable=too-many-arguments, singleton-comparison
 def write_graph(dotfile, graph, directed=False,
@@ -227,6 +229,7 @@ def add_reverse_arcs(graph, capac=None):
 #        otherwise it is the weight of the arc.
 #        Value M[u][v]=True can be used for unweighted graphs.
 
+
 # pylint: disable=no-else-return
 def matrix_to_listlist(weight):
     """transforms a squared weight matrix in a adjacency table of type listlist
@@ -292,7 +295,7 @@ def dictdict_to_listdict(dictgraph):
     node_to_name (list)
     """
     n = len(dictgraph)                            # vertices
-    node_to_name = [name for name in dictgraph]   # bijection indices <-> names
+    node_to_name = list(dictgraph.keys())         # bijection indices <-> names
     node_to_name.sort()                           # to make it more readable
     name_to_node = {}
     for i in range(n):
@@ -349,7 +352,8 @@ def make_flow_labels(graph, flow, capac):
 # for creating a graph using vertex names
 
 
-#snip{ class_graph
+# pylint: disable=arguments-out-of-order
+# snip{ class_graph
 class Graph:
     def __init__(self):
         self.neighbors = []
@@ -380,4 +384,4 @@ class Graph:
         v = self.name2node[name_v]
         self.neighbors[u].append(v)
         self.weight[u][v] = weight_uv
-#snip}
+# snip}

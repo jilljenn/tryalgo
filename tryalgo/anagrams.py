@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Anagrams
-christoph dürr - jill-jênn vie - 2013-2018
+christoph dürr - jill-jênn vie - 2013-2019
 """
 
 
@@ -19,9 +19,9 @@ def anagrams(w):                   # w is a list of strings
         :math:`O(n^2 k log k)` in worst case due to the usage of a dictionary.
     """
     w = list(set(w))               # use set() to remove duplicates
-    d = {}                       
-    for i in range(len(w)):        # group words according to the signature
-        s = ''.join(sorted(w[i]))  # calculate the signature
+    d = {}
+    for i, word in enumerate(w):   # group words according to the signature
+        s = ''.join(sorted(word))  # calculate the signature
         if s in d:
             d[s].append(i)         # append a word to an existing signature
         else:

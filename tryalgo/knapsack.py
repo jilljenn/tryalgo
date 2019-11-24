@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Knapsack
-jill-jenn vie et christoph durr - 2015-2018
+jill-jênn vie et christoph dürr - 2015-2019
 """
+
 
 # snip{
 def knapsack(p, v, cmax):

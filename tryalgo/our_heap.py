@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 A min heap
-christoph durr et jill-jenn vie - 2015-2018
+christoph dürr et jill-jênn vie - 2015-2019
 """
+
 
 # snip{
 class OurHeap:
@@ -41,9 +42,9 @@ class OurHeap:
         del self.rank[root]
         x = self.heap.pop()    # remove last leaf
         if self:               # if heap is not empty
-            self.heap[1] = x   #   move the last leaf
-            self.rank[x] = 1   #   to the root
-            self.down(1)       # maintain heap order
+            self.heap[1] = x    # move the last leaf
+            self.rank[x] = 1    # to the root
+            self.down(1)        # maintain heap order
         return root
     # snip}
 

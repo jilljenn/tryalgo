@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """\
-Depth first search - DFS
-jill-jenn vie et christoph durr - 2015-2018
+Depth-first search - DFS
+jill-jênn vie et christoph durr - 2015-2019
 """
+
 
 # snip{ dfs-recursive
 def dfs_recursive(graph, node, seen):
@@ -106,6 +107,7 @@ def dfs_grid(grid, i, j, mark='X', free='.'):
                 grid[i2][j2] = mark  # mark path
                 to_visit.append((i2, j2))
 # snip}
+
 
 # pylint: disable=too-many-nested-blocks, no-else-return
 def find_cycle(graph):

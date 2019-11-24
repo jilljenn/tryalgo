@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Topological order
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
+
 
 # snip{ topological_order_dfs
 def topological_order_dfs(graph):

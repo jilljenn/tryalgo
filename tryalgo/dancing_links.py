@@ -98,8 +98,8 @@ def dancing_links(size_universe, sets):
     sol = []
     if solve(header, sol):
         return sol
-    else:
-        return None
+    return None
+
 
 # pylint: disable=missing-docstring
 def solve(header, sol):

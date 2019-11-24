@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Permute vector to minimize scalar product
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
 
 
@@ -15,7 +15,7 @@ def min_scalar_prod(x, y):
     :returns: min sum x[i] * y[sigma[i]] over all permutations sigma
     :complexity: O(n log n)
     """
-    x1 = sorted(x)  # make copies to preserve
-    y1 = sorted(y)  #    the  input arguments
+    x1 = sorted(x)  # make copies to preserve the input arguments
+    y1 = sorted(y)
     return sum(x1[i] * y1[-i - 1] for i in range(len(x1)))
 # snip}

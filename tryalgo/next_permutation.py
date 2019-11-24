@@ -7,6 +7,7 @@ jill-jenn vie et christoph durr - 2014-2018
 """
 
 from sys import stdin, argv
+import sys
 
 
 # snip{
@@ -84,7 +85,7 @@ if __name__ == "__main__":
         while True:
             print(L)
             if not next_permutation(L):
-                exit(0)
+                sys.exit(0)
 
     def _readstr():
         return stdin.readline().strip()

@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """\
-Test matrix product AB=C by Freivalds
-jill-jênn vie et christoph dürr - 2015-2018
+Test matrix product AB = C by Freivalds
+jill-jênn vie et christoph dürr - 2015-2019
 """
 
 # snip{
 from random import randint
 from sys import stdin
 
-#snip}
+# snip}
 __all__ = ["freivalds"]
-#snip{
+# snip{
 
 
 def readint():
@@ -19,6 +19,7 @@ def readint():
     function to read an integer from stdin
     """
     return int(stdin.readline())
+
 
 def readarray(typ):
     """

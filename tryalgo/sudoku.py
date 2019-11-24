@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Solving Sudoku (nanpure)
-jill-jenn vie et christoph durr - 2014-2018
+jill-jenn vie et christoph durr - 2014-2019
 """
 # pylint: disable=missing-docstring, multiple-statements, global-statement
 
@@ -72,6 +72,5 @@ def sudoku(G):
             if a < len(S):
                 G[row(a)][col(a)] = val(a) + 1
         return True
-    else:
-        return False
+    return False
 # snip}

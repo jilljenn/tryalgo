@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Permutation rank
-christoph durr - 2016-2018
+christoph dürr - 2016-2019
 """
+
 
 # pylint: disable=line-too-long
 def permutation_rank(p):

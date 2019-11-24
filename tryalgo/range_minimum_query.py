@@ -26,8 +26,8 @@ class RangeMinQuery:
         while self.N < len(t):                     # find size N
             self.N *= 2
         self.s = [self.INF] * (2 * self.N)
-        for i in range(len(t)):                    # store values of t 
-            self.s[self.N + i] = t[i]              #   in the leaf nodes
+        for i in range(len(t)):                    # store values of t
+            self.s[self.N + i] = t[i]              # in the leaf nodes
         for p in range(self.N - 1, 0, -1):         # fill inner nodes
             self.s[p] = min(self.s[2 * p], self.s[2 * p + 1])
 
@@ -66,6 +66,7 @@ class RangeMinQuery:
                                 i, k)
         return min(left, right)
 # snip}
+
 
 # pylint: disable=missing-docstring, no-else-return,
 # pylint: disable=anomalous-backslash-in-string
@@ -247,6 +248,7 @@ class LazySegmentTree:
         print("}", file=f)
         f.close()
 
+
 # pylint: disable=protected-access
 if __name__ == '__main__':
     # execute with: rlwrap python3 range_minimum_query.py
@@ -265,7 +267,7 @@ if __name__ == '__main__':
         j = int(t[1])
         if t[2] == '?':
             print("[%i,%i] max=%s min=%s sum=%s" %
-                    (i, j, tree.max(i,j), tree.min(i,j), tree.sum(i,j)))
+                  (i, j, tree.max(i, j), tree.min(i, j), tree.sum(i, j)))
         elif t[2] == '+':
             tree.add(i, j, int(t[3]))
         elif t[2] == '=':

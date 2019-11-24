@@ -29,13 +29,13 @@ def eulerian_tour_undirected(graph):
         while next_[node] < len(graph[node]):   # visit all allowable arcs
             neighbor = graph[node][next_[node]]  # traverse an arc
             next_[node] += 1                     # mark arc traversed
-            if neighbor not in seen[node]:      # not yet traversed 
+            if neighbor not in seen[node]:      # not yet traversed
                 seen[neighbor].add(node)        # mark backward arc
                 R.append(neighbor)              # append to path from start
                 node = neighbor                 # move on
-        while R: 
+        while R:
             Q.append(R.pop())         # add to Q the discovered cycle R
-        P.append(start)               # resulting path P is extended 
+        P.append(start)               # resulting path P is extended
     return P
 # snip}
 
@@ -61,9 +61,9 @@ def eulerian_tour_directed(graph):
             next_[node] += 1                     # mark arc traversed
             R.append(neighbor)                  # append to path from start
             node = neighbor                     # move on
-        while R: 
+        while R:
             Q.append(R.pop())         # add to Q the discovered cycle R
-        P.append(start)               # resulting path P is extended 
+        P.append(start)               # resulting path P is extended
     return P
 # snip}
 

@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Left and right inversions in a table
-christoph durr - 2016-2018
+christoph dürr - 2016-2019
 """
+
 
 # snip{
 # pylint: disable=too-many-arguments, missing-docstring
@@ -28,6 +29,7 @@ def _merge_sort(tab, tmp, rank, left, right, lo, hi):
         k += 1
     for k in range(lo, hi):      # copy sorted segment into original table
         rank[k] = tmp[k]
+
 
 # pylint: disable=anomalous-backslash-in-string
 def left_right_inversions(tab):

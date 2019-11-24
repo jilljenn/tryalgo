@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 kuhn_munkres_n4
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
 
 __all__ = ["kuhn_munkres"]
@@ -23,6 +23,7 @@ def improve_matching(G, u, mu, mv, au, av, lu, lv):
                 mu[u] = v
                 return True
     return False
+
 
 # pylint: disable=bad-continuation, superfluous-parens
 def improve_labels(G, au, av, lu, lv):

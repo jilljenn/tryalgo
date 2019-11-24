@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/jilljenn/tryalgo.svg?branch=master)](https://travis-ci.org/jilljenn/tryalgo)
 [![PyPI](https://img.shields.io/pypi/v/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 [![PyPI](https://img.shields.io/pypi/pyversions/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
-![Pylint score](https://mperlet.github.io/pybadge/badges/9.9.svg)
+![Pylint score](https://mperlet.github.io/pybadge/badges/10.svg)
 
 # Algorithmic Problem Solving
 
@@ -53,7 +53,7 @@ python -m unittest
 
 Most snippets from the book are within 76 columns (French version) or 75 columns (English version, to be released soon).
 
-We tried as much as possible to follow PEP8 (`pycodestyle`):
+We follow PEP8 (`pycodestyle`):
 
     make pycodestyle
 
@@ -61,7 +61,7 @@ Thanks to Xavier Carcelle, we are also following `pylint`:
 
     make pylint
 
-As of November 2019, our pylint score is 9.9/10.
+As of November 24, 2019, our pylint score is 10/10.
 
 ## Found a bug?
 

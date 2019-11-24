@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Binary search
-jill-jenn vie et christoph durr et louis abraham - 2014-2018
+jill-jênn vie, christoph dürr et louis abraham - 2014-2019
 """
 # pylint: disable=redefined-outer-name
 
@@ -15,6 +15,7 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 # Fill the Cisterns
 # http://www.spoj.com/problems/CISTFILL/
 # [!] python3 is too slow for this problem
+
 
 # pylint: disable=missing-docstring
 def _readint():
@@ -127,6 +128,7 @@ def ternary_search(f, lo, hi, gap=1e-10):
         else:
             hi -= step
     return lo
+
 
 # pylint: disable=cell-var-from-loop
 if __name__ == "__main__":

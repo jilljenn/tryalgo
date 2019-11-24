@@ -3,7 +3,7 @@
 """\
 Closest pair of points
 trouver la paire de points la plus proche
-jill-jenn vie et christoph durr et louis abraham - 2014-2018
+jill-jênn vie, christoph dürr et louis abraham - 2014-2019
 """
 # pylint: disable=missing-docstring, redefined-outer-name, redefined-outer-name
 # pylint: disable=no-name-in-module, ungrouped-imports
@@ -19,6 +19,7 @@ from random import shuffle
 # snip}
 __all__ = ["closest_points"]
 # snip{
+
 
 def dist(p, q):
     return hypot(p[0] - q[0], p[1] - q[1])  # Euclidean dist.

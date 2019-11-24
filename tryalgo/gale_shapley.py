@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 """\
 Stable matching by Gale-Shapley
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph durr - 2014-2019
 """
 
 # snip{
 from collections import deque
+
 
 # pylint: disable=no-member
 def gale_shapley(men, women):

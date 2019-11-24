@@ -2,13 +2,14 @@
 # -*- coding: utf-8 -*-
 """\
 Maximum flow by Edmonds-Karp
-jill-jenn vie et christoph durr - 2015-2018
+jill-jênn vie et christoph dürr - 2015-2019
 """
 
 from collections import deque
 from tryalgo.graph import add_reverse_arcs
 
 
+# pylint: disable=no-else-break
 # snip{
 def _augment(graph, capacity, flow, source, target):
     """find a shortest augmenting path

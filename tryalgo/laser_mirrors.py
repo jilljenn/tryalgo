@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Orienting mirrors to allow connectivity by a laser beam
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 """
 
 # snip{ laser-miroir-preparation
@@ -15,6 +15,7 @@ RIGHT = 3
 
 # destination UP          LEFT        DOWN           RIGHT
 reflex = [[RIGHT, LEFT], [DOWN, UP], [LEFT, RIGHT], [UP, DOWN]]
+
 
 # pylint: disable=unused-variable, unused-argument
 def laser_mirrors(rows, cols, mir):
@@ -50,8 +51,7 @@ def laser_mirrors(rows, cols, mir):
         last_c, last_i = c, i
     if solve(succ, orien, n, RIGHT):      # exploration
         return orien[:n]
-    else:
-        return None
+    return None
 # snip}
 
 
@@ -78,6 +78,5 @@ def solve(succ, orien, i, direc):
                 return True
         orien[j] = None
         return False
-    else:
-        return solve(succ, orien, j, reflex[direc][orien[j]])
+    return solve(succ, orien, j, reflex[direc][orien[j]])
 # snip}

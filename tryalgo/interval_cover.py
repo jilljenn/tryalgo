@@ -13,6 +13,8 @@ def _readarray(f):
     return map(f, stdin.readline().split())
 
 # pylint: disable=redefined-outer-name
+
+
 def _solve(iles, rayon):
     II = []
     for x, y in iles:
@@ -39,7 +41,7 @@ def interval_cover(I):
     :complexity: O(n log n)
     """
     S = []
-    # sort by right endpoints   
+    # sort by right endpoints
     for start, end in sorted(I, key=lambda v: v[1]):
         if not S or S[-1] < start:
             S.append(end)

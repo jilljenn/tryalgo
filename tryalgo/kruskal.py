@@ -71,12 +71,14 @@ def kruskal(graph, weight):
     return min_span_tree
 # snip}
 
+
 def dist(a, b):
     """
     distance between point a and point b
     """
     return sqrt(sum([(a[i] - b[i]) * (a[i] - b[i])
                      for i in range(len(a))]))
+
 
 # pylint: disable=pointless-string-statement
 if __name__ == "__main__":

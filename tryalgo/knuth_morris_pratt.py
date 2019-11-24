@@ -3,10 +3,11 @@
 """\
 Find the length of maximal borders by Knuth-Morris-Pratt
 
-jill-jênn vie et christoph dürr et louis abraham - 2014-2018
+jill-jênn vie, christoph dürr et louis abraham - 2014-2019
 inspired from a practical lesson (TP) from Yves Lemaire
 """
 # pylint: disable=undefined-variable, unused-argument
+
 
 # snip{ maximum_border_length
 def maximum_border_length(w):
@@ -63,6 +64,7 @@ def powerstring_by_border(u):
         return n // (n - f[-1])    # we found a power decomposition
     return 1
 # snip}
+
 
 # snip{ powerstring_by_find
 def powerstring_by_find(u):

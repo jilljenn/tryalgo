@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 Create arithmetic expression approaching target value
-jill-jenn vie et christoph durr et jean-christophe filliatre - 2014-2018
+jill-jênn vie, christoph dürr et jean-christophe filliâtre - 2014-2019
 """
+
 
 # snip{
 # pylint: disable=too-many-locals, too-many-nested-blocks, unnecessary-pass

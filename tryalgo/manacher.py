@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Longest palindrome in a string by Manacher
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2019
 
 http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
 
@@ -20,6 +20,7 @@ on maintient un palindrome centré en c et de bord droit r
 qui maximise r
 ainsi que p[i] = plus grand rayon d'un palindrome centré en i
 """
+
 
 # snip{
 def manacher(s):

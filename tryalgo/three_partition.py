@@ -2,8 +2,9 @@
 # -*- coding: utf-8 -*-
 """\
 subsetsum
-jill-jenn vie et christoph durr - 2015-2018
+jill-jênn vie et christoph dürr - 2015-2019
 """
+
 
 # snip{
 def three_partition(x):
