@@ -9,7 +9,6 @@ from collections import deque
 from tryalgo.graph import add_reverse_arcs
 
 
-# pylint: disable=no-else-break
 # snip{
 def _augment(graph, capacity, flow, source, target):
     """find a shortest augmenting path
@@ -31,8 +30,7 @@ def _augment(graph, capacity, flow, source, target):
                 A[v] = min(A[u], residual)
                 if v == target:
                     break
-                else:
-                    Q.append(v)
+                Q.append(v)
     return (augm_path, A[target])   # augmenting path, min residual cap.
 
 
