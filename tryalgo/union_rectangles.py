@@ -7,6 +7,12 @@ jill-jênn vie et christoph dürr - 2014-2019
 # pylint: disable=too-many-arguments, too-many-locals
 
 
+
+# snip{ union_intervals
+from collections import Counter
+# snip}
+
+
 # weighted variant of tryalgo.range_minimum_query.LazySegmentTree
 # snip{ cover-query
 class Cover_query:
@@ -60,32 +66,47 @@ class Cover_query:
 # snip}
 
 
-# snip{ union_rectangles
-def union_intervals(intervals):
-    """Size of the union of a set of intervals
-
-    :param intervals: list or set of integer pairs (left, right)
-    :returns: size of the union of those intervals
-    :complexity: :math:`O(n \\log n)`
-    """
-    furthest = float('-inf')  # furthest interval endpoint seen so far
-    length = 0                              # size of union
-    for left, right in sorted(intervals):
-        if right > furthest:                # union increases
-            if left > furthest:  # interval disjoint from current union
-                length += right - left
-            else:               # interval intersects the current union
-                length += right - furthest
-        furthest = right                    # update
-    return length
-
-
+# snip{ union_intervals
 OPENING = +1  # constants for events
 CLOSING = -1  # -1 has higher priority
 
+def union_intervals(intervals):
+    """Size of the union of a set of intervals
 
+    Sweep from left to right.
+    Maintain in a counter number of opened intervals
+    minus number of closed intervals.
+
+    :param intervals: Counter, which describes a multiset of intervals.
+        an interval is a pair of values.
+    :returns: size of the union of those intervals
+    :complexity: :math:`O(n \\log n)`
+    """
+    union_size = 0
+    events = []
+    for x1, x2 in intervals:
+        for _ in range(intervals[x1, x2]):
+            assert x1 <= x2
+            events.append((x1, OPENING))
+            events.append((x2, CLOSING))
+    previous_x = 0    # arbitrary initial value
+    #                   ok, because opened == 0 at first event
+    opened = 0
+    for x, offset in sorted(events):
+        if opened > 0:
+            union_size += x - previous_x
+        previous_x = x
+        opened += offset
+    return union_size
+#snip}
+
+# snip{ union_rectangles
 def union_rectangles(R):
-    """Area of union of rectangles
+    """Area of union of rectangles.
+
+    Sweep from top to bottom.
+    Maintain in a set the horizontal projection of rectangles,
+    for which the top border has been processed but not yet the bottom.
 
     :param R: list of rectangles defined by (x1, y1, x2, y2)
        where (x1, y1) is top left corner and (x2, y2) bottom right corner
@@ -97,17 +118,14 @@ def union_rectangles(R):
         assert x1 <= x2 and y1 <= y2
         events.append((y1, OPENING, x1, x2))
         events.append((y2, CLOSING, x1, x2))
-    current_intervals = set()
+    current_intervals = Counter()
     area = 0
     previous_y = 0  # arbitrary initial value,
-    #                 because union_intervals is 0 at first iteration
+    #                 ok, because union_intervals is 0 at first event
     for y, offset, x1, x2 in sorted(events):         # sweep top down
         area += (y - previous_y) * union_intervals(current_intervals)
-        if offset == OPENING:
-            current_intervals.add((x1, x2))
-        else:  # CLOSING
-            current_intervals.remove((x1, x2))
         previous_y = y
+        current_intervals[x1, x2] += offset
     return area
 # snip}
 
@@ -137,18 +155,20 @@ def union_rectangles_fast(R):
     # by the sweepline in interval [i_to_x[i], i_to_x[i + 1]]
     nb_current_rectangles = [0] * (len(i_to_x) - 1)
     area = 0
+    length_union_intervals = 0
     previous_y = 0  # arbitrary initial value,
     #                 because length is 0 at first iteration
     for y, offset, x1, x2 in sorted(events):
-        length = 0              # size of union of intervals
-        for i, nb in enumerate(nb_current_rectangles):
-            if nb > 0:          # there is an intersection
-                length += i_to_x[i + 1] - i_to_x[i]
-        area += (y - previous_y) * length
+        area += (y - previous_y) * length_union_intervals
         i1 = x_to_i[x1]
         i2 = x_to_i[x2]         # update nb_current_rectangles
         for j in range(i1, i2):
+            length_interval = i_to_x[j + 1] - i_to_x[j]
+            if nb_current_rectangles[j] == 0:
+                length_union_intervals += length_interval
             nb_current_rectangles[j] += offset
+            if nb_current_rectangles[j] == 0:
+                length_union_intervals -= length_interval
         previous_y = y
     return area
 # snip}
