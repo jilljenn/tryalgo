@@ -7,7 +7,6 @@ jill-jênn vie et christoph dürr - 2014-2019
 # pylint: disable=too-many-arguments, too-many-locals
 
 
-
 # snip{ union_intervals
 from collections import Counter
 # snip}
@@ -70,6 +69,7 @@ class Cover_query:
 OPENING = +1  # constants for events
 CLOSING = -1  # -1 has higher priority
 
+
 def union_intervals(intervals):
     """Size of the union of a set of intervals
 
@@ -98,7 +98,8 @@ def union_intervals(intervals):
         previous_x = x
         opened += offset
     return union_size
-#snip}
+# snip}
+
 
 # snip{ union_rectangles
 def union_rectangles(R):
