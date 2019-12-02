@@ -21,6 +21,11 @@ By Christoph Dürr and Jill-Jênn Vie.
 
 Shortest paths on the graph of Paris.
 
+To run it yourself:
+
+    pip install -r examples/requirements.txt
+	jupyter notebook  # Then go to examples folder
+
 <a href="http://nbviewer.jupyter.org/github/jilljenn/tryalgo/blob/master/examples/TryAlgo%20Maps%20in%20Paris.ipynb"><img src="http://tryalgo.org/static/paris.png" /></a>
 
 ## Usage
