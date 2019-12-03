@@ -2,3 +2,4 @@ jupyter
 tryalgo
 folium
 geopy
+matplotlib
