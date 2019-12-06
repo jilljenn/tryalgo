@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 trie - correcteur orthographique
-jill-jenn vie et christoph durr - 2014-2019
+jill-jênn vie et christoph dürr - 2014-2019
 """
 
 # Don't write a Trie class otherwise you cannot represent leaves with None
@@ -12,9 +12,9 @@ from string import ascii_letters    # in Python 2 one would import letters
 
 
 # pylint: disable=missing-docstring, too-few-public-methods
-class Trie_Node:
+class TrieNode:
     def __init__(self):                            # each node will have
-        self.isWord = False                        # 52 children -
+        self.is_word = False                       # 52 children -
         self.s = {c: None for c in ascii_letters}  # most will remain empty
 
 
@@ -26,9 +26,9 @@ def add(T, w, i=0):  # Add a word to the trie
     :complexity: O(len(w))
     """
     if T is None:
-        T = Trie_Node()
+        T = TrieNode()
     if i == len(w):
-        T.isWord = True
+        T.is_word = True
     else:
         T.s[w[i]] = add(T.s[w[i]], w, i + 1)
     return T
@@ -68,7 +68,7 @@ def search(T, dist, w, i=0):
     """Searches for w[i:] in trie T with distance at most dist
     """
     if i == len(w):
-        if T is not None and T.isWord and dist == 0:
+        if T is not None and T.is_word and dist == 0:
             return ""
         else:
             return None

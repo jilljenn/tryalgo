@@ -14,7 +14,7 @@ from collections import Counter
 
 # weighted variant of tryalgo.range_minimum_query.LazySegmentTree
 # snip{ cover-query
-class Cover_query:
+class CoverQuery:
     """Segment tree to maintain a set of integer intervals
     and permitting to query the size of their union.
     """
@@ -199,7 +199,7 @@ def union_rectangles_fastest(R):
     # inverse dictionary
     x_to_i = {i_to_x[i]: i for i in range(len(i_to_x))}
     L = [i_to_x[i + 1] - i_to_x[i] for i in range(len(i_to_x) - 1)]
-    C = Cover_query(L)
+    C = CoverQuery(L)
     area = 0
     previous_y = 0  # arbitrary initial value,
     #                 because C.cover() is 0 at first iteration
