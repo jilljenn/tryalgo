@@ -7,7 +7,6 @@ jill-jênn vie et christoph dürr - 2014-2019
 # pylint: disable=too-many-arguments, too-many-locals
 
 
-
 # snip{ union_intervals
 from collections import Counter
 # snip}
@@ -15,7 +14,7 @@ from collections import Counter
 
 # weighted variant of tryalgo.range_minimum_query.LazySegmentTree
 # snip{ cover-query
-class Cover_query:
+class CoverQuery:
     """Segment tree to maintain a set of integer intervals
     and permitting to query the size of their union.
     """
@@ -70,6 +69,7 @@ class Cover_query:
 OPENING = +1  # constants for events
 CLOSING = -1  # -1 has higher priority
 
+
 def union_intervals(intervals):
     """Size of the union of a set of intervals
 
@@ -98,7 +98,8 @@ def union_intervals(intervals):
         previous_x = x
         opened += offset
     return union_size
-#snip}
+# snip}
+
 
 # snip{ union_rectangles
 def union_rectangles(R):
@@ -198,7 +199,7 @@ def union_rectangles_fastest(R):
     # inverse dictionary
     x_to_i = {i_to_x[i]: i for i in range(len(i_to_x))}
     L = [i_to_x[i + 1] - i_to_x[i] for i in range(len(i_to_x) - 1)]
-    C = Cover_query(L)
+    C = CoverQuery(L)
     area = 0
     previous_y = 0  # arbitrary initial value,
     #                 because C.cover() is 0 at first iteration

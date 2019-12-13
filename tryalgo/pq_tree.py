@@ -62,7 +62,7 @@ automaton = [[1,  5,  4],  # 0 initial state
              [6, -1, -1]]  # 6
 
 
-class PQ_node:
+class PQNode:
 
     def __init__(self, shape, value=None):
         self.shape = shape
@@ -90,7 +90,7 @@ class PQ_node:
         if len(L) == 1:
             self.add(L[0])
         elif len(L) >= 2:
-            x = PQ_node(P_shape)
+            x = PQNode(P_shape)
             x.add_all(L)
             self.add(x)
         # nothing to be done for an empty list L
@@ -117,13 +117,13 @@ class PQ_node:
 
 
 # pylint: disable=too-many-statements
-class PQ_tree:
+class PQTree:
 
     def __init__(self, universe):
-        self.tree = PQ_node(P_shape)
+        self.tree = PQNode(P_shape)
         self.leafs = []
         for i in universe:
-            x = PQ_node(L_shape, value=i)
+            x = PQNode(L_shape, value=i)
             self.tree.add(x)
             self.leafs.append(x)
 
@@ -269,7 +269,7 @@ def consecutive_ones_property(sets, universe=None):
         universe = set()
         for S in sets:
             universe |= set(S)
-    tree = PQ_tree(universe)
+    tree = PQTree(universe)
     try:
         for S in sets:
             tree.reduce(S)

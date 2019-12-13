@@ -1,4 +1,5 @@
-ipython[notebook]
+jupyter
 tryalgo
 folium
 geopy
+matplotlib
