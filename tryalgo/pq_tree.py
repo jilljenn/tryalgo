@@ -197,6 +197,7 @@ class PQ_tree:
                         z = P[0]
                         z.add_group(F)
                         z.add_all(reversed(P[1].sons))
+                        x.add(z)
                     else:
                         raise IsNotC1P
                 else:                      # more than 2 partial descendants
@@ -237,6 +238,7 @@ class PQ_tree:
                     x.full_leafs = 0
             if not is_key_node:               # propagate node processing
                 z = x.parent
+                assert z is not None
                 z.full_leafs += x.full_leafs  # cumulate bottom-up full numbers
                 if z.processed_sons == 0:
                     cleanup.append(z)         # first time considered

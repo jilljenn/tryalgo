@@ -1097,8 +1097,8 @@ t##
 
         check_automaton = [[0, 1], [2, 1], [2, 3], [3, 3]]
 
-        def check_positive(sets):
-            order = consecutive_ones_property(sets)
+        def check_positive(sets, universe=None):
+            order = consecutive_ones_property(sets, universe)
             for S in sets:
                 state = 0
                 for i in order:
@@ -1128,6 +1128,7 @@ t##
             {3,4}, {3,4,6}, {3,4,5}, {4,5}, {2,6}, {1,2}, {4,5}, {5,3}]))
         self.assertTrue(check_positive([
             {1,4}, {3,0,2,5,4}, {0,2,5,4}, {2,5}, {0,2}]))
+        self.assertTrue(check_positive([{1,7},{2,10},{1,2,9},{1,2,4,7,8,9,10}], set(range(11))))
 
     def test_polygon_is_simple(self):
         # +---+
