@@ -99,16 +99,16 @@ class TestTryalgo(unittest.TestCase):
         return sorted(sorted(group) for group in L)
 
     def test_anagrams(self):
-        L = [("le chien marche vers sa niche et trouve une "
+        L = [(set("le chien marche vers sa niche et trouve une "
               "limace de chine nue pleine de malice "
-              "qui lui fait du charme".split(),
+              "qui lui fait du charme".split()),
               [['nue', 'une'],
                ['limace', 'malice'],
                ['marche', 'charme'],
                ['chien', 'niche', 'chine']]),
-             (["aba", "baa", "abb"], [["aba", "baa"]]),
-             (["aba"], []),
-             ([], [])]
+             ({"aba", "baa", "abb"}, [["aba", "baa"]]),
+             ({"aba"}, []),
+             ({}, [])]
         for words, res in L:
             self.assertEqual(self.unorder(anagrams(words)), self.unorder(res))
 
