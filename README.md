@@ -2,6 +2,7 @@
 [![PyPI](https://img.shields.io/pypi/v/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 [![PyPI](https://img.shields.io/pypi/pyversions/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 ![Pylint score](https://mperlet.github.io/pybadge/badges/10.svg)
+[![Codecov](https://img.shields.io/codecov/c/github/jilljenn/tryalgo.svg)](https://codecov.io/gh/jilljenn/tryalgo/)
 
 # Algorithmic Problem Solving
 
