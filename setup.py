@@ -9,7 +9,7 @@ from distutils.core import setup
 setup(
     name='tryalgo',
     version='1.3.0',
-    description='Basic and advanced algorithms and datastructures',
+    description='Algorithms and data structures for preparing programming competitions',
     author='Jill-Jênn Vie and Christoph Dürr',
     author_email='christoph.durr@lip6.fr',
     license='MIT',
