@@ -1,3 +1,4 @@
 # development dependencies
 pycodestyle
 pylint
+coverage
