@@ -69,7 +69,7 @@ from tryalgo.our_queue import OurQueue
 from tryalgo.permutation_rank import permutation_rank, rank_permutation
 from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
-from tryalgo.pq_tree import consecutive_ones_property
+from tryalgo.pq_tree import consecutive_ones_property, PQTree
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.primes import eratosthene, gries_misra
 from tryalgo.rabin_karp import rabin_karp_factor
@@ -791,7 +791,7 @@ t##
              ([1], [42], 0, 0)]
         for f in [knapsack, knapsack2]:
             for p, v, cmax, opt in L:
-                self.assertEqual(knapsack(p, v, cmax)[0], opt)
+                self.assertEqual(f(p, v, cmax)[0], opt)
 
     def test_knuth_morris_pratt_border(self):
         self.assertEqual( maximum_border_length("aba#abababaababb"),
@@ -1107,6 +1107,29 @@ t##
                         return False
             return True
 
+        def normalize(A):
+            if type(A) in [list, tuple]:
+                L = [normalize(x) for x in A]
+            if type(A) == list:
+                rev = L[::-1]
+                if L > rev:
+                  L = rev
+                return "[" + ", ".join(L) + "]"
+            elif type(A) == tuple:
+                L.sort()
+                return "(" + ", ".join(L) + ")"
+            else:
+                return str(A)
+
+        def check_reduce(tree, S, res):
+            tree.reduce(S)
+            self.assertEqual(normalize(tree.representation()), normalize(res))
+
+        tree = PQTree(set(range(10)))
+        check_reduce(tree, {0,1}, (2,3,4,5,6,7,8,9,(0,1)))
+        check_reduce(tree, {1,2}, (3,4,5,6,7,8,9,[0,1,2]))
+        check_reduce(tree, {8,9}, (3,4,5,6,7,(8,9),[0,1,2]))
+
         self.assertIsNone(consecutive_ones_property([
             {2, 3, 4, 5, 6},
             {3, 6, 7},
@@ -1124,6 +1147,22 @@ t##
             {1, 2, 3},
             {4, 5},
         ]))
+        # pattern P5
+        self.assertTrue(check_positive([
+            {7, 8, 9},
+            {0, 1, 2, 3, 4, 5, 6, 7, 8},
+            {0, 1},
+            {1, 2},
+            {4, 5},
+            {5, 6},
+            {2, 3, 4}
+        ]))
+        # pattern P6
+        self.assertTrue(check_positive([
+            {2, 3},
+            {5, 6},
+            {3, 4, 5},
+        ], set(range(1, 7))))
         self.assertIsNone(consecutive_ones_property([
             {3,4}, {3,4,6}, {3,4,5}, {4,5}, {2,6}, {1,2}, {4,5}, {5,3}]))
         self.assertTrue(check_positive([

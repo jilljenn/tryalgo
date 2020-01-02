@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """\
-c.durr - 2017-2019
+c.durr, a.durr - 2017-2019
 
 
     Solve the consecutive all ones column problem using PQ-trees
@@ -35,11 +35,8 @@ c.durr - 2017-2019
 
 from collections import deque
 
-
-# pylint: disable=unnecessary-pass
 class IsNotC1P(Exception):
     """The given instance does not have the all consecutive ones property"""
-    pass
 
 
 P_shape = 0
@@ -104,16 +101,24 @@ class PQNode:
             for x in self.sons:
                 x.border(L)
 
-# pylint: disable=no-else-return
     def __str__(self):
+        m = ["", "*", "+"][self.mark]
+        if self.shape == L_shape:
+            return m + str(self.value)
+        L = ",".join(map(str, self.sons))
+        if self.shape == P_shape:
+            return "{}({})".format(m, L)
+        return "{}[{}]".format(m, L)
+
+    def representation(self):
         if self.shape == L_shape:
             return str(self.value)
-        for x in self.sons:
-            assert x.parent == self
+        # assert self.processed_sons == 0 
+        # assert self.full_leafs == 0 
+        # assert self.mark == EMPTY
         if self.shape == P_shape:
-            return "(" + ",".join(map(str, self.sons)) + ")"
-        else:
-            return "[" + ",".join(map(str, self.sons)) + "]"
+            return tuple(x.representation() for x in self.sons)
+        return list(x.representation() for x in self.sons)
 
 
 # pylint: disable=too-many-statements
@@ -133,6 +138,9 @@ class PQTree:
         """
         return str(self.tree)
 
+    def representation(self):
+        return self.tree.representation()
+
     def border(self):
         """returns the list of the leafs in order
         """
@@ -142,67 +150,69 @@ class PQTree:
 
     def reduce(self, S):
         queue = deque(self.leafs)
-        cleanup = []                      # we don't need to cleanup leafs
-        is_key_node = False
-        while queue and not is_key_node:  # while there are nodes to process
+        cleanup = []                        # we don't need to cleanup leafs
+        x_is_key_node = False
+        while queue and not x_is_key_node:  # while there are nodes to process
             x = queue.popleft()
-            is_key_node = (x.full_leafs == len(S))
+            x_is_key_node = (x.full_leafs == len(S))
             x.mark = PARTIAL              # default mark
-            if x.shape == P_shape:
-                E = []                   # group descendants according to marks
-                F = []
-                P = []
+            # print(f"reducing with {S} self={self} x={x} is key node={x_is_key_node}")
+            if x.shape == P_shape:                # ------------------------ P shape
+                group = [[], [], []]
                 for y in x.sons:
-                    if y.mark == EMPTY:
-                        E.append(y)
-                    elif y.mark == FULL:
-                        F.append(y)
-                    else:
-                        P.append(y)
-                if len(P) == 0:       # start long case analysis
-                    if len(E) == 0:
+                    group[y.mark].append(y)
+                # print("numbers of sons empty={}, full={}, partial={}".format(*map(len, group)))
+                if len(group[PARTIAL]) == 0:       # start long case analysis
+                    if len(group[EMPTY]) == 0:
                         x.mark = FULL
                     else:
-                        if len(F) == 0:
+                        if len(group[FULL]) == 0:
                             # template P1
                             x.mark = EMPTY
+                            template = "P1"
                         else:
-                            if is_key_node:
+                            if x_is_key_node:
                                 # template P2
-                                x.sons = E
-                                x.add_group(F)
+                                x.sons = group[EMPTY]
+                                x.add_group(group[FULL])
+                                template = "P2"
                             else:                    # is not root
                                 # template P3
                                 x.shape = Q_shape
                                 x.sons = []
-                                x.add_group(E)
-                                x.add_group(F)
-                elif len(P) == 1:
-                    assert P[0].shape == Q_shape
-                    if is_key_node:
+                                x.add_group(group[EMPTY])
+                                x.add_group(group[FULL])
+                                template = "P3"
+                elif len(group[PARTIAL]) == 1:
+                    z = group[PARTIAL][0]
+                    assert z.shape == Q_shape
+                    if x_is_key_node:
                         # template P4
-                        x.sons = E + [P[0]]
-                        P[0].add_group(F)
+                        x.sons = group[EMPTY] + [z]
+                        z.add_group(group[FULL])
+                        template = "P4"
                     else:                        # is not root
                         # template P5
                         x.shape = Q_shape
                         x.sons = []
-                        x.add_group(E)
-                        x.add_all(P[0].sons)
-                        x.add_group(F)
-                elif len(P) == 2:
-                    if is_key_node:
+                        x.add_group(group[EMPTY])
+                        x.add_all(z.sons)
+                        x.add_group(group[FULL])
+                        template = "P5"
+                elif len(group[PARTIAL]) == 2:
+                    if x_is_key_node:
                         # template P6
-                        x.sons = E
-                        z = P[0]
-                        z.add_group(F)
-                        z.add_all(reversed(P[1].sons))
-                        x.add(z)
+                        x.sons = group[EMPTY]
+                        z0, z1 = group[PARTIAL]
+                        z0.add_group(group[FULL])
+                        z0.add_all(reversed(z1.sons))
+                        x.add(z0)
+                        template = "P6"
                     else:
                         raise IsNotC1P
                 else:                      # more than 2 partial descendants
                     raise IsNotC1P
-            elif x.shape == Q_shape:
+            elif x.shape == Q_shape:       # ------------------------ Q shape
                 state = 0
                 L = []
                 for y in x.sons:
@@ -220,23 +230,34 @@ class PQTree:
                         L += y.sons
                     else:
                         L.append(y)
-                if state == 3 and not is_key_node:
+                if state == 3 and not x_is_key_node:
                     raise IsNotC1P
                 elif state == 5:
                     x.mark = FULL
-                x.sons = []
+                    template = "Q full"
+                # print(f"state is {state}")
                 if state == 6:
+                    x.sons = []
+                    x.mark = PARTIAL
                     x.add_all(reversed(L))
+                    # template = "Q partial reversed"
+                elif state == 1:
+                    x.mark = EMPTY
                 else:
+                    x.sons = []
+                    x.mark = PARTIAL
                     x.add_all(L)
-            else:                           # x is a leaf
+                    # template = "Q partial"
+            else:                             # ------------------------ leaf
                 if x.value in S:
                     x.mark = FULL
                     x.full_leafs = 1
                 else:
                     x.mark = EMPTY
                     x.full_leafs = 0
-            if not is_key_node:               # propagate node processing
+                template = "leaf"
+            # print(f"template {template} x={x}")
+            if not x_is_key_node:             # propagate node processing
                 z = x.parent
                 assert z is not None
                 z.full_leafs += x.full_leafs  # cumulate bottom-up full numbers
@@ -265,14 +286,15 @@ def consecutive_ones_property(sets, universe=None):
                  O(len(groundset) + len(sets) + sum(map(len,sets))),
                  and there are more recent easier algorithms for this problem.
     """
-    if universe is None:
-        universe = set()
+    if universe is None:    # no universe provided ?
+        universe = set()    # then work the union of the given sets
         for S in sets:
             universe |= set(S)
     tree = PQTree(universe)
     try:
-        for S in sets:
+        for S in sets:      # reduce with each given set
             tree.reduce(S)
+            # print(str(tree))
         return tree.border()
     except IsNotC1P:
         return None
