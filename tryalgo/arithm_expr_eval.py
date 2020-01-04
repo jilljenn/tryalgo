@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*-
 """\
 Evaluate an arithmetic expression
-jill-jenn vie et christoph durr - 2014-2018
+jill-jenn vie et christoph durr - 2014-2020
 
 IPCELLS
 http://www.spoj.com/problems/IPCELLS/
 """
 
-from sys import stdin
+from tryalgo.our_std import readint
 
 
 # snip{ arithm_expr_eval
@@ -78,16 +78,12 @@ def arithm_expr_parse(line_tokens):
 # snip}
 
 
-def _readint():
-    return int(stdin.readline())
-
-
 if __name__ == "__main__":
     # this main program is here to be tested on the online judge
-    for test in range(_readint()):
+    for test in range(readint()):
         cell = {}
         stdin.readline()                     # consume the empty line
-        for _ in range(_readint()):
+        for _ in range(readint()):
             line = stdin.readline().split()
             cell[line[0]] = arithm_expr_parse(line[2:])
         for lhs in sorted(cell.keys()):

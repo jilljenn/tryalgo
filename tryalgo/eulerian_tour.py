@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Eulerian cycle
-jill-jenn vie et christoph durr - 2015-2018
+jill-jênn vie et christoph dürr - 2015-2020
 """
 
 import random

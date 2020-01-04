@@ -23,13 +23,13 @@ from tryalgo.closest_points import closest_points
 from tryalgo.closest_values import closest_values
 from tryalgo.convex_hull import left_turn, andrew
 from tryalgo.dancing_links import dancing_links
-from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid
+from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive
 from tryalgo.dijkstra import dijkstra_update_heap, dijkstra
 from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
 from tryalgo.dist_grid import dist_grid
 from tryalgo.edmonds_karp import edmonds_karp
-from tryalgo.eulerian_tour import eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
+from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick
 from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
@@ -400,17 +400,6 @@ class TestTryalgo(unittest.TestCase):
             self.assertEqual( reachable([[1, 5], [2, 3, 5], [3], [4, 5], [5], []], 2, f), [2, 3, 4, 5] )
 
     def test_dfs_grid(self):
-        inTextGrid = """\
-##########
-.....#...#
-####.###.#
-#..#.#...#
-#..#.#.###
-###..#.#.#
-#.#.####.#
-#........#
-########.#\
-"""
 
         outTextGrid = """\
 ##########
@@ -423,10 +412,22 @@ XXXXX#...#
 #XXXXXXXX#
 ########X#\
 """
-        grid = [list(line.strip()) for line in inTextGrid.split('\n')]
+        inTextGrid = """\
+##########
+.....#...#
+####.###.#
+#..#.#...#
+#..#.#.###
+###..#.#.#
+#.#.####.#
+#........#
+########.#\
+"""
         out = [list(line.strip()) for line in outTextGrid.split('\n')]
-        dfs_grid(grid, 1, 0)
-        self.assertEqual( str(grid), str(out) )
+        for f in [dfs_grid, dfs_grid_recursive]:
+            grid = [list(line.strip()) for line in inTextGrid.split('\n')]
+            f(grid, 1, 0)
+            self.assertEqual(str(grid), str(out))
 
     def test_find_cycle(self):
         L = [ ([], None),
@@ -596,12 +597,18 @@ t##
                   [[1, 2], [0, 2, 3, 4], [0, 1], [1, 4],
                    [1, 3, 5, 6], [4, 6], [4, 5]],
                   [[1], [0]],
-                  [[1, 2], [0, 3], [0, 3], [1, 2, 4], [3]],
                   [[1, 2], [0, 2], [0, 1]],
-                  [[1, 2], [0, 2], [3], [1]],
-                  [[1], [2], [3], [4, 5], [3, 6], [4], [0]]]
+                  [[1, 2], [0, 2], [3], [1]]
+        ]
+        directed_graphs = [
+            [[1, 2], [0, 3], [0, 3], [1, 2, 4], [3]],
+            [[1], [2], [3], [4, 5], [3, 6], [4], [0]]
+        ]
         for g in graphs:
             # for g in [graph, listlist_and_matrix_to_listdict(graph)]:
+            for f in [eulerian_tour_directed, eulerian_tour_undirected]:
+                self.assertTrue(is_eulerian_tour(g, f(g)))
+        for g in directed_graphs:
             self.assertTrue(is_eulerian_tour(g, eulerian_tour_directed(g)))
 
     def test_fast_exponentation(self):

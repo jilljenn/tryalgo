@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*-
 """\
 Binary search
-jill-jênn vie, christoph dürr et louis abraham - 2014-2019
+jill-jênn vie, christoph dürr et louis abraham - 2014-2020
 """
 # pylint: disable=redefined-outer-name
 
-from sys import stdin
+from tryalgo.our_std import readint, readarray
 
 __all__ = ["discrete_binary_search", "continuous_binary_search",
            "optimized_binary_search_lower", "optimized_binary_search",
@@ -15,17 +15,6 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 # Fill the Cisterns
 # http://www.spoj.com/problems/CISTFILL/
 # [!] python3 is too slow for this problem
-
-
-# pylint: disable=missing-docstring
-def _readint():
-    return int(stdin.readline())
-
-
-# pylint: disable=missing-docstring
-def _readarray(f):
-    return tuple(map(f, stdin.readline().split()))
-
 
 # snip{ discrete_binary_search
 def discrete_binary_search(tab, lo, hi):
@@ -139,11 +128,11 @@ if __name__ == "__main__":
                 vol += ground * min(level - base, height)
         return vol
 
-    for test in range(_readint()):
+    for test in range(readint()):
         n = _readint()
         rect = []
         for _ in range(n):
-            x, y, w, h = _readarray(int)
+            x, y, w, h = readarray(int)
             rect.append((x, y, w * h))
         V = _readint()
         hi = 1e6 + 40000

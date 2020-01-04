@@ -3,7 +3,7 @@
 """\
 Solving Horn SAT
 
-christoph dürr - 2016-2019
+christoph dürr - 2016-2020
 
 clauses are numbered starting from 0
 variables are strings (identifier)
@@ -22,6 +22,7 @@ from collections import defaultdict
 import sys
 
 
+# To mock it, https://stackoverflow.com/a/44677646/827989
 def read(filename):
     """ reads a Horn SAT formula from a text file
 

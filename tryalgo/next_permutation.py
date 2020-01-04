@@ -3,11 +3,12 @@
 """\
 Next permutation
 prochaine permuation
-jill-jenn vie et christoph durr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2020
 """
 
-from sys import stdin, argv
+from sys import argv
 import sys
+from tryalgo.our_std import readint, readstr
 
 
 # snip{
@@ -87,12 +88,6 @@ if __name__ == "__main__":
             if not next_permutation(L):
                 sys.exit(0)
 
-    def _readstr():
-        return stdin.readline().strip()
-
-    def _readint():
-        return int(stdin.readline())
-
-    n = _readint()
-    S = [_readstr() for _ in range(n)]
+    n = readint()
+    S = [readstr() for _ in range(n)]
     print(solve_word_addition(S))

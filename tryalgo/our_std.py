@@ -8,6 +8,13 @@ def readint():
     return int(stdin.readline())
 
 
+def readstr():
+    """
+    function to read a string from stdin
+    """
+    return stdin.readline().strip()
+
+
 def readarray(typ):
     """
     function to read an array
