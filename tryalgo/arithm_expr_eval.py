@@ -8,7 +8,7 @@ IPCELLS
 http://www.spoj.com/problems/IPCELLS/
 """
 
-from tryalgo.our_std import readint
+from tryalgo.our_std import readint, readstr
 
 
 # snip{ arithm_expr_eval
@@ -82,9 +82,9 @@ if __name__ == "__main__":
     # this main program is here to be tested on the online judge
     for test in range(readint()):
         cell = {}
-        stdin.readline()                     # consume the empty line
+        readstr()                     # consume the empty line
         for _ in range(readint()):
-            line = stdin.readline().split()
+            line = readstr()
             cell[line[0]] = arithm_expr_parse(line[2:])
         for lhs in sorted(cell.keys()):
             print("%s = %i" % (lhs, arithm_expr_eval(cell, lhs)))

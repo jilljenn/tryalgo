@@ -9,6 +9,8 @@
 Algorithms and data structures for preparing programming competitions (e.g. ACM-ICPC, [see more](https://tryalgo.org/contests/)) and coding interviews.  
 By Christoph Dürr and Jill-Jênn Vie.
 
+[Our book](https://jilljenn.github.io/#books) is available in French, Simplified and Traditional Chinese. Soon in English.
+
 ## Install
 
     pip install tryalgo
@@ -51,7 +53,7 @@ Returns `'((((75*3)*(100+6))-50)/25)=952'`.
 
 ## Tests
 
-All algorithms are tested. These tests can be used to [practice your programming skills](https://tryalgo.org/en/2019/08/10/how-to-practice-algorithms-with-tryalgo/)!
+All algorithms are thoroughly tested. These tests can be used to [practice your programming skills](https://tryalgo.org/en/2019/08/10/how-to-practice-algorithms-with-tryalgo/)!
 
 ```python
 python -m unittest
@@ -59,15 +61,10 @@ python -m unittest
 
 Most snippets from the book are within 76 columns (French version) or 75 columns (English version, to be released soon).
 
-We follow PEP8 (`pycodestyle`):
+Our code is checked:
 
-    make pycodestyle
-
-Thanks to Xavier Carcelle, we are also following `pylint`:
-
-    make pylint
-
-As of November 24, 2019, our pylint score is 10/10.
+    make pycodestyle  # PEP8
+	make pylint
 
 ## Found a bug?
 
@@ -75,7 +72,7 @@ Please [drop an issue](https://github.com/jilljenn/tryalgo/issues).
 
 ## Authors
 
-© 2016–2019, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
+© 2016–2020, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
 Released under the MIT License.
 
 ## Contributors

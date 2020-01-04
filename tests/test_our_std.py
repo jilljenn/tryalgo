@@ -1,6 +1,7 @@
 # coding: utf8
 # jill-jênn vie et christoph dürr - 2020
 
+# pylint: disable=missing-docstring
 import unittest
 try:
     from unittest.mock import patch

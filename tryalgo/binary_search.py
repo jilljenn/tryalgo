@@ -17,6 +17,8 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 # [!] python3 is too slow for this problem
 
 # snip{ discrete_binary_search
+
+
 def discrete_binary_search(tab, lo, hi):
     """Binary search in a table
 
@@ -122,6 +124,9 @@ def ternary_search(f, lo, hi, gap=1e-10):
 # pylint: disable=cell-var-from-loop
 if __name__ == "__main__":
     def volume(level):
+        """
+        Computes the volume of a set of cuboids.
+        """
         vol = 0
         for base, height, ground in rect:
             if base < level:
@@ -129,12 +134,12 @@ if __name__ == "__main__":
         return vol
 
     for test in range(readint()):
-        n = _readint()
+        n = readint()
         rect = []
         for _ in range(n):
             x, y, w, h = readarray(int)
             rect.append((x, y, w * h))
-        V = _readint()
+        V = readint()
         hi = 1e6 + 40000
         if volume(hi) < V:
             print("OVERFLOW")

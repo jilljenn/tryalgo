@@ -1,6 +1,7 @@
 # coding: utf8
 # jill-jênn vie et christoph dürr - 2020
 
+# pylint: disable=missing-docstring
 import unittest
 try:
     from unittest.mock import patch
@@ -12,9 +13,9 @@ from tryalgo.freivalds import freivalds, readint, readmatrix, readarray
 class TestNextPermutation(unittest.TestCase):
 
     def test_freivalds(self):
-        A = [[2,3], [3,4]]
-        B = [[1,0], [1,2]]
-        C = [[5,6], [7,8]]
+        A = [[2, 3], [3, 4]]
+        B = [[1, 0], [1, 2]]
+        C = [[5, 6], [7, 8]]
         self.assertTrue(freivalds(A, B, C))
         # [!] might fail with small probability
 

@@ -35,6 +35,7 @@ c.durr, a.durr - 2017-2019
 
 from collections import deque
 
+
 class IsNotC1P(Exception):
     """The given instance does not have the all consecutive ones property"""
 
@@ -113,8 +114,8 @@ class PQNode:
     def representation(self):
         if self.shape == L_shape:
             return str(self.value)
-        # assert self.processed_sons == 0 
-        # assert self.full_leafs == 0 
+        # assert self.processed_sons == 0
+        # assert self.full_leafs == 0
         # assert self.mark == EMPTY
         if self.shape == P_shape:
             return tuple(x.representation() for x in self.sons)
@@ -156,12 +157,14 @@ class PQTree:
             x = queue.popleft()
             x_is_key_node = (x.full_leafs == len(S))
             x.mark = PARTIAL              # default mark
-            # print(f"reducing with {S} self={self} x={x} is key node={x_is_key_node}")
-            if x.shape == P_shape:                # ------------------------ P shape
+            # print(f"reducing with {S} self={self} x={x} "
+            #       f"is key node={x_is_key_node}")
+            if x.shape == P_shape:          # ------------------------ P shape
                 group = [[], [], []]
                 for y in x.sons:
                     group[y.mark].append(y)
-                # print("numbers of sons empty={}, full={}, partial={}".format(*map(len, group)))
+                # print("numbers of sons empty={}, full={}, partial={}".format(
+                #           *map(len, group)))
                 if len(group[PARTIAL]) == 0:       # start long case analysis
                     if len(group[EMPTY]) == 0:
                         x.mark = FULL

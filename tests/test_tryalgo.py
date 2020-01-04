@@ -1,6 +1,7 @@
 # jill-jenn vie et christoph durr - 2015
 # -*- coding: utf-8 -*-
 
+# pylint: disable=missing-docstring
 import unittest
 import random
 from collections import deque
@@ -46,7 +47,7 @@ from tryalgo.intervals_union import intervals_union
 from tryalgo.knuth_morris_pratt import maximum_border_length, knuth_morris_pratt, powerstring_by_border, powerstring_by_find
 from tryalgo.kruskal import kruskal
 from tryalgo.kuhn_munkres_n4 import kuhn_munkres as kuhn_munkres_n4
-from tryalgo.kuhn_munkres    import kuhn_munkres as kuhn_munkres_n3
+from tryalgo.kuhn_munkres import kuhn_munkres as kuhn_munkres_n3
 from tryalgo.rabin_karp import rabin_karp_matching
 from tryalgo.roman_numbers import roman2int, int2roman
 from tryalgo.laser_mirrors import laser_mirrors
@@ -97,8 +98,8 @@ class TestTryalgo(unittest.TestCase):
 
     def test_anagrams(self):
         L = [(set("le chien marche vers sa niche et trouve une "
-              "limace de chine nue pleine de malice "
-              "qui lui fait du charme".split()),
+                  "limace de chine nue pleine de malice "
+                  "qui lui fait du charme".split()),
               [['nue', 'une'],
                ['limace', 'malice'],
                ['marche', 'charme'],
@@ -120,66 +121,69 @@ class TestTryalgo(unittest.TestCase):
             self.assertEqual(arithm_expr_eval(cell, expr), val)
 
     def test_arithm_expr_target(self):
-        L = [([3, 100, 8, 8, 10, 6], 683, 683 ),
-             ([3, 75, 2, 4, 1, 1],   997, 1000)]
+        L = [([3, 100, 8, 8, 10, 6], 683, 683),
+             ([3, 75, 2, 4, 1, 1], 997, 1000)]
         for vals, target, res in L:
             answer = arithm_expr_target(vals, target)
-            closest = int(answer[ answer.find('=')+1: ])
+            closest = int(answer[answer.find('=') + 1:])
             self.assertEqual(closest, res)
 
-    graph_undir_1 = [[1,3], [0,1,2], [1,5], [0,4,6], [3,5,7], [2,4,8], [3,7], [4,6,8], [5,7]]
-    graph_undir_2 = [[1], [0,1,2], [1,5], [4,6], [3,7], [2,8], [3,7], [4,6], [5]]
+    graph_undir_1 = [[1, 3], [0, 1, 2], [1, 5], [0, 4, 6],
+                     [3, 5, 7], [2, 4, 8], [3, 7], [4, 6, 8], [5, 7]]
+    graph_undir_2 = [[1], [0, 1, 2], [1, 5], [
+        4, 6], [3, 7], [2, 8], [3, 7], [4, 6], [5]]
 
     _ = None
 
-    # title, graph, weight, has_neg_circuit_reachable, shortest_path from 0 to n-1
+    # title, graph, weight, has_neg_circuit_reachable, shortest_path from 0 to
+    # n-1
     L_dir = [("reachable_neg_cycle",
-              [[1], [2], [5], [6], [3], [4,8], [7], [4], [2]],
+              [[1], [2], [5], [6], [3], [4, 8], [7], [4], [2]],
               #  0  1  2  3  4  5  6  7  8
-              [[ _, 1, _, 0, _, _, _, _, _],  # 0
-               [ 1, 1, 4, _, _, _, _, _, _],  # 1
-               [ _, 4, _, _, _,-3, _, _, 2],  # 2
-               [ 0, _, _, _, 1, _, 3, _, _],  # 3
-               [ _, _, _, 1, _, 5, _, 1, _],  # 4
-               [ _, _,-3, _, 5, _, _, _, 2],  # 5
-               [ _, _, _, 3, _, _, _,-6, _],  # 6
-               [ _, _, _, _, 1, _,-6, _,-2],  # 7
-               [ _, _, 2, _, _, 2, _,-2, _],  # 8
+              [[_, 1, _, 0, _, _, _, _, _],  # 0
+               [1, 1, 4, _, _, _, _, _, _],  # 1
+               [_, 4, _, _, _, -3, _, _, 2],  # 2
+               [0, _, _, _, 1, _, 3, _, _],  # 3
+               [_, _, _, 1, _, 5, _, 1, _],  # 4
+               [_, _, -3, _, 5, _, _, _, 2],  # 5
+               [_, _, _, 3, _, _, _, -6, _],  # 6
+               [_, _, _, _, 1, _, -6, _, -2],  # 7
+               [_, _, 2, _, _, 2, _, -2, _],  # 8
                ], True, None),
              ("non_reachable_neg_cycle",
               [[1], [2], [5], [6], [3], [8], [7], [4], [2]],
               #  0  1  2  3  4  5  6  7  8
-              [[ _, 1, _, 0, _, _, _, _, _],  # 0
-               [ 1,-1, 4, _, _, _, _, _, _],  # 1
-               [ _, 4, _, _, _,-3, _, _, 2],  # 2
-               [ 0, _, _, _, 1, _, 3, _, _],  # 3
-               [ _, _, _, 1, _, 5, _, 1, _],  # 4
-               [ _, _,-3, _, 5, _, _, _, 2],  # 5
-               [ _, _, _, 3, _, _, _,-6, _],  # 6
-               [ _, _, _, _, 1, _,-6, _,-2],  # 7
-               [ _, _, 2, _, _, 2, _,-2, _],  # 8
-               ], False, [0,1,2,5,8]),
+              [[_, 1, _, 0, _, _, _, _, _],  # 0
+               [1, -1, 4, _, _, _, _, _, _],  # 1
+               [_, 4, _, _, _, -3, _, _, 2],  # 2
+               [0, _, _, _, 1, _, 3, _, _],  # 3
+               [_, _, _, 1, _, 5, _, 1, _],  # 4
+               [_, _, -3, _, 5, _, _, _, 2],  # 5
+               [_, _, _, 3, _, _, _, -6, _],  # 6
+               [_, _, _, _, 1, _, -6, _, -2],  # 7
+               [_, _, 2, _, _, 2, _, -2, _],  # 8
+               ], False, [0, 1, 2, 5, 8]),
              ("single_vertex",
               [[]],
               [[_]], False, [0]),
              ("single_arc",
               [[1], []],
-              [[ _, -3],
-               [ _, _]], False, [0, 1]),
+              [[_, -3],
+               [_, _]], False, [0, 1]),
              ("two_nodes",
               [[], []],
-              [[ _, _],
-               [ _, _]], False, None),
+              [[_, _],
+               [_, _]], False, None),
              ("neg_self_loop",
               [[0, 1], [0, 1]],
-              [[ 2,  3],
-               [ 3, -1]], True, None)
+              [[2, 3],
+               [3, -1]], True, None)
              ]
 
     def test_bellman_ford(self):
         for title, graph, weight, has_circuit, shortest_path in self.L_dir:
             sparse = listlist_and_matrix_to_listdict(graph, weight)
-            for g,w in [(graph, weight), (sparse, sparse)]:
+            for g, w in [(graph, weight), (sparse, sparse)]:
                 dist, prec, detect = bellman_ford(g, w)
                 self.assertEqual(has_circuit, detect)
                 if not has_circuit:
@@ -193,13 +197,15 @@ class TestTryalgo(unittest.TestCase):
     def test_bfs(self):
         # graphe complet plus un sommet isolé
         n = 7
-        G1 = [[j for j in range(n) if j != i] for i in range(n)]   # graphe complet
-        G1.append([])                                              # sommet isolé
-        A1 = ([0] + [1] * (n-1) + [float('inf')],
-                                  [None] +  [0] * (n-1) + [None])
+        G1 = [[j for j in range(n) if j != i]
+              for i in range(n)]   # graphe complet
+        # sommet isolé
+        G1.append([])
+        A1 = ([0] + [1] * (n - 1) + [float('inf')],
+              [None] + [0] * (n - 1) + [None])
         # arbre binaire complet
-        G2 = [[], [2, 3]] + [[2 * i, 2 * i + 1, i // 2] for i in range(2, 8)] + \
-             [[i // 2] for i in range(8, 16)]
+        G2 = [[], [2, 3]] + [[2 * i, 2 * i + 1, i // 2]
+                             for i in range(2, 8)] + [[i // 2] for i in range(8, 16)]
         A2 = ([float('inf'), 0, 1, 1, 2, 2, 2, 2,
                3, 3, 3, 3, 3, 3, 3, 3],
               [None, None, 1, 1, 2, 2, 3, 3, 4,
@@ -223,8 +229,18 @@ class TestTryalgo(unittest.TestCase):
               [0, 1, 3, 4],
               [3, 4]]
         A0 = ([], [])
-        G1 = [[], [2, 4], [1, 3, 5], [2, 4, 5], [3, 1], [2, 3, 6, 7], [5, 7, 8],
-              [5, 6, 8], [6, 7, 9], [8, 10, 11], [9, 11], [9, 10]]
+        G1 = [[], [
+            2, 4], [
+            1, 3, 5], [
+            2, 4, 5], [
+                3, 1], [
+                    2, 3, 6, 7], [
+                        5, 7, 8], [
+                            5, 6, 8], [
+                                6, 7, 9], [
+                                    8, 10, 11], [
+                                        9, 11], [
+                                            9, 10]]
         A1 = ([5, 8, 9], [(8, 9)])
         G2 = [[2, 5],
               [3, 8],
@@ -239,23 +255,26 @@ class TestTryalgo(unittest.TestCase):
         G3 = [[1, 2], [0, 2], [0, 1, 3], [2]]
         A3 = ([2], [(2, 3)])
         big = 10000
-        G4 = ([[(i + 1) % big, (i - 1) % big] for i in range(big)]
-              + [[big + ((i + 1) % big), big + ((i - 1) % big)] for i in range(big)])
+        G4 = ([[(i + 1) %
+                big, (i - 1) %
+                big] for i in range(big)] + [[big + ((i + 1) %
+                                                     big), big + ((i - 1) %
+                                                                  big)] for i in range(big)])
         G4[0].append(big)
         G4[big].append(0)
         A4 = ([0, big], [(0, big)])
         L = [(G0, A0), (G1, A1), (G2, A2), (G3, A3), (G4, A4),
              ([[]], ([], [])),
-             ([[1,2],[0],[0]], ([0], [(0, 1), (0, 2)])),
+             ([[1, 2], [0], [0]], ([0], [(0, 1), (0, 2)])),
              ([[1], [0]], ([], [(0, 1)])),
              ([[1], [0, 2], [1]], ([1], [(0, 1), (1, 2)]))]
         for graph, answer in L:
             cn, ce = cut_nodes_edges(graph)
-            self.assertEqual( (sorted(cn), sorted(ce)), answer)
+            self.assertEqual((sorted(cn), sorted(ce)), answer)
         for graph, answer in L:
             if len(graph) <= 5000:
                 cn, ce = cut_nodes_edges2(graph)
-                self.assertEqual( (sorted(cn), sorted(ce)), answer)
+                self.assertEqual((sorted(cn), sorted(ce)), answer)
 
         # for G, name in [(G0, "g0"), (G1, 'g1'), (G2, 'g2')]:
         #     cut_nodes, cut_edges = cut_nodes_edges(G)
@@ -269,32 +288,34 @@ class TestTryalgo(unittest.TestCase):
             def f(x):
                 return x >= x0
 
-            self.assertEqual( continuous_binary_search(f, 0, L) - x0 < 1e-4, True)
+            self.assertEqual(continuous_binary_search(
+                f, 0, L) - x0 < 1e-4, True)
 
             T = [(x >= x0) for x in range(L)]
-            self.assertEqual( discrete_binary_search(T, 0, L - 1), x0)
-            self.assertEqual( optimized_binary_search(T, 20), x0)
+            self.assertEqual(discrete_binary_search(T, 0, L - 1), x0)
+            self.assertEqual(optimized_binary_search(T, 20), x0)
 
     def test_max_bipartite_matching(self):
-        self.assertEqual( [None], max_bipartite_matching([[]]))
-        self.assertEqual( [], max_bipartite_matching2([[]]))
-        self.assertEqual( [None, None], max_bipartite_matching([[], []]))
-        self.assertEqual( [], max_bipartite_matching2([[], []]))
-        self.assertEqual( [0, None], max_bipartite_matching([[0], [0]]))
-        self.assertEqual( [0], max_bipartite_matching2([[0], [0]]))
-        self.assertEqual( [0, 1], max_bipartite_matching([[0], [0, 1]]))
-        self.assertEqual( [0, 1], max_bipartite_matching2([[0], [0, 1]]))
-        self.assertEqual( [0, 1, 2, 4, None],
-                          max_bipartite_matching([[0], [0, 1], [2, 3], [1], [0, 3]]))
-        self.assertEqual( [0, 1, 2, 4],
-                          max_bipartite_matching2([[0], [0, 1], [2, 3], [1], [0, 3]]))
+        self.assertEqual([None], max_bipartite_matching([[]]))
+        self.assertEqual([], max_bipartite_matching2([[]]))
+        self.assertEqual([None, None], max_bipartite_matching([[], []]))
+        self.assertEqual([], max_bipartite_matching2([[], []]))
+        self.assertEqual([0, None], max_bipartite_matching([[0], [0]]))
+        self.assertEqual([0], max_bipartite_matching2([[0], [0]]))
+        self.assertEqual([0, 1], max_bipartite_matching([[0], [0, 1]]))
+        self.assertEqual([0, 1], max_bipartite_matching2([[0], [0, 1]]))
+        self.assertEqual([0, 1, 2, 4, None], max_bipartite_matching(
+            [[0], [0, 1], [2, 3], [1], [0, 3]]))
+        self.assertEqual([0, 1, 2, 4], max_bipartite_matching2(
+            [[0], [0, 1], [2, 3], [1], [0, 3]]))
 
     def test_bipartite_vertex_cover(self):
-        for n in range(1, 10):                   # try different random bipartite graphs
+        for n in range(
+                1, 10):                   # try different random bipartite graphs
             V = range(n)
             bigraph = [[] for u in V]
             for i in range(100):
-                for _ in range(n*n // 8):
+                for _ in range(n * n // 8):
                     u = random.choice(V)
                     v = random.choice(V)
                     if v not in bigraph[u]:
@@ -306,13 +327,14 @@ class TestTryalgo(unittest.TestCase):
                 self.assertEqual(low, high)      # verify cardinalities
                 for u in V:                      # verify vertex cover
                     for v in bigraph[u]:
-                        self.assertTrue( Su[u] or Sv[v] )
+                        self.assertTrue(Su[u] or Sv[v])
 
     def test_closest_points(self):
-        S = [(3*i, 3*i) for i in range(1000)]
+        S = [(3 * i, 3 * i) for i in range(1000)]
         S.append((501, 501))
         self.assertEqual(set(closest_points(S)), {(501, 501), (501, 501)})
-        self.assertEqual(set(closest_points([(0,0), (1,1)])), {(0,0), (1,1)})
+        self.assertEqual(
+            set(closest_points([(0, 0), (1, 1)])), {(0, 0), (1, 1)})
 
     def test_closest_values(self):
         L = [0, 2]
@@ -338,16 +360,19 @@ class TestTryalgo(unittest.TestCase):
                     self.assertEqual(left_turn(*map(f, L)), True)
 
     def test_andrew(self):
-        P = [(0,0), (1,0), (2,1), (2,4), (1,3), (0,3)]
-        self.assertEqual(andrew(P + [(1,2)]), [(0, 0), (1, 0), (2, 1), (2, 4), (0, 3)])
-        self.assertEqual(andrew(P + [(0,2)]), [(0, 0), (1, 0), (2, 1), (2, 4), (0, 3)])
-        self.assertEqual(andrew(P + [(-1,2)]), [(-1, 2), (0, 0), (1, 0), (2, 1), (2, 4), (0, 3)])
-        self.assertEqual(andrew([(0,0), (1,0)]), [(0,0), (1,0)])
-        self.assertEqual(andrew([(0,0), (0,1)]), [(0,0), (0,1)])
+        P = [(0, 0), (1, 0), (2, 1), (2, 4), (1, 3), (0, 3)]
+        self.assertEqual(andrew(P + [(1, 2)]),
+                         [(0, 0), (1, 0), (2, 1), (2, 4), (0, 3)])
+        self.assertEqual(andrew(P + [(0, 2)]),
+                         [(0, 0), (1, 0), (2, 1), (2, 4), (0, 3)])
+        self.assertEqual(
+            andrew(P + [(-1, 2)]), [(-1, 2), (0, 0), (1, 0), (2, 1), (2, 4), (0, 3)])
+        self.assertEqual(andrew([(0, 0), (1, 0)]), [(0, 0), (1, 0)])
+        self.assertEqual(andrew([(0, 0), (0, 1)]), [(0, 0), (0, 1)])
 
     def test_dancing_links(self):
-        self.assertEqual(dancing_links(7, [[2, 4, 5], [3, 4, 6], [1, 2, 5], [0, 3], [1, 6], [3, 4, 6]]),
-                         [3, 0, 4])
+        self.assertEqual(dancing_links(7, [[2, 4, 5], [3, 4, 6], [
+                         1, 2, 5], [0, 3], [1, 6], [3, 4, 6]]), [3, 0, 4])
         self.assertEqual(dancing_links(1, [[0]]), [0])
         self.assertEqual(dancing_links(2, [[0], [0, 1]]), [1])
 
@@ -372,7 +397,7 @@ class TestTryalgo(unittest.TestCase):
 
         n = 100000
         G = [[v for v in range(u + 1, min(u + 10, n))] for u in range(n)]
-        self.assertEqual( reachable(G, 3, dfs_iterative), list(range(3, n)))
+        self.assertEqual(reachable(G, 3, dfs_iterative), list(range(3, n)))
 
         # tests sur la profondeur possible de la récursion
         # from random import *
@@ -393,11 +418,12 @@ class TestTryalgo(unittest.TestCase):
         # exit(0)
 
         for f in [dfs_recursive, dfs_iterative]:
-            self.assertEqual( reachable([[]], 0, f), [0] )
-            self.assertEqual( reachable([[1], []], 0, f), [0, 1] )
-            self.assertEqual( reachable([[1], []], 1, f), [1] )
-            self.assertEqual( reachable([[1], [2], []], 1, f), [1, 2] )
-            self.assertEqual( reachable([[1, 5], [2, 3, 5], [3], [4, 5], [5], []], 2, f), [2, 3, 4, 5] )
+            self.assertEqual(reachable([[]], 0, f), [0])
+            self.assertEqual(reachable([[1], []], 0, f), [0, 1])
+            self.assertEqual(reachable([[1], []], 1, f), [1])
+            self.assertEqual(reachable([[1], [2], []], 1, f), [1, 2])
+            self.assertEqual(reachable(
+                [[1, 5], [2, 3, 5], [3], [4, 5], [5], []], 2, f), [2, 3, 4, 5])
 
     def test_dfs_grid(self):
 
@@ -430,15 +456,15 @@ XXXXX#...#
             self.assertEqual(str(grid), str(out))
 
     def test_find_cycle(self):
-        L = [ ([], None),
-              ([[]], None),
-              ([[], []], None),
-              ([[1], [0]], None),
-              ([[], [2], [1]], None),
-              ([[1, 2], [0, 2], [0, 1]], {0,1,2}),
-              ([[1, 2], [0], [0], [2, 4], [3]], [2, 3]),
-              ([[1, 2], [0], [0]], None),
-              ([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]], [4, 5, 3]) ]
+        L = [([], None),
+             ([[]], None),
+             ([[], []], None),
+             ([[1], [0]], None),
+             ([[], [2], [1]], None),
+             ([[1, 2], [0, 2], [0, 1]], {0, 1, 2}),
+             ([[1, 2], [0], [0], [2, 4], [3]], [2, 3]),
+             ([[1, 2], [0], [0]], None),
+             ([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]], [4, 5, 3])]
         for graph, result in L:
             for g in [graph, listlist_and_matrix_to_listdict(graph)]:
                 answer = find_cycle(g)
@@ -452,41 +478,42 @@ XXXXX#...#
         L_dir = [("reachable_cycle",
                   [[1], [2], [5], [6], [3], [4, 8], [7], [4], [2]],
                   #  0  1  2  3  4  5  6  7  8
-                  [[ _, 1, _, 0, _, _, _, _, _],  # 0
-                   [ 1, 1, 4, _, _, _, _, _, _],  # 1
-                   [ _, 4, _, _, _, 3, _, _, 2],  # 2
-                   [ 0, _, _, _, 1, _, 3, _, _],  # 3
-                   [ _, _, _, 1, _, 5, _, 1, _],  # 4
-                   [ _, _, 3, _, 5, _, _, _, 2],  # 5
-                   [ _, _, _, 3, _, _, _, 6, _],  # 6
-                   [ _, _, _, _, 1, _, 6, _, 2],  # 7
-                   [ _, _, 2, _, _, 2, _, 2, _],  # 8
+                  [[_, 1, _, 0, _, _, _, _, _],  # 0
+                   [1, 1, 4, _, _, _, _, _, _],  # 1
+                   [_, 4, _, _, _, 3, _, _, 2],  # 2
+                   [0, _, _, _, 1, _, 3, _, _],  # 3
+                   [_, _, _, 1, _, 5, _, 1, _],  # 4
+                   [_, _, 3, _, 5, _, _, _, 2],  # 5
+                   [_, _, _, 3, _, _, _, 6, _],  # 6
+                   [_, _, _, _, 1, _, 6, _, 2],  # 7
+                   [_, _, 2, _, _, 2, _, 2, _],  # 8
                    ], [0, 1, 2, 5, 8]),
                  ("single_vertex",
                   [[]],
                   [[_]], [0]),
                  ("single_arc",
                   [[1], []],
-                  [[ _, 3],
-                   [ _, _]], [0, 1]),
+                  [[_, 3],
+                   [_, _]], [0, 1]),
                  ("two_nodes",
                   [[], []],
-                  [[ _, _],
-                   [ _, _]], None),
+                  [[_, _],
+                   [_, _]], None),
                  ]
         for f in [dijkstra, dijkstra_update_heap]:
             for title, graph, weight, shortest_path in L_dir:
                 sparse = listlist_and_matrix_to_listdict(graph, weight)
                 for g, w in [(graph, weight), (sparse, sparse)]:
                     source = 0
-                    target = len(g)-1
+                    target = len(g) - 1
                     dist, prec = f(g, w, source, target)
                     path = extract_path(prec, target)
                     if shortest_path is None:
                         self.assertFalse(path[0] == source)
                     else:
                         self.assertEqual(path, shortest_path)
-                        val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
+                        val = sum(weight[path[i]][path[i + 1]]
+                                  for i in range(len(path) - 1))
                         self.assertEqual(dist[target], val)
 
     def test_dilworth(self):
@@ -500,7 +527,7 @@ XXXXX#...#
              [],
              []]
         for graph in [G, listlist_and_matrix_to_listdict(G)]:
-            self.assertEqual(set(dilworth(graph)), {0,1,2})
+            self.assertEqual(set(dilworth(graph)), {0, 1, 2})
         # write_graph(dotfile="dilworth.dot", graph=G, directed=True, node_label=p)
 
     def test_flow(self):
@@ -599,7 +626,7 @@ t##
                   [[1], [0]],
                   [[1, 2], [0, 2], [0, 1]],
                   [[1, 2], [0, 2], [3], [1]]
-        ]
+                  ]
         directed_graphs = [
             [[1, 2], [0, 3], [0, 3], [1, 2, 4], [3]],
             [[1], [2], [3], [4, 5], [3, 6], [4], [0]]
@@ -613,48 +640,50 @@ t##
 
     def test_fast_exponentation(self):
         for f in [fast_exponentiation, fast_exponentiation2]:
-            self.assertEqual( f(1, 23, 1000), 1 )
-            self.assertEqual( f(23, 1, 1000), 23 )
-            self.assertEqual( f(23, 2, 1000), 23 * 23 )
-            self.assertEqual( f(23, 0, 1000), 1 )
-            self.assertEqual( f(7, 23, 1000000000), 80916343 )
-            self.assertEqual( f(7, 2323474, 1000000000), 428796849 )
+            self.assertEqual(f(1, 23, 1000), 1)
+            self.assertEqual(f(23, 1, 1000), 23)
+            self.assertEqual(f(23, 2, 1000), 23 * 23)
+            self.assertEqual(f(23, 0, 1000), 1)
+            self.assertEqual(f(7, 23, 1000000000), 80916343)
+            self.assertEqual(f(7, 2323474, 1000000000), 428796849)
 
     def test_fenwick(self):
         F = Fenwick([1, 2, 4, 8, 16, 32, 64, 128, 256, 512])
-        self.assertEqual( bin(F.intervalSum(2, 6)), "0b1111100" )
-        self.assertEqual( bin(F.intervalSum(1, 4)), "0b11110" )
+        self.assertEqual(bin(F.intervalSum(2, 6)), "0b1111100")
+        self.assertEqual(bin(F.intervalSum(1, 4)), "0b11110")
         F.add(3, -8)
-        self.assertEqual( bin(F.intervalSum(2, 6)), "0b1110100" )
-        self.assertEqual( bin(F.intervalSum(1, 4)), "0b10110" )
+        self.assertEqual(bin(F.intervalSum(2, 6)), "0b1110100")
+        self.assertEqual(bin(F.intervalSum(1, 4)), "0b10110")
 
     def test_floyd_warshall(self):
         for FW in [floyd_warshall, floyd_warshall2]:
             # https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm#/media/File:Floyd-Warshall_example.svg
             _ = float('inf')
-            weight = [[ _, _,-2, _],
-                      [ 4, _, 3, _],
-                      [ _, _, _, 2],
-                      [ _,-1, _, _]]
+            weight = [[_, _, -2, _],
+                      [4, _, 3, _],
+                      [_, _, _, 2],
+                      [_, -1, _, _]]
             self.assertFalse(FW(weight))
-            self.assertEqual(weight,  [[3, -1, -2, 0], [4, 3, 2, 4], [5, 1, 3, 2], [3, -1, 1, 3]])
+            self.assertEqual(
+                weight, [[3, -1, -2, 0], [4, 3, 2, 4], [5, 1, 3, 2], [3, -1, 1, 3]])
 
     def test_gale_shapley(self):
-        self.assertEqual(gale_shapley([[0, 1, 2], [2, 1, 0], [0, 2, 1]],
-                                      [[0, 1, 2], [1, 2, 0], [1, 2, 0]]), [0, 2, 1])
+        self.assertEqual(gale_shapley([[0, 1, 2], [2, 1, 0], [0, 2, 1]], [
+                         [0, 1, 2], [1, 2, 0], [1, 2, 0]]), [0, 2, 1])
 
     def test_gauss_jordan(self):
         x = [0, 0, 0]
-        self.assertEqual( gauss_jordan([[3, 2, -1], [2, -2, 4], [-1, .5, -1]],
-                                       x, [1, -2, 0]), GJ_SINGLE_SOLUTION)
+        self.assertEqual(gauss_jordan([[3, 2, -1], [2, -2, 4], [-1, .5, -1]],
+                                      x, [1, -2, 0]), GJ_SINGLE_SOLUTION)
         x = [0, 0]
-        self.assertEqual( gauss_jordan([[3, 2], [6, 4]],
-                                       x, [6, 12]), GJ_SEVERAL_SOLUTIONS)
-        self.assertEqual( gauss_jordan([[1, -2], [3, 5], [4, 3]],
-                                       x, [-1, 8, 7]), GJ_SINGLE_SOLUTION)
-        self.assertEqual( gauss_jordan([[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTIONS)
-        self.assertEqual( gauss_jordan([[1, 1], [2, 1], [3, 2]],
-                                       x, [1, 1, 3]), GJ_ZERO_SOLUTIONS)
+        self.assertEqual(gauss_jordan([[3, 2], [6, 4]],
+                                      x, [6, 12]), GJ_SEVERAL_SOLUTIONS)
+        self.assertEqual(gauss_jordan([[1, -2], [3, 5], [4, 3]],
+                                      x, [-1, 8, 7]), GJ_SINGLE_SOLUTION)
+        self.assertEqual(gauss_jordan(
+            [[3, 2], [3, 2]], x, [6, 12]), GJ_ZERO_SOLUTIONS)
+        self.assertEqual(gauss_jordan([[1, 1], [2, 1], [3, 2]],
+                                      x, [1, 1, 3]), GJ_ZERO_SOLUTIONS)
 
     def test_graph(self):
         G = Graph()
@@ -675,29 +704,30 @@ t##
     def test_dist01(self):
         _ = None
         L_dir = [("reachable_cycle",
-                  [[1,3], [0,1,2], [1,5], [0,4,6], [3,5,7], [2,4,8], [3,7], [4,6], [5]],
+                  [[1, 3], [0, 1, 2], [1, 5], [0, 4, 6], [
+                      3, 5, 7], [2, 4, 8], [3, 7], [4, 6], [5]],
                   #  0  1  2  3  4  5  6  7  8
-                  [[ _, 0, _, 0, _, _, _, _, _],  # 0
-                   [ 0, 0, 1, _, _, _, _, _, _],  # 1
-                   [ _, 1, _, _, _, 1, _, _, _],  # 2
-                   [ 0, _, _, _, 1, _, 0, _, _],  # 3
-                   [ _, _, _, 1, _, 1, _, 0, _],  # 4
-                   [ _, _, 1, _, 1, _, _, _, 0],  # 5
-                   [ _, _, _, 0, _, _, _, 0, _],  # 6
-                   [ _, _, _, _, 0, _, 0, _, _],  # 7
-                   [ _, _, _, _, _, 0, _, _, _],  # 8
+                  [[_, 0, _, 0, _, _, _, _, _],  # 0
+                   [0, 0, 1, _, _, _, _, _, _],  # 1
+                   [_, 1, _, _, _, 1, _, _, _],  # 2
+                   [0, _, _, _, 1, _, 0, _, _],  # 3
+                   [_, _, _, 1, _, 1, _, 0, _],  # 4
+                   [_, _, 1, _, 1, _, _, _, 0],  # 5
+                   [_, _, _, 0, _, _, _, 0, _],  # 6
+                   [_, _, _, _, 0, _, 0, _, _],  # 7
+                   [_, _, _, _, _, 0, _, _, _],  # 8
                    ], [0, 3, 6, 7, 4, 5, 8]),
                  ("single_vertex",
                   [[]],
                   [[_]], [0]),
                  ("single_arc",
                   [[1], []],
-                  [[ _, 1],
-                   [ _, _]], [0, 1]),
+                  [[_, 1],
+                   [_, _]], [0, 1]),
                  ("two_nodes",
                   [[], []],
-                  [[ _, _],
-                   [ _, _]], None),
+                  [[_, _],
+                   [_, _]], None),
                  ]
         for title, g, w, shortest_path in L_dir:
             sparse = listlist_and_matrix_to_listdict(g, w)
@@ -710,7 +740,8 @@ t##
                     self.assertFalse(path[0] == source)
                 else:
                     self.assertEqual(path, shortest_path)
-                    val = sum(weight[path[i]][path[i+1]] for i in range(len(path)-1))
+                    val = sum(weight[path[i]][path[i + 1]]
+                              for i in range(len(path) - 1))
                     self.assertEqual(dist[target], val)
 
     def test_horn_sat(self):
@@ -720,11 +751,11 @@ t##
         F3 = [(1, [1, 2]), (2, [])]
         F4 = F2 + [(None, [1, 3])]
         F5 = [(1, [2, 2]), (2, [])]
-        self.assertEqual(horn_sat(F1), {1} )
-        self.assertEqual(horn_sat(F2), {1, 2, 3, 4} )
-        self.assertEqual(horn_sat(F3), {2} )
-        self.assertEqual(horn_sat(F4), None )
-        self.assertEqual(horn_sat(F5), {1, 2} )
+        self.assertEqual(horn_sat(F1), {1})
+        self.assertEqual(horn_sat(F2), {1, 2, 3, 4})
+        self.assertEqual(horn_sat(F3), {2})
+        self.assertEqual(horn_sat(F4), None)
+        self.assertEqual(horn_sat(F5), {1, 2})
 
     def test_huffman(self):
         self.assertEqual(huffman({'a': 7, 'b': 7, 'c': 7, 'd': 7}),
@@ -739,7 +770,7 @@ t##
             for x in R:
                 A = intervals_containing(IT, x)
                 B = [(l, r) for (l, r) in L if l <= x and x < r]
-                self.assertEqual( sorted(A), sorted(B) )
+                self.assertEqual(sorted(A), sorted(B))
 
         R = list(range(10))
         Q = [([], R), ([(1, 3)], R), ([(1, 3), (5, 7)], R),
@@ -758,11 +789,11 @@ t##
 
     def test_intervals_union(self):
         L = [(2, 3), (4, 6), (1, 5), (6, 7), (8, 10)]
-        self.assertEqual( intervals_union(L), [(1, 7), (8, 10)])
-        self.assertEqual( intervals_union([]), [])
-        self.assertEqual( intervals_union([(0, 1)]), [(0, 1)])
-        self.assertEqual( intervals_union([(1, 2), (0, 1)]), [(0, 2)])
-        self.assertEqual( intervals_union([(2, 3), (0, 1)]), [(0, 1), (2, 3)])
+        self.assertEqual(intervals_union(L), [(1, 7), (8, 10)])
+        self.assertEqual(intervals_union([]), [])
+        self.assertEqual(intervals_union([(0, 1)]), [(0, 1)])
+        self.assertEqual(intervals_union([(1, 2), (0, 1)]), [(0, 2)])
+        self.assertEqual(intervals_union([(2, 3), (0, 1)]), [(0, 1), (2, 3)])
 
     def test_knapsack(self):
         L = [([580, 1616, 1906, 1942, 50, 294],
@@ -778,108 +809,115 @@ t##
                 self.assertEqual(f(p, v, cmax)[0], opt)
 
     def test_knuth_morris_pratt_border(self):
-        self.assertEqual( maximum_border_length("aba#abababaababb"),
-                          [0, 0, 1, 0, 1, 2, 3, 2, 3, 2, 3, 1, 2, 3, 2, 0])
-        self.assertEqual( powerstring_by_border("ababab"), 3)
-        self.assertEqual( powerstring_by_border("abaab"), 1)
+        self.assertEqual(maximum_border_length("aba#abababaababb"),
+                         [0, 0, 1, 0, 1, 2, 3, 2, 3, 2, 3, 1, 2, 3, 2, 0])
+        self.assertEqual(powerstring_by_border("ababab"), 3)
+        self.assertEqual(powerstring_by_border("abaab"), 1)
 
     def test_kruskal(self):
         # from http://www.ics.uci.edu/~eppstein/PADS/MinimumSpanningTree.py
-        sparse = [{1:11,2:13,3:12}, {0:11,3:14}, {0:13,3:10}, {0:12,1:14,2:10}]
+        sparse = [{1: 11, 2: 13, 3: 12}, {0: 11, 3: 14},
+                  {0: 13, 3: 10}, {0: 12, 1: 14, 2: 10}]
         tree = [(2, 3), (0, 1), (0, 3)]
-        for graph, weight in [(sparse, sparse), listdict_to_listlist_and_matrix(sparse)]:
+        for graph, weight in [(sparse, sparse),
+                              listdict_to_listlist_and_matrix(sparse)]:
             self.assertEqual(kruskal(graph, weight), tree)
 
     def test_knuth_morris_pratt(self):
         for match in [rabin_karp_matching, knuth_morris_pratt]:
             p = "a" * 10 + "b"
             t = "a" * 100 + "b"
-            self.assertEqual( match(t, p), len(t) - len(p) )
+            self.assertEqual(match(t, p), len(t) - len(p))
             p = ''.join(map(str, [random.randint(0, 9) for _ in range(10)]))
             t = ''.join(map(str, [random.randint(0, 9) for _ in range(100)]))
-            self.assertEqual( match(t, p), -1 )  # hopefully
-            self.assertEqual( match("ab", "a"), 0  )
-            self.assertEqual( match("ab", "b"), 1  )
-            self.assertEqual( match("ab", "c"), -1 )
-            self.assertEqual( match("",   "c"), -1 )
+            self.assertEqual(match(t, p), -1)  # hopefully
+            self.assertEqual(match("ab", "a"), 0)
+            self.assertEqual(match("ab", "b"), 1)
+            self.assertEqual(match("ab", "c"), -1)
+            self.assertEqual(match("", "c"), -1)
 
     def test_kuhn_munkres(self):
         for kuhn_munkres in [kuhn_munkres_n3, kuhn_munkres_n4]:
-            self.assertEqual( kuhn_munkres([[1]])[0] , [0] )
-            self.assertEqual( kuhn_munkres([[1, 1], [1, 1]])[0], [1, 0] )
-            self.assertEqual( kuhn_munkres([[1, 2], [1, 1]])[0] , [1, 0] )
-            self.assertEqual( kuhn_munkres([[1, 1], [2, 1]])[0], [1, 0] )
-            self.assertEqual( kuhn_munkres([[2, 1], [1, 1]])[0], [0, 1] )
-            self.assertEqual( kuhn_munkres([[1, 1], [1, 2]])[0], [0, 1] )
-            self.assertEqual( kuhn_munkres([[-1, -2, -3], [-6, -5, -4],
-                                            [-1, -1, -1]])[0], [0, 2, 1] )
-            self.assertEqual( kuhn_munkres([[1, 2, 3], [6, 5, 4], [1, 1, 1]])[0], [2, 0, 1] )
-            self.assertEqual( kuhn_munkres([[7,   53, 183, 439, 863],
-                                            [497, 383, 563,  79, 973],
-                                            [287,  63, 343, 169, 583],
-                                            [627, 343, 773, 959, 943],
-                                            [767, 473, 103, 699, 303]])[1], 3315 )
-            self.assertEqual( kuhn_munkres([[7,  53, 183, 439, 863, 497, 383, 563,
-                                             79, 973, 287,  63, 343, 169, 583],
-                                            [627, 343, 773, 959, 943, 767, 473, 103,
-                                             699, 303, 957, 703, 583, 639, 913],
-                                            [447, 283, 463,  29,  23, 487, 463, 993,
-                                             119, 883, 327, 493, 423, 159, 743],
-                                            [217, 623,   3, 399, 853, 407, 103, 983,
-                                             89, 463, 290, 516, 212, 462, 350],
-                                            [960, 376, 682, 962, 300, 780, 486, 502,
-                                             912, 800, 250, 346, 172, 812, 350],
-                                            [870, 456, 192, 162, 593, 473, 915,  45,
-                                             989, 873, 823, 965, 425, 329, 803],
-                                            [973, 965, 905, 919, 133, 673, 665, 235,
-                                             509, 613, 673, 815, 165, 992, 326],
-                                            [322, 148, 972, 962, 286, 255, 941, 541,
-                                             265, 323, 925, 281, 601,  95, 973],
-                                            [445, 721,  11, 525, 473,  65, 511, 164,
-                                             138, 672,  18, 428, 154, 448, 848],
-                                            [414, 456, 310, 312, 798, 104, 566, 520,
-                                             302, 248, 694, 976, 430, 392, 198],
-                                            [184, 829, 373, 181, 631, 101, 969, 613,
-                                             840, 740, 778, 458, 284, 760, 390],
-                                            [821, 461, 843, 513,  17, 901, 711, 993,
-                                             293, 157, 274,  94, 192, 156, 574],
-                                            [34, 124,   4, 878, 450, 476, 712, 914,
-                                             838, 669, 875, 299, 823, 329, 699],
-                                            [815, 559, 813, 459, 522, 788, 168, 586,
-                                             966, 232, 308, 833, 251, 631, 107],
-                                            [813, 883, 451, 509, 615,  77, 281, 613,
-                                             459, 205, 380, 274, 302,  35, 805]])[1], 13938 )
+            self.assertEqual(kuhn_munkres([[1]])[0], [0])
+            self.assertEqual(kuhn_munkres([[1, 1], [1, 1]])[0], [1, 0])
+            self.assertEqual(kuhn_munkres([[1, 2], [1, 1]])[0], [1, 0])
+            self.assertEqual(kuhn_munkres([[1, 1], [2, 1]])[0], [1, 0])
+            self.assertEqual(kuhn_munkres([[2, 1], [1, 1]])[0], [0, 1])
+            self.assertEqual(kuhn_munkres([[1, 1], [1, 2]])[0], [0, 1])
+            self.assertEqual(kuhn_munkres([[-1, -2, -3], [-6, -5, -4],
+                                           [-1, -1, -1]])[0], [0, 2, 1])
+            self.assertEqual(kuhn_munkres(
+                [[1, 2, 3], [6, 5, 4], [1, 1, 1]])[0], [2, 0, 1])
+            self.assertEqual(kuhn_munkres([[7, 53, 183, 439, 863],
+                                           [497, 383, 563, 79, 973],
+                                           [287, 63, 343, 169, 583],
+                                           [627, 343, 773, 959, 943],
+                                           [767, 473, 103, 699, 303]])[1], 3315)
+            self.assertEqual(kuhn_munkres([[7, 53, 183, 439, 863, 497, 383, 563,
+                                            79, 973, 287, 63, 343, 169, 583],
+                                           [627, 343, 773, 959, 943, 767, 473, 103,
+                                            699, 303, 957, 703, 583, 639, 913],
+                                           [447, 283, 463, 29, 23, 487, 463, 993,
+                                            119, 883, 327, 493, 423, 159, 743],
+                                           [217, 623, 3, 399, 853, 407, 103, 983,
+                                            89, 463, 290, 516, 212, 462, 350],
+                                           [960, 376, 682, 962, 300, 780, 486, 502,
+                                            912, 800, 250, 346, 172, 812, 350],
+                                           [870, 456, 192, 162, 593, 473, 915, 45,
+                                            989, 873, 823, 965, 425, 329, 803],
+                                           [973, 965, 905, 919, 133, 673, 665, 235,
+                                            509, 613, 673, 815, 165, 992, 326],
+                                           [322, 148, 972, 962, 286, 255, 941, 541,
+                                            265, 323, 925, 281, 601, 95, 973],
+                                           [445, 721, 11, 525, 473, 65, 511, 164,
+                                            138, 672, 18, 428, 154, 448, 848],
+                                           [414, 456, 310, 312, 798, 104, 566, 520,
+                                            302, 248, 694, 976, 430, 392, 198],
+                                           [184, 829, 373, 181, 631, 101, 969, 613,
+                                            840, 740, 778, 458, 284, 760, 390],
+                                           [821, 461, 843, 513, 17, 901, 711, 993,
+                                            293, 157, 274, 94, 192, 156, 574],
+                                           [34, 124, 4, 878, 450, 476, 712, 914,
+                                            838, 669, 875, 299, 823, 329, 699],
+                                           [815, 559, 813, 459, 522, 788, 168, 586,
+                                            966, 232, 308, 833, 251, 631, 107],
+                                           [813, 883, 451, 509, 615, 77, 281, 613,
+                                            459, 205, 380, 274, 302, 35, 805]])[1], 13938)
         # https://www.youtube.com/watch?v=aPVtIhnwHPE
-        self.assertEqual( kuhn_munkres_n3([[62, 78, 50, 101, 82],
-                                           [71, 84, 61, 73, 59],
-                                           [87, 92, 111, 71, 81],
-                                           [48, 64, 87, 77, 80]]),
-                          ([3, 1, 2, 4], 376) )
+        self.assertEqual(kuhn_munkres_n3([[62, 78, 50, 101, 82],
+                                          [71, 84, 61, 73, 59],
+                                          [87, 92, 111, 71, 81],
+                                          [48, 64, 87, 77, 80]]),
+                         ([3, 1, 2, 4], 376))
         # test non-symmetrical graphs
         inf = float('inf')
-        self.assertEqual( kuhn_munkres_n3([[10, -inf]]),              ([0], 10))
-        self.assertEqual( kuhn_munkres_n3([[10]], 0),                 ([0], 10))
-        self.assertEqual( kuhn_munkres_n3([[5, 0, 1], [8, 5, 4]], 0), ([0, 1], 10))
+        self.assertEqual(kuhn_munkres_n3([[10, -inf]]), ([0], 10))
+        self.assertEqual(kuhn_munkres_n3([[10]], 0), ([0], 10))
+        self.assertEqual(kuhn_munkres_n3(
+            [[5, 0, 1], [8, 5, 4]], 0), ([0, 1], 10))
 
     def test_laser_mirrors(self):
-        self.assertEqual( laser_mirrors(2, 2, [(0, 0), (0, 1),
-                                               (1, 0), (1, 1)]), [1, 0, 1, 0] )
-        self.assertEqual( laser_mirrors(7, 8, [(0, 1), (0, 4), (0, 6), (2, 3), (2, 4),
-                                               (4, 1), (4, 4), (4, 6), (6, 0), (6, 3),
-                                               (6, 4)]) ,[1, None, 0, 0, 1, 1,
-                                                          0, 0, None, 1, 0] )
-        self.assertEqual( laser_mirrors(5, 4, [(0, 0), (1, 0), (1, 1), (1, 2), (1, 3),
-                                               (2, 0), (2, 1), (2, 2), (2, 3), (3, 0),
-                                               (3, 1), (3, 2), (3, 3), (4, 0), (4, 1),
-                                               (4, 2), (4, 3)]) , None )
+        self.assertEqual(laser_mirrors(2, 2, [(0, 0), (0, 1),
+                                              (1, 0), (1, 1)]), [1, 0, 1, 0])
+        self.assertEqual(laser_mirrors(7, 8, [(0, 1), (0, 4), (0, 6), (2, 3), (2, 4),
+                                              (4, 1), (4, 4), (4,
+                                                               6), (6, 0), (6, 3),
+                                              (6, 4)]), [1, None, 0, 0, 1, 1,
+                                                         0, 0, None, 1, 0])
+        self.assertEqual(laser_mirrors(5, 4, [(0, 0), (1, 0), (1, 1), (1, 2), (1, 3),
+                                              (2, 0), (2, 1), (2,
+                                                               2), (2, 3), (3, 0),
+                                              (3, 1), (3, 2), (3,
+                                                               3), (4, 0), (4, 1),
+                                              (4, 2), (4, 3)]), None)
 
     def test_lazy_segment_tree(self):
         for n in [1, 2, 10, 1000]:
             tab = [random.randint(-100, 100) for _ in range(n)]
             tree = LazySegmentTree(tab)
             for t in range(1000):
-                i = random.randint(0, n-1)
-                j = random.randint(0, n-1)
+                i = random.randint(0, n - 1)
+                j = random.randint(0, n - 1)
                 v = random.randint(-100, 100)
                 if i > j:
                     i, j = j, i
@@ -903,113 +941,116 @@ t##
     def test_left_right_inversions(self):
         for n in range(1, 12):
             for _ in range(20):
-                tab = [random.randint(1,n) for _ in range(n)]
+                tab = [random.randint(1, n) for _ in range(n)]
                 left, right = left_right_inversions(tab)
                 for j in range(n):
-                    self.assertEqual(left[j], len([i for i in range(j) if tab[i] > tab[j] ]))
-                    self.assertEqual(right[j], len([k for k in range(j+1, n) if tab[k] < tab[j] ]))
+                    self.assertEqual(left[j], len(
+                        [i for i in range(j) if tab[i] > tab[j]]))
+                    self.assertEqual(right[j], len(
+                        [k for k in range(j + 1, n) if tab[k] < tab[j]]))
 
     def test_levenshtein(self):
-        self.assertEqual( levenshtein("AUDI", "LADA"), 3)
-        self.assertEqual( levenshtein("kitten", "sitting"), 3)
+        self.assertEqual(levenshtein("AUDI", "LADA"), 3)
+        self.assertEqual(levenshtein("kitten", "sitting"), 3)
 
     def test_longest_common_subsequence(self):
-        self.assertEqual( longest_common_subsequence("GAC", "AGCAT") , "GA" )
+        self.assertEqual(longest_common_subsequence("GAC", "AGCAT"), "GA")
         L = "ABCDEFGHI"
-        self.assertEqual( longest_common_subsequence(L, L) , L )
-        self.assertEqual( longest_common_subsequence(L, "D") , "D" )
-        self.assertEqual( len(longest_common_subsequence(L, L[::-1])) , 1 )
-        self.assertEqual( len(longest_common_subsequence(L, "X")), 0 )
-        self.assertEqual( len(longest_common_subsequence(L, "")) , 0 )
-        self.assertEqual( len(longest_common_subsequence("", "")) , 0 )
+        self.assertEqual(longest_common_subsequence(L, L), L)
+        self.assertEqual(longest_common_subsequence(L, "D"), "D")
+        self.assertEqual(len(longest_common_subsequence(L, L[::-1])), 1)
+        self.assertEqual(len(longest_common_subsequence(L, "X")), 0)
+        self.assertEqual(len(longest_common_subsequence(L, "")), 0)
+        self.assertEqual(len(longest_common_subsequence("", "")), 0)
 
     def test_longest_increasing_subsequence(self):
         L = list(range(0, 10, 2))
-        self.assertEqual(  longest_increasing_subsequence(L) , L )
-        self.assertEqual(  longest_increasing_subsequence(L * 2) , L )
-        self.assertEqual(  longest_increasing_subsequence(L[::-1]) , [0] )
-        self.assertEqual(  longest_increasing_subsequence([]), [] )
-        self.assertEqual(  longest_increasing_subsequence([7]) , [7] )
-        self.assertEqual(  longest_increasing_subsequence([-2, 4, 4]) ,[-2, 4] )
-        self.assertEqual(  longest_increasing_subsequence([4, 4, -2]) , [-2] )
+        self.assertEqual(longest_increasing_subsequence(L), L)
+        self.assertEqual(longest_increasing_subsequence(L * 2), L)
+        self.assertEqual(longest_increasing_subsequence(L[::-1]), [0])
+        self.assertEqual(longest_increasing_subsequence([]), [])
+        self.assertEqual(longest_increasing_subsequence([7]), [7])
+        self.assertEqual(longest_increasing_subsequence([-2, 4, 4]), [-2, 4])
+        self.assertEqual(longest_increasing_subsequence([4, 4, -2]), [-2])
         Q = [3, 1, 4, 1, 5, 9, 2, 6, 5, 4, 5, 3, 9, 7, 9]
         A = [1, 2, 4, 5, 7, 9]
-        self.assertEqual(  longest_increasing_subsequence(Q) , A )
+        self.assertEqual(longest_increasing_subsequence(Q), A)
 
     def test_LCA_shortcuts(self):
         nodes = list(range(16))
         prec = [u // 2 for u in nodes]
         prec[0] = 0
         LCA = LowestCommonAncestorShortcuts(prec)
-        self.assertEqual( LCA.query(9, 9) , 9 )
-        self.assertEqual( LCA.query(9, 0) , 0 )
-        self.assertEqual( LCA.query(0, 0) , 0 )
-        self.assertEqual( LCA.query(0, 1) , 0 )
-        self.assertEqual( LCA.query(1, 1) , 1 )
-        self.assertEqual( LCA.query(4, 11) , 2 )
+        self.assertEqual(LCA.query(9, 9), 9)
+        self.assertEqual(LCA.query(9, 0), 0)
+        self.assertEqual(LCA.query(0, 0), 0)
+        self.assertEqual(LCA.query(0, 1), 0)
+        self.assertEqual(LCA.query(1, 1), 1)
+        self.assertEqual(LCA.query(4, 11), 2)
 
     def test_LCA_RMQ(self):
         graph = [[1], [0, 2, 9], [1, 3, 5], [2, 4], [3],
                  [2, 6, 7, 8], [5], [5], [5], [1]]
         LCA = LowestCommonAncestorRMQ(graph)
-        self.assertEqual( LCA.query(3, 7) , 2 )
-        self.assertEqual( LCA.query(3, 2) , 2 )
-        self.assertEqual( LCA.query(3, 7) , 2 )
-        self.assertEqual( LCA.query(9, 4) , 1 )
-        self.assertEqual( LCA.query(4, 9) , 1 )
-        self.assertEqual( LCA.query(4, 4) , 4 )
-        self.assertEqual( LCA.query(3, 4) , 3 )
-        self.assertEqual( LCA.query(4, 3) , 3 )
-        self.assertEqual( LCA.query(5, 7) , 5 )
-        self.assertEqual( LCA.query(7, 5) , 5 )
+        self.assertEqual(LCA.query(3, 7), 2)
+        self.assertEqual(LCA.query(3, 2), 2)
+        self.assertEqual(LCA.query(3, 7), 2)
+        self.assertEqual(LCA.query(9, 4), 1)
+        self.assertEqual(LCA.query(4, 9), 1)
+        self.assertEqual(LCA.query(4, 4), 4)
+        self.assertEqual(LCA.query(3, 4), 3)
+        self.assertEqual(LCA.query(4, 3), 3)
+        self.assertEqual(LCA.query(5, 7), 5)
+        self.assertEqual(LCA.query(7, 5), 5)
 
     def test_majority(self):
         L = ['d', 'd', 'r', 'r', 'x', 'boo']
-        self.assertEqual( majority(L), 'd')
+        self.assertEqual(majority(L), 'd')
 
     def test_manacher(self):
-        self.assertEqual( manacher("a") , (0, 1) )
-        self.assertEqual( manacher("aa") , (0, 2) )
-        self.assertEqual( manacher("ab") , (1, 2) )
-        self.assertEqual( manacher("aba") , (0, 3) )
-        self.assertEqual( manacher("baa") , (1, 3) )
-        self.assertEqual( manacher("aab") , (0, 2) )
-        self.assertEqual( manacher("babcbabcbaccba") , (1, 10) )
+        self.assertEqual(manacher("a"), (0, 1))
+        self.assertEqual(manacher("aa"), (0, 2))
+        self.assertEqual(manacher("ab"), (1, 2))
+        self.assertEqual(manacher("aba"), (0, 3))
+        self.assertEqual(manacher("baa"), (1, 3))
+        self.assertEqual(manacher("aab"), (0, 2))
+        self.assertEqual(manacher("babcbabcbaccba"), (1, 10))
 
     def test_matrix_mult(self):
         dim = [(30, 35), (35, 15), (15, 5), (5, 10), (10, 20), (20, 25)]
         M = []
         for (r, c) in dim:
-            M.append([[random.randint(0, 4) for i in range(c)] for j in range(r)])
+            M.append([[random.randint(0, 4) for i in range(c)]
+                      for j in range(r)])
         opt, arg = matrix_mult_opt_order(M)
-        self.assertEqual( opt[0][5] ,15125 )
-        self.assertEqual( arg[0][4] , 2 )
+        self.assertEqual(opt[0][5], 15125)
+        self.assertEqual(arg[0][4], 2)
         matrix_chain_mult(M)  # just to check that there is no runtime error
 
     def test_max_interval_intersect(self):
-        self.assertEqual( max_interval_intersec([(0, 2)]) , (1, 0) )
-        self.assertEqual( max_interval_intersec([]) ,(0, None) )
-        self.assertEqual( max_interval_intersec([(0, 2), (2, 4)]) , (1, 0) )
-        self.assertEqual( max_interval_intersec([(0, 2), (1, 4)]) , (2, 1) )
-        self.assertEqual( max_interval_intersec([(0, 2), (3, 4)]) , (1, 0) )
-        self.assertEqual( max_interval_intersec([(0, 2), (0, 6), (1, 5), (2, 5),
-                                                 (2, 5), (4, 8), (7, 8)]), (5, 4))
+        self.assertEqual(max_interval_intersec([(0, 2)]), (1, 0))
+        self.assertEqual(max_interval_intersec([]), (0, None))
+        self.assertEqual(max_interval_intersec([(0, 2), (2, 4)]), (1, 0))
+        self.assertEqual(max_interval_intersec([(0, 2), (1, 4)]), (2, 1))
+        self.assertEqual(max_interval_intersec([(0, 2), (3, 4)]), (1, 0))
+        self.assertEqual(max_interval_intersec(
+            [(0, 2), (0, 6), (1, 5), (2, 5), (2, 5), (4, 8), (7, 8)]), (5, 4))
 
     def test_merge_ordered_lists(self):
         x = range(0, 10, 2)
         y = range(1, 10, 2)
-        self.assertEqual( merge(x, y) , list(range(10)) )
+        self.assertEqual(merge(x, y), list(range(10)))
 
     def test_min_mean_cycle(self):
-        W0 = [[None, -5,   None, None],
-              [None, None, -3,      0],
-              [9,    None, None,    2],
-              [7,    0,    -1,   None]]
+        W0 = [[None, -5, None, None],
+              [None, None, -3, 0],
+              [9, None, None, 2],
+              [7, 0, -1, None]]
         W1 = [[None, 10, None], [None, -2, None], [None, None, -20]]
         W2 = [[None, 10, 10], [None, -8, -8], [None, -8, -8]]
         W3 = [[None, None], [0, -4]]
 
-        A0 = ([2, 3, 1], -1./3)
+        A0 = ([2, 3, 1], -1. / 3)
         A1 = ([1], -2)
         A2 = ([1], -8)
         A3 = None
@@ -1018,7 +1059,7 @@ t##
             g = matrix_to_listlist(w)
             sparse = listlist_and_matrix_to_listdict(g, w)
             for graph, weight in [(g, w), (sparse, sparse)]:
-                self.assertEqual( min_mean_cycle(graph, weight), answ)
+                self.assertEqual(min_mean_cycle(graph, weight), answ)
 
     def test_OurHeap(self):
         L = [(random.randint(1, 100), i) for i in range(10000)]
@@ -1030,41 +1071,42 @@ t##
                 v = float('inf')
             Q.update(L[i], (v, i))
             L[i] = (v, i)
-        self.assertEqual( sorted(L), [Q.pop() for _ in L])
+        self.assertEqual(sorted(L), [Q.pop() for _ in L])
 
     def test_OurQueue(self):
         q1 = deque()
         q2 = OurQueue()
         for _ in range(10000):
-            self.assertTrue( (q1 and q2 or not q1 and not q2) )
+            self.assertTrue((q1 and q2 or not q1 and not q2))
             if random.randint(0, 2) == 0:
                 x = random.randint(0, 100)
                 q1.append(x)
                 q2.push(x)
             else:
                 if q1:
-                    self.assertEqual( q1.popleft() , q2.pop() )
+                    self.assertEqual(q1.popleft(), q2.pop())
 
     def test_permutation_rank(self):
         for n, nfact in [(1, 1), (2, 2), (3, 6), (4, 24)]:
             for r in range(nfact):
                 self.assertEqual(permutation_rank(rank_permutation(r, 4)), r)
             self.assertEqual(rank_permutation(0, n), list(range(n)))
-            self.assertEqual(rank_permutation(nfact - 1, n), list(range(n))[::-1])
+            self.assertEqual(rank_permutation(
+                nfact - 1, n), list(range(n))[::-1])
 
     def test_partition_refinement(self):
         P = PartitionRefinement(10)
-        self.assertEqual( P.tolist(), [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
+        self.assertEqual(P.tolist(), [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]])
         P.refine([3, 4, 5])
         P.refine([2, 3])
         P.refine([-1, 2, 3, 10])
-        self.assertEqual( P.tolist(), [[3], [4, 5], [2], [0, 1, 6, 7, 8, 9]])
+        self.assertEqual(P.tolist(), [[3], [4, 5], [2], [0, 1, 6, 7, 8, 9]])
         flattened = [val for sublist in P.tolist() for val in sublist]
         self.assertEqual(flattened, P.order())
 
     def test_polygon_area(self):
-        self.assertEqual( area([(1, 0), (2, 3), (2, 4), (0, 3)]) , 4 )
-        self.assertEqual( area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1 )
+        self.assertEqual(area([(1, 0), (2, 3), (2, 4), (0, 3)]), 4)
+        self.assertEqual(area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1)
 
     def test_pq_tree(self):
 
@@ -1083,12 +1125,12 @@ t##
         def normalize(A):
             if type(A) in [list, tuple]:
                 L = [normalize(x) for x in A]
-            if type(A) == list:
+            if isinstance(A, list):
                 rev = L[::-1]
                 if L > rev:
-                  L = rev
+                    L = rev
                 return "[" + ", ".join(L) + "]"
-            elif type(A) == tuple:
+            elif isinstance(A, tuple):
                 L.sort()
                 return "(" + ", ".join(L) + ")"
             else:
@@ -1099,9 +1141,9 @@ t##
             self.assertEqual(normalize(tree.representation()), normalize(res))
 
         tree = PQTree(set(range(10)))
-        check_reduce(tree, {0,1}, (2,3,4,5,6,7,8,9,(0,1)))
-        check_reduce(tree, {1,2}, (3,4,5,6,7,8,9,[0,1,2]))
-        check_reduce(tree, {8,9}, (3,4,5,6,7,(8,9),[0,1,2]))
+        check_reduce(tree, {0, 1}, (2, 3, 4, 5, 6, 7, 8, 9, (0, 1)))
+        check_reduce(tree, {1, 2}, (3, 4, 5, 6, 7, 8, 9, [0, 1, 2]))
+        check_reduce(tree, {8, 9}, (3, 4, 5, 6, 7, (8, 9), [0, 1, 2]))
 
         self.assertIsNone(consecutive_ones_property([
             {2, 3, 4, 5, 6},
@@ -1137,16 +1179,17 @@ t##
             {3, 4, 5},
         ], set(range(1, 7))))
         self.assertIsNone(consecutive_ones_property([
-            {3,4}, {3,4,6}, {3,4,5}, {4,5}, {2,6}, {1,2}, {4,5}, {5,3}]))
+            {3, 4}, {3, 4, 6}, {3, 4, 5}, {4, 5}, {2, 6}, {1, 2}, {4, 5}, {5, 3}]))
         self.assertTrue(check_positive([
-            {1,4}, {3,0,2,5,4}, {0,2,5,4}, {2,5}, {0,2}]))
-        self.assertTrue(check_positive([{1,7},{2,10},{1,2,9},{1,2,4,7,8,9,10}], set(range(11))))
+            {1, 4}, {3, 0, 2, 5, 4}, {0, 2, 5, 4}, {2, 5}, {0, 2}]))
+        self.assertTrue(check_positive(
+            [{1, 7}, {2, 10}, {1, 2, 9}, {1, 2, 4, 7, 8, 9, 10}], set(range(11))))
 
     def test_polygon_is_simple(self):
         # +---+
         # |   |
         # +---+
-        self.assertTrue( is_simple([(0, 0), (0, 1), (1, 1), (1, 0)]) )
+        self.assertTrue(is_simple([(0, 0), (0, 1), (1, 1), (1, 0)]))
         # +-------+
         # |       |
         # +---+   |
@@ -1154,7 +1197,8 @@ t##
         # +---+   |
         # |       |
         # +-------+
-        self.assertTrue( is_simple([(0, 0), (0, 1), (1, 1), (1, 2), (0, 2), (0, 3), (2, 3), (2, 0)]) )
+        self.assertTrue(is_simple(
+            [(0, 0), (0, 1), (1, 1), (1, 2), (0, 2), (0, 3), (2, 3), (2, 0)]))
         # +-------+
         # |       |
         # +-------+
@@ -1162,7 +1206,8 @@ t##
         # +-------+
         # |       |
         # +-------+
-        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (0, 2), (0, 3), (2, 3), (2, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 1), (2, 1), (2, 2), (0, 2), (0, 3), (2, 3), (2, 0)]))
         # +-------+
         # |       |
         # +-------+
@@ -1170,19 +1215,22 @@ t##
         # +-------+
         # |       |
         # +-------+
-        self.assertFalse( is_simple([(0, 0), (0, 3), (2, 3), (2, 2), (0, 2), (0, 1), (2, 1), (2, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 3), (2, 3), (2, 2), (0, 2), (0, 1), (2, 1), (2, 0)]))
         #     +---+
         #     |   |
         # +---+---+
         # |   |
         # +---+
-        self.assertFalse( is_simple([(0, 0), (0, 1), (1, 1), (1, 2), (2, 2), (2, 1), (1, 1), (1, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 1), (1, 1), (1, 2), (2, 2), (2, 1), (1, 1), (1, 0)]))
         #     +---+
         #     |   |
         # +---+---+---+
         # |           |
         # +-----------+
-        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (1, 2), (1, 1), (3, 1), (3, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 1), (2, 1), (2, 2), (1, 2), (1, 1), (3, 1), (3, 0)]))
         # +---+
         # |   |
         # +-------+
@@ -1190,7 +1238,8 @@ t##
         # +-------+
         # |   |
         # +---+
-        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (0, 2), (0, 3), (1, 3), (1, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 1), (2, 1), (2, 2), (0, 2), (0, 3), (1, 3), (1, 0)]))
         # +---+
         # |   |
         # +-----------+
@@ -1200,13 +1249,15 @@ t##
         # +-------+
         # |   |
         # +---+
-        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (3, 2), (3, 3), (0, 3), (0, 4), (1, 4), (1, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 1), (2, 1), (2, 2), (3, 2), (3, 3), (0, 3), (0, 4), (1, 4), (1, 0)]))
         #     +---+
         #     |   |
         # +-------+
         # |   |
         # +---+
-        self.assertFalse( is_simple([(2, 20), (1, 20), (1, 0), (0, 0), (0, 10), (2, 10)]) )
+        self.assertFalse(
+            is_simple([(2, 20), (1, 20), (1, 0), (0, 0), (0, 10), (2, 10)]))
         #     +-------+
         #     |       |
         #     |   +---+
@@ -1214,7 +1265,8 @@ t##
         # +-------+
         # |   |
         # +---+
-        self.assertFalse( is_simple([(0, 0), (0, 1), (2, 1), (2, 2), (3, 2), (3, 3), (1, 3), (1, 0)]) )
+        self.assertFalse(is_simple(
+            [(0, 0), (0, 1), (2, 1), (2, 2), (3, 2), (3, 3), (1, 3), (1, 0)]))
         # +---+
         # |   |
         # +-------+
@@ -1222,14 +1274,15 @@ t##
         #     |   +---+
         #     |       |
         #     +-------+
-        self.assertFalse( is_simple([(0, 3), (0, 2), (2, 2), (2, 1), (3, 1), (3, 0), (1, 0), (1, 3)]) )
+        self.assertFalse(is_simple(
+            [(0, 3), (0, 2), (2, 2), (2, 1), (3, 1), (3, 0), (1, 0), (1, 3)]))
 
     def test_tree_adj_to_prec(self):
         graph = [[1], [0, 2, 9], [1, 3, 5], [2, 4], [3], [2, 6, 7, 8],
                  [5], [5], [5], [1]]
         prec = [None, 0, 1, 2, 3, 2, 5, 5, 5, 1]
-        self.assertEqual( tree_adj_to_prec(graph) , prec )
-        self.assertEqual( tree_prec_to_adj(prec) , graph )
+        self.assertEqual(tree_adj_to_prec(graph), prec)
+        self.assertEqual(tree_prec_to_adj(prec), graph)
         cycle = [[1, 2], [0, 2], [0, 1]]
         tree_adj_to_prec(cycle)  # test that there is no infinite loop
 
@@ -1267,7 +1320,7 @@ t##
              U  U         self-loops
         """
         G1 = [[0], [1]]
-        for k in range(1,4):
+        for k in range(1, 4):
             self.assertEqual(powergraph(G1, k), G1)
         """  0  1
              U
@@ -1285,26 +1338,52 @@ t##
               |/ \|  \   .
               3---2---4
         """
-        G2 = [[0, 1, 2, 3], [0, 1, 2, 3, 4], [0, 1, 2, 3, 4], [0, 1, 2, 3], [1, 2, 4]]
+        G2 = [[0, 1, 2, 3], [0, 1, 2, 3, 4], [
+            0, 1, 2, 3, 4], [0, 1, 2, 3], [1, 2, 4]]
         G0 = [[0], [1], [2], [3], [4]]
         self.assertEqual(powergraph(G1, 0), G0)
         self.assertEqual(powergraph(G1, 1), G1)
         self.assertEqual(powergraph(G1, 2), G2)
 
     def test_predictive_text(self):
-        dico = [("another", 5),  ("contest", 6),  ("follow", 3),
-                ("give", 13),  ("integer", 6),  ("new", 14),  ("program", 4)]
+        dico = [("another", 5), ("contest", 6), ("follow", 3),
+                ("give", 13), ("integer", 6), ("new", 14), ("program", 4)]
         prop = predictive_text(dico)
         A = ""
         for seq in ["7764726", "639", "468", "2668437", "7777"]:
             for i in range(len(seq)):
                 A += str(propose(prop, seq[:i + 1])) + " "
-        self.assertEqual( A, "p pr pro prog progr progra program n ne new g "\
-                          "in int c co con cont anoth anothe another p pr None None ")
-
+        self.assertEqual(
+            A, "p pr pro prog progr progra program n ne new g "
+            "in int c co con cont anoth anothe another p pr None None ")
 
     def test_primes(self):
-        self.assertEqual(eratosthene(98), [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97])
+        self.assertEqual(eratosthene(98),
+                         [2,
+                          3,
+                          5,
+                          7,
+                          11,
+                          13,
+                          17,
+                          19,
+                          23,
+                          29,
+                          31,
+                          37,
+                          41,
+                          43,
+                          47,
+                          53,
+                          59,
+                          61,
+                          67,
+                          71,
+                          73,
+                          79,
+                          83,
+                          89,
+                          97])
         for n in range(3, 100):
             self.assertEqual(eratosthene(n), gries_misra(n)[0])
         factor = gries_misra(100)[1]
@@ -1329,8 +1408,8 @@ t##
     def test_range_minimum_query(self):
         for L in [1, 2, 3, 1023, 1024, 1025]:
             T = [random.randint(1, 100) for _ in range(L)]
-            R = [(random.randint(0, 1), random.randint(0, L-1), random.randint(0, L-1))
-                 for _ in range(1000)]
+            R = [(random.randint(0, 1), random.randint(0, L - 1),
+                  random.randint(0, L - 1)) for _ in range(1000)]
             S = RangeMinQuery(T)
             for q, i, k in R:
                 if q:
@@ -1386,7 +1465,8 @@ t##
         y = list(range(n))
         random.shuffle(x)
         random.shuffle(y)
-        self.assertEqual(min_scalar_prod(x, y), sum(i * (n - 1 - i) for i in range(n)))
+        self.assertEqual(min_scalar_prod(x, y), sum(
+            i * (n - 1 - i) for i in range(n)))
 
     def test_shortest_cycle(self):
         def check(graph, cycle):
@@ -1423,13 +1503,16 @@ t##
         """
         graph = [[2], [2], [0, 1, 3], [2]]
         self.assertIsNone(shortest_cycle(graph))
-        for _ in range(100):               # check on some random undirected graphs
+        for _ in range(
+                100):               # check on some random undirected graphs
             n = 10
-            graph = [[] for u in range(n)]   # add random edges to initially empty graph
+            # add random edges to initially empty graph
+            graph = [[] for u in range(n)]
             G = [[0 for u in range(n)] for v in range(n)]
-            for i in range(n * n // 15):     # this edge number makes about half cycle free graphs
-                v = random.randint(1, n-1)
-                u = random.randint(0, v-1)
+            # this edge number makes about half cycle free graphs
+            for i in range(n * n // 15):
+                v = random.randint(1, n - 1)
+                u = random.randint(0, v - 1)
                 if u in graph[v]:            # do not create multi-edges
                     continue
                 graph[u].append(v)
@@ -1513,17 +1596,18 @@ t##
             self.assertEqual(sorted(G[i][j] for i in range(n * n)), all_terms)
         for i in range(n):
             for j in range(n):
-                self.assertEqual(sorted(G[n * i + di][n * j + dj] for di in range(n) for dj in range(n)), all_terms)
+                self.assertEqual(sorted(G[n * i + di][n * j + dj]
+                                        for di in range(n) for dj in range(n)), all_terms)
 
     def test_ternary_search(self):
-        x = ternary_search(lambda x: -x*(x-4), 0, 4)
-        self.assertTrue( 1.9 <= x <= 2.1 )
-        x = ternary_search(lambda x: x*(x-4), 0, 4)
-        self.assertTrue( x <= 0.1 or 3.9 <= x )
+        x = ternary_search(lambda x: -x * (x - 4), 0, 4)
+        self.assertTrue(1.9 <= x <= 2.1)
+        x = ternary_search(lambda x: x * (x - 4), 0, 4)
+        self.assertTrue(x <= 0.1 or 3.9 <= x)
         x = ternary_search(lambda x: x, 0, 4)
-        self.assertTrue( 3.9 <= x <= 4 )
+        self.assertTrue(3.9 <= x <= 4)
         x = ternary_search(lambda x: 1, 0, 4)
-        self.assertTrue( 0 <= x <= 4 )
+        self.assertTrue(0 <= x <= 4)
 
     def test_three_partition(self):
         self.assertEqual(three_partition([5, 5, 3, 2]), (1, 2, 12))
@@ -1537,8 +1621,8 @@ t##
              ([[]], [0]),
              ([[], [0]], [1, 0]),
              ([[1], []], [0, 1]),
-             ([[1, 5], [2, 3, 5], [3], [4, 5], [5], []],  [0, 1, 2, 3, 4, 5]),
-             (G, list(range(n))  ) ]
+             ([[1, 5], [2, 3, 5], [3], [4, 5], [5], []], [0, 1, 2, 3, 4, 5]),
+             (G, list(range(n)))]
         for f in [topological_order_dfs, topological_order]:
             for graph, result in L:
                 self.assertEqual(f(graph), result)
@@ -1553,8 +1637,10 @@ t##
         def instance_aleatoire(nb_variables, nb_clauses):
             clauses = []
             for _ in range(nb_clauses):
-                x = 1 - 2 * random.randint(0, 1) * random.randint(1, nb_variables)
-                y = 1 - 2 * random.randint(0, 1) * random.randint(1, nb_variables)
+                x = 1 - 2 * random.randint(0, 1) * \
+                    random.randint(1, nb_variables)
+                y = 1 - 2 * random.randint(0, 1) * \
+                    random.randint(1, nb_variables)
                 clauses.append((x, y))
             return clauses
 
@@ -1592,37 +1678,41 @@ t##
                 check(formula, aff)
 
     def test_union_rectangles(self):
-        R = [(0, 0, 3, 5), (1, 3, 2, 4), (0, 2, 5, 4), (4, 0, 6, 2), (7, 2, 10, 3)]
+        R = [(0, 0, 3, 5), (1, 3, 2, 4), (0, 2, 5, 4),
+             (4, 0, 6, 2), (7, 2, 10, 3)]
         Rv2 = [(0, 0, 1, 2), (0, 1, 1, 3)]
         Rh2 = [(0, 0, 2, 1), (1, 0, 3, 1)]
         Rid = [(0, 0, 2, 2)] * 2
-        for union in [union_rectangles, union_rectangles_naive, union_rectangles_fast, union_rectangles_fastest]:
-          self.assertEqual(union([]), 0)
-          self.assertEqual(union([(0, 0, 5, 10)]), 50)
-          self.assertEqual(union(R), 26)
-          self.assertEqual(union(Rv2), 3)
-          self.assertEqual(union(Rh2), 3)
-          self.assertEqual(union(Rid), 4)
+        for union in [union_rectangles, union_rectangles_naive,
+                      union_rectangles_fast, union_rectangles_fastest]:
+            self.assertEqual(union([]), 0)
+            self.assertEqual(union([(0, 0, 5, 10)]), 50)
+            self.assertEqual(union(R), 26)
+            self.assertEqual(union(Rv2), 3)
+            self.assertEqual(union(Rh2), 3)
+            self.assertEqual(union(Rid), 4)
 
     def test_windows_k_distinct(self):
         L = [("abbaca", 2), ("abbaca", 1), ("abbabacccabaabaccacab", 2)]
         for x, k in L:
             for i, j in windows_k_distinct(x, k):
                 self.assertEqual(len(set(x[i:j])), k)
-                if i>0:
-                    self.assertFalse(len(set(x[i-1:j])) == k)
-                if j<len(x):
-                    self.assertFalse(len(set(x[i:j+1])) == k)
+                if i > 0:
+                    self.assertFalse(len(set(x[i - 1:j])) == k)
+                if j < len(x):
+                    self.assertFalse(len(set(x[i:j + 1])) == k)
 
     def test_graph_conversion(self):
-        Gdd = {'A': {'B': 7}, 'B': {'A': 6, 'B': 1, 'C': 0,  'D': -1}, 'C': {}, 'D':{'C': 8}}
+        Gdd = {'A': {'B': 7}, 'B': {'A': 6, 'B': 1,
+                                    'C': 0, 'D': -1}, 'C': {}, 'D': {'C': 8}}
         Gld, name2node, node2name = dictdict_to_listdict(Gdd)
         self.assertEqual(Gld, [{1: 7}, {0: 6, 1: 1, 2: 0, 3: -1}, {}, {2: 8}])
         self.assertEqual(node2name, ['A', 'B', 'C', 'D'])
         self.assertEqual(name2node, {'A': 0, 'B': 1, 'C': 2, 'D': 3})
         Gll, W = listdict_to_listlist_and_matrix(Gld)
         self.assertEqual(Gll, [[1], [0, 1, 2, 3], [], [2]])
-        self.assertEqual(W, [[None, 7, None, None], [6, 1, 0, -1], [None, None, None, None], [None, None, 8, None]])
+        self.assertEqual(W, [[None, 7, None, None], [6, 1, 0, -1],
+                             [None, None, None, None], [None, None, 8, None]])
         Hld = listlist_and_matrix_to_listdict(Gll, W)
         self.assertEqual(Hld, Gld)
         Hll = matrix_to_listlist(W)
