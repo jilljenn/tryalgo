@@ -6,9 +6,11 @@ python:
   - "3.7"
   - "3.8"
   - "pypy3"
-before_install: pip install codecov
+before_install:
+  - pip install coverage
+  - pip install codecov
 install: python setup.py install
-script: python -m unittest
+script: coverage run -m unittest
 after_success: codecov
 deploy:
     provider: pypi

@@ -2,15 +2,12 @@
 # -*- coding: utf-8 -*-
 """\
 Minimum interval cover
-jill-jênn vie et christoph dürr - 2014-2018
+jill-jênn vie et christoph dürr - 2014-2020
 """
 
 from sys import stdin
 from math import sqrt
-
-
-def _readarray(f):
-    return map(f, stdin.readline().split())
+from tryalgo.our_std import readarray
 
 # pylint: disable=redefined-outer-name
 
@@ -53,12 +50,12 @@ if __name__ == "__main__":
     # http://acm.zju.edu.cn/onlinejudge/showProblem.do?problemCode=1360
     testCase = 1
     while True:
-        n, rayon = _readarray(int)   # n=#islands, d=radius
+        n, rayon = readarray(int)   # n=#islands, d=radius
         if n == 0:
             break            # end of instances
         iles = []
         for _ in range(n):
-            x, y = _readarray(int)
+            x, y = readarray(int)
             iles.append((x, y))
         stdin.readline()          # consume empty line
         print("Case %i: %i" % (testCase, _solve(iles, rayon)))

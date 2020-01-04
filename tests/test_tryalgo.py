@@ -10,7 +10,6 @@ from tryalgo.graph import tree_adj_to_prec, tree_prec_to_adj
 from tryalgo.graph import matrix_to_listlist, listlist_and_matrix_to_listdict
 from tryalgo.graph import listdict_to_listlist_and_matrix, dictdict_to_listdict
 from tryalgo.anagrams import anagrams
-from tryalgo.arithm import inv
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
 from tryalgo.bellman_ford import bellman_ford
@@ -35,7 +34,6 @@ from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation
 from tryalgo.fenwick import Fenwick
 from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
 from tryalgo.ford_fulkerson import ford_fulkerson
-from tryalgo.freivalds import freivalds
 from tryalgo.gale_shapley import gale_shapley
 from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
 from tryalgo.graph import Graph
@@ -63,7 +61,6 @@ from tryalgo.matrix_chain_mult import matrix_mult_opt_order, matrix_chain_mult
 from tryalgo.max_interval_intersec import max_interval_intersec
 from tryalgo.merge_ordered_lists import merge
 from tryalgo.min_mean_cycle import min_mean_cycle
-from tryalgo.next_permutation import next_permutation
 from tryalgo.our_heap import OurHeap
 from tryalgo.our_queue import OurQueue
 from tryalgo.permutation_rank import permutation_rank, rank_permutation
@@ -111,9 +108,6 @@ class TestTryalgo(unittest.TestCase):
              ({}, [])]
         for words, res in L:
             self.assertEqual(self.unorder(anagrams(words)), self.unorder(res))
-
-    def test_arithm(self):
-        self.assertEqual(inv(8, 17), 15)
 
     def test_arithm_expr_eval(self):
         L = [("13 + A47 * ZZ22", 37),
@@ -638,13 +632,6 @@ t##
             self.assertFalse(FW(weight))
             self.assertEqual(weight,  [[3, -1, -2, 0], [4, 3, 2, 4], [5, 1, 3, 2], [3, -1, 1, 3]])
 
-    def test_freivalds(self):
-        A = [[2,3], [3,4]]
-        B = [[1,0], [1,2]]
-        C = [[5,6], [7,8]]
-        self.assertTrue(freivalds(A, B, C))
-        # [!] might fail with small probability
-
     def test_gale_shapley(self):
         self.assertEqual(gale_shapley([[0, 1, 2], [2, 1, 0], [0, 2, 1]],
                                       [[0, 1, 2], [1, 2, 0], [1, 2, 0]]), [0, 2, 1])
@@ -761,16 +748,6 @@ t##
                 L.append((a, b))
             R = [random.randint(-10, 1010) for _ in range(100)]
             check(L, R)
-
-    def test_intervals_cover(self):
-        L = [([(0,1)], 1),
-             ([(0,3), (1,2)], 1),
-             ([(0,2), (1,3)], 1),
-             ([(0,2), (2,3)], 1),
-             ([(0,2), (3,4)], 2),
-             ([(0,4), (1,3), (2,6), (5,8), (7,9), (9,10)], 3)]
-        for instance, res in L:
-            self.assertEqual(len(interval_cover(instance)), res)
 
     def test_intervals_union(self):
         L = [(2, 3), (4, 6), (1, 5), (6, 7), (8, 10)]
@@ -1035,17 +1012,6 @@ t##
             sparse = listlist_and_matrix_to_listdict(g, w)
             for graph, weight in [(g, w), (sparse, sparse)]:
                 self.assertEqual( min_mean_cycle(graph, weight), answ)
-
-    def test_next_permutation(self):
-        L = [2,2,0,0,1,1,0]
-        self.assertEqual( next_permutation(L), True)
-        self.assertEqual(L, [2,2,0,1,0,0,1])
-        L = [2,2,1,1,0,0,0]
-        self.assertEqual( next_permutation(L), False)
-        L = [2]
-        self.assertEqual( next_permutation(L), False)
-        L = []
-        self.assertEqual( next_permutation(L), False)
 
     def test_OurHeap(self):
         L = [(random.randint(1, 100), i) for i in range(10000)]
