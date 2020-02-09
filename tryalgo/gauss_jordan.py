@@ -26,7 +26,7 @@ GJ_SEVERAL_SOLUTIONS = 2
 def gauss_jordan(A, x, b):
     """Linear equation system Ax=b by Gauss-Jordan
 
-    :param A: n by m matrix
+    :param A: m by n matrix
     :param x: table of size n
     :param b: table of size m
     :modifies: x will contain solution if any
