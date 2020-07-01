@@ -52,7 +52,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'tryalgo'
-copyright = '2016-2018, Christoph Dürr and Jill-Jênn Vie'
+copyright = '2016-2020, Christoph Dürr and Jill-Jênn Vie'
 author = 'Christoph Dürr and Jill-Jênn Vie'
 
 # The version info for the project you're documenting, acts as replacement for
