@@ -67,7 +67,7 @@ from tryalgo.our_queue import OurQueue
 from tryalgo.permutation_rank import permutation_rank, rank_permutation
 from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
-from tryalgo.pq_tree import consecutive_ones_property, PQTree
+# from tryalgo.pq_tree import consecutive_ones_property, PQTree
 from tryalgo.predictive_text import predictive_text, propose
 from tryalgo.primes import eratosthene, gries_misra
 from tryalgo.rabin_karp import rabin_karp_factor
@@ -1108,82 +1108,81 @@ t##
         self.assertEqual(area([(1, 0), (2, 3), (2, 4), (0, 3)]), 4)
         self.assertEqual(area([(1, 1), (2, 1), (2, 2), (1, 2)]), 1)
 
-    def test_pq_tree(self):
+    # def test_pq_tree(self):
 
-        check_automaton = [[0, 1], [2, 1], [2, 3], [3, 3]]
+    #     check_automaton = [[0, 1], [2, 1], [2, 3], [3, 3]]
 
-        def check_positive(sets, universe=None):
-            order = consecutive_ones_property(sets, universe)
-            for S in sets:
-                state = 0
-                for i in order:
-                    state = check_automaton[state][int(i in S)]
-                    if state == 3:
-                        return False
-            return True
+    #     def check_positive(sets, universe=None):
+    #         order = consecutive_ones_property(sets, universe)
+    #         for S in sets:
+    #             state = 0
+    #             for i in order:
+    #                 state = check_automaton[state][int(i in S)]
+    #                 if state == 3:
+    #                     return False
+    #         return True
 
-        def normalize(A):
-            if type(A) in [list, tuple]:
-                L = [normalize(x) for x in A]
-            if isinstance(A, list):
-                rev = L[::-1]
-                if L > rev:
-                    L = rev
-                return "[" + ", ".join(L) + "]"
-            elif isinstance(A, tuple):
-                L.sort()
-                return "(" + ", ".join(L) + ")"
-            else:
-                return str(A)
+    #     def normalize(A):
+    #         if type(A) in [list, tuple]:
+    #             L = [normalize(x) for x in A]
+    #         if type(A) == list:
+    #             rev = L[::-1]
+    #             if L > rev:
+    #               L = rev
+    #             return "[" + ", ".join(L) + "]"
+    #         elif type(A) == tuple:
+    #             L.sort()
+    #             return "(" + ", ".join(L) + ")"
+    #         else:
+    #             return str(A)
 
-        def check_reduce(tree, S, res):
-            tree.reduce(S)
-            self.assertEqual(normalize(tree.representation()), normalize(res))
+    #     def check_reduce(tree, S, res):
+    #         tree.reduce(S)
+    #         self.assertEqual(normalize(tree.representation()), normalize(res))
 
-        tree = PQTree(set(range(10)))
-        check_reduce(tree, {0, 1}, (2, 3, 4, 5, 6, 7, 8, 9, (0, 1)))
-        check_reduce(tree, {1, 2}, (3, 4, 5, 6, 7, 8, 9, [0, 1, 2]))
-        check_reduce(tree, {8, 9}, (3, 4, 5, 6, 7, (8, 9), [0, 1, 2]))
+    #     tree = PQTree(set(range(10)))
+    #     check_reduce(tree, {0,1}, (2,3,4,5,6,7,8,9,(0,1)))
+    #     check_reduce(tree, {1,2}, (3,4,5,6,7,8,9,[0,1,2]))
+    #     check_reduce(tree, {8,9}, (3,4,5,6,7,(8,9),[0,1,2]))
 
-        self.assertIsNone(consecutive_ones_property([
-            {2, 3, 4, 5, 6},
-            {3, 6, 7},
-            {4, 7}]))
-        self.assertTrue(check_positive([
-            {2, 3, 4, 5, 6},
-            {3, 6, 7},
-            {7}]))
-        self.assertTrue(check_positive([
-            {2, 3, 10},
-            {3, 6, 8},
-        ]))
-        self.assertTrue(check_positive([
-            {2, 3, 4},
-            {1, 2, 3},
-            {4, 5},
-        ]))
-        # pattern P5
-        self.assertTrue(check_positive([
-            {7, 8, 9},
-            {0, 1, 2, 3, 4, 5, 6, 7, 8},
-            {0, 1},
-            {1, 2},
-            {4, 5},
-            {5, 6},
-            {2, 3, 4}
-        ]))
-        # pattern P6
-        self.assertTrue(check_positive([
-            {2, 3},
-            {5, 6},
-            {3, 4, 5},
-        ], set(range(1, 7))))
-        self.assertIsNone(consecutive_ones_property([
-            {3, 4}, {3, 4, 6}, {3, 4, 5}, {4, 5}, {2, 6}, {1, 2}, {4, 5}, {5, 3}]))
-        self.assertTrue(check_positive([
-            {1, 4}, {3, 0, 2, 5, 4}, {0, 2, 5, 4}, {2, 5}, {0, 2}]))
-        self.assertTrue(check_positive(
-            [{1, 7}, {2, 10}, {1, 2, 9}, {1, 2, 4, 7, 8, 9, 10}], set(range(11))))
+    #     self.assertIsNone(consecutive_ones_property([
+    #         {2, 3, 4, 5, 6},
+    #         {3, 6, 7},
+    #         {4, 7}]))
+    #     self.assertTrue(check_positive([
+    #         {2, 3, 4, 5, 6},
+    #         {3, 6, 7},
+    #         {7}]))
+    #     self.assertTrue(check_positive([
+    #         {2, 3, 10},
+    #         {3, 6, 8},
+    #     ]))
+    #     self.assertTrue(check_positive([
+    #         {2, 3, 4},
+    #         {1, 2, 3},
+    #         {4, 5},
+    #     ]))
+    #     # pattern P5
+    #     self.assertTrue(check_positive([
+    #         {7, 8, 9},
+    #         {0, 1, 2, 3, 4, 5, 6, 7, 8},
+    #         {0, 1},
+    #         {1, 2},
+    #         {4, 5},
+    #         {5, 6},
+    #         {2, 3, 4}
+    #     ]))
+    #     # pattern P6
+    #     self.assertTrue(check_positive([
+    #         {2, 3},
+    #         {5, 6},
+    #         {3, 4, 5},
+    #     ], set(range(1, 7))))
+    #     self.assertIsNone(consecutive_ones_property([
+    #         {3,4}, {3,4,6}, {3,4,5}, {4,5}, {2,6}, {1,2}, {4,5}, {5,3}]))
+    #     self.assertTrue(check_positive([
+    #         {1,4}, {3,0,2,5,4}, {0,2,5,4}, {2,5}, {0,2}]))
+    #     self.assertTrue(check_positive([{1,7},{2,10},{1,2,9},{1,2,4,7,8,9,10}], set(range(11))))
 
     def test_polygon_is_simple(self):
         # +---+

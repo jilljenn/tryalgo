@@ -158,7 +158,7 @@ Many problems defined on sets can be solved by dynamic programming. This is the 
 
 In the coin change problem, we are given a collection of coins of n different values and unbounded number of coins for each value and a target value C.  The goal is to find a set of coins of total value C.  Again this problem can be solved by dynamic programming in time O(nC), see `subsetsum <tryalgo/tryalgo.html#module-tryalgo.subsetsum>`__.  A similar problem is called the `subset sum problem <https://en.wikipedia.org/wiki/Subset_sum_problem>`_ and consists of finding a subset out of n given values that sum up to a target value C.  It can be solved with the same method.  When n is small and C large, there is a different algorithm with complexity :math:`O(n^{\lceil n/2 \rceil})`, see `subsetsum_divide <tryalgo/tryalgo.html#module-tryalgo.subsetsum_divide>`__.
 
-An interesting problem with sets, which has also a connection with intervals graphs, consists in finding a total order on a ground set such that every given subset is consecutive in this ground set. This problem can be solved using `PQ trees <tryalgo/tryalgo.html#module-tryalgo.pq_tree>`__.
+.. An interesting problem with sets, which has also a connection with intervals graphs, consists in finding a total order on a ground set such that every given subset is consecutive in this ground set. This problem can be solved using `PQ trees <tryalgo/tryalgo.html#module-tryalgo.pq_tree>`__.
 
 Geometry
 ::::::::
