@@ -60,7 +60,6 @@ tryalgo/our_queue.py
 tryalgo/partition_refinement.py
 tryalgo/permutation_rank.py
 tryalgo/polygon.py
-tryalgo/pq_tree.py
 tryalgo/predictive_text.py
 tryalgo/primes.py
 tryalgo/rabin_karp.py
