@@ -16,3 +16,9 @@ pylint:
 	-@find setup.py tryalgo -type f -name '*.py' | xargs pylint --disable=C0103 -j 4
 
 .PHONY: help pycodestyle pylint bin
+
+doc:
+	cd docs && make html
+
+publish:
+	rsync -avz docs/_build/html/* mangaki.fr:/srv/http/jjv/tryalgo/
