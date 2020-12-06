@@ -20,6 +20,8 @@ import shlex
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
+print(os.path.join(os.path.dirname(__file__), '..'))
+print(os.path.abspath('..'))
 sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
@@ -34,7 +36,22 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.mathjax',
     'sphinx.ext.viewcode',
+    'sphinx.ext.intersphinx',
+    'sphinx_gallery.gen_gallery'
 ]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/{.major}'.format(
+        sys.version_info), None)
+}
+
+sphinx_gallery_conf = {
+    'examples_dirs': '../examples',
+    'gallery_dirs': 'auto_examples',
+    'reference_url': {
+        'tryalgo': None
+    }
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -52,7 +69,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'tryalgo'
-copyright = '2016-2020, Christoph Dürr and Jill-Jênn Vie'
+copyright = '2016-2021, Christoph Dürr and Jill-Jênn Vie'
 author = 'Christoph Dürr and Jill-Jênn Vie'
 
 # The version info for the project you're documenting, acts as replacement for

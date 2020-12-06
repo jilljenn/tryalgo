@@ -476,14 +476,6 @@ tryalgo.polygon module
    :undoc-members:
    :show-inheritance:
 
-tryalgo.pq\_tree module
------------------------
-
-.. automodule:: tryalgo.pq_tree
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
 tryalgo.predictive\_text module
 -------------------------------
 
@@ -651,7 +643,6 @@ tryalgo.windows\_k\_distinct module
    :members:
    :undoc-members:
    :show-inheritance:
-
 
 Module contents
 ---------------

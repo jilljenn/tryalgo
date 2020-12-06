@@ -1,2 +1,3 @@
-git+https://github.com/sphinx-doc/sphinx # Sphinx 2.0.0+
+sphinx
+sphinx-gallery
 sphinx_rtd_theme
