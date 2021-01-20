@@ -13,7 +13,7 @@ from tryalgo.graph import listdict_to_listlist_and_matrix, dictdict_to_listdict
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
-from tryalgo.bellman_ford import bellman_ford
+from tryalgo.bellman_ford import bellman_ford, bellman_ford2
 from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
@@ -184,15 +184,16 @@ class TestTryalgo(unittest.TestCase):
         for title, graph, weight, has_circuit, shortest_path in self.L_dir:
             sparse = listlist_and_matrix_to_listdict(graph, weight)
             for g, w in [(graph, weight), (sparse, sparse)]:
-                dist, prec, detect = bellman_ford(g, w)
-                self.assertEqual(has_circuit, detect)
-                if not has_circuit:
-                    target = len(graph) - 1
-                    if shortest_path is not None:
-                        path = extract_path(prec, target)
-                        self.assertEqual(path, shortest_path)
-                    else:
-                        self.assertEqual(dist[target], float('inf'))
+                for algo in [bellman_ford, bellman_ford2]:
+                    dist, prec, detect = algo(g, w, 0)
+                    self.assertEqual(has_circuit, detect)
+                    if not has_circuit:
+                        target = len(graph) - 1
+                        if shortest_path is not None:
+                            path = extract_path(prec, target)
+                            self.assertEqual(path, shortest_path)
+                        else:
+                            self.assertEqual(dist[target], float('inf'))
 
     def test_bfs(self):
         # graphe complet plus un sommet isolé
