@@ -66,7 +66,7 @@ def dfs_tree(graph, start=0):
 
 
 def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
-    """DFS on a grid, mark connected component, iterative version
+    """DFS on a grid, mark connected component, recursive version
 
     :param grid: matrix, 4-neighborhood
     :param i,j: cell in this matrix, start of DFS exploration
