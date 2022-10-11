@@ -30,10 +30,11 @@ def max_bipartite_matching(bigraph):
     :returns: matching list, match[v] == u iff (u, v) in matching
     :complexity: `O(|V|*|E|)`
     """
-    n = len(bigraph)               # same domain for U and V
+    n = len(bigraph)                # same domain for U and V
     match = [None] * n
     for u in range(n):
-        augment(u, bigraph, [False] * n, match)
+        if bigraph[u]:              # if u is not an isolated vertex
+            augment(u, bigraph, [False] * n, match)
     return match
 # snip}
 
@@ -57,6 +58,7 @@ def max_bipartite_matching2(bigraph):
                 nV = v + 1
     match = [None] * nV
     for u in range(nU):
-        augment(u, bigraph, [False] * nV, match)
+        if bigraph[u]:              # if u is not an isolated vertex
+            augment(u, bigraph, [False] * nV, match)
     return match
 # snip}
