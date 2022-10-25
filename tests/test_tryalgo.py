@@ -3,7 +3,7 @@
 
 # pylint: disable=missing-docstring
 import unittest
-import random
+import random, cmath
 from collections import deque
 
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
@@ -33,6 +33,7 @@ from tryalgo.edmonds_karp import edmonds_karp
 from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick
+from tryalgo.fft import fft, inv_fft, mul_poly_fft, pad
 from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
 from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.gale_shapley import gale_shapley
@@ -44,6 +45,7 @@ from tryalgo.huffman import huffman
 from tryalgo.interval_tree import interval_tree, intervals_containing
 from tryalgo.interval_cover import interval_cover
 from tryalgo.intervals_union import intervals_union
+from tryalgo.karatsuba import mul_poly
 from tryalgo.knuth_morris_pratt import maximum_border_length, knuth_morris_pratt, powerstring_by_border, powerstring_by_find
 from tryalgo.kruskal import kruskal
 from tryalgo.kuhn_munkres_n4 import kuhn_munkres as kuhn_munkres_n4
@@ -517,6 +519,21 @@ XXXXX#...#
                                   for i in range(len(path) - 1))
                         self.assertEqual(dist[target], val)
 
+    def test_fft(self):
+        L = [[0,1], [1,1], [2,2], [3,4], [4,4], [5,8]]
+        for before, after in L:
+            x = [0] * before
+            pad(x)
+            self.assertEqual(len(x), after)
+        before = [1,1,1,1,0,0,0,0]
+        after = [4 + 0j, 1 + -2.41421j, 0 + 0j, 1 + -0.414214j, 0 + 0j, 1 + 0.414214j, 0 + 0j, 1 + 2.41421j]
+        res = fft(before)
+        for i in range(len(after)):
+            self.assertTrue(cmath.isclose(res[i], after[i], rel_tol=1e-05, abs_tol=1e-05))
+        res = inv_fft(fft(before))
+        for i in range(len(after)):
+            self.assertTrue(cmath.isclose(res[i], before[i], rel_tol=1e-05, abs_tol=1e-05))
+
     def test_dilworth(self):
         G = [[1],
              [2, 3, 5],
@@ -809,6 +826,24 @@ t##
             for p, v, cmax, opt in L:
                 self.assertEqual(f(p, v, cmax)[0], opt)
 
+    def test_karatsuba(self):
+        L = [[[], [1, 10, 100], []],
+             [[2, 30],[1, 10], [2, 50, 300]],
+             [[2, 30,0],[1, 10], [2, 50, 300]],
+             [[2, 30,0,0],[1, 10], [2, 50, 300]],
+             [[2, 30],[1, 10, 0], [2, 50, 300]],
+             [[2, 30, 0],[1, 10, 0, 0], [2, 50, 300]],
+             [[2, 30, 0, 0],[1, 10, 0, 0, 0], [2, 50, 300]],
+             [[2, 30, 500], [1,10,100], [2, 50, 1000, 8000, 50000]],
+             [[],[],[]]]
+        for multiply in (mul_poly, mul_poly_fft):
+            for P, Q, R in L:
+                n = len(R)
+                PQ = multiply(P, Q)
+                self.assertEqual(PQ[:n], R)
+                for zero in PQ[n:]:
+                    self.assertEqual(zero, 0)
+             
     def test_knuth_morris_pratt_border(self):
         self.assertEqual(maximum_border_length("aba#abababaababb"),
                          [0, 0, 1, 0, 1, 2, 3, 2, 3, 2, 3, 1, 2, 3, 2, 0])
