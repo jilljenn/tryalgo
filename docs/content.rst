@@ -193,7 +193,7 @@ When multiplying a sequence of matrices the order of evaluation does not matter,
 
 The module `roman_numbers <tryalgo/tryalgo.html#module-tryalgo.roman_numbers>`__ provides functions to convert an integer into its roman number representation string and vice-versa.
 
-Suppose you want to multiply two polynomials given by the lists of the coefficients, and let n be their length. `Karatsuba's algorithm <tryalgo/tryalgo.html#module-tryalgo.karatsuba>` does exactly this, and in time  :math:`O(n^{1.585})`. The same module contains functions to add, substruct or evaluate polynomials. A more efficient method however uses the fast Fourier transformation. The module `fft <tryalgo/tryalgo.html#module-tryalgo.fft>` provides a function :py:func:`fft` to compute the fast Fourier transformation of a given vector, and the corresponding inverse function :py:func:`inv_fft`. They are used in the function :py:func:`mul_poly_fft` which multiplies two polynomials in time :math:`O(n\log n)`.
+Suppose you want to multiply two polynomials given by the lists of the coefficients, and let n be their length. `Karatsuba's algorithm <tryalgo/tryalgo.html#module-tryalgo.karatsuba>`__ does exactly this, and in time  :math:`O(n^{1.585})`. The same module contains functions to add, substruct or evaluate polynomials. A more efficient method however uses the fast Fourier transformation. The module `fft <tryalgo/tryalgo.html#module-tryalgo.fft>`__ provides a function :py:func:`fft` to compute the fast Fourier transformation of a given vector, and the corresponding inverse function :py:func:`inv_fft`. They are used in the function :py:func:`mul_poly_fft` which multiplies two polynomials in time :math:`O(n\log n)`.
 
 Backtracking
 ::::::::::::

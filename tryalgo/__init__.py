@@ -32,6 +32,7 @@ from . primes import *
 from . eulerian_tour import *
 from . fast_exponentiation import *
 from . fenwick import *
+from . fft import *
 from . floyd_warshall import *
 from . ford_fulkerson import *
 from . freivalds import *
@@ -44,6 +45,7 @@ from . huffman import *
 from . interval_cover import *
 from . interval_tree import *
 from . intervals_union import *
+from . karatsuba import *
 from . knapsack import *
 from . knuth_morris_pratt import *
 from . kruskal import *

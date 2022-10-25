@@ -188,6 +188,14 @@ tryalgo.fenwick module
    :undoc-members:
    :show-inheritance:
 
+tryalgo.fft module
+------------------
+
+.. automodule:: tryalgo.fft
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 tryalgo.floyd\_warshall module
 ------------------------------
 
@@ -280,6 +288,14 @@ tryalgo.intervals\_union module
 -------------------------------
 
 .. automodule:: tryalgo.intervals_union
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+tryalgo.karatsuba module
+------------------------
+
+.. automodule:: tryalgo.karatsuba
    :members:
    :undoc-members:
    :show-inheritance:
