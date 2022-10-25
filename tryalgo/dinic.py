@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Maximum flow by Dinic
+
 jill-jênn vie et christoph dürr - 2015-2018
 """
 

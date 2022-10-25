@@ -3,6 +3,7 @@
 """\
 Largest area rectangle in a binary matrix
 plus grand rectangle monochromatique
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Eulerian cycle
+
 jill-jênn vie et christoph dürr - 2015-2020
 """
 

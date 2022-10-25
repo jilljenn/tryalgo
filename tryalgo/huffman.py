@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Huffman code
+
 jill-jenn vie et christoph durr - 2014-2019
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Largest Rectangular Area in a Histogram
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

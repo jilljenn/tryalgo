@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Test matrix product AB = C by Freivalds
+
 jill-jênn vie et christoph dürr - 2015-2020
 """
 

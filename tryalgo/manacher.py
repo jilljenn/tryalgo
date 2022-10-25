@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Longest palindrome in a string by Manacher
+
 jill-jênn vie et christoph dürr - 2014-2019
 
 http://leetcode.com/2011/11/longest-palindromic-substring-part-ii.html
@@ -10,7 +11,7 @@ Algorithme de Manacher
 problème: plus long palindrome
 entrée: chaîne s
 sortie: indices i, j tel que s[i:j] est un palindrome
-        et que j-i est maximal et i maximal
+et que j-i est maximal et i maximal
 complexité: temps linéaire
 
 tous les indices réfèrent à une chaîne fictive t

@@ -3,8 +3,18 @@
 
 # pylint: disable=missing-docstring
 import unittest
-import random, cmath
+import random
 from collections import deque
+
+try:
+    from cmath import isclose
+except ImportError:
+    # this is a quick hack for a missing function in Python 2
+    def isclose(a, b, rel_tol, abs_tol):
+        for x, y in ((a.real, b.real), (a.imag, b.imag)):
+            if abs(x - y) > abs_tol:
+                return False 
+        return True 
 
 from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.graph import tree_adj_to_prec, tree_prec_to_adj
@@ -529,10 +539,10 @@ XXXXX#...#
         after = [4 + 0j, 1 + -2.41421j, 0 + 0j, 1 + -0.414214j, 0 + 0j, 1 + 0.414214j, 0 + 0j, 1 + 2.41421j]
         res = fft(before)
         for i in range(len(after)):
-            self.assertTrue(cmath.isclose(res[i], after[i], rel_tol=1e-05, abs_tol=1e-05))
+            self.assertTrue(isclose(res[i], after[i], rel_tol=1e-05, abs_tol=1e-05))
         res = inv_fft(fft(before))
         for i in range(len(after)):
-            self.assertTrue(cmath.isclose(res[i], before[i], rel_tol=1e-05, abs_tol=1e-05))
+            self.assertTrue(isclose(res[i], before[i], rel_tol=1e-05, abs_tol=1e-05))
 
     def test_dilworth(self):
         G = [[1],

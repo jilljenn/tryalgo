@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Orienting mirrors to allow connectivity by a laser beam
+
 jill-jênn vie et christoph dürr - 2014-2019
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Permute vector to minimize scalar product
+
 jill-jênn vie et christoph dürr - 2014-2019
 """
 

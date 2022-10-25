@@ -2,8 +2,10 @@
 # -*- coding: utf-8 -*-
 """\
 Binary search
+
 jill-jênn vie, christoph dürr et louis abraham - 2014-2020
 """
+
 # pylint: disable=redefined-outer-name
 
 from tryalgo.our_std import readint, readarray
@@ -103,8 +105,7 @@ def optimized_binary_search(tab, logsize):
 def ternary_search(f, lo, hi, gap=1e-10):
     """Ternary maximum search for a bitonic function
 
-    :param f: boolean bitonic function (increasing then decreasing,
-    not necessarily strictly)
+    :param f: boolean bitonic function (increasing then decreasing, not necessarily strictly)
     :param int lo:
     :param int hi: with hi >= lo
     :param float gap:

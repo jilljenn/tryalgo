@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Maximum profit bipartite matching by Kuhn-Munkres
+
 jill-jenn vie, christoph durr and samuel tardieu - 2014-2019
 
 primal LP

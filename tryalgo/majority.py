@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Majority
+
 jill-jenn vie et christoph durr - 2014-2019
 """
 

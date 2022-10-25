@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Exact set cover by the dancing links algorithm
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 A min heap
+
 christoph dürr et jill-jênn vie - 2015-2019
 """
 

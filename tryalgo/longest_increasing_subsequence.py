@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Longest increasing subsequence
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

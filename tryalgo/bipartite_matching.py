@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Bipartie maximum matching
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

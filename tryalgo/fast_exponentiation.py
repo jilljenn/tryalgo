@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Fast Exponentiation
+
 jill-jenn vie et christoph durr and louis abraham - 2014-2018
 """
 

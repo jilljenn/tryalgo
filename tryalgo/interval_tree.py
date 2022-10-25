@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Interval tree
+
 christoph dürr - jill-jênn vie - 2013-2018
 """
 

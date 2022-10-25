@@ -3,6 +3,7 @@
 """\
 Strongly connected components
 composantes fortement connexes
+
 jill-jênn vie et christoph dürr - 2015-2018
 """
 

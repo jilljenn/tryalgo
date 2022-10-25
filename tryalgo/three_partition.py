@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 subsetsum
+
 jill-jênn vie et christoph dürr - 2015-2019
 """
 

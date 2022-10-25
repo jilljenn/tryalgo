@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Minimum mean cycle by Karp
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

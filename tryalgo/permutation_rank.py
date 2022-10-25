@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Permutation rank
+
 christoph dürr - 2016-2019
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 All sliding windows containing k distinct elements
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

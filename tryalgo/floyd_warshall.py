@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 All pairs shortest paths by Floyd-Warshall
+
 jill-jênn vie, christoph dürr et pascal ortiz - 2014-2019
 """
 

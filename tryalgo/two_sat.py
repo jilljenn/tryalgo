@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Solving 2-SAT boolean formulas
+
 jill-jenn vie et christoph durr - 2015-2019
 """
 

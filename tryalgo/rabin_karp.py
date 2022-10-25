@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Find substrings by Rabin-Karp
+
 jill-jenn vie et christoph durr - 2015-2019
 """
 

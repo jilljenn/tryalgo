@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 """\
 Distances in a grid
+
 jill-jenn vie et christoph durr - 2014-2018
---------------------------------------------
 """
 
 from collections import deque

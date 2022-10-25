@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 bi-connected components, cut vertices and cut cut-nodes
+
 jill-jenn vie, christoph durr et louis abraham - 2015-2019
 """
 
@@ -16,8 +17,8 @@ from sys import getrecursionlimit, setrecursionlimit
 def cut_nodes_edges(graph):
     """Bi-connected components
 
-    :param graph: undirected graph. in listlist format. Cannot be in listdict
-    format.
+    :param graph: undirected graph. in listlist format. 
+                  Cannot be in listdict format.
     :returns: a tuple with the list of cut-nodes and the list of cut-edges
     :complexity: `O(|V|+|E|)`
     """

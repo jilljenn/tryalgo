@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Stable matching by Gale-Shapley
+
 jill-jênn vie et christoph durr - 2014-2019
 """
 

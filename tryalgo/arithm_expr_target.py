@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Create arithmetic expression approaching target value
+
 jill-jênn vie, christoph dürr et jean-christophe filliâtre - 2014-2019
 """
 

@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
+"""\
 Karatsuba multiplication of polynomials
+
 christoph dürr - jill-jênn vie - 2022
 """
 

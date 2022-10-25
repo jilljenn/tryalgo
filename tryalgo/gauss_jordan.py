@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Linear equation system Ax=b by Gauss-Jordan
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

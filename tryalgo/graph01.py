@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Shortest path in a 0,1 weighted graph
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

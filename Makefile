@@ -7,7 +7,7 @@ test:
 	# Python 2
 	python -m unittest tests.test_tryalgo
 	# Python 3
-	pytest 
+	python3 -m unittest 
 
 pycodestyle:
 	-@find setup.py tryalgo -type f -name '*.py' | xargs pycodestyle

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Left and right inversions in a table
+
 christoph dürr - 2016-2019
 """
 

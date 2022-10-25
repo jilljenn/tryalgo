@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Solving Sudoku (nanpure)
+
 jill-jenn vie et christoph durr - 2014-2019
 """
 # pylint: disable=missing-docstring, multiple-statements, global-statement

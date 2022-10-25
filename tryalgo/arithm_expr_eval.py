@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 """\
 Evaluate an arithmetic expression
-jill-jenn vie et christoph durr - 2014-2020
 
-IPCELLS
-http://www.spoj.com/problems/IPCELLS/
+jill-jenn vie et christoph durr - 2014-2020
 """
+# IPCELLS
+# http://www.spoj.com/problems/IPCELLS/
+
 
 from tryalgo.our_std import readint, readstr
 

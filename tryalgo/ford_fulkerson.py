@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Maximum flow by Ford-Fulkerson
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 How many rectangles can be formed from a set of points
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

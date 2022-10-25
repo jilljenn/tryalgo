@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Depth-first search - DFS
+
 jill-jênn vie et christoph durr - 2015-2019
 """
 

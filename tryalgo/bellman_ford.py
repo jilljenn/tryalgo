@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Single source shortest paths by Bellman-Ford
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

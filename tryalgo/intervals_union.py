@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Union of intervals
+
 jill-jênn vie et christoph dürr - 2014-2019
 """
 

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Union of rectangles
+
 jill-jênn vie et christoph dürr - 2014-2019
 """
 # pylint: disable=too-many-arguments, too-many-locals

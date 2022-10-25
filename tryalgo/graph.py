@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Reading graphs from files and writing into files
+
 jill-jênn vie et christoph dürr - 2015-2019
 """
 # pylint: disable=bad-whitespace, line-too-long, missing-docstring
@@ -240,7 +241,7 @@ def matrix_to_listlist(weight):
     exists
     :complexity: linear
     :returns: the unweighted directed graph in the listlist representation,
-                       listlist[u] contains all v for which arc (u,v) exists.
+    listlist[u] contains all v for which arc (u,v) exists.
     """
     graph = [[] for _ in range(len(weight))]
     for u, _ in enumerate(graph):

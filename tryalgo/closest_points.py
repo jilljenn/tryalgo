@@ -3,6 +3,7 @@
 """\
 Closest pair of points
 trouver la paire de points la plus proche
+
 jill-jênn vie, christoph dürr et louis abraham - 2014-2019
 """
 # pylint: disable=missing-docstring, redefined-outer-name, redefined-outer-name

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Levenshtein edit distance
+
 jill-jenn vie et christoph durr - 2014-2018
 """
 

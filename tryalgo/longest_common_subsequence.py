@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """\
 Longest increasing subsequence
+
 jill-jênn vie et christoph dürr - 2014-2019
 """
 # pylint: disable=bad-whitespace
