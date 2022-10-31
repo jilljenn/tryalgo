@@ -9,7 +9,7 @@
 Algorithms and data structures for preparing programming competitions (e.g. ACM-ICPC, [see more](https://tryalgo.org/contests/)) and coding interviews.  
 By Christoph Dürr and Jill-Jênn Vie.
 
-[Our book](https://jilljenn.github.io/#books) is available in French, Simplified and Traditional Chinese. Soon in English.
+[Our book](https://tryalgo.org/book) is available in French, English, Simplified and Traditional Chinese.
 
 ## Install
 
@@ -72,7 +72,7 @@ Please [drop an issue](https://github.com/jilljenn/tryalgo/issues).
 
 ## Authors
 
-© 2016–2020, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
+© 2016–2022, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
 Released under the MIT License.
 
 ## Contributors
