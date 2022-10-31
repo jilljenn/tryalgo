@@ -18,14 +18,17 @@ def huffman(freq):
     :complexity: O(n log n), where n = len(freq)
     """
     forest = []                              # build forest with singletons
-    for item in freq:
-        heappush(forest, (freq[item], item))
+    trees = []
+    for item in sorted(freq):
+        heappush(forest, (freq[item], len(trees)))
+        trees.append(item)
     while len(forest) > 1:
         (f_l, left) = heappop(forest)        # merge two trees
         (f_r, right) = heappop(forest)
-        heappush(forest, (f_l + f_r, [left, right]))
+        heappush(forest, (f_l + f_r, len(trees)))
+        trees.append([trees[left], trees[right]])
     code = {}                                # build code from unique tree
-    extract(code, forest[0][1], [])
+    extract(code, trees[forest[0][1]], [])
     return code
 
 
