@@ -3,7 +3,7 @@
 """\
 Huffman code
 
-jill-jenn vie et christoph durr - 2014-2019
+jill-jenn vie et christoph durr - 2014-2022
 """
 
 from heapq import heappush, heappop
@@ -17,11 +17,11 @@ def huffman(freq):
     :returns: dictionary with binary code string for each item
     :complexity: O(n log n), where n = len(freq)
     """
-    forest = []                              # build forest with singletons
-    trees = []
-    for item in sorted(freq):
+    forest = []     # is a heap with (frequence, tree_index) pairs 
+    trees = []      # list of trees, tree is a letter or a list of two trees
+    for item in freq:
         heappush(forest, (freq[item], len(trees)))
-        trees.append(item)
+        trees.append(item)  # this item will be at index len(trees)
     while len(forest) > 1:
         (f_l, left) = heappop(forest)        # merge two trees
         (f_r, right) = heappop(forest)
