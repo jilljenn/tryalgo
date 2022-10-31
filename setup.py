@@ -8,7 +8,7 @@ from distutils.core import setup
 
 setup(
     name='tryalgo',
-    version='1.3.0',
+    version='1.4.0',
     description='Algorithms and data structures for preparing programming competitions',
     author='Jill-Jênn Vie and Christoph Dürr',
     author_email='christoph.durr@lip6.fr',

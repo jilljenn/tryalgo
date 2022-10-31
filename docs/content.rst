@@ -167,6 +167,8 @@ A very classical problem in computational geometry is the computation of the con
 
 Another not less classical problem is the problem of determining a closest pair among a given point set.  It can be solved in time O(n log n) with a sweep line algorithm or using a divide and conquer approach.  In this library we present a randomized very simple algorithm with an expected linear running time, see `closest_points <tryalgo/tryalgo.html#module-tryalgo.closest_points>`__.
 
+And among problems related to points, is the problem of computing the `Pareto set <tryalgo/tryalgo.html#module-tryalgo.pareto>`__  of a given set of points. These consists of all non-dominated points, where we say that a point dominates another point if it has smaller coordinates in each dimension, and strictly smaller in at least one dimension. This can be computed in time O(n log n), both in 2 dimensions, and in 3 dimensions.
+
 The area of a given simple polygon can be computed in linear time, see `polygon <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.  And testing whether a given rectilinear polygon is simple can be verified with a sweepline algorithm in time O(n log n), see `is_simple <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.
 
 Here is an algorithmic puzzle that we like a lot. Given a set of n points in the plane, we which to find out how many 4-tuples we can form such that they are the 4 corners of a rectangle.  The solution can be found in `rectangles_from_points <tryalgo/tryalgo.html#module-tryalgo.rectangles_from_points>`__.

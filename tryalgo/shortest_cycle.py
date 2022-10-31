@@ -12,7 +12,7 @@ if only even cycles are requested
 
 from collections import deque
 from sys import stdin
-from . floyd_warshall import floyd_warshall
+from tryalgo.floyd_warshall import floyd_warshall
 
 
 def readstr(): return stdin.readline().strip()

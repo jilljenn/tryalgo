@@ -42,7 +42,7 @@ from tryalgo.dist_grid import dist_grid
 from tryalgo.edmonds_karp import edmonds_karp
 from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
-from tryalgo.fenwick import Fenwick
+from tryalgo.fenwick import Fenwick, FenwickMin
 from tryalgo.fft import fft, inv_fft, mul_poly_fft, pad
 from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
 from tryalgo.ford_fulkerson import ford_fulkerson
@@ -77,6 +77,7 @@ from tryalgo.min_mean_cycle import min_mean_cycle
 from tryalgo.our_heap import OurHeap
 from tryalgo.our_queue import OurQueue
 from tryalgo.permutation_rank import permutation_rank, rank_permutation
+from tryalgo.pareto import pareto2d, pareto3d
 from tryalgo.partition_refinement import PartitionRefinement
 from tryalgo.polygon import area, is_simple
 # from tryalgo.pq_tree import consecutive_ones_property, PQTree
@@ -683,6 +684,23 @@ t##
         self.assertEqual(bin(F.intervalSum(2, 6)), "0b1110100")
         self.assertEqual(bin(F.intervalSum(1, 4)), "0b10110")
 
+    def test_fenwick_min(self):
+        F = FenwickMin(1)
+        self.assertEqual(F.prefixMin(0), float('+inf'))
+        F.update(0, 10) 
+        self.assertEqual(F.prefixMin(0), 10)
+        F.update(0, 12) 
+        self.assertEqual(F.prefixMin(0), 10)
+        F = FenwickMin(10)
+        F.update(3, 15)
+        F.update(4, 10)
+        F.update(5, 22)
+        self.assertEqual(F.prefixMin(2), float('+inf'))
+        self.assertEqual(F.prefixMin(3), 15)
+        self.assertEqual(F.prefixMin(4), 10)
+        self.assertEqual(F.prefixMin(5), 10)                
+        
+
     def test_floyd_warshall(self):
         for FW in [floyd_warshall, floyd_warshall2]:
             # https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm#/media/File:Floyd-Warshall_example.svg
@@ -1139,6 +1157,20 @@ t##
             self.assertEqual(rank_permutation(0, n), list(range(n)))
             self.assertEqual(rank_permutation(
                 nfact - 1, n), list(range(n))[::-1])
+
+    def test_pareto2d(self):
+        P = [(.1, .6), (.1, .5), (.2, .5), (.3, .4), (.3, .5), (.3, .6), (.5, .2), (.5, .2), (.7, .2), (.8, .1)]
+        self.assertEqual(pareto2d(P), [(.1, .5), (.3, .4), (.5, .2), (.5, .2), (.8, .1)])
+
+    def test_pareto3d(self):
+        P = []
+        for x in (.1, .2):
+            for y in (.1, .2):
+                for z in (.1, .2):
+                    P.append((x, y, z))
+        P.remove((.1, .1, .1))
+        P.append((.1, .2, .1))
+        self.assertEqual(pareto3d(P), [(.1, .1, .2), (.1, .2, .1), (.1, .2, .1), (.2, .1, .1)])
 
     def test_partition_refinement(self):
         P = PartitionRefinement(10)

@@ -468,6 +468,14 @@ tryalgo.our\_std module
    :undoc-members:
    :show-inheritance:
 
+tryalgo.pareto module
+---------------------
+
+.. automodule:: tryalgo.pareto
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 tryalgo.partition\_refinement module
 ------------------------------------
 
