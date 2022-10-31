@@ -19,7 +19,4 @@ pylint:
 
 doc:
 	cd docs/_static && convert logo_W.png logo_B.png +append logo_white.png
-	cd docs && make html
-
-publish:
-	rsync -avz docs/_build/html/* mangaki.fr:/srv/http/jjv/tryalgo/
+	sphinx-build docs docs/_build

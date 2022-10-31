@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/jilljenn/tryalgo.svg?branch=master)](https://travis-ci.org/jilljenn/tryalgo)
 [![PyPI](https://img.shields.io/pypi/v/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 [![PyPI](https://img.shields.io/pypi/pyversions/tryalgo.svg)](https://pypi.python.org/pypi/tryalgo/)
 ![Pylint score](https://mperlet.github.io/pybadge/badges/10.svg)
@@ -6,7 +5,7 @@
 
 # Algorithmic Problem Solving
 
-Algorithms and data structures for preparing programming competitions (e.g. ACM-ICPC, [see more](https://tryalgo.org/contests/)) and coding interviews.  
+Algorithms and data structures for preparing programming competitions (e.g. ICPC, [see more](https://tryalgo.org/contests/)) and coding interviews.  
 By Christoph Dürr and Jill-Jênn Vie.
 
 [Our book](https://tryalgo.org/book) is available in French, English, Simplified and Traditional Chinese.
@@ -17,7 +16,7 @@ By Christoph Dürr and Jill-Jênn Vie.
 
 ## Documentation
 
-- [Documentation](http://jilljenn.github.io/tryalgo/) of tryalgo 1.3
+- [Documentation](http://jilljenn.github.io/tryalgo/) of tryalgo 1.4
 - [Blog tryalgo.org](http://tryalgo.org) in French and English
 
 ## Demo: [TryAlgo in Paris](http://nbviewer.jupyter.org/github/jilljenn/tryalgo/blob/master/examples/TryAlgo%20Maps%20in%20Paris.ipynb)

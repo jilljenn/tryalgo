@@ -54,9 +54,9 @@ def knuth_morris_pratt(s, t):
 def powerstring_by_border(u):
     """Power string by Knuth-Morris-Pratt
 
-    :param x: string
-    :returns: largest k such that there is a string y with x = y^k
-    :complexity: O(len(x))
+    :param u: string
+    :returns: largest k such that there is a string y with u = y^k
+    :complexity: O(len(u))
     """
     f = maximum_border_length(u)
     n = len(u)
@@ -70,9 +70,9 @@ def powerstring_by_border(u):
 def powerstring_by_find(u):
     """Power string using the python find method
 
-    :param x: string
-    :returns: largest k such that there is a string y with x = y^k
-    :complexity: O(len(x))
+    :param u: string
+    :returns: largest k such that there is a string y with u = y^k
+    :complexity: O(len(u))
     """
-    return len(x) // (x + x).find(x, 1)
+    return len(u) // (u + u).find(u, 1)
 # snip}

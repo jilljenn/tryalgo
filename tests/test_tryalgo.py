@@ -877,8 +877,9 @@ t##
     def test_knuth_morris_pratt_border(self):
         self.assertEqual(maximum_border_length("aba#abababaababb"),
                          [0, 0, 1, 0, 1, 2, 3, 2, 3, 2, 3, 1, 2, 3, 2, 0])
-        self.assertEqual(powerstring_by_border("ababab"), 3)
-        self.assertEqual(powerstring_by_border("abaab"), 1)
+        for powerstring in [powerstring_by_border, powerstring_by_find]:
+            self.assertEqual(powerstring("ababab"), 3)
+            self.assertEqual(powerstring("abaab"), 1)
 
     def test_kruskal(self):
         # from http://www.ics.uci.edu/~eppstein/PADS/MinimumSpanningTree.py
