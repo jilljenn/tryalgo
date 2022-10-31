@@ -18,6 +18,7 @@ pylint:
 .PHONY: help pycodestyle pylint bin
 
 doc:
+	cd docs/_static && convert logo_W.png logo_B.png +append logo_white.png
 	cd docs && make html
 
 publish:
