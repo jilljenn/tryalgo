@@ -72,7 +72,7 @@ def powerstring_by_find(u):
 
     :param u: string
     :returns: largest k such that there is a string y with u = y^k
-    :complexity: O(len(u))
+    :complexity: O(len(u)^2), this is due to the naive implementation of string.find
     """
     return len(u) // (u + u).find(u, 1)
 # snip}
