@@ -3,6 +3,7 @@
 
 ## 1.4
 
+- Move to GitHub Actions and drop Python 2.7 support completely
 - Added a Graph class in the module graph, which allows accessing vertices by names instead of indices
 - Added alternative versions of union_rectangles
 - Added an alternative version of bellman_ford which marks with distance -infinity the vertices reachable from the source by paths of arbitrary small weight
