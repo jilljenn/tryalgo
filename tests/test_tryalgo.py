@@ -808,6 +808,8 @@ t##
                          {'a': '00', 'c': '10', 'b': '01', 'd': '11'})
         self.assertEqual(huffman({'a': 40, 'b': 5, 'c': 2, 'd': 1}),
                          {'a': '1', 'c': '001', 'b': '01', 'd': '000'})
+        self.assertEqual(huffman({'a': 1, 'b': 1, 'c': 2}),
+                         {'a': '10', 'b': '11', 'c': '0'})
 
     def test_interval_tree(self):
 
