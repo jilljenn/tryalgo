@@ -4,12 +4,21 @@
 Setup file
 """
 
-from distutils.core import setup
+from pathlib import Path
+from setuptools import setup
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
+
 
 setup(
     name='tryalgo',
     version='1.4.0',
-    description='Algorithms and data structures for preparing programming competitions',
+    description=(
+        'Algorithms and data structures '
+        'for preparing programming competitions'
+    ),
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     author='Jill-Jênn Vie and Christoph Dürr',
     author_email='christoph.durr@lip6.fr',
     license='MIT',
@@ -25,10 +34,6 @@ setup(
 
         # Pick your license as you wish (should match "license" above)
         'License :: OSI Approved :: MIT License',
-
-        # Specify the Python versions you support here. In particular, ensure
-        # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ]
 )
