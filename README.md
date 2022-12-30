@@ -52,7 +52,7 @@ Returns `'((((75*3)*(100+6))-50)/25)=952'`.
 
 ## Tests
 
-All algorithms are thoroughly tested. These tests can be used to [practice your programming skills](https://tryalgo.org/en/2019/08/10/how-to-practice-algorithms-with-tryalgo/)!
+All algorithms are thoroughly tested. These tests can be used to [practice your programming skills](https://tryalgo.org/en/miscellaneous/2019/08/10/how-to-practice-algorithms-with-tryalgo/)!
 
 ```python
 python -m unittest
