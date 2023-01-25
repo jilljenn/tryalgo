@@ -137,7 +137,12 @@ html_theme = "pydata_sphinx_theme"
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-html_theme_options = {'nosidebar':False, 'sidebarwidth':350}
+html_theme_options = {'nosidebar':False, 'sidebarwidth':350,
+   "logo": {
+      "image_light": "_static/logo_black.png",
+      "image_dark": "_static/logo_white.png",
+   }
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 #html_theme_path = []
@@ -152,7 +157,6 @@ html_theme_options = {'nosidebar':False, 'sidebarwidth':350}
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 html_logo = "_static/logo_white.png"
-logo = "_static/logo_white.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
