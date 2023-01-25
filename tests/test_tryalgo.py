@@ -98,6 +98,7 @@ from tryalgo.subsetsum import subset_sum as subset_sum3, coin_change
 from tryalgo.sudoku import sudoku
 from tryalgo.three_partition import three_partition
 from tryalgo.topological_order import topological_order_dfs, topological_order
+from tryalgo.tortoise_hare import tortoise_hare
 from tryalgo.trie import Trie, spell_check
 from tryalgo.two_sat import two_sat
 from tryalgo.union_rectangles import union_rectangles_naive, union_rectangles, union_rectangles_fast, union_rectangles_fastest
@@ -1706,6 +1707,16 @@ t##
         for f in [topological_order_dfs, topological_order]:
             for graph, result in L:
                 self.assertEqual(f(graph), result)
+
+    def test_tortoise_hare(self):
+        for d in range(10):
+            for c in range(1, 10):
+                def f(i):
+                    if i < d + c - 1:
+                        return i + 1
+                    else:
+                        return d 
+                self.assertEqual(tortoise_hare(f, 0), (d, c))
 
     def test_trie(self):
         T = Trie(["as", "porc", "pore", "pre", "pres", "pret"])
