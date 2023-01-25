@@ -102,7 +102,7 @@ shortest cycle              undirected :math:`O(|V|\cdot|E|)`  breath-first sear
 minimum weight cycle        directed   :math:`O(|V|\cdot |E|)` `Bellman-Ford <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>`_ `bellman_ford <tryalgo/tryalgo.html#module-tryalgo.bellman_ford>`__
 minimum mean cycle          directed   :math:`O(|V|\cdot |E|)` `Karp <http://www.sciencedirect.com/science/article/pii/0012365X78900110>`_    `min_mean_cycle <tryalgo/tryalgo.html#module-tryalgo.min_mean_cycle>`__
 Eulerian cycle              both       :math:`O(|V|+|E|)`      `Greedy <https://en.wikipedia.org/wiki/Eulerian_path>`_                        `eulerian_tour <tryalgo/tryalgo.html#module-tryalgo.eulerian_tour>`__
-Iterated function cycle     implicit by :math:`f:V\mapsto V`       :math:`O(|V|)`      `Floyd's tortoise and hare <https://en.wikipedia.org/wiki/Cycle_detection>`_                        `tortoise_hare <tryalgo/tryalgo.html#module-tryalgo.tortoise_hare>`__
+Iterated function cycle     outdeg=1   :math:`O(|V|)`      `   `Floyd's tortoise and hare <https://en.wikipedia.org/wiki/Cycle_detection>`_   `tortoise_hare <tryalgo/tryalgo.html#module-tryalgo.tortoise_hare>`__
 =========================== ========== ======================= ============================================================================== ===============
 
 
