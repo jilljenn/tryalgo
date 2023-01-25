@@ -139,8 +139,8 @@ html_theme = "pydata_sphinx_theme"
 # documentation.
 html_theme_options = {'nosidebar':False, 'sidebarwidth':350,
    "logo": {
-      "image_light": "_static/logo_B.png",
-      "image_dark": "_static/logo_W.png",
+      "image_light": "logo_B.png",
+      "image_dark": "logo_W.png",
    }
 }
 
