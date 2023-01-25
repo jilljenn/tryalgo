@@ -86,7 +86,7 @@ release = '1.4.0'
 #
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
-language = None
+language = en
 
 # There are two options for replacing |today|: either, you set today to some
 # non-false value, then it is used:
@@ -152,6 +152,7 @@ html_theme_options = {'nosidebar':False, 'sidebarwidth':350}
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
 html_logo = "_static/logo_white.png"
+logo = "_static/logo_white.png"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32

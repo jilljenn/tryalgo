@@ -12,6 +12,7 @@ jill-jênn vie, christoph dürr et jean-christophe filliâtre - 2014-2019
 # pylint: disable=inconsistent-return-statements, too-many-branches
 def arithm_expr_target(x, target):
     """ Create arithmetic expression approaching target value
+    
     :param x: allowed constants
     :param target: target value
     :returns: string in form 'expression=value'
