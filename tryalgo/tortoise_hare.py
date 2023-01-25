@@ -15,7 +15,7 @@ def tortoise_hare(f, source=0):
     :param source: element in this domain
     :warning: if the function does not reach a cycle from source
               then this function loops forever
-    :returns: d, c such that after d iterations 
+    :returns: c, d such that after d iterations 
               of f a cycle is reached, which has period c
     :complexity: `O(d+c)`
     """
@@ -39,7 +39,7 @@ def tortoise_hare(f, source=0):
     while t != h:
         t = f(t)
         c += 1
-    return d, c
+    return c, d
 # snip}
 
 

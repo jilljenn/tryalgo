@@ -1716,7 +1716,7 @@ t##
                         return i + 1
                     else:
                         return d 
-                self.assertEqual(tortoise_hare(f, 0), (d, c))
+                self.assertEqual(tortoise_hare(f, 0), (c, d))
 
     def test_trie(self):
         T = Trie(["as", "porc", "pore", "pre", "pres", "pret"])
