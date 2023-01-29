@@ -11,6 +11,7 @@ jobs:
           pip install sphinx sphinx-gallery pydata-sphinx-theme
       - name: Sphinx build
         run: |
+          sphinx-apidoc -f -o docs/tryalgo tryalgo
           sphinx-build docs _build
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
