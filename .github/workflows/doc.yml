@@ -8,7 +8,7 @@ jobs:
       - uses: actions/setup-python@v2
       - name: Install dependencies
         run: |
-          pip install sphinx sphinx-gallery pydata-sphinx-theme
+          pip install -r docs/requirements.txt
       - name: Sphinx build
         run: |
           sphinx-apidoc -f -o docs/tryalgo tryalgo
