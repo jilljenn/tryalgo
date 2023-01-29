@@ -60,8 +60,9 @@ python -m unittest
 
 Most snippets from the book are within 76 columns (French version) or 75 columns (English version).
 
-Our code is checked:
+Our code is checked. Using optional requirements, you can check it too:
 
+    pip install pycodestyle pylint
     make pycodestyle  # PEP8
 	make pylint
 

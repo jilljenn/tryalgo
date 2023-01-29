@@ -1,3 +1,4 @@
 sphinx
 sphinx-gallery
+Pillow
 git+https://github.com/pydata/pydata-sphinx-theme  # Waiting for 0.13
