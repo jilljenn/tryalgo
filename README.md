@@ -71,7 +71,7 @@ Please [drop an issue](https://github.com/jilljenn/tryalgo/issues).
 
 ## Authors
 
-© 2016–2022, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
+© 2016–2023, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
 Released under the MIT License.
 
 ## Contributors
