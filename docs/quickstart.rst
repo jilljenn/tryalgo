@@ -4,7 +4,7 @@ Quick start
 Coin change
 :::::::::::
 
-Here is an dynamic programming example, with coin change (`6 lines of source code <http://pythonhosted.org/tryalgo/_modules/tryalgo/subsetsum.html#coin_change>`__): ::
+Here is an dynamic programming example, with coin change (`6 lines of source code <_modules/tryalgo/subsetsum.html#coin_change>`__): ::
 
     #!/usr/bin/env python3
 
@@ -17,7 +17,7 @@ Which should print :code:`True` because 29 can be expressed as the linear combin
 Longest palindrome substring of a string
 ::::::::::::::::::::::::::::::::::::::::
 
-In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <http://pythonhosted.org/tryalgo/_modules/tryalgo/manacher.html#manacher>`__) as follows: ::
+In order to find the longest palindrome substring of a string, you can use the implementation of Manacher's algorithm (`source <_modules/tryalgo/manacher.html#manacher>`__) as follows: ::
 
     from tryalgo import manacher
     print(manacher("babcbabcbaccba"))
