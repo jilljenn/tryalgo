@@ -58,7 +58,7 @@ All algorithms are thoroughly tested. These tests can be used to [practice your 
 python -m unittest
 ```
 
-Most snippets from the book are within 76 columns (French version) or 75 columns (English version, to be released soon).
+Most snippets from the book are within 76 columns (French version) or 75 columns (English version).
 
 Our code is checked:
 

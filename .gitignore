@@ -7,5 +7,5 @@ build
 venv
 *.pyc
 *.bak
-/docs/_static
-/docs/auto_examples
+docs/_static
+docs/auto_examples

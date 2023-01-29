@@ -21,8 +21,8 @@ Proofs of correctness of these algorithms are available in the French language b
    quickstart
    content
    auto_examples/index
+   tryalgo/modules
 
 * :ref:`modindex`
 * :ref:`genindex`
 * `GitHub Project <https://github.com/jilljenn/tryalgo>`_
-
