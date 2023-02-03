@@ -10,7 +10,7 @@ Welcome to tryalgo's documentation!
 
 This Python library implements various algorithms and data structures such as graph, string and computational geometry problems.
 
-Proofs of correctness of these algorithms are available in the French language book: `Programmation efficace : les 128 algorithmes qu'il faut avoir compris et codés en Python au cours de sa vie <http://www.editions-ellipses.fr/product_info.php?products_id=10829>`_.
+Explanations for most of these algorithms are available in the book: `Programmation efficace : les 128 algorithmes qu'il faut avoir compris et codés en Python au cours de sa vie <http://www.editions-ellipses.fr/product_info.php?products_id=10829>`_ and its translations.
 
 
 

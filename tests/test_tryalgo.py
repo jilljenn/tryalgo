@@ -717,6 +717,9 @@ t##
     def test_gale_shapley(self):
         self.assertEqual(gale_shapley([[0, 1, 2], [2, 1, 0], [0, 2, 1]], [
                          [0, 1, 2], [1, 2, 0], [1, 2, 0]]), [0, 2, 1])
+        # added by Kenneth Lee, 2/2/2023
+        self.assertEqual(gale_shapley([[1,0,3,2],[2,1,0,3],[1,3,2,0],[3,1,0,2]], 
+                                      [[2,1,3,0],[3,1,0,2],[0,2,1,3],[0,3,2,1]]), [0,1,2,3])
 
     def test_gauss_jordan(self):
         x = [0, 0, 0]
