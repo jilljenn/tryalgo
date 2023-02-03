@@ -52,16 +52,17 @@ Returns `'((((75*3)*(100+6))-50)/25)=952'`.
 
 ## Tests
 
-All algorithms are thoroughly tested. These tests can be used to [practice your programming skills](https://tryalgo.org/en/2019/08/10/how-to-practice-algorithms-with-tryalgo/)!
+All algorithms are thoroughly tested. These tests can be used to [practice your programming skills](https://tryalgo.org/en/miscellaneous/2019/08/10/how-to-practice-algorithms-with-tryalgo/)!
 
 ```python
 python -m unittest
 ```
 
-Most snippets from the book are within 76 columns (French version) or 75 columns (English version, to be released soon).
+Most snippets from the book are within 76 columns (French version) or 75 columns (English version).
 
-Our code is checked:
+Our code is checked. Using optional requirements, you can check it too:
 
+    pip install pycodestyle pylint
     make pycodestyle  # PEP8
 	make pylint
 
@@ -71,7 +72,7 @@ Please [drop an issue](https://github.com/jilljenn/tryalgo/issues).
 
 ## Authors
 
-© 2016–2022, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
+© 2016–2023, Christoph Dürr and Jill-Jênn Vie (vie@jill-jenn.net).  
 Released under the MIT License.
 
 ## Contributors

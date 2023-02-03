@@ -35,12 +35,11 @@ def read_graph(filename, directed=False, weighted=False, default_weight=None):
     """Read a graph from a text file
 
     :param filename: plain text file. All numbers are separated by space.
-              Starts with a line containing n (#vertices) and m (#edges).
-              Then m lines follow, for each edge.
-              Vertices are numbered from 0 to n-1.
-              Line for unweighted edge u,v contains two integers u, v.
-              Line for weighted edge u,v contains three integers u, v, w[u,v].
-
+        Starts with a line containing n (#vertices) and m (#edges).
+        Then m lines follow, for each edge.
+        Vertices are numbered from 0 to n-1.
+        Line for unweighted edge u,v contains two integers u, v.
+        Line for weighted edge u,v contains three integers u, v, w[u,v].
     :param directed: true for a directed graph, false for undirected
     :param weighted: true for an edge weighted graph
     :returns: graph in listlist format, possibly followed by weight matrix
@@ -146,8 +145,7 @@ def tree_prec_to_adj(prec, root=0):
     """Transforms a tree given as predecessor table into adjacency list form
 
     :param prec: predecessor table representing a tree, prec[u] == v iff u is
-    successor of v,
-                 except for the root where prec[root] == root
+        successor of v, except for the root where prec[root] == root
     :param root: root vertex of the tree
     :returns: undirected graph in listlist representation
     :complexity: linear
@@ -193,7 +191,7 @@ def add_reverse_arcs(graph, capac=None):
 
     :param capac: arc capacity matrix
     :param graph: in listlist representation, or in listdict representation,
-    in this case capac is ignored
+        in this case capac is ignored
     :complexity: linear
     :returns: nothing, but graph is modified
     """
@@ -238,10 +236,10 @@ def matrix_to_listlist(weight):
     different from None
 
     :param weight: squared weight matrix, weight[u][v] != None iff arc (u, v)
-    exists
+        exists
     :complexity: linear
     :returns: the unweighted directed graph in the listlist representation,
-    listlist[u] contains all v for which arc (u,v) exists.
+        listlist[u] contains all v for which arc (u,v) exists.
     """
     graph = [[] for _ in range(len(weight))]
     for u, _ in enumerate(graph):
@@ -290,10 +288,10 @@ def dictdict_to_listdict(dictgraph):
     adjacency dictionary representation (list-dict)
 
     :param dictgraph: dictionary mapping vertices to dictionary
-           such that dictgraph[u][v] is weight of arc (u,v)
+        such that dictgraph[u][v] is weight of arc (u,v)
     :complexity: linear
     :returns: tuple with graph (listdict), name_to_node (dict),
-    node_to_name (list)
+        node_to_name (list)
     """
     n = len(dictgraph)                            # vertices
     node_to_name = list(dictgraph.keys())         # bijection indices <-> names

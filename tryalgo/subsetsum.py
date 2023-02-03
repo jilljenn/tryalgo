@@ -32,7 +32,7 @@ def coin_change(x, R):
     :param x: table of non negative values
     :param R: target value
     :returns bool: True if there is a non negative linear combination
-    of x that has value R
+        of x that has value R
     :complexity: O(n*R)
     """
     b = [False] * (R + 1)

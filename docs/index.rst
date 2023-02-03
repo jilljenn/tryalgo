@@ -21,8 +21,8 @@ Explanations for most of these algorithms are available in the book: `Programmat
    quickstart
    content
    auto_examples/index
+   tryalgo/modules
 
 * :ref:`modindex`
 * :ref:`genindex`
 * `GitHub Project <https://github.com/jilljenn/tryalgo>`_
-
