@@ -15,6 +15,7 @@ from random import randint
 
 # snip{
 from math import hypot   # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
+from math import floor
 from random import shuffle
 
 # snip}
@@ -28,14 +29,12 @@ def dist(p, q):
 
 def cell(point, size):
     """ returns the grid cell coordinates containing the given point.
-    size is the side length of a grid cell
-
-    beware: in other languages negative coordinates need special care
-    in C++ for example int(-1.5) == -1 and not -2 as we need
-    hence we need floor(x / pas) in C++ using #include <cmath>
+    
+    :param point: couple of coordinates
+    :param size: floating point number, side length of a grid cell
     """
-    x, y = point                        # size = grid cell side length
-    return (int(x // size), int(y // size))
+    x, y = point                        
+    return (floor(x / size), floor(y / size))
 
 
 def improve(S, d):

@@ -27,20 +27,20 @@ from tryalgo.bellman_ford import bellman_ford, bellman_ford2
 from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.bfs import bfs
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
-from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, ternary_search
+from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, optimized_binary_search_lower, ternary_search
 from tryalgo.bipartite_matching import max_bipartite_matching, max_bipartite_matching2
 from tryalgo.bipartite_vertex_cover import bipartite_vertex_cover
 from tryalgo.closest_points import closest_points
 from tryalgo.closest_values import closest_values
 from tryalgo.convex_hull import left_turn, andrew
 from tryalgo.dancing_links import dancing_links
-from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive
+from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive, dfs_tree
 from tryalgo.dijkstra import dijkstra_update_heap, dijkstra
 from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
 from tryalgo.dist_grid import dist_grid
 from tryalgo.edmonds_karp import edmonds_karp
-from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour
+from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick, FenwickMin
 from tryalgo.fft import fft, inv_fft, mul_poly_fft, pad
@@ -126,6 +126,7 @@ class TestTryalgo(unittest.TestCase):
 
     def test_arithm_expr_eval(self):
         L = [("13 + A47 * ZZ22", 37),
+             ("( 12 - 2 ) * 5", 50),
              ("4 / 7 + 4 / 7", 0),
              ("3 * 3 / 7", 1),
              ("12", 12)]
@@ -308,7 +309,9 @@ class TestTryalgo(unittest.TestCase):
 
             T = [(x >= x0) for x in range(L)]
             self.assertEqual(discrete_binary_search(T, 0, L - 1), x0)
-            self.assertEqual(optimized_binary_search(T, 20), x0)
+            self.assertEqual(optimized_binary_search(T, 19), x0)
+            if not T[0]:        # necessary condition for this code
+                self.assertEqual(optimized_binary_search_lower(T, 19), x0 - 1)
 
     def test_max_bipartite_matching(self):
         self.assertEqual([None], max_bipartite_matching([[]]))
@@ -345,9 +348,9 @@ class TestTryalgo(unittest.TestCase):
                         self.assertTrue(Su[u] or Sv[v])
 
     def test_closest_points(self):
-        S = [(3 * i, 3 * i) for i in range(1000)]
-        S.append((501, 501))
-        self.assertEqual(set(closest_points(S)), {(501, 501), (501, 501)})
+        S = [(3 * i, 3 * i) for i in range(-10, 1000)]
+        S.append((501, 502))
+        self.assertEqual(set(closest_points(S)), {(501, 501), (501, 502)})
         self.assertEqual(
             set(closest_points([(0, 0), (1, 1)])), {(0, 0), (1, 1)})
 
@@ -390,6 +393,7 @@ class TestTryalgo(unittest.TestCase):
                          1, 2, 5], [0, 3], [1, 6], [3, 4, 6]]), [3, 0, 4])
         self.assertEqual(dancing_links(1, [[0]]), [0])
         self.assertEqual(dancing_links(2, [[0], [0, 1]]), [1])
+        self.assertIsNone(dancing_links(3, [[0,1],[1,2],[0,2]]))
 
     def test_dfs(self):
 
@@ -469,6 +473,14 @@ XXXXX#...#
             grid = [list(line.strip()) for line in inTextGrid.split('\n')]
             f(grid, 1, 0)
             self.assertEqual(str(grid), str(out))
+
+    def test_dfs_tree(self):
+        # graph with self loops, backward arcs, isolated vertices
+        G = [[], [7,8], [5,4], [4,5,3], [],[],[7],[2,3],[2,3]]
+        # this is interesting : since DFS stores newly discovered neighbors 
+        # of a vertex on the stack, it visits the neighbors in inverse order
+        # as given in the adjacency list.
+        self.assertEqual(dfs_tree(G, 1),  [None, None, 8, 8, 3, 3, None, 1, 1])
 
     def test_find_cycle(self):
         L = [([], None),
@@ -649,13 +661,12 @@ t##
     def test_eulerian_tour_directed(self):
         graphs = [random_eulerien_graph(50),
                   [[1, 2], [0, 2, 3, 4], [0, 1, 3, 4], [1, 2], [1, 2]],
-                  [[1, 2], [0, 2, 3, 4], [0, 1, 3, 4], [1, 2, 4], [1, 2, 3]],
-                  [[1, 3, 4], [0, 2], [1], [0, 4], [0, 3]],
+                  [[1, 2], [0, 2, 3, 4], [0, 1, 3, 4], [1, 2], [1, 2]],
+                  [[1, 3, 4], [0, 2], [1, 4], [0, 4], [0, 2, 3]],
                   [[1, 2], [0, 2, 3, 4], [0, 1], [1, 4],
                    [1, 3, 5, 6], [4, 6], [4, 5]],
                   [[1], [0]],
-                  [[1, 2], [0, 2], [0, 1]],
-                  [[1, 2], [0, 2], [3], [1]]
+                  [[1, 2], [0, 2], [0, 1]]
                   ]
         directed_graphs = [
             [[1, 2], [0, 3], [0, 3], [1, 2, 4], [3]],
@@ -663,11 +674,26 @@ t##
         ]
         for g in graphs:
             # for g in [graph, listlist_and_matrix_to_listdict(graph)]:
-            for f in [eulerian_tour_directed, eulerian_tour_undirected]:
-                self.assertTrue(is_eulerian_tour(g, f(g)))
+            self.assertTrue(is_eulerian_tour_directed(g, eulerian_tour_directed(g)))
+            self.assertTrue(is_eulerian_tour_undirected(g, eulerian_tour_undirected(g)))
         for g in directed_graphs:
-            self.assertTrue(is_eulerian_tour(g, eulerian_tour_directed(g)))
+            self.assertTrue(is_eulerian_tour_directed(g, eulerian_tour_directed(g)))
 
+    def test_is_eulerian_tour_undirected(self):
+        G = [[2,3],[2,3],[0,1,3,4],[0,1,2,4],[2,3]]
+        self.assertTrue(is_eulerian_tour_undirected(G,  [0,2,4,3,1,2,3,0]))
+        self.assertFalse(is_eulerian_tour_undirected(G, [0,2,4,3,1,2,3]))
+        self.assertFalse(is_eulerian_tour_undirected(G, [0,2,4,3,1,2,3,0,2]))
+        self.assertFalse(is_eulerian_tour_undirected(G, [0,1,4,3,1,2,3,0]))
+        H = [[1], [0, 2], [3], [1]]
+        self.assertTrue(is_eulerian_tour_directed(H, [0,1,2,3,1,0]))
+        self.assertFalse(is_eulerian_tour_directed(H, [0,1,2,3,1,2]))
+        self.assertFalse(is_eulerian_tour_directed(H, [0,1,2,3,1,0,1]))
+        self.assertFalse(is_eulerian_tour_directed(H, [0,1,2,3,1]))
+        self.assertFalse(is_eulerian_tour_directed(H, [0,2,3,1,2,0]))
+        
+
+        
     def test_fast_exponentation(self):
         for f in [fast_exponentiation, fast_exponentiation2]:
             self.assertEqual(f(1, 23, 1000), 1)
@@ -684,6 +710,15 @@ t##
         F.add(3, -8)
         self.assertEqual(bin(F.intervalSum(2, 6)), "0b1110100")
         self.assertEqual(bin(F.intervalSum(1, 4)), "0b10110")
+        tab = [0] * 10
+        F = Fenwick(tab)
+        for a,b,c in [[0, 3, -2], [1, 9 , 5], [4, 4, -10], [6, 5, 100]]:
+            F.intervalAdd(a, b, c)
+            for j in range(a, b + 1):
+                tab[j] += c 
+        for i, ti in enumerate(tab):
+            self.assertEqual(ti, F.get(i))
+
 
     def test_fenwick_min(self):
         F = FenwickMin(1)
@@ -713,6 +748,9 @@ t##
             self.assertFalse(FW(weight))
             self.assertEqual(
                 weight, [[3, -1, -2, 0], [4, 3, 2, 4], [5, 1, 3, 2], [3, -1, 1, 3]])
+            # has a negative cycle
+            weight = [[_, 9, _], [_, _, 5], [_, -6, _]]
+            self.assertTrue(FW(weight))
 
     def test_gale_shapley(self):
         self.assertEqual(gale_shapley([[0, 1, 2], [2, 1, 0], [0, 2, 1]], [
@@ -1086,6 +1124,7 @@ t##
         self.assertEqual(manacher("baa"), (1, 3))
         self.assertEqual(manacher("aab"), (0, 2))
         self.assertEqual(manacher("babcbabcbaccba"), (1, 10))
+        self.assertEqual(manacher(""), (0, 0))
 
     def test_matrix_mult(self):
         dim = [(30, 35), (35, 15), (15, 5), (5, 10), (10, 20), (20, 25)]
@@ -1394,6 +1433,9 @@ t##
             else:
                 if q1:
                     self.assertEqual(q1.popleft(), q2.pop())
+        L2 = str(q2)
+        L1 = str(list(i for i in q1)) 
+        self.assertEqual(L1, L2)
 
     def test_pick(self):
         self.assertEqual(area([(1, 0), (2, 3), (2, 4), (0, 3)]), 4)
@@ -1430,7 +1472,7 @@ t##
         self.assertEqual(powergraph(G1, 2), G2)
 
     def test_predictive_text(self):
-        dico = [("another", 5), ("contest", 6), ("follow", 3),
+        dico = [("another", 5), ("any", 1), ("contest", 7), ("follow", 3),
                 ("give", 13), ("integer", 6), ("new", 14), ("program", 4)]
         prop = predictive_text(dico)
         A = ""

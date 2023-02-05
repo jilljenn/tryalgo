@@ -106,19 +106,50 @@ def random_eulerien_graph(n):
     return graphe
 
 
-def is_eulerian_tour(graph, tour):
-    """Eulerian tour on an undirected graph
+def is_eulerian_tour_directed(graph, tour):
+    """Test if a given tour is Eulerian for a directed graph
 
     :param graph: directed graph in listlist format, cannot be listdict
-    :param tour: vertex list
-    :returns: test if tour is eulerian
+    :param tour: vertex list 
+    :returns: True if tour is eulerian
     :complexity: `O(|V|*|E|)` under the assumption that set membership is in constant time
     """
-    m = len(tour)-1
-    arcs = set((tour[i], tour[i+1]) for i in range(m))
-    if len(arcs) != m:
+    m = len(tour) - 1                                   # nb of arcs in the tour
+    arcs = set((tour[i], tour[i+1]) for i in range(m))  # all arcs in the tour
+    required = sum(len(Gu) for Gu in graph)             # nb of arcs in graph
+    if (m != len(arcs) or           # no arc is visited twice
+        m != required):             # there are not more arcs in tour than in graph
         return False
-    for (u, v) in arcs:
-        if v not in graph[u]:
-            return False
+    # implicitly check that every arc in tour exists in the graph
+    for u, Gu in enumerate(graph):  # loop over all arcs in the graph
+         for v in Gu:
+            if (u, v) not in arcs:  # check tour visits every arc
+                return False
+    return True
+
+def is_eulerian_tour_undirected(graph, tour):
+    """Test if a given tour is Eulerian for an undirected graph
+
+    :param graph: undirected graph in listlist format, cannot be listdict
+    :param tour: vertex list 
+    :returns: True if tour is eulerian
+    :complexity: `O(|V|*|E|)` under the assumption that set membership is in constant time
+    """
+    def normalize(u, v):            # normalize so (3,13) or (13,3) are the same edge
+        return (min(u, v), max(u, v))
+
+    m = len(tour) - 1                                     # nb of edges in the tour
+    arcs = set(normalize(tour[i], tour[i+1]) for i in range(m))  # all edges in tour
+    if len(arcs) != m:          
+        return False
+    # check that tour contains only existing arcs (by counting)
+    required = sum(len(Gu) for Gu in graph) // 2          # nb of edges in graph
+    if (m != len(arcs) or               # no edge is visited twice
+        m != required):                 # there are not more edges in tour than in graph
+        return False
+    # implicitly check that every arc in tour exists in the graph
+    for u, Gu in enumerate(graph):      # loop over all edges in the graph
+         for v in Gu:
+            if normalize(u, v) not in arcs:    # check tour visits every edges
+                return False
     return True

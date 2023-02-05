@@ -34,7 +34,7 @@ def manacher(s):
     """
     assert set.isdisjoint({'$', '^', '#'}, s)  # Forbidden letters
     if s == "":
-        return (0, 1)
+        return (0, 0)           # returns indices of empty string
     t = "^#" + "#".join(s) + "#$"
     c = 1
     d = 1
