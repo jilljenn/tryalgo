@@ -6,9 +6,11 @@ Depth-first search - DFS
 jill-jênn vie et christoph durr - 2015-2019
 """
 
+from typing import List, Optional
+from . graph import Graph
 
 # snip{ dfs-recursive
-def dfs_recursive(graph, node, seen):
+def dfs_recursive(graph: Graph, node: int, seen: List[bool]) -> None:
     """DFS, detect connected component, recursive implementation
 
     :param graph: directed graph in listlist or listdict format
@@ -25,7 +27,7 @@ def dfs_recursive(graph, node, seen):
 
 
 # snip{ dfs-iterative
-def dfs_iterative(graph, start, seen):
+def dfs_iterative_old(graph, start, seen):
     """DFS, detect connected component, iterative implementation
 
     :param graph: directed graph in listlist or listdict format
@@ -44,9 +46,29 @@ def dfs_iterative(graph, start, seen):
                 to_visit.append(neighbor)
 # snip}
 
+# snip{ dfs-iterative
+def dfs_iterative(graph: Graph, start: int, seen: List[int]) -> None:
+    """DFS, detect connected component, iterative implementation
+
+    :param graph: directed graph in listlist or listdict format
+    :param int node: to start graph exploration
+    :param boolean-table seen: will be set true for the connected component
+          containing node.
+    :complexity: `O(|V|+|E|)`
+    """
+    to_visit = [start]
+    while to_visit:
+        node = to_visit.pop()
+        if not seen[node]:
+            for neighbor in reversed(graph[node]):
+                if not seen[neighbor]:
+                    to_visit.append(neighbor)
+            seen[node] = True
+# snip}
+
 
 # snip{ dfs-tree
-def dfs_tree(graph, start=0):
+def dfs_tree(graph: Graph, start: int=0) -> List[int]:
     """DFS, build DFS tree in unweighted graph
 
        :param graph: directed graph in listlist or listdict format
@@ -66,7 +88,7 @@ def dfs_tree(graph, start=0):
 # snip}
 
 
-def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
+def dfs_grid_recursive(grid: List[List[str]], i: int, j: int, mark: str='X', free: str='.') -> None:
     """DFS on a grid, mark connected component, recursive version
 
     :param grid: matrix, 4-neighborhood
@@ -86,7 +108,7 @@ def dfs_grid_recursive(grid, i, j, mark='X', free='.'):
 
 
 # snip{ dfs-grid
-def dfs_grid(grid, i, j, mark='X', free='.'):
+def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
     """DFS on a grid, mark connected component, iterative version
 
     :param grid: matrix, 4-neighborhood
@@ -111,7 +133,7 @@ def dfs_grid(grid, i, j, mark='X', free='.'):
 
 
 # pylint: disable=too-many-nested-blocks, no-else-return
-def find_cycle(graph):
+def find_cycle(graph: Graph) -> Optional[List[int]]:
     """find a cycle in an undirected graph
 
     :param graph: undirected graph in listlist or listdict format

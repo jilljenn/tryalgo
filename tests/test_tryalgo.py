@@ -48,7 +48,7 @@ from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
 from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.gale_shapley import gale_shapley
 from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
-from tryalgo.graph import Graph
+from tryalgo.graph import Graph_named_vertices
 from tryalgo.graph01 import dist01
 from tryalgo.horn_sat import horn_sat
 from tryalgo.huffman import huffman
@@ -774,7 +774,7 @@ t##
                                       x, [1, 1, 3]), GJ_ZERO_SOLUTIONS)
 
     def test_graph(self):
-        G = Graph()
+        G = Graph_named_vertices()
         G.add_node("A")
         G.add_node("B")
         G.add_node("C")

@@ -8,6 +8,8 @@ jill-jênn vie et christoph dürr - 2015-2019
 # pylint: disable=bad-whitespace, line-too-long, missing-docstring
 # pylint: disable=dangerous-default-value, too-many-locals, too-many-branches
 
+# from __future__ import annotations
+from typing import List, Dict, Type, Union
 
 def readval(file, ty):
     """Reads a line from file with an item of type ty
@@ -353,7 +355,7 @@ def make_flow_labels(graph, flow, capac):
 
 # pylint: disable=arguments-out-of-order
 # snip{ class_graph
-class Graph:
+class Graph_named_vertices:
     def __init__(self):
         self.neighbors = []
         self.name2node = {}
@@ -384,3 +386,5 @@ class Graph:
         self.neighbors[u].append(v)
         self.weight[u][v] = weight_uv
 # snip}
+
+Graph = Union[List[List[int]], List[Dict[int, int]], Graph_named_vertices]
