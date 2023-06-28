@@ -9,7 +9,7 @@ jill-jênn vie et christoph dürr - 2015-2019
 # pylint: disable=dangerous-default-value, too-many-locals, too-many-branches
 
 # from __future__ import annotations
-from typing import List, Dict, Type, Union
+from typing import List, Dict, Union, Any
 
 def readval(file, ty):
     """Reads a line from file with an item of type ty
@@ -387,4 +387,4 @@ class Graph_named_vertices:
         self.weight[u][v] = weight_uv
 # snip}
 
-Graph = Union[List[List[int]], List[Dict[int, int]], Graph_named_vertices]
+Graph = Union[List[List[int]], List[Dict[int, Any]], Graph_named_vertices]
