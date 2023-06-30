@@ -27,7 +27,7 @@ def dfs_recursive(graph: Graph, node: int, seen: List[bool]) -> None:
 
 
 # snip{ dfs-iterative
-def dfs_iterative(graph: Graph, start: int, seen: List[int]) -> None:
+def dfs_iterative(graph: Graph, start: int, seen: List[bool]) -> None:
     """DFS, detect connected component, iterative implementation
 
     :param graph: directed graph in listlist or listdict format
@@ -46,7 +46,7 @@ def dfs_iterative(graph: Graph, start: int, seen: List[int]) -> None:
 
 
 # snip{ dfs-tree
-def dfs_tree(graph: Graph, start: int=0) -> List[int]:
+def dfs_tree(graph: Graph, start: int=0) -> List[Optional[int]]:
     """DFS, build DFS tree in unweighted graph
 
        :param graph: directed graph in listlist or listdict format
@@ -55,7 +55,7 @@ def dfs_tree(graph: Graph, start: int=0) -> List[int]:
        :complexity: `O(|V|+|E|)`
        """
     to_visit = [start]
-    prec = [None] * len(graph)
+    prec: List[Optional[int]] = [None] * len(graph)
     while to_visit:              # an empty queue equals False
         node = to_visit.pop()
         for neighbor in graph[node]:
@@ -111,7 +111,7 @@ def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
 
 
 # pylint: disable=too-many-nested-blocks, no-else-return
-def find_cycle(graph: Graph) -> Optional[List[int]]:
+def find_cycle(graph: Graph) -> Optional[List[Optional[int]]]:
     """find a cycle in an undirected graph
 
     :param graph: undirected graph in listlist or listdict format
@@ -119,7 +119,7 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
     :complexity: `O(|V|+|E|)`
     """
     n = len(graph)
-    prec = [None] * n  # ancestor marks for visited vertices
+    prec: List[Optional[int]] = [None] * n  # ancestor marks for visited vertices
     for u in range(n):
         if prec[u] is None:  # unvisited vertex
             S = [u]  # start new DFS

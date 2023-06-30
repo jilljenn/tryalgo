@@ -3,7 +3,8 @@ help::
 	@echo "make pylint       run pylint on Python source"
 
 tests::
-	python -m unittest 
+	python3 -m unittest 
+	mypy tryalgo/*.py
 
 pycodestyle::
 	-@find setup.py tryalgo -type f -name '*.py' | xargs pycodestyle
