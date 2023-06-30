@@ -27,26 +27,6 @@ def dfs_recursive(graph: Graph, node: int, seen: List[bool]) -> None:
 
 
 # snip{ dfs-iterative
-def dfs_iterative_old(graph, start, seen):
-    """DFS, detect connected component, iterative implementation
-
-    :param graph: directed graph in listlist or listdict format
-    :param int node: to start graph exploration
-    :param boolean-table seen: will be set true for the connected component
-          containing node.
-    :complexity: `O(|V|+|E|)`
-    """
-    seen[start] = True
-    to_visit = [start]
-    while to_visit:
-        node = to_visit.pop()
-        for neighbor in graph[node]:
-            if not seen[neighbor]:
-                seen[neighbor] = True
-                to_visit.append(neighbor)
-# snip}
-
-# snip{ dfs-iterative
 def dfs_iterative(graph: Graph, start: int, seen: List[int]) -> None:
     """DFS, detect connected component, iterative implementation
 
@@ -58,12 +38,10 @@ def dfs_iterative(graph: Graph, start: int, seen: List[int]) -> None:
     """
     to_visit = [start]
     while to_visit:
-        node = to_visit.pop()
-        if not seen[node]:
-            for neighbor in reversed(graph[node]):
-                if not seen[neighbor]:
-                    to_visit.append(neighbor)
-            seen[node] = True
+        node = to_visit.pop()   # exploring in top-down order of stack
+        if not seen[node]:      # hence the use of reversed
+            to_visit.extend(reversed(graph[node]))
+            seen[node] = True   # vertex can be multiple times on stack
 # snip}
 
 
