@@ -138,3 +138,31 @@ def find_cycle(graph: Graph) -> Optional[List[Optional[int]]]:
                             prec[v] = u  # v is new vertex in tree
                             S.append(v)
     return None
+
+
+def is_bipartite(G: Graph) -> bool:
+    """ Checks whether a given graph is bipartite.
+    
+    This is done by a graph traversal, assigning alternating colors.
+    Once an edge with identicial endpoint colors is detected
+    we know graph is not bipartite.
+
+    :param G: graph
+    :returns: True if G is bipartite
+    :complexity: linear
+    """
+    n = len(G)
+    color = [0] * n     # 0=not visited, +1,-1=colors
+    for u in range(n):  # for each connected component
+        if color[u] == 0:
+            Q = [u]     # initiate a graph traversal
+            color[u] = 1
+            while Q:    
+                v = Q.pop()
+                for w in G[v]:
+                    if color[w] == color[v]:
+                        return False    # odd cycle detected
+                    if color[w] == 0:
+                        color[w] = -color[v]    # opposite color
+                        Q.append(w)
+    return True

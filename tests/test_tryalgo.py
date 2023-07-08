@@ -34,7 +34,7 @@ from tryalgo.closest_points import closest_points
 from tryalgo.closest_values import closest_values
 from tryalgo.convex_hull import left_turn, andrew
 from tryalgo.dancing_links import dancing_links
-from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive, dfs_tree
+from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive, dfs_tree, is_bipartite
 from tryalgo.dijkstra import dijkstra_update_heap, dijkstra
 from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
@@ -691,8 +691,11 @@ t##
         self.assertFalse(is_eulerian_tour_directed(H, [0,1,2,3,1,0,1]))
         self.assertFalse(is_eulerian_tour_directed(H, [0,1,2,3,1]))
         self.assertFalse(is_eulerian_tour_directed(H, [0,2,3,1,2,0]))
-        
 
+    def test_is_bipartite(self):
+        self.assertTrue(is_bipartite([]))                               # empty graph
+        self.assertTrue(is_bipartite([[1, 3], [0, 2], [1, 3], [0, 2]])) # C4
+        self.assertFalse(is_bipartite([[1, 2], [0, 2], [0, 1]]))        # C3
         
     def test_fast_exponentation(self):
         for f in [fast_exponentiation, fast_exponentiation2]:

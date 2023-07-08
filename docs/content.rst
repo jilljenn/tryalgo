@@ -78,7 +78,7 @@ We use several representations for trees.  A tree can be represented as an adjac
 
 In `graph <tryalgo/tryalgo.html#module-tryalgo.graph>`__ we provide several helper functions to read a graph from a file, or to write it into a file in the `DOT format <http://www.graphviz.org/>`_.  This module contains also functions to convert between different tree representations and between graph representations.
 
-Important operations on graphs are explorations along the edges, for examples to detect connected components, or shortest paths.  The depth first search is implemented in `dfs <tryalgo/tryalgo.html#module-tryalgo.dfs>`__, and illustrated in its iterative and recursive form, as well as the special case of exploring grids.  The breadth-first search is implemented in `bfs <tryalgo/tryalgo.html#module-tryalgo.bfs>`__.
+Important operations on graphs are explorations along the edges, for examples to detect connected components, or shortest paths.  The depth first search is implemented in `dfs <tryalgo/tryalgo.html#module-tryalgo.dfs>`__, and illustrated in its iterative and recursive form, as well as the special case of exploring grids.  The breadth-first search is implemented in `bfs <tryalgo/tryalgo.html#module-tryalgo.bfs>`__. Such a graph exploration can be used to check if a given graph `is_bipartite <tryalgo/tryalgo.html#module-tryalgo.is_bipartite>`__.
 
 The problem of detecting the connected components in a graph is best solved using Kruskal's algorithm, see `kruskal <tryalgo/tryalgo.html#module-tryalgo.kruskal>`__.
 
