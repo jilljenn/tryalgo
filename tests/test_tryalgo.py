@@ -25,7 +25,7 @@ from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
 from tryalgo.bellman_ford import bellman_ford, bellman_ford2
 from tryalgo.knapsack import knapsack, knapsack2
-from tryalgo.bfs import bfs
+from tryalgo.bfs import bfs, bfs_implicit
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, optimized_binary_search_lower, ternary_search
 from tryalgo.bipartite_matching import max_bipartite_matching, max_bipartite_matching2
@@ -235,6 +235,32 @@ class TestTryalgo(unittest.TestCase):
             # V = range(len(graph))
             for g in [graph, listlist_and_matrix_to_listdict(graph)]:
                 self.assertEqual(bfs(g, source), answer)
+
+    def test_bfs_implicit(self):
+        # from cavalier - https://moodle.caseine.org/enrol/index.php?id=89
+
+        def normalize(c):   # c0,c1 white, and c2,c3 black jumper
+            if len(set(c)) < 4:
+                return None         
+            c0, c1, c2, c3 = c 
+            return (min(c0,c1), max(c0,c1), min(c2,c3), max(c2, c3))
+
+        def graph(c):
+            """iterates over all possible movements"""
+            for i in range(4):
+                for delta in (-3, +3):
+                    d = normalize(c[:i] + ((c[i] + delta) % 8, ) + c[i+1:])
+                    if d is not None:
+                        yield d
+
+        L = bfs_implicit(graph, (0, 2, 4, 6), (4, 6, 0, 2))
+        self.assertEqual(L, [(0, 2, 4, 6), (2, 5, 4, 6), (5, 7, 4, 6), (2, 7, 4, 6), 
+                             (2, 7, 1, 6), (2, 4, 1, 6), (4, 7, 1, 6), (4, 7, 1, 3), 
+                             (4, 7, 3, 6), (1, 7, 3, 6), (1, 4, 3, 6), (1, 4, 0, 6), 
+                             (1, 4, 5, 6), (1, 4, 2, 6), (1, 4, 2, 3), (4, 6, 2, 3), 
+                             (4, 6, 0, 2)])
+        L = bfs_implicit(graph, (0, 2, 4, 6), (4, 6, 0, 1))
+        self.assertIsNone(L)
 
     def test_cut_nodes_edges(self):
         G0 = [[1, 2, 5],
