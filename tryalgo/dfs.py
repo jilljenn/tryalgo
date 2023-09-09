@@ -111,7 +111,7 @@ def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
 
 
 # pylint: disable=too-many-nested-blocks, no-else-return
-def find_cycle(graph: Graph) -> Optional[List[Optional[int]]]:
+def find_cycle(graph: Graph) -> Optional[List[int]]:
     """find a cycle in an undirected graph
 
     :param graph: undirected graph in listlist or listdict format
@@ -119,18 +119,17 @@ def find_cycle(graph: Graph) -> Optional[List[Optional[int]]]:
     :complexity: `O(|V|+|E|)`
     """
     n = len(graph)
-    prec: List[Optional[int]] = [None] * n  # ancestor marks for visited vertices
-    for u in range(n):
-        if prec[u] is None:  # unvisited vertex
-            S = [u]  # start new DFS
-            prec[u] = u  # mark root (not necessary for this algorithm)
+    prec: List[int] = [-1] * n  # ancestor marks for visited vertices
+    for start in range(n):
+        if prec[start] == -1:  # unvisited vertex
+            S: List[int] = [start]  # start new DFS
             while S:
                 u = S.pop()
                 for v in graph[u]:  # for all neighbors
                     if v != prec[u]:  # except arcs to father in DFS tree
-                        if prec[v] is not None:
-                            cycle = [v, u]  # cycle found, (u,v) back edge
-                            while u not in (prec[v], prec[u]):  # directed
+                        if prec[v] != -1:
+                            cycle = [v, u]  # cycle found, (u, v) back edge
+                            while u != prec[v]:  #not in [prec[v], prec[u]]:  # directed
                                 u = prec[u]  # climb up the tree
                                 cycle.append(u)
                             return cycle

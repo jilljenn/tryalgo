@@ -48,7 +48,7 @@ from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
 from tryalgo.ford_fulkerson import ford_fulkerson
 from tryalgo.gale_shapley import gale_shapley
 from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
-from tryalgo.graph import Graph_named_vertices
+from tryalgo.graph import GraphNamedVertices
 from tryalgo.graph01 import dist01
 from tryalgo.horn_sat import horn_sat
 from tryalgo.huffman import huffman
@@ -514,17 +514,16 @@ XXXXX#...#
              ([[], []], None),
              ([[1], [0]], None),
              ([[], [2], [1]], None),
-             ([[1, 2], [0, 2], [0, 1]], {0, 1, 2}),
-             ([[1, 2], [0], [0], [2, 4], [3]], [2, 3]),
+             ([[1, 2], [0, 2], [0, 1]], [1, 2, 0]),
+             ([[1, 2], [0], [0, 3], [2, 4], [3]], None),
              ([[1, 2], [0], [0]], None),
-             ([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]], [4, 5, 3])]
+             ([[1, 2], [0], [0], [4, 5], [3, 5], [3, 4]], [4, 5, 3]),
+             ([[1], [0, 2, 3], [1, 3], [1]], [3, 2, 1]),
+             ([[1], [0, 2], [1, 3, 7], [2, 4, 5], [3], [3, 6, 7], [5], [2, 5]], [3, 5, 7, 2])]
         for graph, result in L:
             for g in [graph, listlist_and_matrix_to_listdict(graph)]:
                 answer = find_cycle(g)
-                if isinstance(result, set):
-                    self.assertEqual(set(answer), result)
-                else:
-                    self.assertEqual(answer, result)
+                self.assertEqual(answer, result)
 
     def test_dijkstra(self):
         _ = None
@@ -692,8 +691,7 @@ t##
                   [[1, 2], [0, 2, 3, 4], [0, 1], [1, 4],
                    [1, 3, 5, 6], [4, 6], [4, 5]],
                   [[1], [0]],
-                  [[1, 2], [0, 2], [0, 1]]
-                  ]
+                  [[1, 2], [0, 2], [0, 1]]]
         directed_graphs = [
             [[1, 2], [0, 3], [0, 3], [1, 2, 4], [3]],
             [[1], [2], [3], [4, 5], [3, 6], [4], [0]]
@@ -803,7 +801,7 @@ t##
                                       x, [1, 1, 3]), GJ_ZERO_SOLUTIONS)
 
     def test_graph(self):
-        G = Graph_named_vertices()
+        G = GraphNamedVertices()
         G.add_node("A")
         G.add_node("B")
         G.add_node("C")

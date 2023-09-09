@@ -355,7 +355,7 @@ def make_flow_labels(graph, flow, capac):
 
 # pylint: disable=arguments-out-of-order
 # snip{ class_graph
-class Graph_named_vertices:
+class GraphNamedVertices:
     def __init__(self):
         self.neighbors = []
         self.name2node = {}
@@ -387,4 +387,4 @@ class Graph_named_vertices:
         self.weight[u][v] = weight_uv
 # snip}
 
-Graph = Union[List[List[int]], List[Dict[int, Any]], Graph_named_vertices]
+Graph = Union[List[List[int]], List[Dict[int, Any]], GraphNamedVertices]

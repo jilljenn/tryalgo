@@ -97,8 +97,14 @@ def random_eulerien_graph(n):
     """
     graphe = [[] for _ in range(n)]
     for v in range(n - 1):
+        if len(graphe[v]) % 2 == 1:
+            nb_min_neighbors = 1
+        elif n - v == 2:
+            nb_min_neighbors = 0
+        else:
+            nb_min_neighbors = 2
         noeuds = random.sample(range(v + 1, n), random.choice(
-            range(0 if len(graphe[v]) % 2 == 0 else 1, (n - v), 2)))
+            range(nb_min_neighbors, (n - v), 2)))
         graphe[v].extend(noeuds)
         for w in graphe[v]:
             if w > v:
