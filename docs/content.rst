@@ -71,7 +71,7 @@ Some graph libraries, like `PADS <https://www.ics.uci.edu/~eppstein/PADS/>`_, ch
 `matrix_to_listlist  <tryalgo/tryalgo.html#module-tryalgo_graph>`__,
 `listlist_and_matrix_to_listdict  <tryalgo/tryalgo.html#module-tryalgo_graph>`__,
 `listdict_to_listlist_and_matrix  <tryalgo/tryalgo.html#module-tryalgo_graph>`__,
-`dictdict_to_listdict  <tryalgo/tryalgo.html#module-tryalgo_graph>`__.
+`dictdict_to_listdict  <tryalgo/tryalgo.html#module-tryalgo_graph>`__. In addition we provide a class `GraphNamedVertices`, which allows vertices to be hashable objects like strings or tuples.
 
 
 We use several representations for trees.  A tree can be represented as an adjacency table, as a graph.  In case the tree is rooted, it can be represented in form of a node structure that contains references to descendant nodes, or in form of an antecedent table, storing at index i the antecedent vertex of the i-th vertex in the tree, using `None` for the root.

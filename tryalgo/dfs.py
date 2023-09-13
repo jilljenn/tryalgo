@@ -119,17 +119,19 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
     :complexity: `O(|V|+|E|)`
     """
     n = len(graph)
-    prec: List[int] = [-1] * n  # ancestor marks for visited vertices
-    for start in range(n):
-        if prec[start] == -1:  # unvisited vertex
-            S: List[int] = [start]  # start new DFS
+    prec: List[Optional[int]] = [None] * n  # ancestor marks for visited vertices
+    for start in range(n):         # for each connected component
+        if prec[start] is None:    # unvisited vertex
+            S: List[int] = [start]            # start new DFS
+            prec[start] = start       # mark root (not necessary for this algorithm)
             while S:
                 u = S.pop()
                 for v in graph[u]:  # for all neighbors
                     if v != prec[u]:  # except arcs to father in DFS tree
-                        if prec[v] != -1:
-                            cycle = [v, u]  # cycle found, (u, v) back edge
-                            while u != prec[v]:  #not in [prec[v], prec[u]]:  # directed
+                        if prec[v] is not None: # v was already visited
+                            cycle = [v, u]  # cycle found, (u,v) back edge
+                            while u not in (prec[v], prec[u]):  # directed
+                                assert u is not None
                                 u = prec[u]  # climb up the tree
                                 cycle.append(u)
                             return cycle
