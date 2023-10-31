@@ -369,11 +369,11 @@ class GraphNamedVertices:
         return self.neighbors[v]
 
     def add_node(self, name):
-        assert name not in self.name2node
-        self.name2node[name] = len(self.name2node)
-        self.node2name.append(name)
-        self.neighbors.append([])
-        self.weight.append({})
+        if name not in self.name2node:
+            self.name2node[name] = len(self.name2node)
+            self.node2name.append(name)
+            self.neighbors.append([])
+            self.weight.append({})
         return self.name2node[name]
 
     def add_edge(self, name_u, name_v, weight_uv=None):
@@ -381,10 +381,15 @@ class GraphNamedVertices:
         self.add_arc(name_v, name_u, weight_uv)
 
     def add_arc(self, name_u, name_v, weight_uv=None):
-        u = self.name2node[name_u]
-        v = self.name2node[name_v]
+        """Adds an arc between two given nodes, eventually with a given arc weight. 
+        In case of multiple arcs between the same pairs of nodes, only the lightest one is kept.
+        Adds the given nodes, if they are not already present.
+        """
+        u = self.add_node(name_u)
+        v = self.add_node(name_v)
         self.neighbors[u].append(v)
-        self.weight[u][v] = weight_uv
+        if v not in self.weight[u] or weight_uv < self.weight[u][v]:
+            self.weight[u][v] = weight_uv
 # snip}
 
 Graph = Union[List[List[int]], List[Dict[int, Any]], GraphNamedVertices]

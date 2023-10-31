@@ -1,6 +1,13 @@
 
 # Changelog
 
+## 1.5
+
+- Corrected a bug in GraphNamedVertices. Now only the minimum weight edge is kept among multiple edges with same endpoints.
+- Added algorithm a_star to compute shortest paths
+- Added hamiltonian_cycle to compute a Hamiltonian cycle
+- Started to add types to some function parameters
+
 ## 1.4
 
 - Move to GitHub Actions and drop Python 2.7 support completely

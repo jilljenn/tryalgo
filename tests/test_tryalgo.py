@@ -20,6 +20,7 @@ from tryalgo.graph import write_graph, extract_path, make_flow_labels
 from tryalgo.graph import tree_adj_to_prec, tree_prec_to_adj
 from tryalgo.graph import matrix_to_listlist, listlist_and_matrix_to_listdict
 from tryalgo.graph import listdict_to_listlist_and_matrix, dictdict_to_listdict
+from tryalgo.a_star import a_star
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
@@ -50,6 +51,7 @@ from tryalgo.gale_shapley import gale_shapley
 from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
 from tryalgo.graph import GraphNamedVertices
 from tryalgo.graph01 import dist01
+from tryalgo.hamiltonian_cycle import hamiltonian_cycle
 from tryalgo.horn_sat import horn_sat
 from tryalgo.huffman import huffman
 from tryalgo.interval_tree import interval_tree, intervals_containing
@@ -109,6 +111,73 @@ class TestTryalgo(unittest.TestCase):
 
     def unorder(self, L):
         return sorted(sorted(group) for group in L)
+    
+    def test_a_star(self):
+        """tests A* to compute the minimum number of swaps in a 3*3 grid to
+        transform one configuration into another one.
+        Has been tested here : [Swap Game](https://cses.fi//problemset/task/1670)
+        """
+        # tous les mouvements possibles
+        permutations = [
+            (1, 0, 2,   # vertical adjacent 
+            3, 4, 5,
+            6, 7, 8),
+            (0, 2, 1,
+            3, 4, 5,
+            6, 7, 8),
+            (0, 1, 2,
+            4, 3, 5,
+            6, 7, 8),
+            (0, 1, 2,
+            3, 5, 4,
+            6, 7, 8),
+            (0, 1, 2,
+            3, 4, 5,
+            7, 6, 8),
+            (0, 1, 2,
+            3, 4, 5,
+            6, 8, 7),
+            (3, 1, 2,   # horizontal adjacent
+            0, 4, 5,
+            6, 7, 8),
+            (0, 4, 2,
+            3, 1, 5,
+            6, 7, 8),
+            (0, 1, 5,
+            3, 4, 2,
+            6, 7, 8),
+            (0, 1, 2,
+            6, 4, 5,
+            3, 7, 8),
+            (0, 1, 2,
+            3, 7, 5,
+            6, 4, 8),
+            (0, 1, 2,
+            3, 4, 8,
+            6, 7, 5)
+        ]
+
+        # retourne toutes les grilles atteignables en une permutation
+        def swaps(start):
+            for p in permutations:
+                yield tuple(start[i] for i in p)
+
+        # borne inférieure sur le nombre d'échange nécessaire pour atteindre la cible
+        def distance_lb(M):
+            retval = 0
+            for i, j in enumerate(M):
+                retval += abs((i%3) - (j%3)) + abs((i//3) - (j//3))
+            return retval // 2
+        
+        a = (0, 1, 2, 3, 4, 5, 6, 7, 8)
+        b = (1, 0, 2, 3, 4, 5, 6, 7, 8)
+        c = (7, 8, 4, 5, 1, 6, 0, 3, 2)
+        d = (7, 7, 7, 7, 7, 7, 7, 7, 7)
+
+        self.assertEqual(a_star(swaps, a, distance_lb), 0)
+        self.assertEqual(a_star(swaps, b, distance_lb), 1)
+        self.assertEqual(a_star(swaps, c, distance_lb), 11)
+        self.assertEqual(a_star(swaps, d, distance_lb), -1)
 
     def test_anagrams(self):
         L = [(set("le chien marche vers sa niche et trouve une "
@@ -815,6 +884,15 @@ t##
         self.assertEqual(G.weight, [{1: 4, 2: 1}, {0: 4, 2: 0}, {1: -2}])
         self.assertEqual(len(G), 3)
         self.assertEqual(G[0], [1, 2])
+        G = GraphNamedVertices()
+        G.add_arc("a", "b", 2)
+        a = G.add_node("a")
+        b = G.add_node("b")
+        self.assertEqual(G.weight[a][b], 2)
+        G.add_arc("a", "b", 3)
+        self.assertEqual(G.weight[a][b], 2)
+        G.add_arc("a", "b", 1)
+        self.assertEqual(G.weight[a][b], 1)
 
     def test_dist01(self):
         _ = None
@@ -858,6 +936,13 @@ t##
                     val = sum(weight[path[i]][path[i + 1]]
                               for i in range(len(path) - 1))
                     self.assertEqual(dist[target], val)
+
+    def test_hamiltonian_cycle(self):
+        # the code was already tested at UVA:10496 - Collecting Beepers
+        weight = [[0, 5, 8, 6, 3], [5, 0, 5, 1, 8], [8, 5, 0, 4, 11], [6, 1, 4, 0, 9], [3, 8, 11, 9, 0]]
+        self.assertEqual(hamiltonian_cycle(weight), 24)
+        weight = [[0, 2], [10, 0]]
+        self.assertEqual(hamiltonian_cycle(weight), 12)        
 
     def test_horn_sat(self):
         F1 = [(1, []), (1, []), (None, [2])]

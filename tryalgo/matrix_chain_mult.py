@@ -16,7 +16,7 @@ def matrix_mult_opt_order(M):
     :returns: matrices opt, arg, such that opt[i][j] is the optimal number of
               operations to compute M[i] * ... * M[j] when done in the order
               (M[i] * ... * M[k]) * (M[k + 1] * ... * M[j]) for k = arg[i][j]
-    :complexity: :math:`O(n^2)`
+    :complexity: :math:`O(n^3)`
     """
     n = len(M)
     r = [len(Mi) for Mi in M]
