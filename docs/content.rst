@@ -102,7 +102,7 @@ shortest cycle              undirected :math:`O(|V|\cdot|E|)`  breath-first sear
 minimum weight cycle        directed   :math:`O(|V|\cdot |E|)` `Bellman-Ford <https://en.wikipedia.org/wiki/Bellman%E2%80%93Ford_algorithm>`_ `bellman_ford <tryalgo/tryalgo.html#module-tryalgo_bellman_ford>`__
 minimum mean cycle          directed   :math:`O(|V|\cdot |E|)` `Karp <http://www.sciencedirect.com/science/article/pii/0012365X78900110>`_    `min_mean_cycle <tryalgo/tryalgo.html#module-tryalgo_min_mean_cycle>`__
 Eulerian cycle              both       :math:`O(|V|+|E|)`      `Greedy <https://en.wikipedia.org/wiki/Eulerian_path>`_                        `eulerian_tour <tryalgo/tryalgo.html#module-tryalgo_eulerian_tour>`__
-Hamiltonian cycle           complete   :math:`O(n^2 2^n)`      `Held-Karp https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm`          `hamiltonian_cycle <tryalgo/tryalgo.html#module-tryalgo_hamiltonian_cycle>`__
+Hamiltonian cycle           complete   :math:`O(n^2 2^n)`      `Held-Karp <https://en.wikipedia.org/wiki/Held%E2%80%93Karp_algorithm>`_       `hamiltonian_cycle <tryalgo/tryalgo.html#module-tryalgo_hamiltonian_cycle>`__
 Iterated function cycle     outdeg=1   :math:`O(|V|)`          `Floyd's tortoise and hare <https://en.wikipedia.org/wiki/Cycle_detection>`_   `tortoise_hare <tryalgo/tryalgo.html#module-tryalgo_tortoise_hare>`__
 =========================== ========== ======================= ============================================================================== ===============
 
@@ -119,7 +119,7 @@ unweighted graph             :math:`O(|E|)`           `breadth-first search <htt
 grid                         :math:`O(|E|)`           breadth-first search adapted to the grid graph                                 `dist_grid <tryalgo/tryalgo.html#module-tryalgo_dist_grid>`__
 {0,1} weighted graph         :math:`O(|E|)`           `Dijkstra with a deque <http://goo.gl/w67Hs1>`_                                `graph01 <tryalgo/tryalgo.html#module-tryalgo_graph01>`__
 non negative weighted graph  :math:`O(|E| \log |V|)`  `Dijkstra <https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm>`_             `dijkstra <tryalgo/tryalgo.html#module-tryalgo_dijkstra>`__
-with lower bound on distance :math:`O(|E| \log |V|)`  `A* <https://en.wikipedia.org/wiki/A*_search_algorithm> `_                     `a_star <tryalgo/tryalgo.html#module-tryalgo_a_star>`__
+with lower bound on distance :math:`O(|E| \log |V|)`  `A* <https://en.wikipedia.org/wiki/A*_search_algorithm>`_                      `a_star <tryalgo/tryalgo.html#module-tryalgo_a_star>`__
 arbitrary weighted graph     :math:`O(|E| \cdot |V|)` `Bellman-Ford`_                                                                `bellman_ford <tryalgo/tryalgo.html#module-tryalgo_bellman_ford>`__
 all source destination pairs :math:`O(|V|^3)`         `Floyd-Warshall <https://en.wikipedia.org/wiki/Floyd-Warshall_algorithm>`_     `floyd_warshall <tryalgo/tryalgo.html#module-tryalgo_floyd_warshall>`__
 ============================ ======================== ============================================================================== ===============
