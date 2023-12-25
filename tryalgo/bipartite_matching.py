@@ -65,7 +65,6 @@ def max_bipartite_matching2(bigraph):
     match = [None] * nV
     visit = [-1] * nV
     for u in range(nU):
-        if bigraph[u]:              # if u is not an isolated vertex
-            augment2(u, bigraph, visit, u, match)
+        augment2(u, bigraph, visit, u, match)
     return match
 # snip}

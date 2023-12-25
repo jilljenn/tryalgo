@@ -7,6 +7,8 @@ import random
 import time
 from collections import deque
 
+random.seed(42)
+
 try:
     from cmath import isclose
 except ImportError:
@@ -430,12 +432,12 @@ class TestTryalgo(unittest.TestCase):
             [[0], [0, 1], [2, 3], [1], [0, 3]]))
         self.assertEqual([0, 1, 2, 4], max_bipartite_matching2(
             [[0], [0, 1], [2, 3], [1], [0, 3]]))
-        # n = 1000
-        # G = random_graph(n, 0.5)
-        # now = time.time()
-        # max_bipartite_matching(G)
-        # # self.assertEqual([None] + list(range(n-1)), max_bipartite_matching2(G))
-        # print("Time = ", time.time() - now)
+        n = 1000
+        G = random_graph(n, 0.9)
+        now = time.time()
+        max_bipartite_matching(G)
+        # self.assertEqual([None] + list(range(n-1)), max_bipartite_matching2(G))
+        print("Time = ", time.time() - now)
 
 
     def test_bipartite_vertex_cover(self):
