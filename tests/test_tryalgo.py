@@ -4,6 +4,7 @@
 # pylint: disable=missing-docstring
 import unittest
 import random
+import time
 from collections import deque
 
 try:
@@ -409,6 +410,14 @@ class TestTryalgo(unittest.TestCase):
                 self.assertEqual(optimized_binary_search_lower(T, 19), x0 - 1)
 
     def test_max_bipartite_matching(self):
+        def half_graph(n):
+            V = range(n)
+            return [[v for v in V if v > u] for u in V]
+        
+        def random_graph(n, p):
+            V = range(n)
+            return [[v for v in V if random.random() <= p] for u in V]
+        
         self.assertEqual([None], max_bipartite_matching([[]]))
         self.assertEqual([], max_bipartite_matching2([[]]))
         self.assertEqual([None, None], max_bipartite_matching([[], []]))
@@ -421,6 +430,13 @@ class TestTryalgo(unittest.TestCase):
             [[0], [0, 1], [2, 3], [1], [0, 3]]))
         self.assertEqual([0, 1, 2, 4], max_bipartite_matching2(
             [[0], [0, 1], [2, 3], [1], [0, 3]]))
+        # n = 1000
+        # G = random_graph(n, 0.5)
+        # now = time.time()
+        # max_bipartite_matching(G)
+        # # self.assertEqual([None] + list(range(n-1)), max_bipartite_matching2(G))
+        # print("Time = ", time.time() - now)
+
 
     def test_bipartite_vertex_cover(self):
         for n in range(
