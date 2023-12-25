@@ -39,6 +39,17 @@ def max_bipartite_matching(bigraph):
     return match
 # snip}
 
+def augment2(u, bigraph, visit, timestamp, match):
+    """augment """
+    for v in bigraph[u]:
+        if visit[v] < timestamp:
+            visit[v] = timestamp
+            if match[v] is None or augment2(match[v], bigraph,
+                                            visit, timestamp, match):
+                match[v] = u       # found an augmenting path
+                return True
+    return False
+
 
 def max_bipartite_matching2(bigraph):
     """Bipartie maximum matching
@@ -52,8 +63,9 @@ def max_bipartite_matching2(bigraph):
     nU = len(bigraph)
     nV = max(max(adjlist, default=-1) for adjlist in bigraph) + 1
     match = [None] * nV
+    visit = [-1] * nV
     for u in range(nU):
         if bigraph[u]:              # if u is not an isolated vertex
-            augment(u, bigraph, [False] * nV, match)
+            augment2(u, bigraph, visit, u, match)
     return match
 # snip}
