@@ -32,7 +32,7 @@ from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.bfs import bfs, bfs_implicit
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, optimized_binary_search_lower, ternary_search
-from tryalgo.bipartite_matching import max_bipartite_matching, max_bipartite_matching2
+from tryalgo.bipartite_matching import max_bipartite_matching
 from tryalgo.bipartite_vertex_cover import bipartite_vertex_cover
 from tryalgo.closest_points import closest_points
 from tryalgo.closest_values import closest_values
@@ -416,39 +416,32 @@ class TestTryalgo(unittest.TestCase):
             V = range(n)
             return [[v for v in V if v > u] for u in V]
         
-        def random_graph(n, p):
+        def random_graph(n, p): # only used for performance tests
             V = range(n)
             return [[v for v in V if random.random() <= p] for u in V]
         
-        self.assertEqual([None], max_bipartite_matching([[]]))
-        self.assertEqual([], max_bipartite_matching2([[]]))
-        self.assertEqual([None, None], max_bipartite_matching([[], []]))
-        self.assertEqual([], max_bipartite_matching2([[], []]))
-        self.assertEqual([0, None], max_bipartite_matching([[0], [0]]))
-        self.assertEqual([0], max_bipartite_matching2([[0], [0]]))
+        self.assertEqual([], max_bipartite_matching([[]]))
+        self.assertEqual([], max_bipartite_matching([[], []]))
+        self.assertEqual([0], max_bipartite_matching([[0], [0]]))
         self.assertEqual([0, 1], max_bipartite_matching([[0], [0, 1]]))
-        self.assertEqual([0, 1], max_bipartite_matching2([[0], [0, 1]]))
-        self.assertEqual([0, 1, 2, 4, None], max_bipartite_matching(
+        self.assertEqual([0, 1, 2, 4], max_bipartite_matching(
             [[0], [0, 1], [2, 3], [1], [0, 3]]))
-        self.assertEqual([0, 1, 2, 4], max_bipartite_matching2(
-            [[0], [0, 1], [2, 3], [1], [0, 3]]))
-        n = 1000
-        G = random_graph(n, 0.9)
-        now = time.time()
-        max_bipartite_matching(G)
-        # self.assertEqual([None] + list(range(n-1)), max_bipartite_matching2(G))
-        print("Time = ", time.time() - now)
+        n = 100
+        G = half_graph(n)
+        self.assertEqual([None]+list(range(n-1)), max_bipartite_matching(G))
 
 
     def test_bipartite_vertex_cover(self):
         for n in range(
-                1, 10):                   # try different random bipartite graphs
+                2, 10):           # try different random bipartite graphs
             V = range(n)
+            V1 = range(n - 1)     # all vertices, except n-1  
             bigraph = [[] for u in V]
+            bigraph[n - 1] = [n - 1]      # add edge (n-1,n-1) to make both sides equal size
             for i in range(100):
                 for _ in range(n * n // 8):
-                    u = random.choice(V)
-                    v = random.choice(V)
+                    u = random.choice(V1)
+                    v = random.choice(V1)
                     if v not in bigraph[u]:
                         bigraph[u].append(v)
                 matching = max_bipartite_matching(bigraph)

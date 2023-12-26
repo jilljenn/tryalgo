@@ -12,16 +12,16 @@ from tryalgo.graph import add_reverse_arcs
 
 # snip{
 # pylint: disable=too-many-arguments
-def _augment(graph, capacity, flow, val, u, target, visit):
+def _augment(graph, capacity, flow, val, u, target, visit, timestamp):
     """Find an augmenting path from u to target with value at most val"""
-    visit[u] = True
+    visit[u] = timestamp
     if u == target:
         return val
     for v in graph[u]:
         cuv = capacity[u][v]
-        if not visit[v] and cuv > flow[u][v]:  # reachable arc
+        if visit[v] < timestamp and cuv > flow[u][v]:  # reachable arc
             res = min(val, cuv - flow[u][v])
-            delta = _augment(graph, capacity, flow, res, v, target, visit)
+            delta = _augment(graph, capacity, flow, res, v, target, visit, timestamp)
             if delta > 0:
                 flow[u][v] += delta            # augment flow
                 flow[v][u] -= delta
@@ -44,7 +44,9 @@ def ford_fulkerson(graph, capacity, s, t):
     n = len(graph)
     flow = [[0] * n for _ in range(n)]
     INF = float('inf')
-    while _augment(graph, capacity, flow, INF, s, t, [False] * n) > 0:
-        pass                         # work already done in _augment
+    visit = [-1] * n
+    timestamp = 0
+    while _augment(graph, capacity, flow, INF, s, t, visit, timestamp) > 0:
+        timestamp += 1               
     return (flow, sum(flow[s]))      # flow network, amount of flow
 # snip}
