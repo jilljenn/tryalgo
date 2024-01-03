@@ -26,7 +26,7 @@ In `binary_search <tryalgo/tryalgo.html#module-tryalgo.binary_search>`__ we illu
 
 A very interesting data structure is called `PartitionRefinement <tryalgo/tryalgo.html#module-tryalgo.partition_refinement>`__.  It maintains a partition over the set {0,1,...,n-1}.  The main operation is called *refine(S)* which splits each part P of the current partition into elements that are in S and elements that are not in S.  The complexity of this operation is linear in the size of S.
 
-A similar data structure is called `PC_tree <tryalgo/tralgo.html#module-tryalgo.PC_tree>`__. It maintains a set of partions over a ground set, which all satisfy a list of constraints of the form: in the permutation all elements of a given set S need to be consecutive. Basically one can add a constraint, and check if there is still a valid permutation, and generate one of those valid permutations. This data structure needs a double linked list `Sequence <tryalgo/tralgo.html#module-tryalgo.Sequence>`__, which is adapted from a code by `David Eppstein <https://ics.uci.edu/~eppstein/>`__.
+A similar data structure is called `PC_tree <tryalgo/tryalgo.html#module-tryalgo.PC_tree>`__. It maintains a set of partions over a ground set, which all satisfy a list of constraints of the form: in the permutation all elements of a given set S need to be consecutive. Basically one can add a constraint, and check if there is still a valid permutation, and generate one of those valid permutations. This data structure needs a double linked list `Sequence <tryalgo/tryalgo.html#module-tryalgo.Sequence>`__, which is adapted from a code by `David Eppstein <https://ics.uci.edu/~eppstein/>`__.
 
 
 Strings
