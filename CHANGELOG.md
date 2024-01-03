@@ -1,6 +1,11 @@
 
 # Changelog
 
+## 1.6
+
+- Added the data structure PC_tree
+- Improved the implementations of maximum cardinality bipartite matching
+
 ## 1.5
 
 - Corrected a bug in GraphNamedVertices. Now only the minimum weight edge is kept among multiple edges with same endpoints.

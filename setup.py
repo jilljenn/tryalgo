@@ -12,7 +12,7 @@ long_description = (this_directory / "README.md").read_text()
 
 setup(
     name='tryalgo',
-    version='1.5.0',
+    version='1.6.0',
     description=(
         'Algorithms and data structures '
         'for preparing programming competitions'
