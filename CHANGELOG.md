@@ -1,6 +1,11 @@
 
 # Changelog
 
+## 1.6.1
+
+- corrected dyn_prog_Monge
+- added opt_bin_search_tree1, opt_bin_search_tree2 and decode_root_matrix_to_level
+
 ## 1.6
 
 - Added the data structure PC_tree

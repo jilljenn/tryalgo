@@ -43,6 +43,7 @@ from tryalgo.dijkstra import dijkstra_update_heap, dijkstra
 from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
 from tryalgo.dist_grid import dist_grid
+from tryalgo.dyn_prog_tricks import dyn_prog_Monge, decode_root_matrix_to_level, opt_bin_search_tree1, opt_bin_search_tree2
 from tryalgo.edmonds_karp import edmonds_karp
 from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
@@ -1293,6 +1294,10 @@ t##
             sparse = listlist_and_matrix_to_listdict(g, w)
             for graph, weight in [(g, w), (sparse, sparse)]:
                 self.assertEqual(min_mean_cycle(graph, weight), answ)
+
+    def test_opt_bin_search_tree(self):
+        self.assertEqual(decode_root_matrix_to_level(opt_bin_search_tree1([1])[1]),[0])
+        self.assertEqual(opt_bin_search_tree2([0, 10], [1, 2])[0], 16)
 
     def test_OurHeap(self):
         L = [(random.randint(1, 100), i) for i in range(10000)]

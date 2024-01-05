@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """\
-Dynamic Programming speeup tricks
+Dynamic Programming speedup tricks
 
 christoph dürr - jill-jênn vie - 2022
 """
+
+import sys
+
 
 def dyn_prog_Monge(W):
     """ Solves the following dynamic program for 0 <= i < j < n
@@ -19,8 +22,8 @@ def dyn_prog_Monge(W):
     :complexity: O(n^2)
     """
     n = len(W) 
-    C = [[0 for j in range(n)] for i in range(n)] #
-    K = [[i for j in range(n)] for i in range(n)] # initially K[i,i]=i
+    C = [[W[i][i] for j in range(n)] for i in range(n)] # initially C[i,i]=W[i][i]
+    K = [[j for j in range(n)] for i in range(n)] # initially K[i,i]=i
     
     # recursion
     for j_i in range(1, n): # difference between j and i
@@ -28,12 +31,75 @@ def dyn_prog_Monge(W):
             j = i + j_i
             argmin = None
             valmin = float('+inf')
-            for k in range(K[i][j - 1], K[i + 1][j] + 1):
+            for k in range(max(i + 1, K[i][j - 1]),  K[i + 1][j] + 1):
                 alt = C[i][k - 1] + C[k][j]
                 if alt < valmin:
                     valmin = alt
                     argmin = k
             C[i][j] = W[i][j] + valmin
             K[i][j] = argmin 
-     
-    return C[0][n - 1], K
+    return C[0][n-1], K
+
+
+def _decode(i, j, R, level, current):
+    """Decodes a binary search tree encoded in the root matrix R into a level array
+    :returns: the level array
+    :complexity: linear
+    """
+    if i >= j:
+        return # nothing to do
+    root = R[i][j]
+    level[root] = current
+    _decode(i, root-1, R, level, current + 1)
+    _decode(root, j, R, level, current + 1)
+
+
+def decode_root_matrix_to_level(R):
+    n = len(R)
+    level = [0] * n 
+    _decode(0, n - 1, R, level, 0)
+    return level[1:]
+
+
+def opt_bin_search_tree2(success, failure):
+    """ Optimal binary search tree on elements from 1 to n
+    
+    :param success: n+1 dimensional array with frequency of every element i. 
+                    success[0] is ignored
+    :param failure: n+1 dimensional array with frequency between the elements,
+                    failure[i] is frequency of a query strictly between element i and i+1.
+                    These arrays do not have to be normalized.
+    :returns level: n dimensional array with the level of each element 
+                    in an optimal search tree. The index i with level[i]==0 is the root.
+    :complexity: O(n^2)
+    """
+    n = len(failure)
+    N = range(n)
+    W = [[failure[i] for j in N] for i in N]
+    for i in N:
+        for j in range(i+1, n):
+            W[i][j] = W[i][j - 1] + failure[j] + success[j]
+    return dyn_prog_Monge(W)
+
+
+def opt_bin_search_tree1(freq):
+    """ Optimal binary search tree on elements from 0 to n-1
+    
+    :param freq: n dimensional array with frequency of every element i. 
+    :returns level: n dimensional array with the level of each element 
+                    in an optimal search tree. The index i with level[i]==0 is the root.
+    :complexity: O(n^2)
+    """
+    n = len(freq)
+    return opt_bin_search_tree2([0] + freq, [0] * (n + 1))
+
+if  __name__ == "__main__":   
+
+    def readint(): return int(sys.stdin.readline())
+    def readfloats(): return list(map(float, readstr().split()))
+ 
+    n = readint()
+    beta = [0] + readfloats()
+    alpha = readfloats()
+    print(opt_bin_search_tree2(beta, alpha)[0])
+    
