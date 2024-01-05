@@ -96,6 +96,7 @@ def opt_bin_search_tree1(freq):
 if  __name__ == "__main__":   
 
     def readint(): return int(sys.stdin.readline())
+    def readstr(): return sys.stdin.readline().strip()
     def readfloats(): return list(map(float, readstr().split()))
  
     n = readint()
