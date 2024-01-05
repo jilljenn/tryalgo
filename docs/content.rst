@@ -150,6 +150,8 @@ Trees
 
 A classical example of a problem solved by the greedy algorithm is the problem of constructing optimal `Huffman codes <https://en.wikipedia.org/wiki/Huffman_coding>`_.  An implementation can be found in the module `huffman <tryalgo/tryalgo.html#module-tryalgo.huffman>`__.
 
+A similar, but different problem, concerns finding an optimal binary search tree, given various request frequencies. The module `dyn_prog_tricks <tryalgo/tryalgo.html#module-tryalgo.dyn_prog_tricks>`__ allows to solve this task in quadratic time.
+
 Another example, which is as classical and famous, is the problem of constructing a `minimum weight spanning tree <https://en.wikipedia.org/wiki/Minimum_spanning_tree>`_ for a given edge weighted connected graph.  It is solved with the greedy Kruskal's algorithm, see `kruskal <tryalgo/tryalgo.html#module-tryalgo.kruskal>`__.
 
 The lowest common ancestor problem consists of building a data structure that stores a rooted tree and can answer efficiently queries of the form: "Which vertex is the closest common ancestor to two given vertices".  The most elegant solution consists in a reduction to the minimum range query problem, see `lowest_common_ancestor <tryalgo/tryalgo.html#module-tryalgo.lowest_common_ancestor>`__.
