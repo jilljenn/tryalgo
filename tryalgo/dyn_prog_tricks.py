@@ -42,10 +42,7 @@ def dyn_prog_Monge(W):
 
 
 def _decode(i, j, R, level, current):
-    """Decodes a binary search tree encoded in the root matrix R into a level array
-    :returns: the level array
-    :complexity: linear
-    """
+    """is used by decode_root_matrix_to_level for recursive decoding."""
     if i >= j:
         return # nothing to do
     root = R[i][j]
@@ -55,6 +52,10 @@ def _decode(i, j, R, level, current):
 
 
 def decode_root_matrix_to_level(R):
+    """Decodes a binary search tree encoded in the root matrix R into a level array
+    :returns: the level array
+    :complexity: linear
+    """
     n = len(R)
     level = [0] * n 
     _decode(0, n - 1, R, level, 0)
@@ -69,8 +70,8 @@ def opt_bin_search_tree2(success, failure):
     :param failure: n+1 dimensional array with frequency between the elements,
                     failure[i] is frequency of a query strictly between element i and i+1.
                     These arrays do not have to be normalized.
-    :returns level: n dimensional array with the level of each element 
-                    in an optimal search tree. The index i with level[i]==0 is the root.
+    :returns:       The value of an optimal search tree and the matrix with the roots for each
+                    subproblem, encoding the actual tree.
     :complexity: O(n^2)
     """
     n = len(failure)
@@ -86,8 +87,8 @@ def opt_bin_search_tree1(freq):
     """ Optimal binary search tree on elements from 0 to n-1
     
     :param freq: n dimensional array with frequency of every element i. 
-    :returns level: n dimensional array with the level of each element 
-                    in an optimal search tree. The index i with level[i]==0 is the root.
+    :returns:    The value of an optimal search tree and the matrix with the roots for each
+                 subproblem, encoding the actual tree.
     :complexity: O(n^2)
     """
     n = len(freq)
