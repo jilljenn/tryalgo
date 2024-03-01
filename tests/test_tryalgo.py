@@ -102,6 +102,7 @@ from tryalgo.subsetsum_divide import subset_sum as subset_sum1
 from tryalgo.subsetsum_divide import subset_sum2 as subset_sum2
 from tryalgo.subsetsum import subset_sum as subset_sum3, coin_change
 from tryalgo.sudoku import sudoku
+from tryalgo.suffix_array import sort_class, sort_cyclic_shifts, suffix_array
 from tryalgo.three_partition import three_partition
 from tryalgo.topological_order import topological_order_dfs, topological_order
 from tryalgo.tortoise_hare import tortoise_hare
@@ -1852,6 +1853,12 @@ t##
             for j in range(n):
                 self.assertEqual(sorted(G[n * i + di][n * j + dj]
                                         for di in range(n) for dj in range(n)), all_terms)
+
+    def test_suffix_array(self):
+        L = [11, 20, 16, 21, 12, 17, 14, 25, 10, 15, 22, 7, 0, 3, 18, 5, 13, 23, 8, 1, 4, 19, 6, 24, 9, 2]
+        self.assertEqual(suffix_array("abracadabra0AbRa4Cad14abra"), L)
+        self.assertEqual(sort_class("aaba"), ([0, 1, 3, 2], [0, 0, 1, 0]))
+        self.assertEqual(sort_cyclic_shifts("abaab"), [2, 0, 3, 1, 4])
 
     def test_ternary_search(self):
         x = ternary_search(lambda x: -x * (x - 4), 0, 4)

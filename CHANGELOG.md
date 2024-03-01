@@ -1,6 +1,10 @@
 
 # Changelog
 
+## 1.7.0
+
+- added suffix_array
+
 ## 1.6.1
 
 - corrected dyn_prog_Monge
