@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tryalgo.closest_points &#8212; tryalgo 1.5.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=86e14759c7f72298fc58" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=86e14759c7f72298fc58" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=86e14759c7f72298fc58" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=86e14759c7f72298fc58" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=86e14759c7f72298fc58" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=86e14759c7f72298fc58" />
+  <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=86e14759c7f72298fc58"></script>
+
+    <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/tryalgo/closest_points';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_B.png" class="logo__image only-light" alt="tryalgo 1.5.0 documentation - Home"/>
+    <script>document.write(`<img src="../../_static/logo_W.png" class="logo__image only-dark" alt="tryalgo 1.5.0 documentation - Home"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../install.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../quickstart.html">
+                        Quick start
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../content.html">
+                        Content of the library
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+                        Gallery of examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tryalgo/modules.html">
+                        tryalgo
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item">
+<nav class="navbar-nav">
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../install.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../quickstart.html">
+                        Quick start
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../content.html">
+                        Content of the library
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../auto_examples/index.html">
+                        Gallery of examples
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../../tryalgo/modules.html">
+                        tryalgo
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumb">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">tryalgo.clos...</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for tryalgo.closest_points</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;\</span>
+<span class="sd">Closest pair of points</span>
+<span class="sd">trouver la paire de points la plus proche</span>
+
+<span class="sd">jill-jênn vie, christoph dürr et louis abraham - 2014-2019</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># pylint: disable=missing-docstring, redefined-outer-name, redefined-outer-name</span>
+<span class="c1"># pylint: disable=no-name-in-module, ungrouped-imports</span>
+
+
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">randint</span>
+
+
+<span class="c1"># snip{</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">hypot</span>   <span class="c1"># hypot(dx, dy) = sqrt(dx * dx + dy * dy)</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">floor</span>
+<span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">shuffle</span>
+
+<span class="c1"># snip}</span>
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;closest_points&quot;</span><span class="p">]</span>
+<span class="c1"># snip{</span>
+
+
+<span class="k">def</span> <span class="nf">dist</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">hypot</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">q</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># Euclidean dist.</span>
+
+
+<span class="k">def</span> <span class="nf">cell</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; returns the grid cell coordinates containing the given point.</span>
+<span class="sd">    </span>
+<span class="sd">    :param point: couple of coordinates</span>
+<span class="sd">    :param size: floating point number, side length of a grid cell</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">point</span>                        
+    <span class="k">return</span> <span class="p">(</span><span class="n">floor</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">size</span><span class="p">),</span> <span class="n">floor</span><span class="p">(</span><span class="n">y</span> <span class="o">/</span> <span class="n">size</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">improve</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">d</span><span class="p">):</span>
+    <span class="n">G</span> <span class="o">=</span> <span class="p">{}</span>                              <span class="c1"># maps grid cell to its point</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>                         <span class="c1"># for every point</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>           <span class="c1"># determine its grid cell</span>
+        <span class="k">for</span> <span class="n">a1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">b1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">b</span> <span class="o">-</span> <span class="mi">2</span><span class="p">,</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">3</span><span class="p">):</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">G</span><span class="p">:</span>       <span class="c1"># compare with points</span>
+                    <span class="n">q</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="n">b1</span><span class="p">]</span>       <span class="c1"># in surrounding cells</span>
+                    <span class="n">pq</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">pq</span> <span class="o">&lt;</span> <span class="n">d</span><span class="p">:</span>          <span class="c1"># improvement found</span>
+                        <span class="k">return</span> <span class="n">pq</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span>
+        <span class="n">G</span><span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+    <span class="k">return</span> <span class="kc">None</span>
+
+
+<div class="viewcode-block" id="closest_points">
+<a class="viewcode-back" href="../../tryalgo/tryalgo.html#tryalgo.closest_points.closest_points">[docs]</a>
+<span class="k">def</span> <span class="nf">closest_points</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Closest pair of points</span>
+
+<span class="sd">    :param S: list of points</span>
+<span class="sd">    :requires: size of S at least 2</span>
+<span class="sd">    :modifies: changes the order in S</span>
+<span class="sd">    :returns: pair of points p,q from S with minimum Euclidean distance</span>
+<span class="sd">    :complexity: expected linear time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">shuffle</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>                <span class="c1"># start with distance between</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>                <span class="c1"># first two points</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="n">dist</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">q</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>            <span class="c1"># distance 0 cannot be improved</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">improve</span><span class="p">(</span><span class="n">S</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">r</span><span class="p">:</span>               <span class="c1"># distance improved</span>
+            <span class="n">d</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="k">else</span><span class="p">:</span>               <span class="c1"># r is None: could not improve</span>
+            <span class="k">break</span>
+    <span class="k">return</span> <span class="n">p</span><span class="p">,</span> <span class="n">q</span></div>
+
+<span class="c1"># snip}</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># generates the figure for the book</span>
+
+    <span class="k">def</span> <span class="nf">tikz_points</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">filldraw[black] (</span><span class="si">%f</span><span class="s2">, </span><span class="si">%f</span><span class="s2">) circle (1pt);&quot;</span> <span class="o">%</span> <span class="n">p</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tikz_polygone</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\\</span><span class="s1">draw (</span><span class="si">%f</span><span class="s1">, </span><span class="si">%f</span><span class="s1">) -- (</span><span class="si">%f</span><span class="s1">, </span><span class="si">%f</span><span class="s1">);&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="n">S</span> <span class="o">=</span> <span class="p">[(</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">,</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">)]</span>
+    <span class="n">tikz_points</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+    <span class="n">tikz_polygone</span><span class="p">(</span><span class="n">closest_points</span><span class="p">(</span><span class="n">S</span><span class="p">))</span>
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=86e14759c7f72298fc58"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=86e14759c7f72298fc58"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2016-2023, Christoph Dürr and Jill-Jênn Vie.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.15.3dev0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
