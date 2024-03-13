@@ -1,6 +1,6 @@
 """  Rami Benelmir, Christoph Dürr, Erisa Kohansal - 2023
 
-The PC-tree is a dynamic datastructure which encodes permutations on the integers modulo n 
+The PC-tree is a dynamic data-structure which encodes permutations on the integers modulo n 
 satisfying constraints of the form: 
 - for a given set S the permutations need to keep the elements of S in consecutive order. 
 Here we consider a circular order, i.e. after n-1 comes 0, then 1 and so on.
@@ -235,7 +235,7 @@ class C_node(Node):
         self.first_full = None
 
     def flip(self):
-        """ Invertes the order of the neighbors.
+        """ Inverts the order of the neighbors.
         """
         seq = Sequence()
         last = None
@@ -312,10 +312,13 @@ class C_node(Node):
         Splits a C node.
         Returns a new C-node with all full neighbors.
         """
-        assert self.is_partial()        # will be called only for partial nodes
+
+        # assert self.is_partial()        # will be called only for partial nodes
+        # March 2024: Beware: here the node is detached inside the terminal path. So it could be
+        # that it has a single empty neighbor
 
         L = [] # will contain the nodes of the full interval
-        # we have the promize that first_full is 
+        # we have the promise that first_full is 
         # the left most full node in the full interval
         x = self.first_full
         while x.is_full():
@@ -356,7 +359,7 @@ class C_node(Node):
         """
         Returns a list representation of the node.
         Used for showing the C node correctly in the terminal
-        and for unittests.
+        and for unit-tests.
         """
         L = [x.ID for x in self.neighbors]
         # find the lexicographically smallest permutation of neighbors
@@ -416,7 +419,7 @@ class PC_tree:
         Refines the PC tree with the restrictions passed in the arguments.
         """
         try:
-            # step 0: check for trivial cardinalty
+            # step 0: check for trivial cardinality
             size = len(restriction)
             nb_leaves = len(self.leaves)
             if size in [0, 1, nb_leaves-1, nb_leaves]:
@@ -447,7 +450,7 @@ class PC_tree:
 
     def _label(self, restriction):
         """
-        Marks the full and partial nodes and return a dictionnary 
+        Marks the full and partial nodes and return a dictionary 
         of each of them.
         """
         fullNodes = {}
@@ -595,9 +598,13 @@ class PC_tree:
             x.detach_bilateral([path[i + 1]])
         # split nodes individually
         for x in path:
-            term_empty.append(x)
-            if x.full_counter:
-                term_full.append(x.split())
+            # March 2024: after detaching, nodes on terminal path can become full
+            if len(x.neighbors) == x.full_counter: 
+                term_full.append(x)
+            else:
+                term_empty.append(x)
+                if x.full_counter:
+                    term_full.append(x.split())
 
         # reconnect both lists
         return term_empty[::-1]  + term_full    # recompose in circular order

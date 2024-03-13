@@ -1,6 +1,10 @@
 
 # Changelog
 
+## 1.7.1
+
+- corrected a bug in PC_tree. When splitting along the terminal path, some nodes can become full in fact, because they are detached from their neighbors along the path before splitting.
+
 ## 1.7.0
 
 - added suffix_array

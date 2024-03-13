@@ -226,5 +226,14 @@ class Test_PC_tree(unittest.TestCase):
         tmp.restrict({5, 0})
         self.assertEqual(tmp.represent(False), [['C', 6, [0, 5, 4, 7]], ['C', 7, [1, 2, 3, 6]]])
 
+    def test_Manuel_Lopez_Ibanez(self):
+        t = PC_tree(6)
+        # t.print_dot()
+        L = [{1}, {2, 3}, {0, 1, 2}, {0, 1, 2, 3, 4}, {1, 2, 3}, {0, 1, 2, 3, 4}, {1, 2, 3, 4}, {4}, {0, 1, 2, 3}, {2}]
+        for S in L:
+            self.assertTrue(t.restrict(S))
+        self.assertEqual(t.frontier(), [0, 5, 4, 3, 2, 1])  # or the reverse would be good as well
+
+
 if __name__ == '__main__':
     unittest.main()
