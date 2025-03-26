@@ -23,7 +23,7 @@ def eratosthene(n):
     for i in range(3, n, 2):
         if P[i]:
             answ.append(i)
-            for j in range(i * i, n, i):
+            for j in range(i * i, n, 2 * i):
                 P[j] = False
     return answ
 # snip}
