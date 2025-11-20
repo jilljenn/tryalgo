@@ -7,7 +7,7 @@ try:
     from unittest.mock import patch
 except ImportError:
     from mock import patch
-from tryalgo.our_std import readint, readstr, readmatrix, readarray
+from tryalgo import readint, readstr, readmatrix, readarray
 
 
 class TestOurStd(unittest.TestCase):

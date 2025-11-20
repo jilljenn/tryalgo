@@ -8,7 +8,7 @@ then open the file htmlcov/index.html.
 """
 
 import unittest
-from tryalgo.PC_tree import *
+from tryalgo import PC_tree
 
 class Test_PC_tree(unittest.TestCase):
 

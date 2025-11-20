@@ -7,7 +7,7 @@ try:
     from unittest.mock import patch
 except ImportError:
     from mock import patch
-from tryalgo.freivalds import freivalds, readint, readmatrix, readarray
+from tryalgo import freivalds, readint, readmatrix, readarray
 
 
 class TestNextPermutation(unittest.TestCase):
