@@ -19,97 +19,97 @@ except ImportError:
                 return False 
         return True 
 
-from tryalgo import write_graph, extract_path, make_flow_labels
-from tryalgo import tree_adj_to_prec, tree_prec_to_adj
-from tryalgo import matrix_to_listlist, listlist_and_matrix_to_listdict
-from tryalgo import listdict_to_listlist_and_matrix, dictdict_to_listdict
-from tryalgo import a_star
-from tryalgo import anagrams
-from tryalgo import arithm_expr_eval, arithm_expr_parse
-from tryalgo import arithm_expr_target
-from tryalgo import bellman_ford, bellman_ford2
-from tryalgo import knapsack, knapsack2
-from tryalgo import bfs, bfs_implicit
-from tryalgo import cut_nodes_edges, cut_nodes_edges2
-from tryalgo import continuous_binary_search, discrete_binary_search, optimized_binary_search, optimized_binary_search_lower, ternary_search
-from tryalgo import max_bipartite_matching
-from tryalgo import bipartite_vertex_cover
-from tryalgo import closest_points
-from tryalgo import closest_values
-from tryalgo import left_turn, andrew
-from tryalgo import dancing_links
-from tryalgo import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive, dfs_tree, is_bipartite
-from tryalgo import dijkstra_update_heap, dijkstra
-from tryalgo import dilworth
-from tryalgo import dinic
-from tryalgo import dist_grid
-from tryalgo import dyn_prog_Monge, decode_root_matrix_to_level, opt_bin_search_tree1, opt_bin_search_tree2
-from tryalgo import edmonds_karp
-from tryalgo import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected
-from tryalgo import fast_exponentiation, fast_exponentiation2
-from tryalgo import Fenwick, FenwickMin
-from tryalgo import fft, inv_fft, mul_poly_fft, pad
-from tryalgo import floyd_warshall, floyd_warshall2
-from tryalgo import ford_fulkerson
-from tryalgo import gale_shapley
-from tryalgo import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
-from tryalgo import GraphNamedVertices
-from tryalgo import dist01
-from tryalgo import hamiltonian_cycle
-from tryalgo import horn_sat
-from tryalgo import huffman
-from tryalgo import interval_tree, intervals_containing
-from tryalgo import interval_cover
-from tryalgo import intervals_union
-from tryalgo import mul_poly
-from tryalgo import maximum_border_length, knuth_morris_pratt, powerstring_by_border, powerstring_by_find
-from tryalgo import kruskal
-from tryalgo import kuhn_munkres as kuhn_munkres_n4
-from tryalgo import kuhn_munkres as kuhn_munkres_n3
-from tryalgo import rabin_karp_matching
-from tryalgo import roman2int, int2roman
-from tryalgo import laser_mirrors
-from tryalgo import left_right_inversions
-from tryalgo import levenshtein
-from tryalgo import longest_common_subsequence
-from tryalgo import longest_increasing_subsequence
-from tryalgo import LowestCommonAncestorShortcuts, LowestCommonAncestorRMQ
-from tryalgo import majority
-from tryalgo import manacher
-from tryalgo import matrix_mult_opt_order, matrix_chain_mult
-from tryalgo import max_interval_intersec
-from tryalgo import merge
-from tryalgo import min_mean_cycle
-from tryalgo import OurHeap
-from tryalgo import OurQueue
-from tryalgo import permutation_rank, rank_permutation
-from tryalgo import pareto2d, pareto3d
-from tryalgo import PartitionRefinement
-from tryalgo import area, is_simple
-# from tryalgo import consecutive_ones_property, PQTree
-from tryalgo import predictive_text, propose
-from tryalgo import eratosthene, gries_misra
-from tryalgo import rabin_karp_factor
-from tryalgo import RangeMinQuery, LazySegmentTree
-from tryalgo import rectangles_from_grid
-from tryalgo import rectangles_from_histogram
-from tryalgo import rectangles_from_points
-from tryalgo import min_scalar_prod
-from tryalgo import shortest_cycle, powergraph
-from tryalgo import SortedSet, SortedDict
-from tryalgo import tarjan, kosaraju, tarjan_recursif
-from tryalgo import subset_sum_divide as subset_sum1
-from tryalgo import subset_sum2 as subset_sum2
-from tryalgo import subset_sum_basic as subset_sum3, coin_change
-from tryalgo import sudoku
-from tryalgo import sort_class, sort_cyclic_shifts, suffix_array
-from tryalgo import three_partition
-from tryalgo import topological_order_dfs, topological_order
-from tryalgo import tortoise_hare
-from tryalgo import Trie, spell_check
-from tryalgo import two_sat
-from tryalgo import union_rectangles_naive, union_rectangles, union_rectangles_fast, union_rectangles_fastest
-from tryalgo import windows_k_distinct
+from tryalgo.graph import write_graph, extract_path, make_flow_labels
+from tryalgo.graph import tree_adj_to_prec, tree_prec_to_adj
+from tryalgo.graph import matrix_to_listlist, listlist_and_matrix_to_listdict
+from tryalgo.graph import listdict_to_listlist_and_matrix, dictdict_to_listdict
+from tryalgo.a_star import a_star
+from tryalgo.anagrams import anagrams
+from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
+from tryalgo.arithm_expr_target import arithm_expr_target
+from tryalgo.bellman_ford import bellman_ford, bellman_ford2
+from tryalgo.knapsack import knapsack, knapsack2
+from tryalgo.bfs import bfs, bfs_implicit
+from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
+from tryalgo.binary_search import continuous_binary_search, discrete_binary_search, optimized_binary_search, optimized_binary_search_lower, ternary_search
+from tryalgo.bipartite_matching import max_bipartite_matching
+from tryalgo.bipartite_vertex_cover import bipartite_vertex_cover
+from tryalgo.closest_points import closest_points
+from tryalgo.closest_values import closest_values
+from tryalgo.convex_hull import left_turn, andrew
+from tryalgo.dancing_links import dancing_links
+from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive, dfs_tree, is_bipartite
+from tryalgo.dijkstra import dijkstra_update_heap, dijkstra
+from tryalgo.dilworth import dilworth
+from tryalgo.dinic import dinic
+from tryalgo.dist_grid import dist_grid
+from tryalgo.dyn_prog_tricks import dyn_prog_Monge, decode_root_matrix_to_level, opt_bin_search_tree1, opt_bin_search_tree2
+from tryalgo.edmonds_karp import edmonds_karp
+from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected
+from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
+from tryalgo.fenwick import Fenwick, FenwickMin
+from tryalgo.fft import fft, inv_fft, mul_poly_fft, pad
+from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
+from tryalgo.ford_fulkerson import ford_fulkerson
+from tryalgo.gale_shapley import gale_shapley
+from tryalgo.gauss_jordan import gauss_jordan, GJ_ZERO_SOLUTIONS, GJ_SINGLE_SOLUTION, GJ_SEVERAL_SOLUTIONS
+from tryalgo.graph import GraphNamedVertices
+from tryalgo.graph01 import dist01
+from tryalgo.hamiltonian_cycle import hamiltonian_cycle
+from tryalgo.horn_sat import horn_sat
+from tryalgo.huffman import huffman
+from tryalgo.interval_tree import interval_tree, intervals_containing
+from tryalgo.interval_cover import interval_cover
+from tryalgo.intervals_union import intervals_union
+from tryalgo.karatsuba import mul_poly
+from tryalgo.knuth_morris_pratt import maximum_border_length, knuth_morris_pratt, powerstring_by_border, powerstring_by_find
+from tryalgo.kruskal import kruskal
+from tryalgo.kuhn_munkres_n4 import kuhn_munkres as kuhn_munkres_n4
+from tryalgo.kuhn_munkres import kuhn_munkres as kuhn_munkres_n3
+from tryalgo.rabin_karp import rabin_karp_matching
+from tryalgo.roman_numbers import roman2int, int2roman
+from tryalgo.laser_mirrors import laser_mirrors
+from tryalgo.left_right_inversions import left_right_inversions
+from tryalgo.levenshtein import levenshtein
+from tryalgo.longest_common_subsequence import longest_common_subsequence
+from tryalgo.longest_increasing_subsequence import longest_increasing_subsequence
+from tryalgo.lowest_common_ancestor import LowestCommonAncestorShortcuts, LowestCommonAncestorRMQ
+from tryalgo.majority import majority
+from tryalgo.manacher import manacher
+from tryalgo.matrix_chain_mult import matrix_mult_opt_order, matrix_chain_mult
+from tryalgo.max_interval_intersec import max_interval_intersec
+from tryalgo.merge_ordered_lists import merge
+from tryalgo.min_mean_cycle import min_mean_cycle
+from tryalgo.our_heap import OurHeap
+from tryalgo.our_queue import OurQueue
+from tryalgo.permutation_rank import permutation_rank, rank_permutation
+from tryalgo.pareto import pareto2d, pareto3d
+from tryalgo.partition_refinement import PartitionRefinement
+from tryalgo.polygon import area, is_simple
+# from tryalgo.pq_tree import consecutive_ones_property, PQTree
+from tryalgo.predictive_text import predictive_text, propose
+from tryalgo.primes import eratosthene, gries_misra
+from tryalgo.rabin_karp import rabin_karp_factor
+from tryalgo.range_minimum_query import RangeMinQuery, LazySegmentTree
+from tryalgo.rectangles_from_grid import rectangles_from_grid
+from tryalgo.rectangles_from_histogram import rectangles_from_histogram
+from tryalgo.rectangles_from_points import rectangles_from_points
+from tryalgo.scalar import min_scalar_prod
+from tryalgo.shortest_cycle import shortest_cycle, powergraph
+from tryalgo.skip_list import SortedSet, SortedDict
+from tryalgo.strongly_connected_components import tarjan, kosaraju, tarjan_recursif, NOT_VISITED
+from tryalgo.subsetsum_divide import subset_sum as subset_sum1
+from tryalgo.subsetsum_divide import subset_sum2 as subset_sum2
+from tryalgo.subsetsum import subset_sum as subset_sum3, coin_change
+from tryalgo.sudoku import sudoku
+from tryalgo.suffix_array import sort_class, sort_cyclic_shifts, suffix_array
+from tryalgo.three_partition import three_partition
+from tryalgo.topological_order import topological_order_dfs, topological_order
+from tryalgo.tortoise_hare import tortoise_hare
+from tryalgo.trie import Trie, spell_check
+from tryalgo.two_sat import two_sat
+from tryalgo.union_rectangles import union_rectangles_naive, union_rectangles, union_rectangles_fast, union_rectangles_fastest
+from tryalgo.windows_k_distinct import windows_k_distinct
 
 
 class TestTryalgo(unittest.TestCase):
@@ -1786,7 +1786,7 @@ t##
             # self.assertEqual(a, f(listlist_and_matrix_to_listdict(G)))
             # print("sccp(%s)=%s" % (G, a))
             n = len(b)
-            C = [None] * n
+            C = [NOT_VISITED] * n
             for comp in a:
                 rep = min(comp)
                 for v in comp:
