@@ -53,7 +53,7 @@ def mul_poly(P, Q):
     i.e. P(x) = sum P[i] x**i.
     :param P, Q: two vectors representing polynomials
     :returns: a vector representing the product
-    :complexity: $O(n^{\log_2 3})=O(n^{1.585})$, where n is total degree of P and Q.
+    :complexity: $O(n^{\\log_2 3})=O(n^{1.585})$, where n is total degree of P and Q.
     """
     if not P or not Q:  # case one of P, Q is the constant zero
         return []

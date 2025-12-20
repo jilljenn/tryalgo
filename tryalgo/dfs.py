@@ -131,8 +131,9 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
                         if prec[v] is not None: # v was already visited
                             cycle = [v, u]  # cycle found, (u,v) back edge
                             while u not in (prec[v], prec[u]):  # directed
-                                assert u is not None
-                                u = prec[u]  # climb up the tree
+                                next_u = prec[u]
+                                assert next_u is not None # mypy hint
+                                u = next_u # climb up the tree
                                 cycle.append(u)
                             return cycle
                         else:
