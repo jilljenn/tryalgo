@@ -7,11 +7,11 @@ composantes fortement connexes
 jill-jênn vie et christoph dürr - 2015-2018
 """
 
-__all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
+__all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse", "NOT_VISITED"]
 
+NOT_VISITED = -1
 
 # snip{ sccp-tarjan-recursif
-# pylint: disable=global-variable-undefined
 def tarjan_recursif(graph):
     """Strongly connected components by Tarjan, recursive implementation
 
@@ -19,22 +19,21 @@ def tarjan_recursif(graph):
     :returns: list of lists for each component
     :complexity: linear
     """
-    global sccp, waiting, dfs_time, dfs_num
     sccp = []
     waiting = []
     waits = [False] * len(graph)
     dfs_time = 0
-    dfs_num = [None] * len(graph)
+    dfs_num = [NOT_VISITED] * len(graph)
 
     def dfs(node):
-        global sccp, waiting, dfs_time, dfs_num
+        nonlocal dfs_time
         waiting.append(node)           # new node is waiting
         waits[node] = True
         dfs_num[node] = dfs_time       # mark visit
         dfs_time += 1
         dfs_min = dfs_num[node]        # compute dfs_min
         for neighbor in graph[node]:
-            if dfs_num[neighbor] is None:
+            if dfs_num[neighbor] == NOT_VISITED:
                 dfs_min = min(dfs_min, dfs(neighbor))
             elif waits[neighbor] and dfs_min > dfs_num[neighbor]:
                 dfs_min = dfs_num[neighbor]
@@ -49,14 +48,14 @@ def tarjan_recursif(graph):
         return dfs_min
 
     for node in range(len(graph)):
-        if dfs_num[node] is None:
+        if dfs_num[node] == NOT_VISITED:
             dfs(node)
     return sccp
 # snip}
 
 
 # snip{ sccp-tarjan
-# pylint: disable=too-many-locals, redefined-outer-name, too-many-nested-blocks
+# pylint: disable=too-many-locals, redefined-outer-name, too-many-nested-blocks, invalid-name
 def tarjan(graph):
     """Strongly connected components by Tarjan, iterative implementation
 
@@ -138,8 +137,9 @@ def kosaraju_dfs(graph, nodes, order, sccp):
 
 def reverse(graph):
     """replace all arcs (u, v) by arcs (v, u) in a graph"""
-    rev_graph = [[] for node in graph]
-    for node, _ in enumerate(graph):
+    V = range(len(graph))
+    rev_graph = [[] for node in V]
+    for node in V:
         for neighbor in graph[node]:
             rev_graph[neighbor].append(node)
     return rev_graph
@@ -152,10 +152,10 @@ def kosaraju(graph):
     :returns: list of lists for each component
     :complexity: linear
     """
-    n = len(graph)
+    V = range(len(graph))
     order = []
     sccp = []
-    kosaraju_dfs(graph, range(n), order, [])
+    kosaraju_dfs(graph, V, order, [])
     kosaraju_dfs(reverse(graph), order[::-1], [], sccp)
     return sccp[::-1]  # follow inverse topological order
 # snip}
