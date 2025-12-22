@@ -132,6 +132,7 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
                             cycle = [v, u]  # cycle found, (u,v) back edge
                             while u not in (prec[v], prec[u]):  # directed
                                 assert u is not None
+                                assert prec[u] is not None
                                 u = prec[u]  # climb up the tree
                                 cycle.append(u)
                             return cycle
