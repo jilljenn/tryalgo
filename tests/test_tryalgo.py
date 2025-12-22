@@ -97,7 +97,7 @@ from tryalgo.rectangles_from_points import rectangles_from_points
 from tryalgo.scalar import min_scalar_prod
 from tryalgo.shortest_cycle import shortest_cycle, powergraph
 from tryalgo.skip_list import SortedSet, SortedDict
-from tryalgo.strongly_connected_components import tarjan, kosaraju, tarjan_recursif, NOT_VISITED
+from tryalgo.strongly_connected_components import tarjan, kosaraju, tarjan_recursif
 from tryalgo.subsetsum_divide import subset_sum as subset_sum1
 from tryalgo.subsetsum_divide import subset_sum2 as subset_sum2
 from tryalgo.subsetsum import subset_sum as subset_sum3, coin_change
@@ -1786,7 +1786,7 @@ t##
             # self.assertEqual(a, f(listlist_and_matrix_to_listdict(G)))
             # print("sccp(%s)=%s" % (G, a))
             n = len(b)
-            C = [NOT_VISITED] * n
+            C = [None] * n
             for comp in a:
                 rep = min(comp)
                 for v in comp:

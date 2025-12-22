@@ -7,12 +7,10 @@ composantes fortement connexes
 jill-jênn vie et christoph dürr - 2015-2018
 """
 
-__all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse", "NOT_VISITED"]
-
-NOT_VISITED = -1
+__all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
 
 # snip{ sccp-tarjan-recursif
-def tarjan_recursif(graph):
+def tarjan_recursif(graph) -> list[list[int]]:
     """Strongly connected components by Tarjan, recursive implementation
 
     :param graph: directed graph in listlist format, cannot be listdict
@@ -23,7 +21,7 @@ def tarjan_recursif(graph):
     waiting = []
     waits = [False] * len(graph)
     dfs_time = 0
-    dfs_num = [NOT_VISITED] * len(graph)
+    dfs_num : list[None|int] = [None] * len(graph)
 
     def dfs(node):
         nonlocal dfs_time
@@ -33,7 +31,7 @@ def tarjan_recursif(graph):
         dfs_time += 1
         dfs_min = dfs_num[node]        # compute dfs_min
         for neighbor in graph[node]:
-            if dfs_num[neighbor] == NOT_VISITED:
+            if dfs_num[neighbor] is None:
                 dfs_min = min(dfs_min, dfs(neighbor))
             elif waits[neighbor] and dfs_min > dfs_num[neighbor]:
                 dfs_min = dfs_num[neighbor]
@@ -48,7 +46,7 @@ def tarjan_recursif(graph):
         return dfs_min
 
     for node in range(len(graph)):
-        if dfs_num[node] == NOT_VISITED:
+        if dfs_num[node] is None:
             dfs(node)
     return sccp
 # snip}
