@@ -1,0 +1,1071 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>tryalgo &#8212; tryalgo 1.5.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=085432a65528ed429d34" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=085432a65528ed429d34" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=085432a65528ed429d34"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=085432a65528ed429d34" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=085432a65528ed429d34" />
+
+    <script src="../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tryalgo/modules';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="tryalgo package" href="tryalgo.html" />
+    <link rel="prev" title="Coin change" href="../auto_examples/coin_change.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_B.png" class="logo__image only-light" alt="tryalgo 1.5.0 documentation - Home"/>
+    <img src="../_static/logo_W.png" class="logo__image only-dark pst-js-only" alt="tryalgo 1.5.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../content.html">
+    Content of the library
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Gallery of examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    tryalgo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../content.html">
+    Content of the library
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Gallery of examples
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    tryalgo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item pst-sidebar-collapse"><button id="pst-collapse-sidebar-button" aria-expanded="true" aria-controls="pst-primary-sidebar"><svg class="pst-icon svg-inline--fa" role="img" aria-hidden="true" focusable="false" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+    <path fill="currentColor" d="M3 15.5C2.36232 15.5 1.74874 15.2564 1.28478 14.8189C0.820828 14.3815 0.541576 13.7832 0.504167 13.1467L0.5 13L0.5 3C0.499965 2.36232 0.743605 1.74874 1.18107 1.28478C1.61854 0.820828 2.21676 0.541576 2.85333 0.504167L3 0.5L13 0.5C13.6377 0.499965 14.2513 0.743605 14.7152 1.18107C15.1792 1.61854 15.4584 2.21676 15.4958 2.85333L15.5 3L15.5 13C15.5 13.6377 15.2564 14.2513 14.8189 14.7152C14.3815 15.1792 13.7832 15.4584 13.1467 15.4958L13 15.5L3 15.5ZM3 13.8333L10.5 13.8333L10.5 2.16667L3 2.16667C2.79589 2.16669 2.59889 2.24163 2.44636 2.37726C2.29383 2.5129 2.19638 2.69979 2.1725 2.9025L2.16667 3L2.16667 13C2.16669 13.2041 2.24163 13.4011 2.37726 13.5536C2.5129 13.7062 2.69979 13.8036 2.9025 13.8275L3 13.8333ZM6.65583 10.325L6.5775 10.2558L4.91083 8.58917C4.76735 8.44567 4.68116 8.25476 4.66843 8.05223C4.65569 7.84971 4.71729 7.6495 4.84167 7.48917L4.91083 7.41083L6.5775 5.74417C6.72747 5.59471 6.9287 5.50794 7.14032 5.50148C7.35194 5.49502 7.55809 5.56935 7.7169 5.70937C7.8757 5.8494 7.97525 6.04463 7.99533 6.25539C8.01541 6.46616 7.95451 6.67667 7.825 6.84417L7.75583 6.9225L6.67917 8L7.75583 9.0775C7.89931 9.22099 7.98551 9.41191 7.99824 9.61443C8.01097 9.81695 7.94938 10.0172 7.825 10.1775L7.75583 10.2558C7.61234 10.3993 7.42142 10.4855 7.2189 10.4982C7.01638 10.511 6.81617 10.4494 6.65583 10.325Z"/>
+  </svg>
+  <span class="pst-collapse-sidebar-label">Collapse Sidebar</span>
+  <span class="pst-expand-sidebar-label">Expand Sidebar</span>
+</button></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="tryalgo.html">tryalgo package</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">tryalgo</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="tryalgo">
+<h1>tryalgo<a class="headerlink" href="#tryalgo" title="Link to this heading">#</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tryalgo.html">tryalgo package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.PC_tree">tryalgo.PC_tree module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node"><code class="docutils literal notranslate"><span class="pre">C_node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.clean"><code class="docutils literal notranslate"><span class="pre">C_node.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.detach"><code class="docutils literal notranslate"><span class="pre">C_node.detach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.flip"><code class="docutils literal notranslate"><span class="pre">C_node.flip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.frontier"><code class="docutils literal notranslate"><span class="pre">C_node.frontier()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.represent"><code class="docutils literal notranslate"><span class="pre">C_node.represent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.signal_full"><code class="docutils literal notranslate"><span class="pre">C_node.signal_full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.split"><code class="docutils literal notranslate"><span class="pre">C_node.split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.C_node.to_signal"><code class="docutils literal notranslate"><span class="pre">C_node.to_signal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Infeasible"><code class="docutils literal notranslate"><span class="pre">Infeasible</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf"><code class="docutils literal notranslate"><span class="pre">Leaf</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf.attach"><code class="docutils literal notranslate"><span class="pre">Leaf.attach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf.clean"><code class="docutils literal notranslate"><span class="pre">Leaf.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf.detach"><code class="docutils literal notranslate"><span class="pre">Leaf.detach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf.frontier"><code class="docutils literal notranslate"><span class="pre">Leaf.frontier()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf.is_full"><code class="docutils literal notranslate"><span class="pre">Leaf.is_full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Leaf.to_signal"><code class="docutils literal notranslate"><span class="pre">Leaf.to_signal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.attach"><code class="docutils literal notranslate"><span class="pre">Node.attach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.attach_neighbors"><code class="docutils literal notranslate"><span class="pre">Node.attach_neighbors()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.clean"><code class="docutils literal notranslate"><span class="pre">Node.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.detach"><code class="docutils literal notranslate"><span class="pre">Node.detach()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.detach_bilateral"><code class="docutils literal notranslate"><span class="pre">Node.detach_bilateral()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.is_full"><code class="docutils literal notranslate"><span class="pre">Node.is_full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.is_partial"><code class="docutils literal notranslate"><span class="pre">Node.is_partial()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.represent_parent"><code class="docutils literal notranslate"><span class="pre">Node.represent_parent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.Node.signal_full"><code class="docutils literal notranslate"><span class="pre">Node.signal_full()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.PC_tree"><code class="docutils literal notranslate"><span class="pre">PC_tree</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.PC_tree.frontier"><code class="docutils literal notranslate"><span class="pre">PC_tree.frontier()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.PC_tree.print_dot"><code class="docutils literal notranslate"><span class="pre">PC_tree.print_dot()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.PC_tree.represent"><code class="docutils literal notranslate"><span class="pre">PC_tree.represent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.PC_tree.restrict"><code class="docutils literal notranslate"><span class="pre">PC_tree.restrict()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node"><code class="docutils literal notranslate"><span class="pre">P_node</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node.clean"><code class="docutils literal notranslate"><span class="pre">P_node.clean()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node.frontier"><code class="docutils literal notranslate"><span class="pre">P_node.frontier()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node.represent"><code class="docutils literal notranslate"><span class="pre">P_node.represent()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node.signal_full"><code class="docutils literal notranslate"><span class="pre">P_node.signal_full()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node.split"><code class="docutils literal notranslate"><span class="pre">P_node.split()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.PC_tree.P_node.to_signal"><code class="docutils literal notranslate"><span class="pre">P_node.to_signal()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.Sequence">tryalgo.Sequence module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence"><code class="docutils literal notranslate"><span class="pre">Sequence</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.add"><code class="docutils literal notranslate"><span class="pre">Sequence.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.insertAfter"><code class="docutils literal notranslate"><span class="pre">Sequence.insertAfter()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.insertBefore"><code class="docutils literal notranslate"><span class="pre">Sequence.insertBefore()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.key"><code class="docutils literal notranslate"><span class="pre">Sequence.key()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.predecessor"><code class="docutils literal notranslate"><span class="pre">Sequence.predecessor()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.remove"><code class="docutils literal notranslate"><span class="pre">Sequence.remove()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.replace"><code class="docutils literal notranslate"><span class="pre">Sequence.replace()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.Sequence.successor"><code class="docutils literal notranslate"><span class="pre">Sequence.successor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.Sequence.SequenceError"><code class="docutils literal notranslate"><span class="pre">SequenceError</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.a_star">tryalgo.a_star module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.a_star.a_star"><code class="docutils literal notranslate"><span class="pre">a_star()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.anagrams">tryalgo.anagrams module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.anagrams.anagrams"><code class="docutils literal notranslate"><span class="pre">anagrams()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.arithm">tryalgo.arithm module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm.bezout"><code class="docutils literal notranslate"><span class="pre">bezout()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm.binom"><code class="docutils literal notranslate"><span class="pre">binom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm.binom_modulo"><code class="docutils literal notranslate"><span class="pre">binom_modulo()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm.inv"><code class="docutils literal notranslate"><span class="pre">inv()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm.pgcd"><code class="docutils literal notranslate"><span class="pre">pgcd()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.arithm_expr_eval">tryalgo.arithm_expr_eval module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm_expr_eval.arithm_expr_eval"><code class="docutils literal notranslate"><span class="pre">arithm_expr_eval()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm_expr_eval.arithm_expr_parse"><code class="docutils literal notranslate"><span class="pre">arithm_expr_parse()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.arithm_expr_target">tryalgo.arithm_expr_target module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.arithm_expr_target.arithm_expr_target"><code class="docutils literal notranslate"><span class="pre">arithm_expr_target()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.bellman_ford">tryalgo.bellman_ford module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.bellman_ford.bellman_ford"><code class="docutils literal notranslate"><span class="pre">bellman_ford()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.bellman_ford.bellman_ford2"><code class="docutils literal notranslate"><span class="pre">bellman_ford2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.bfs">tryalgo.bfs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.bfs.bfs"><code class="docutils literal notranslate"><span class="pre">bfs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.bfs.bfs_implicit"><code class="docutils literal notranslate"><span class="pre">bfs_implicit()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.biconnected_components">tryalgo.biconnected_components module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.biconnected_components.cut_nodes_edges"><code class="docutils literal notranslate"><span class="pre">cut_nodes_edges()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.biconnected_components.cut_nodes_edges2"><code class="docutils literal notranslate"><span class="pre">cut_nodes_edges2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.binary_search">tryalgo.binary_search module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.binary_search.continuous_binary_search"><code class="docutils literal notranslate"><span class="pre">continuous_binary_search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.binary_search.discrete_binary_search"><code class="docutils literal notranslate"><span class="pre">discrete_binary_search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.binary_search.optimized_binary_search"><code class="docutils literal notranslate"><span class="pre">optimized_binary_search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.binary_search.optimized_binary_search_lower"><code class="docutils literal notranslate"><span class="pre">optimized_binary_search_lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.binary_search.ternary_search"><code class="docutils literal notranslate"><span class="pre">ternary_search()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.bipartite_matching">tryalgo.bipartite_matching module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.bipartite_matching.max_bipartite_matching"><code class="docutils literal notranslate"><span class="pre">max_bipartite_matching()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.bipartite_vertex_cover">tryalgo.bipartite_vertex_cover module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.bipartite_vertex_cover.bipartite_vertex_cover"><code class="docutils literal notranslate"><span class="pre">bipartite_vertex_cover()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.closest_points">tryalgo.closest_points module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.closest_points.closest_points"><code class="docutils literal notranslate"><span class="pre">closest_points()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.closest_values">tryalgo.closest_values module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.closest_values.closest_values"><code class="docutils literal notranslate"><span class="pre">closest_values()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.convex_hull">tryalgo.convex_hull module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.convex_hull.andrew"><code class="docutils literal notranslate"><span class="pre">andrew()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dancing_links">tryalgo.dancing_links module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dancing_links.dancing_links"><code class="docutils literal notranslate"><span class="pre">dancing_links()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dfs">tryalgo.dfs module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.dfs_grid"><code class="docutils literal notranslate"><span class="pre">dfs_grid()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.dfs_grid_recursive"><code class="docutils literal notranslate"><span class="pre">dfs_grid_recursive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.dfs_iterative"><code class="docutils literal notranslate"><span class="pre">dfs_iterative()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.dfs_recursive"><code class="docutils literal notranslate"><span class="pre">dfs_recursive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.dfs_tree"><code class="docutils literal notranslate"><span class="pre">dfs_tree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.find_cycle"><code class="docutils literal notranslate"><span class="pre">find_cycle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dfs.is_bipartite"><code class="docutils literal notranslate"><span class="pre">is_bipartite()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dijkstra">tryalgo.dijkstra module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dijkstra.dijkstra"><code class="docutils literal notranslate"><span class="pre">dijkstra()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dijkstra.dijkstra_update_heap"><code class="docutils literal notranslate"><span class="pre">dijkstra_update_heap()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dilworth">tryalgo.dilworth module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dilworth.dilworth"><code class="docutils literal notranslate"><span class="pre">dilworth()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dinic">tryalgo.dinic module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dinic.dinic"><code class="docutils literal notranslate"><span class="pre">dinic()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dist_grid">tryalgo.dist_grid module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dist_grid.dist_grid"><code class="docutils literal notranslate"><span class="pre">dist_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.dyn_prog_tricks">tryalgo.dyn_prog_tricks module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dyn_prog_tricks.decode_root_matrix_to_level"><code class="docutils literal notranslate"><span class="pre">decode_root_matrix_to_level()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dyn_prog_tricks.dyn_prog_Monge"><code class="docutils literal notranslate"><span class="pre">dyn_prog_Monge()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dyn_prog_tricks.opt_bin_search_tree1"><code class="docutils literal notranslate"><span class="pre">opt_bin_search_tree1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.dyn_prog_tricks.opt_bin_search_tree2"><code class="docutils literal notranslate"><span class="pre">opt_bin_search_tree2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.edmonds_karp">tryalgo.edmonds_karp module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.edmonds_karp.edmonds_karp"><code class="docutils literal notranslate"><span class="pre">edmonds_karp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.eulerian_tour">tryalgo.eulerian_tour module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.eulerian_tour.eulerian_tour_directed"><code class="docutils literal notranslate"><span class="pre">eulerian_tour_directed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.eulerian_tour.eulerian_tour_undirected"><code class="docutils literal notranslate"><span class="pre">eulerian_tour_undirected()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.eulerian_tour.is_eulerian_tour_directed"><code class="docutils literal notranslate"><span class="pre">is_eulerian_tour_directed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.eulerian_tour.is_eulerian_tour_undirected"><code class="docutils literal notranslate"><span class="pre">is_eulerian_tour_undirected()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.eulerian_tour.random_eulerien_graph"><code class="docutils literal notranslate"><span class="pre">random_eulerien_graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.eulerian_tour.write_cycle"><code class="docutils literal notranslate"><span class="pre">write_cycle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.fast_exponentiation">tryalgo.fast_exponentiation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fast_exponentiation.fast_exponentiation"><code class="docutils literal notranslate"><span class="pre">fast_exponentiation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fast_exponentiation.fast_exponentiation2"><code class="docutils literal notranslate"><span class="pre">fast_exponentiation2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.fenwick">tryalgo.fenwick module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.Fenwick"><code class="docutils literal notranslate"><span class="pre">Fenwick</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.Fenwick.add"><code class="docutils literal notranslate"><span class="pre">Fenwick.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.Fenwick.get"><code class="docutils literal notranslate"><span class="pre">Fenwick.get()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.Fenwick.intervalAdd"><code class="docutils literal notranslate"><span class="pre">Fenwick.intervalAdd()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.Fenwick.intervalSum"><code class="docutils literal notranslate"><span class="pre">Fenwick.intervalSum()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.Fenwick.prefixSum"><code class="docutils literal notranslate"><span class="pre">Fenwick.prefixSum()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.FenwickMin"><code class="docutils literal notranslate"><span class="pre">FenwickMin</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.FenwickMin.prefixMin"><code class="docutils literal notranslate"><span class="pre">FenwickMin.prefixMin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.fenwick.FenwickMin.update"><code class="docutils literal notranslate"><span class="pre">FenwickMin.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.fft">tryalgo.fft module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fft.fft"><code class="docutils literal notranslate"><span class="pre">fft()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fft.inv_fft"><code class="docutils literal notranslate"><span class="pre">inv_fft()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fft.mul_poly_fft"><code class="docutils literal notranslate"><span class="pre">mul_poly_fft()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.fft.pad"><code class="docutils literal notranslate"><span class="pre">pad()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.floyd_warshall">tryalgo.floyd_warshall module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.floyd_warshall.floyd_warshall"><code class="docutils literal notranslate"><span class="pre">floyd_warshall()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.floyd_warshall.floyd_warshall2"><code class="docutils literal notranslate"><span class="pre">floyd_warshall2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.ford_fulkerson">tryalgo.ford_fulkerson module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.ford_fulkerson.ford_fulkerson"><code class="docutils literal notranslate"><span class="pre">ford_fulkerson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.freivalds">tryalgo.freivalds module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.freivalds.freivalds"><code class="docutils literal notranslate"><span class="pre">freivalds()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.gale_shapley">tryalgo.gale_shapley module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.gale_shapley.gale_shapley"><code class="docutils literal notranslate"><span class="pre">gale_shapley()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.gauss_jordan">tryalgo.gauss_jordan module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.gauss_jordan.gauss_jordan"><code class="docutils literal notranslate"><span class="pre">gauss_jordan()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.graph">tryalgo.graph module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.GraphNamedVertices"><code class="docutils literal notranslate"><span class="pre">GraphNamedVertices</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.graph.GraphNamedVertices.add_arc"><code class="docutils literal notranslate"><span class="pre">GraphNamedVertices.add_arc()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.graph.GraphNamedVertices.add_edge"><code class="docutils literal notranslate"><span class="pre">GraphNamedVertices.add_edge()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.graph.GraphNamedVertices.add_node"><code class="docutils literal notranslate"><span class="pre">GraphNamedVertices.add_node()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.add_reverse_arcs"><code class="docutils literal notranslate"><span class="pre">add_reverse_arcs()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.dictdict_to_listdict"><code class="docutils literal notranslate"><span class="pre">dictdict_to_listdict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.extract_path"><code class="docutils literal notranslate"><span class="pre">extract_path()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.listdict_to_listlist_and_matrix"><code class="docutils literal notranslate"><span class="pre">listdict_to_listlist_and_matrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.listlist_and_matrix_to_listdict"><code class="docutils literal notranslate"><span class="pre">listlist_and_matrix_to_listdict()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.make_flow_labels"><code class="docutils literal notranslate"><span class="pre">make_flow_labels()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.matrix_to_listlist"><code class="docutils literal notranslate"><span class="pre">matrix_to_listlist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.read_graph"><code class="docutils literal notranslate"><span class="pre">read_graph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.readtab"><code class="docutils literal notranslate"><span class="pre">readtab()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.readval"><code class="docutils literal notranslate"><span class="pre">readval()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.tree_adj_to_prec"><code class="docutils literal notranslate"><span class="pre">tree_adj_to_prec()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.tree_prec_to_adj"><code class="docutils literal notranslate"><span class="pre">tree_prec_to_adj()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph.write_graph"><code class="docutils literal notranslate"><span class="pre">write_graph()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.graph01">tryalgo.graph01 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.graph01.dist01"><code class="docutils literal notranslate"><span class="pre">dist01()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.hamiltonian_cycle">tryalgo.hamiltonian_cycle module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.hamiltonian_cycle.hamiltonian_cycle"><code class="docutils literal notranslate"><span class="pre">hamiltonian_cycle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.horn_sat">tryalgo.horn_sat module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.horn_sat.horn_sat"><code class="docutils literal notranslate"><span class="pre">horn_sat()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.horn_sat.read"><code class="docutils literal notranslate"><span class="pre">read()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.huffman">tryalgo.huffman module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.huffman.extract"><code class="docutils literal notranslate"><span class="pre">extract()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.huffman.huffman"><code class="docutils literal notranslate"><span class="pre">huffman()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.interval_cover">tryalgo.interval_cover module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.interval_cover.interval_cover"><code class="docutils literal notranslate"><span class="pre">interval_cover()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.interval_tree">tryalgo.interval_tree module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.interval_tree.interval_tree"><code class="docutils literal notranslate"><span class="pre">interval_tree()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.interval_tree.intervals_containing"><code class="docutils literal notranslate"><span class="pre">intervals_containing()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.intervals_union">tryalgo.intervals_union module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.intervals_union.intervals_union"><code class="docutils literal notranslate"><span class="pre">intervals_union()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.karatsuba">tryalgo.karatsuba module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.karatsuba.add_poly"><code class="docutils literal notranslate"><span class="pre">add_poly()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.karatsuba.eval_poly"><code class="docutils literal notranslate"><span class="pre">eval_poly()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.karatsuba.mul_poly"><code class="docutils literal notranslate"><span class="pre">mul_poly()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.karatsuba.sub_poly"><code class="docutils literal notranslate"><span class="pre">sub_poly()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.knapsack">tryalgo.knapsack module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.knapsack.knapsack"><code class="docutils literal notranslate"><span class="pre">knapsack()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.knapsack.knapsack2"><code class="docutils literal notranslate"><span class="pre">knapsack2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.knuth_morris_pratt">tryalgo.knuth_morris_pratt module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.knuth_morris_pratt.knuth_morris_pratt"><code class="docutils literal notranslate"><span class="pre">knuth_morris_pratt()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.knuth_morris_pratt.maximum_border_length"><code class="docutils literal notranslate"><span class="pre">maximum_border_length()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.knuth_morris_pratt.powerstring_by_border"><code class="docutils literal notranslate"><span class="pre">powerstring_by_border()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.knuth_morris_pratt.powerstring_by_find"><code class="docutils literal notranslate"><span class="pre">powerstring_by_find()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.kruskal">tryalgo.kruskal module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.kruskal.UnionFind"><code class="docutils literal notranslate"><span class="pre">UnionFind</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.kruskal.UnionFind.find"><code class="docutils literal notranslate"><span class="pre">UnionFind.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.kruskal.UnionFind.union"><code class="docutils literal notranslate"><span class="pre">UnionFind.union()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.kruskal.dist"><code class="docutils literal notranslate"><span class="pre">dist()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.kruskal.kruskal"><code class="docutils literal notranslate"><span class="pre">kruskal()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.kuhn_munkres">tryalgo.kuhn_munkres module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.kuhn_munkres.kuhn_munkres"><code class="docutils literal notranslate"><span class="pre">kuhn_munkres()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.kuhn_munkres_n4">tryalgo.kuhn_munkres_n4 module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.kuhn_munkres_n4.kuhn_munkres"><code class="docutils literal notranslate"><span class="pre">kuhn_munkres()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.laser_mirrors">tryalgo.laser_mirrors module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.laser_mirrors.laser_mirrors"><code class="docutils literal notranslate"><span class="pre">laser_mirrors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.laser_mirrors.solve"><code class="docutils literal notranslate"><span class="pre">solve()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.left_right_inversions">tryalgo.left_right_inversions module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.left_right_inversions.left_right_inversions"><code class="docutils literal notranslate"><span class="pre">left_right_inversions()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.levenshtein">tryalgo.levenshtein module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.levenshtein.levenshtein"><code class="docutils literal notranslate"><span class="pre">levenshtein()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.longest_common_subsequence">tryalgo.longest_common_subsequence module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.longest_common_subsequence.longest_common_subsequence"><code class="docutils literal notranslate"><span class="pre">longest_common_subsequence()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.longest_increasing_subsequence">tryalgo.longest_increasing_subsequence module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.longest_increasing_subsequence.longest_increasing_subsequence"><code class="docutils literal notranslate"><span class="pre">longest_increasing_subsequence()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.lowest_common_ancestor">tryalgo.lowest_common_ancestor module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.lowest_common_ancestor.LowestCommonAncestorRMQ"><code class="docutils literal notranslate"><span class="pre">LowestCommonAncestorRMQ</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.lowest_common_ancestor.LowestCommonAncestorRMQ.query"><code class="docutils literal notranslate"><span class="pre">LowestCommonAncestorRMQ.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.lowest_common_ancestor.LowestCommonAncestorShortcuts"><code class="docutils literal notranslate"><span class="pre">LowestCommonAncestorShortcuts</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.lowest_common_ancestor.LowestCommonAncestorShortcuts.query"><code class="docutils literal notranslate"><span class="pre">LowestCommonAncestorShortcuts.query()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.lowest_common_ancestor.log2ceil"><code class="docutils literal notranslate"><span class="pre">log2ceil()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.lowest_common_ancestor.log2floor"><code class="docutils literal notranslate"><span class="pre">log2floor()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.majority">tryalgo.majority module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.majority.majority"><code class="docutils literal notranslate"><span class="pre">majority()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.manacher">tryalgo.manacher module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.manacher.manacher"><code class="docutils literal notranslate"><span class="pre">manacher()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.matrix_chain_mult">tryalgo.matrix_chain_mult module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.matrix_chain_mult.matrix_chain_mult"><code class="docutils literal notranslate"><span class="pre">matrix_chain_mult()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.matrix_chain_mult.matrix_mult_opt_order"><code class="docutils literal notranslate"><span class="pre">matrix_mult_opt_order()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.max_interval_intersec">tryalgo.max_interval_intersec module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.max_interval_intersec.max_interval_intersec"><code class="docutils literal notranslate"><span class="pre">max_interval_intersec()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.merge_ordered_lists">tryalgo.merge_ordered_lists module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.merge_ordered_lists.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.min_mean_cycle">tryalgo.min_mean_cycle module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.min_mean_cycle.min_mean_cycle"><code class="docutils literal notranslate"><span class="pre">min_mean_cycle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.next_permutation">tryalgo.next_permutation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.next_permutation.convert"><code class="docutils literal notranslate"><span class="pre">convert()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.next_permutation.next_permutation"><code class="docutils literal notranslate"><span class="pre">next_permutation()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.next_permutation.solve_word_addition"><code class="docutils literal notranslate"><span class="pre">solve_word_addition()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.our_heap">tryalgo.our_heap module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.our_heap.OurHeap"><code class="docutils literal notranslate"><span class="pre">OurHeap</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_heap.OurHeap.down"><code class="docutils literal notranslate"><span class="pre">OurHeap.down()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_heap.OurHeap.pop"><code class="docutils literal notranslate"><span class="pre">OurHeap.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_heap.OurHeap.push"><code class="docutils literal notranslate"><span class="pre">OurHeap.push()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_heap.OurHeap.up"><code class="docutils literal notranslate"><span class="pre">OurHeap.up()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_heap.OurHeap.update"><code class="docutils literal notranslate"><span class="pre">OurHeap.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.our_queue">tryalgo.our_queue module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.our_queue.OurQueue"><code class="docutils literal notranslate"><span class="pre">OurQueue</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_queue.OurQueue.pop"><code class="docutils literal notranslate"><span class="pre">OurQueue.pop()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.our_queue.OurQueue.push"><code class="docutils literal notranslate"><span class="pre">OurQueue.push()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.our_std">tryalgo.our_std module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.our_std.readarray"><code class="docutils literal notranslate"><span class="pre">readarray()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.our_std.readint"><code class="docutils literal notranslate"><span class="pre">readint()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.our_std.readmatrix"><code class="docutils literal notranslate"><span class="pre">readmatrix()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.our_std.readstr"><code class="docutils literal notranslate"><span class="pre">readstr()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.pareto">tryalgo.pareto module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.pareto.pareto2d"><code class="docutils literal notranslate"><span class="pre">pareto2d()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.pareto.pareto3d"><code class="docutils literal notranslate"><span class="pre">pareto3d()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.partition_refinement">tryalgo.partition_refinement module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.partition_refinement.PartitionRefinement"><code class="docutils literal notranslate"><span class="pre">PartitionRefinement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.partition_refinement.PartitionRefinement.order"><code class="docutils literal notranslate"><span class="pre">PartitionRefinement.order()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.partition_refinement.PartitionRefinement.refine"><code class="docutils literal notranslate"><span class="pre">PartitionRefinement.refine()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.partition_refinement.PartitionRefinement.tolist"><code class="docutils literal notranslate"><span class="pre">PartitionRefinement.tolist()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.permutation_rank">tryalgo.permutation_rank module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.permutation_rank.permutation_rank"><code class="docutils literal notranslate"><span class="pre">permutation_rank()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.permutation_rank.rank_permutation"><code class="docutils literal notranslate"><span class="pre">rank_permutation()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.polygon">tryalgo.polygon module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.polygon.area"><code class="docutils literal notranslate"><span class="pre">area()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.polygon.is_simple"><code class="docutils literal notranslate"><span class="pre">is_simple()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.predictive_text">tryalgo.predictive_text module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.predictive_text.predictive_text"><code class="docutils literal notranslate"><span class="pre">predictive_text()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.predictive_text.propose"><code class="docutils literal notranslate"><span class="pre">propose()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.primes">tryalgo.primes module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.primes.eratosthene"><code class="docutils literal notranslate"><span class="pre">eratosthene()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.primes.gries_misra"><code class="docutils literal notranslate"><span class="pre">gries_misra()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.rabin_karp">tryalgo.rabin_karp module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rabin_karp.matches"><code class="docutils literal notranslate"><span class="pre">matches()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rabin_karp.rabin_karp_factor"><code class="docutils literal notranslate"><span class="pre">rabin_karp_factor()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rabin_karp.rabin_karp_matching"><code class="docutils literal notranslate"><span class="pre">rabin_karp_matching()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rabin_karp.roll_hash"><code class="docutils literal notranslate"><span class="pre">roll_hash()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.range_minimum_query">tryalgo.range_minimum_query module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.LazySegmentTree"><code class="docutils literal notranslate"><span class="pre">LazySegmentTree</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.LazySegmentTree.add"><code class="docutils literal notranslate"><span class="pre">LazySegmentTree.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.LazySegmentTree.max"><code class="docutils literal notranslate"><span class="pre">LazySegmentTree.max()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.LazySegmentTree.min"><code class="docutils literal notranslate"><span class="pre">LazySegmentTree.min()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.LazySegmentTree.set"><code class="docutils literal notranslate"><span class="pre">LazySegmentTree.set()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.LazySegmentTree.sum"><code class="docutils literal notranslate"><span class="pre">LazySegmentTree.sum()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.RangeMinQuery"><code class="docutils literal notranslate"><span class="pre">RangeMinQuery</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.range_minimum_query.RangeMinQuery.range_min"><code class="docutils literal notranslate"><span class="pre">RangeMinQuery.range_min()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.rectangles_from_grid">tryalgo.rectangles_from_grid module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rectangles_from_grid.rectangles_from_grid"><code class="docutils literal notranslate"><span class="pre">rectangles_from_grid()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.rectangles_from_histogram">tryalgo.rectangles_from_histogram module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rectangles_from_histogram.rectangles_from_histogram"><code class="docutils literal notranslate"><span class="pre">rectangles_from_histogram()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.rectangles_from_points">tryalgo.rectangles_from_points module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.rectangles_from_points.rectangles_from_points"><code class="docutils literal notranslate"><span class="pre">rectangles_from_points()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.roman_numbers">tryalgo.roman_numbers module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.roman_numbers.int2roman"><code class="docutils literal notranslate"><span class="pre">int2roman()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.roman_numbers.roman2int"><code class="docutils literal notranslate"><span class="pre">roman2int()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.scalar">tryalgo.scalar module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.scalar.min_scalar_prod"><code class="docutils literal notranslate"><span class="pre">min_scalar_prod()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.shortest_cycle">tryalgo.shortest_cycle module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.shortest_cycle.powergraph"><code class="docutils literal notranslate"><span class="pre">powergraph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.shortest_cycle.shortest_cycle"><code class="docutils literal notranslate"><span class="pre">shortest_cycle()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.skip_list">tryalgo.skip_list module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.find"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.find()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.getkth"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.getkth()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.insert"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.insert()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.lastKey"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.lastKey()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.nextKey"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.nextKey()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.nextNode"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.nextNode()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.randomHeight"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.randomHeight()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.AbstractSkipList.remove"><code class="docutils literal notranslate"><span class="pre">AbstractSkipList.remove()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedDict"><code class="docutils literal notranslate"><span class="pre">SortedDict</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedDict.Node"><code class="docutils literal notranslate"><span class="pre">SortedDict.Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedDict.keys"><code class="docutils literal notranslate"><span class="pre">SortedDict.keys()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedSet"><code class="docutils literal notranslate"><span class="pre">SortedSet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedSet.Node"><code class="docutils literal notranslate"><span class="pre">SortedSet.Node</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedSet.add"><code class="docutils literal notranslate"><span class="pre">SortedSet.add()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.SortedSet.pop"><code class="docutils literal notranslate"><span class="pre">SortedSet.pop()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.skip_list.random"><code class="docutils literal notranslate"><span class="pre">random()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.strongly_connected_components">tryalgo.strongly_connected_components module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.strongly_connected_components.kosaraju"><code class="docutils literal notranslate"><span class="pre">kosaraju()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.strongly_connected_components.reverse"><code class="docutils literal notranslate"><span class="pre">reverse()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.strongly_connected_components.tarjan"><code class="docutils literal notranslate"><span class="pre">tarjan()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.strongly_connected_components.tarjan_recursif"><code class="docutils literal notranslate"><span class="pre">tarjan_recursif()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.subsetsum">tryalgo.subsetsum module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.subsetsum.coin_change"><code class="docutils literal notranslate"><span class="pre">coin_change()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.subsetsum.subset_sum"><code class="docutils literal notranslate"><span class="pre">subset_sum()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.subsetsum_divide">tryalgo.subsetsum_divide module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.subsetsum_divide.part_sum"><code class="docutils literal notranslate"><span class="pre">part_sum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.subsetsum_divide.part_sum2"><code class="docutils literal notranslate"><span class="pre">part_sum2()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.subsetsum_divide.subset_sum"><code class="docutils literal notranslate"><span class="pre">subset_sum()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.subsetsum_divide.subset_sum2"><code class="docutils literal notranslate"><span class="pre">subset_sum2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.sudoku">tryalgo.sudoku module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.sudoku.sudoku"><code class="docutils literal notranslate"><span class="pre">sudoku()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.suffix_array">tryalgo.suffix_array module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.suffix_array.sort_class"><code class="docutils literal notranslate"><span class="pre">sort_class()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.suffix_array.sort_cyclic_shifts"><code class="docutils literal notranslate"><span class="pre">sort_cyclic_shifts()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.suffix_array.suffix_array"><code class="docutils literal notranslate"><span class="pre">suffix_array()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.three_partition">tryalgo.three_partition module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.three_partition.three_partition"><code class="docutils literal notranslate"><span class="pre">three_partition()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.topological_order">tryalgo.topological_order module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.topological_order.topological_order"><code class="docutils literal notranslate"><span class="pre">topological_order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.topological_order.topological_order_dfs"><code class="docutils literal notranslate"><span class="pre">topological_order_dfs()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.tortoise_hare">tryalgo.tortoise_hare module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.tortoise_hare.tortoise_hare"><code class="docutils literal notranslate"><span class="pre">tortoise_hare()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.trie">tryalgo.trie module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.trie.Trie"><code class="docutils literal notranslate"><span class="pre">Trie()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.trie.TrieNode"><code class="docutils literal notranslate"><span class="pre">TrieNode</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.trie.add"><code class="docutils literal notranslate"><span class="pre">add()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.trie.search"><code class="docutils literal notranslate"><span class="pre">search()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.trie.spell_check"><code class="docutils literal notranslate"><span class="pre">spell_check()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.two_sat">tryalgo.two_sat module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.two_sat.two_sat"><code class="docutils literal notranslate"><span class="pre">two_sat()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.union_rectangles">tryalgo.union_rectangles module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.CoverQuery"><code class="docutils literal notranslate"><span class="pre">CoverQuery</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.CoverQuery.change"><code class="docutils literal notranslate"><span class="pre">CoverQuery.change()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.CoverQuery.cover"><code class="docutils literal notranslate"><span class="pre">CoverQuery.cover()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.rectangles_contains_point"><code class="docutils literal notranslate"><span class="pre">rectangles_contains_point()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.union_intervals"><code class="docutils literal notranslate"><span class="pre">union_intervals()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.union_rectangles"><code class="docutils literal notranslate"><span class="pre">union_rectangles()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.union_rectangles_fast"><code class="docutils literal notranslate"><span class="pre">union_rectangles_fast()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.union_rectangles_fastest"><code class="docutils literal notranslate"><span class="pre">union_rectangles_fastest()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.union_rectangles.union_rectangles_naive"><code class="docutils literal notranslate"><span class="pre">union_rectangles_naive()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo.windows_k_distinct">tryalgo.windows_k_distinct module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tryalgo.html#tryalgo.windows_k_distinct.windows_k_distinct"><code class="docutils literal notranslate"><span class="pre">windows_k_distinct()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tryalgo.html#module-tryalgo">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../auto_examples/coin_change.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Coin change</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="tryalgo.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">tryalgo package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=085432a65528ed429d34"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=085432a65528ed429d34"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2016-2023, Christoph Dürr and Jill-Jênn Vie.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.2dev0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

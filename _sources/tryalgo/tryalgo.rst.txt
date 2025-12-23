@@ -1,0 +1,733 @@
+tryalgo package
+===============
+
+Submodules
+----------
+
+tryalgo.PC\_tree module
+-----------------------
+
+.. automodule:: tryalgo.PC_tree
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.Sequence module
+-----------------------
+
+.. automodule:: tryalgo.Sequence
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.a\_star module
+----------------------
+
+.. automodule:: tryalgo.a_star
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.anagrams module
+-----------------------
+
+.. automodule:: tryalgo.anagrams
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.arithm module
+---------------------
+
+.. automodule:: tryalgo.arithm
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.arithm\_expr\_eval module
+---------------------------------
+
+.. automodule:: tryalgo.arithm_expr_eval
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.arithm\_expr\_target module
+-----------------------------------
+
+.. automodule:: tryalgo.arithm_expr_target
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.bellman\_ford module
+----------------------------
+
+.. automodule:: tryalgo.bellman_ford
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.bfs module
+------------------
+
+.. automodule:: tryalgo.bfs
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.biconnected\_components module
+--------------------------------------
+
+.. automodule:: tryalgo.biconnected_components
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.binary\_search module
+-----------------------------
+
+.. automodule:: tryalgo.binary_search
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.bipartite\_matching module
+----------------------------------
+
+.. automodule:: tryalgo.bipartite_matching
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.bipartite\_vertex\_cover module
+---------------------------------------
+
+.. automodule:: tryalgo.bipartite_vertex_cover
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.closest\_points module
+------------------------------
+
+.. automodule:: tryalgo.closest_points
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.closest\_values module
+------------------------------
+
+.. automodule:: tryalgo.closest_values
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.convex\_hull module
+---------------------------
+
+.. automodule:: tryalgo.convex_hull
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dancing\_links module
+-----------------------------
+
+.. automodule:: tryalgo.dancing_links
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dfs module
+------------------
+
+.. automodule:: tryalgo.dfs
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dijkstra module
+-----------------------
+
+.. automodule:: tryalgo.dijkstra
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dilworth module
+-----------------------
+
+.. automodule:: tryalgo.dilworth
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dinic module
+--------------------
+
+.. automodule:: tryalgo.dinic
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dist\_grid module
+-------------------------
+
+.. automodule:: tryalgo.dist_grid
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.dyn\_prog\_tricks module
+--------------------------------
+
+.. automodule:: tryalgo.dyn_prog_tricks
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.edmonds\_karp module
+----------------------------
+
+.. automodule:: tryalgo.edmonds_karp
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.eulerian\_tour module
+-----------------------------
+
+.. automodule:: tryalgo.eulerian_tour
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.fast\_exponentiation module
+-----------------------------------
+
+.. automodule:: tryalgo.fast_exponentiation
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.fenwick module
+----------------------
+
+.. automodule:: tryalgo.fenwick
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.fft module
+------------------
+
+.. automodule:: tryalgo.fft
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.floyd\_warshall module
+------------------------------
+
+.. automodule:: tryalgo.floyd_warshall
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.ford\_fulkerson module
+------------------------------
+
+.. automodule:: tryalgo.ford_fulkerson
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.freivalds module
+------------------------
+
+.. automodule:: tryalgo.freivalds
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.gale\_shapley module
+----------------------------
+
+.. automodule:: tryalgo.gale_shapley
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.gauss\_jordan module
+----------------------------
+
+.. automodule:: tryalgo.gauss_jordan
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.graph module
+--------------------
+
+.. automodule:: tryalgo.graph
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.graph01 module
+----------------------
+
+.. automodule:: tryalgo.graph01
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.hamiltonian\_cycle module
+---------------------------------
+
+.. automodule:: tryalgo.hamiltonian_cycle
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.horn\_sat module
+------------------------
+
+.. automodule:: tryalgo.horn_sat
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.huffman module
+----------------------
+
+.. automodule:: tryalgo.huffman
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.interval\_cover module
+------------------------------
+
+.. automodule:: tryalgo.interval_cover
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.interval\_tree module
+-----------------------------
+
+.. automodule:: tryalgo.interval_tree
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.intervals\_union module
+-------------------------------
+
+.. automodule:: tryalgo.intervals_union
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.karatsuba module
+------------------------
+
+.. automodule:: tryalgo.karatsuba
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.knapsack module
+-----------------------
+
+.. automodule:: tryalgo.knapsack
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.knuth\_morris\_pratt module
+-----------------------------------
+
+.. automodule:: tryalgo.knuth_morris_pratt
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.kruskal module
+----------------------
+
+.. automodule:: tryalgo.kruskal
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.kuhn\_munkres module
+----------------------------
+
+.. automodule:: tryalgo.kuhn_munkres
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.kuhn\_munkres\_n4 module
+--------------------------------
+
+.. automodule:: tryalgo.kuhn_munkres_n4
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.laser\_mirrors module
+-----------------------------
+
+.. automodule:: tryalgo.laser_mirrors
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.left\_right\_inversions module
+--------------------------------------
+
+.. automodule:: tryalgo.left_right_inversions
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.levenshtein module
+--------------------------
+
+.. automodule:: tryalgo.levenshtein
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.longest\_common\_subsequence module
+-------------------------------------------
+
+.. automodule:: tryalgo.longest_common_subsequence
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.longest\_increasing\_subsequence module
+-----------------------------------------------
+
+.. automodule:: tryalgo.longest_increasing_subsequence
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.lowest\_common\_ancestor module
+---------------------------------------
+
+.. automodule:: tryalgo.lowest_common_ancestor
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.majority module
+-----------------------
+
+.. automodule:: tryalgo.majority
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.manacher module
+-----------------------
+
+.. automodule:: tryalgo.manacher
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.matrix\_chain\_mult module
+----------------------------------
+
+.. automodule:: tryalgo.matrix_chain_mult
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.max\_interval\_intersec module
+--------------------------------------
+
+.. automodule:: tryalgo.max_interval_intersec
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.merge\_ordered\_lists module
+------------------------------------
+
+.. automodule:: tryalgo.merge_ordered_lists
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.min\_mean\_cycle module
+-------------------------------
+
+.. automodule:: tryalgo.min_mean_cycle
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.next\_permutation module
+--------------------------------
+
+.. automodule:: tryalgo.next_permutation
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.our\_heap module
+------------------------
+
+.. automodule:: tryalgo.our_heap
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.our\_queue module
+-------------------------
+
+.. automodule:: tryalgo.our_queue
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.our\_std module
+-----------------------
+
+.. automodule:: tryalgo.our_std
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.pareto module
+---------------------
+
+.. automodule:: tryalgo.pareto
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.partition\_refinement module
+------------------------------------
+
+.. automodule:: tryalgo.partition_refinement
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.permutation\_rank module
+--------------------------------
+
+.. automodule:: tryalgo.permutation_rank
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.polygon module
+----------------------
+
+.. automodule:: tryalgo.polygon
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.predictive\_text module
+-------------------------------
+
+.. automodule:: tryalgo.predictive_text
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.primes module
+---------------------
+
+.. automodule:: tryalgo.primes
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.rabin\_karp module
+--------------------------
+
+.. automodule:: tryalgo.rabin_karp
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.range\_minimum\_query module
+------------------------------------
+
+.. automodule:: tryalgo.range_minimum_query
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.rectangles\_from\_grid module
+-------------------------------------
+
+.. automodule:: tryalgo.rectangles_from_grid
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.rectangles\_from\_histogram module
+------------------------------------------
+
+.. automodule:: tryalgo.rectangles_from_histogram
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.rectangles\_from\_points module
+---------------------------------------
+
+.. automodule:: tryalgo.rectangles_from_points
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.roman\_numbers module
+-----------------------------
+
+.. automodule:: tryalgo.roman_numbers
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.scalar module
+---------------------
+
+.. automodule:: tryalgo.scalar
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.shortest\_cycle module
+------------------------------
+
+.. automodule:: tryalgo.shortest_cycle
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.skip\_list module
+-------------------------
+
+.. automodule:: tryalgo.skip_list
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.strongly\_connected\_components module
+----------------------------------------------
+
+.. automodule:: tryalgo.strongly_connected_components
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.subsetsum module
+------------------------
+
+.. automodule:: tryalgo.subsetsum
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.subsetsum\_divide module
+--------------------------------
+
+.. automodule:: tryalgo.subsetsum_divide
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.sudoku module
+---------------------
+
+.. automodule:: tryalgo.sudoku
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.suffix\_array module
+----------------------------
+
+.. automodule:: tryalgo.suffix_array
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.three\_partition module
+-------------------------------
+
+.. automodule:: tryalgo.three_partition
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.topological\_order module
+---------------------------------
+
+.. automodule:: tryalgo.topological_order
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.tortoise\_hare module
+-----------------------------
+
+.. automodule:: tryalgo.tortoise_hare
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.trie module
+-------------------
+
+.. automodule:: tryalgo.trie
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.two\_sat module
+-----------------------
+
+.. automodule:: tryalgo.two_sat
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.union\_rectangles module
+--------------------------------
+
+.. automodule:: tryalgo.union_rectangles
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+tryalgo.windows\_k\_distinct module
+-----------------------------------
+
+.. automodule:: tryalgo.windows_k_distinct
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: tryalgo
+   :members:
+   :show-inheritance:
+   :undoc-members:

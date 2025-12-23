@@ -1,0 +1,517 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overview: module code &#8212; tryalgo 1.5.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=085432a65528ed429d34" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=085432a65528ed429d34" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=085432a65528ed429d34"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=085432a65528ed429d34" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=085432a65528ed429d34" />
+
+    <script src="../_static/documentation_options.js?v=e0a75244"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/index';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.5" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_B.png" class="logo__image only-light" alt="tryalgo 1.5.0 documentation - Home"/>
+    <img src="../_static/logo_W.png" class="logo__image only-dark pst-js-only" alt="tryalgo 1.5.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../content.html">
+    Content of the library
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Gallery of examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tryalgo/modules.html">
+    tryalgo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../install.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../quickstart.html">
+    Quick start
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../content.html">
+    Content of the library
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../auto_examples/index.html">
+    Gallery of examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../tryalgo/modules.html">
+    tryalgo
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Overview: module code</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>All modules for which code is available</h1>
+<ul><li><a href="collections.html">collections</a></li>
+<li><a href="tryalgo/PC_tree.html">tryalgo.PC_tree</a></li>
+<li><a href="tryalgo/Sequence.html">tryalgo.Sequence</a></li>
+<li><a href="tryalgo/a_star.html">tryalgo.a_star</a></li>
+<li><a href="tryalgo/anagrams.html">tryalgo.anagrams</a></li>
+<li><a href="tryalgo/arithm.html">tryalgo.arithm</a></li>
+<li><a href="tryalgo/arithm_expr_eval.html">tryalgo.arithm_expr_eval</a></li>
+<li><a href="tryalgo/arithm_expr_target.html">tryalgo.arithm_expr_target</a></li>
+<li><a href="tryalgo/bellman_ford.html">tryalgo.bellman_ford</a></li>
+<li><a href="tryalgo/bfs.html">tryalgo.bfs</a></li>
+<li><a href="tryalgo/biconnected_components.html">tryalgo.biconnected_components</a></li>
+<li><a href="tryalgo/binary_search.html">tryalgo.binary_search</a></li>
+<li><a href="tryalgo/bipartite_matching.html">tryalgo.bipartite_matching</a></li>
+<li><a href="tryalgo/bipartite_vertex_cover.html">tryalgo.bipartite_vertex_cover</a></li>
+<li><a href="tryalgo/closest_points.html">tryalgo.closest_points</a></li>
+<li><a href="tryalgo/closest_values.html">tryalgo.closest_values</a></li>
+<li><a href="tryalgo/convex_hull.html">tryalgo.convex_hull</a></li>
+<li><a href="tryalgo/dancing_links.html">tryalgo.dancing_links</a></li>
+<li><a href="tryalgo/dfs.html">tryalgo.dfs</a></li>
+<li><a href="tryalgo/dijkstra.html">tryalgo.dijkstra</a></li>
+<li><a href="tryalgo/dilworth.html">tryalgo.dilworth</a></li>
+<li><a href="tryalgo/dinic.html">tryalgo.dinic</a></li>
+<li><a href="tryalgo/dist_grid.html">tryalgo.dist_grid</a></li>
+<li><a href="tryalgo/dyn_prog_tricks.html">tryalgo.dyn_prog_tricks</a></li>
+<li><a href="tryalgo/edmonds_karp.html">tryalgo.edmonds_karp</a></li>
+<li><a href="tryalgo/eulerian_tour.html">tryalgo.eulerian_tour</a></li>
+<li><a href="tryalgo/fast_exponentiation.html">tryalgo.fast_exponentiation</a></li>
+<li><a href="tryalgo/fenwick.html">tryalgo.fenwick</a></li>
+<li><a href="tryalgo/fft.html">tryalgo.fft</a></li>
+<li><a href="tryalgo/floyd_warshall.html">tryalgo.floyd_warshall</a></li>
+<li><a href="tryalgo/ford_fulkerson.html">tryalgo.ford_fulkerson</a></li>
+<li><a href="tryalgo/freivalds.html">tryalgo.freivalds</a></li>
+<li><a href="tryalgo/gale_shapley.html">tryalgo.gale_shapley</a></li>
+<li><a href="tryalgo/gauss_jordan.html">tryalgo.gauss_jordan</a></li>
+<li><a href="tryalgo/graph.html">tryalgo.graph</a></li>
+<li><a href="tryalgo/graph01.html">tryalgo.graph01</a></li>
+<li><a href="tryalgo/hamiltonian_cycle.html">tryalgo.hamiltonian_cycle</a></li>
+<li><a href="tryalgo/horn_sat.html">tryalgo.horn_sat</a></li>
+<li><a href="tryalgo/huffman.html">tryalgo.huffman</a></li>
+<li><a href="tryalgo/interval_cover.html">tryalgo.interval_cover</a></li>
+<li><a href="tryalgo/interval_tree.html">tryalgo.interval_tree</a></li>
+<li><a href="tryalgo/intervals_union.html">tryalgo.intervals_union</a></li>
+<li><a href="tryalgo/karatsuba.html">tryalgo.karatsuba</a></li>
+<li><a href="tryalgo/knapsack.html">tryalgo.knapsack</a></li>
+<li><a href="tryalgo/knuth_morris_pratt.html">tryalgo.knuth_morris_pratt</a></li>
+<li><a href="tryalgo/kruskal.html">tryalgo.kruskal</a></li>
+<li><a href="tryalgo/kuhn_munkres.html">tryalgo.kuhn_munkres</a></li>
+<li><a href="tryalgo/kuhn_munkres_n4.html">tryalgo.kuhn_munkres_n4</a></li>
+<li><a href="tryalgo/laser_mirrors.html">tryalgo.laser_mirrors</a></li>
+<li><a href="tryalgo/left_right_inversions.html">tryalgo.left_right_inversions</a></li>
+<li><a href="tryalgo/levenshtein.html">tryalgo.levenshtein</a></li>
+<li><a href="tryalgo/longest_common_subsequence.html">tryalgo.longest_common_subsequence</a></li>
+<li><a href="tryalgo/longest_increasing_subsequence.html">tryalgo.longest_increasing_subsequence</a></li>
+<li><a href="tryalgo/lowest_common_ancestor.html">tryalgo.lowest_common_ancestor</a></li>
+<li><a href="tryalgo/majority.html">tryalgo.majority</a></li>
+<li><a href="tryalgo/manacher.html">tryalgo.manacher</a></li>
+<li><a href="tryalgo/matrix_chain_mult.html">tryalgo.matrix_chain_mult</a></li>
+<li><a href="tryalgo/max_interval_intersec.html">tryalgo.max_interval_intersec</a></li>
+<li><a href="tryalgo/merge_ordered_lists.html">tryalgo.merge_ordered_lists</a></li>
+<li><a href="tryalgo/min_mean_cycle.html">tryalgo.min_mean_cycle</a></li>
+<li><a href="tryalgo/next_permutation.html">tryalgo.next_permutation</a></li>
+<li><a href="tryalgo/our_heap.html">tryalgo.our_heap</a></li>
+<li><a href="tryalgo/our_queue.html">tryalgo.our_queue</a></li>
+<li><a href="tryalgo/our_std.html">tryalgo.our_std</a></li>
+<li><a href="tryalgo/pareto.html">tryalgo.pareto</a></li>
+<li><a href="tryalgo/partition_refinement.html">tryalgo.partition_refinement</a></li>
+<li><a href="tryalgo/permutation_rank.html">tryalgo.permutation_rank</a></li>
+<li><a href="tryalgo/polygon.html">tryalgo.polygon</a></li>
+<li><a href="tryalgo/predictive_text.html">tryalgo.predictive_text</a></li>
+<li><a href="tryalgo/primes.html">tryalgo.primes</a></li>
+<li><a href="tryalgo/rabin_karp.html">tryalgo.rabin_karp</a></li>
+<li><a href="tryalgo/range_minimum_query.html">tryalgo.range_minimum_query</a></li>
+<li><a href="tryalgo/rectangles_from_grid.html">tryalgo.rectangles_from_grid</a></li>
+<li><a href="tryalgo/rectangles_from_histogram.html">tryalgo.rectangles_from_histogram</a></li>
+<li><a href="tryalgo/rectangles_from_points.html">tryalgo.rectangles_from_points</a></li>
+<li><a href="tryalgo/roman_numbers.html">tryalgo.roman_numbers</a></li>
+<li><a href="tryalgo/scalar.html">tryalgo.scalar</a></li>
+<li><a href="tryalgo/shortest_cycle.html">tryalgo.shortest_cycle</a></li>
+<li><a href="tryalgo/skip_list.html">tryalgo.skip_list</a></li>
+<li><a href="tryalgo/strongly_connected_components.html">tryalgo.strongly_connected_components</a></li>
+<li><a href="tryalgo/subsetsum.html">tryalgo.subsetsum</a></li>
+<li><a href="tryalgo/subsetsum_divide.html">tryalgo.subsetsum_divide</a></li>
+<li><a href="tryalgo/sudoku.html">tryalgo.sudoku</a></li>
+<li><a href="tryalgo/suffix_array.html">tryalgo.suffix_array</a></li>
+<li><a href="tryalgo/three_partition.html">tryalgo.three_partition</a></li>
+<li><a href="tryalgo/topological_order.html">tryalgo.topological_order</a></li>
+<li><a href="tryalgo/tortoise_hare.html">tryalgo.tortoise_hare</a></li>
+<li><a href="tryalgo/trie.html">tryalgo.trie</a></li>
+<li><a href="tryalgo/two_sat.html">tryalgo.two_sat</a></li>
+<li><a href="tryalgo/union_rectangles.html">tryalgo.union_rectangles</a></li>
+<li><a href="tryalgo/windows_k_distinct.html">tryalgo.windows_k_distinct</a></li>
+</ul>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=085432a65528ed429d34"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=085432a65528ed429d34"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2016-2023, Christoph Dürr and Jill-Jênn Vie.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.0.4.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.2dev0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
