@@ -125,7 +125,7 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
             S: List[int] = [start]            # start new DFS
             prec[start] = start       # mark root (not necessary for this algorithm)
             while S:
-                u = S.pop()
+                u : int = S.pop()
                 for v in graph[u]:  # for all neighbors
                     if v != prec[u]:  # except arcs to father in DFS tree
                         if prec[v] is not None: # v was already visited
@@ -133,7 +133,7 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
                             while u not in (prec[v], prec[u]):  # directed
                                 assert u is not None
                                 assert prec[u] is not None
-                                u = prec[u]  # climb up the tree
+                                u = int(prec[u])  # climb up the tree
                                 cycle.append(u)
                             return cycle
                         else:
