@@ -3,7 +3,7 @@
 
 # pylint: disable=missing-docstring
 import unittest
-from tryalgo.next_permutation import next_permutation, solve_word_addition
+from tryalgo import next_permutation, solve_word_addition
 
 
 class TestNextPermutation(unittest.TestCase):

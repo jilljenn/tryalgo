@@ -3,7 +3,7 @@
 
 # pylint: disable=missing-docstring
 import unittest
-from tryalgo.arithm import inv, pgcd, binom, binom_modulo
+from tryalgo import inv, pgcd, binom, binom_modulo
 
 
 class TestArithm(unittest.TestCase):
