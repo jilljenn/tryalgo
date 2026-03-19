@@ -179,7 +179,7 @@ And among problems related to points, is the problem of computing the `Pareto se
 
 The area of a given simple polygon can be computed in linear time, see `polygon <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.  And testing whether a given rectilinear polygon is simple can be verified with a sweepline algorithm in time O(n log n), see `is_simple <tryalgo/tryalgo.html#module-tryalgo.polygon>`__.
 
-Here is an algorithmic puzzle that we like a lot. Given a set of n points in the plane, we which to find out how many 4-tuples we can form such that they are the 4 corners of a rectangle.  The solution can be found in `rectangles_from_points <tryalgo/tryalgo.html#module-tryalgo.rectangles_from_points>`__.
+Here is an algorithmic puzzle that we like a lot. Given a set of n points in the plane, we wish to find out how many 4-tuples we can form such that they are the 4 corners of a rectangle.  The solution can be found in `rectangles_from_points <tryalgo/tryalgo.html#module-tryalgo.rectangles_from_points>`__.
 
 Speaking of rectangles, a nice problem illustrating the amortized analysis consists in finding a largest rectangle under a given histogram.  A linear time algorithm is implemented in `rectangles_from_histogram <tryalgo/tryalgo.html#module-tryalgo.rectangles_from_histogram>`__.  This algorithm is the key to solve another interesting problem. Given a binary matrix, we want to find the largest rectangular sub-matrix consisting only of ones.  The linear time solution can be found in `rectangles_from_grid <tryalgo/tryalgo.html#module-tryalgo.rectangles_from_grid>`__.
 

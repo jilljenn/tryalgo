@@ -4,8 +4,6 @@ Coin change
 """
 
 from tryalgo import coin_change
-from tryalgo.subsetsum import coin_change
-
 
 print(coin_change([3, 5, 11], 29))  # True because 29 = 6 x 3 + 0 x 5 + 1 x 11
 

@@ -125,7 +125,7 @@ def find_cycle(graph: Graph) -> Optional[List[int]]:
             S: List[int] = [start]            # start new DFS
             prec[start] = start       # mark root (not necessary for this algorithm)
             while S:
-                u = S.pop()
+                u : int = S.pop()
                 for v in graph[u]:  # for all neighbors
                     if v != prec[u]:  # except arcs to father in DFS tree
                         if prec[v] is not None: # v was already visited

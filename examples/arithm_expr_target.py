@@ -3,7 +3,7 @@ Countdown
 =========
 """
 
-from tryalgo.arithm_expr_target import arithm_expr_target
+from tryalgo import arithm_expr_target
 
 arithm_expr_target([25, 50, 75, 100, 3, 6], 952)
 
