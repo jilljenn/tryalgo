@@ -8,7 +8,7 @@ christoph dürr - jill-jênn vie - 2013-2018
 
 from bisect import bisect_right
 
-
+# icpc-ignore
 # snip{
 # pylint: disable=too-many-arguments, too-few-public-methods
 class _Node:

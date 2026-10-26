@@ -4,6 +4,7 @@ help::
 
 tests::
 	python3 -m unittest 
+	pytest
 	mypy tryalgo/*.py
 
 pycodestyle::

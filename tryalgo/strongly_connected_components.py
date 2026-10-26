@@ -109,9 +109,6 @@ def tarjan(graph):
 
 # snip{ sccp-kosaraju
 def kosaraju_dfs(graph, nodes, order, sccp):
-    """
-    kosaraju depth-first-search over graph
-    """
     times_seen = [-1] * len(graph)
     for start in nodes:
         if times_seen[start] == -1:                     # initiate DFS
@@ -143,7 +140,7 @@ def reverse(graph):
     return rev_graph
 
 
-def kosaraju(graph):
+def kosaraju(graph: dict(Any, list(Any))):
     """Strongly connected components by Kosaraju
 
     :param graph: directed graph in listlist format, cannot be listdict

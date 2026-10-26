@@ -7,6 +7,7 @@ jill-jênn vie et christoph dürr - 2015-2019
 """
 
 
+# icpc-ignore
 # snip{
 def three_partition(x):
     """partition a set of integers in 3 parts of same total value

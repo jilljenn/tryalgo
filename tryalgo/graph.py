@@ -141,7 +141,7 @@ def write_graph(dotfile, graph, directed=False,
                 f.write(arc + "[" + tag + sep + pen + "];\n")
         f.write("}")
 
-
+# icpc-ignore
 # snip{ tree_representations
 def tree_prec_to_adj(prec, root=0):
     """Transforms a tree given as predecessor table into adjacency list form
@@ -182,7 +182,7 @@ def tree_adj_to_prec(graph, root=0):
     return prec
 # snip}
 
-
+# icpc-ignore
 # snip{ add_reverse_arcs
 # pylint: disable=unidiomatic-typecheck
 def add_reverse_arcs(graph, capac=None):
@@ -354,6 +354,7 @@ def make_flow_labels(graph, flow, capac):
 
 
 # pylint: disable=arguments-out-of-order
+# icpc-ignore
 # snip{ class_graph
 class GraphNamedVertices:
     def __init__(self):

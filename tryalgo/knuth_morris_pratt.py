@@ -65,7 +65,7 @@ def powerstring_by_border(u):
     return 1
 # snip}
 
-
+# icpc-ignore
 # snip{ powerstring_by_find
 def powerstring_by_find(u):
     """Power string using the python find method

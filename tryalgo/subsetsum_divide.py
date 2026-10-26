@@ -7,6 +7,7 @@ christoph dürr et jill-jênn vie - 2014-2019
 """
 
 
+# icpc-ignore
 # snip{
 def part_sum(x_table, i=0):
     """All subsetsums from x_table[i:]
@@ -50,6 +51,7 @@ def subset_sum(x_table, r_target):
 # snip}
 
 
+# icpc-ignore
 # snip{ subset_sum2
 def part_sum2(x_table):
     """All subsetsums from a list x

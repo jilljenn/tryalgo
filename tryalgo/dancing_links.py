@@ -9,6 +9,7 @@ jill-jenn vie et christoph durr - 2014-2018
 __all__ = ["dancing_links"]
 
 
+# icpc-ignore
 # snip{ liens-dansants-cell
 # pylint: disable=missing-docstring
 class Cell:
@@ -50,6 +51,7 @@ class Cell:
 # snip}
 
 
+# icpc-ignore
 # snip{ liens-dansants-cover
 def cover(c):            # c = heading cell of the column to cover
     assert c.C is None   # must be a heading cell
@@ -78,6 +80,7 @@ def uncover(c):
 # snip}
 
 
+# icpc-ignore
 # snip{ liens-dansants-exploration
 def dancing_links(size_universe, sets):
     """Exact set cover by the dancing links algorithm

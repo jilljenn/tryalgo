@@ -7,6 +7,7 @@ christoph dürr - jill-jênn vie - 2015-2019
 """
 
 
+# icpc-ignore
 # snip{ OurQueue
 # pylint: disable=missing-docstring
 class OurQueue:

@@ -9,6 +9,7 @@ jill-jenn vie et christoph durr - 2014-2018
 from collections import deque
 
 
+# icpc-ignore
 # snip{
 def dist_grid(grid, source, target=None):
     """Distances in a grid by BFS

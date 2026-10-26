@@ -8,6 +8,7 @@ jill-jenn vie et christoph durr and louis abraham - 2014-2019
 
 __all__ = ["predictive_text", "propose"]
 
+# icpc-ignore
 # snip{
 t9 = "22233344455566677778889999"
 #     abcdefghijklmnopqrstuvwxyz   mapping on the phone

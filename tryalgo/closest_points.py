@@ -13,6 +13,7 @@ jill-jênn vie, christoph dürr et louis abraham - 2014-2019
 from random import randint
 
 
+# icpc-ignore
 # snip{
 from math import hypot   # hypot(dx, dy) = sqrt(dx * dx + dy * dy)
 from math import floor
@@ -20,6 +21,7 @@ from random import shuffle
 
 # snip}
 __all__ = ["closest_points"]
+# icpc-ignore
 # snip{
 
 

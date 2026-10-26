@@ -54,7 +54,7 @@ def dijkstra(graph, weight, source=0, target=None):
 
 
 # snip}
-
+# icpc-ignore
 # snip{ dijkstra_update_heap
 def dijkstra_update_heap(graph, weight, source=0, target=None):
     """single source shortest paths by Dijkstra

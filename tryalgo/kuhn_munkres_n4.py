@@ -8,7 +8,7 @@ jill-jênn vie et christoph dürr - 2014-2019
 
 __all__ = ["kuhn_munkres"]
 
-
+# icpc-ignore
 # snip{
 # pylint: disable=too-many-arguments
 def improve_matching(G, u, mu, mv, au, av, lu, lv):

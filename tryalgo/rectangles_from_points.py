@@ -7,6 +7,7 @@ jill-jenn vie et christoph durr - 2014-2018
 """
 
 
+# icpc-ignore
 # snip{
 def rectangles_from_points(S):
     """How many rectangles can be formed from a set of points

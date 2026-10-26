@@ -6,6 +6,7 @@ Orienting mirrors to allow connectivity by a laser beam
 jill-jênn vie et christoph dürr - 2014-2019
 """
 
+# icpc-ignore
 # snip{ laser-miroir-preparation
 # directions
 UP = 0
@@ -55,7 +56,7 @@ def laser_mirrors(rows, cols, mir):
     return None
 # snip}
 
-
+# icpc-ignore
 # snip{ laser-miroir-exploration
 def solve(succ, orien, i, direc):
     """Can a laser leaving mirror i in direction direc reach exit ?

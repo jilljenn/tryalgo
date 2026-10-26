@@ -12,6 +12,7 @@ from tryalgo.dancing_links import dancing_links
 
 __all__ = ["sudoku"]
 
+# icpc-ignore
 # snip{
 N = 3        # global constants
 N2 = N * N

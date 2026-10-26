@@ -7,6 +7,7 @@ jill-jenn vie et christoph durr - 2014-2019
 """
 
 
+# icpc-ignore
 # snip{
 # pylint: disable=unused-variable
 def majority(L):
@@ -21,6 +22,7 @@ def majority(L):
                  :math:`O(n^2k)` in worst case due to the use of a dictionary
     """
     assert L    # majority is undefined on the empty set
+    # icpc-ignore
     # snip{
     count = {}
     for word in L:

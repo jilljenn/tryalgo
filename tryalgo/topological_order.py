@@ -7,6 +7,7 @@ jill-jênn vie et christoph dürr - 2014-2019
 """
 
 
+# icpc-ignore
 # snip{ topological_order_dfs
 def topological_order_dfs(graph):
     """Topological sorting by depth first search

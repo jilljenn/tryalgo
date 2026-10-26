@@ -8,12 +8,14 @@ jill-jênn vie et christoph dürr - 2014-2019
 # pylint: disable=too-many-arguments, too-many-locals
 
 
+# icpc-ignore
 # snip{ union_intervals
 from collections import Counter
 # snip}
 
 
 # weighted variant of tryalgo.range_minimum_query.LazySegmentTree
+# icpc-ignore
 # snip{ cover-query
 class CoverQuery:
     """Segment tree to maintain a set of integer intervals
@@ -66,6 +68,7 @@ class CoverQuery:
 # snip}
 
 
+# icpc-ignore
 # snip{ union_intervals
 OPENING = +1  # constants for events
 CLOSING = -1  # -1 has higher priority
@@ -102,6 +105,7 @@ def union_intervals(intervals):
 # snip}
 
 
+# icpc-ignore
 # snip{ union_rectangles
 def union_rectangles(R):
     """Area of union of rectangles.
@@ -132,6 +136,7 @@ def union_rectangles(R):
 # snip}
 
 
+# icpc-ignore
 # snip{ union_rectangles_fast
 def union_rectangles_fast(R):
     """Area of union of rectangles
@@ -176,6 +181,7 @@ def union_rectangles_fast(R):
 # snip}
 
 
+# icpc-ignore
 # snip{ union_rectangles_fastest
 def union_rectangles_fastest(R):
     """Area of union of rectangles
@@ -214,6 +220,7 @@ def union_rectangles_fastest(R):
 # snip}
 
 
+# icpc-ignore
 # snip{ union_rectangles_naive
 def rectangles_contains_point(R, x, y):
     """Decides if at least one of the given rectangles contains a given point

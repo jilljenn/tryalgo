@@ -7,6 +7,7 @@ jill-jênn vie et christoph dürr - 2014-2019
 """
 
 
+# icpc-ignore
 # snip{
 def min_scalar_prod(x, y):
     """Permute vector to minimize scalar product

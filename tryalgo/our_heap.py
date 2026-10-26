@@ -7,6 +7,7 @@ christoph dürr et jill-jênn vie - 2015-2019
 """
 
 
+# icpc-ignore
 # snip{
 class OurHeap:
     """ min heap
@@ -49,6 +50,7 @@ class OurHeap:
         return root
     # snip}
 
+    # icpc-ignore
     # snip{ our_heap_up_down
     def up(self, i):
         """The value of heap[i] has decreased. Maintain heap invariant."""

@@ -6,12 +6,14 @@ Test matrix product AB = C by Freivalds
 jill-jênn vie et christoph dürr - 2015-2020
 """
 
+# icpc-ignore
 # snip{
 from random import randint
 from sys import stdin
 
 # snip}
 __all__ = ["freivalds"]
+# icpc-ignore
 # snip{
 
 
