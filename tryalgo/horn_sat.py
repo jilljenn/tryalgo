@@ -54,6 +54,7 @@ def read(filename):
     return formula
 
 
+#snip{
 # pylint: disable=line-too-long
 def horn_sat(formula):
     """ Solving a HORN Sat formula
@@ -98,7 +99,7 @@ def horn_sat(formula):
             score[c] -= 1
             pool[score[c]].add(c)          # change c to lower score in pool
     return solution
-
+#snip}
 
 if __name__ == "__main__":
     F = read(sys.argv[1])

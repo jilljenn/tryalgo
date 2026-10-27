@@ -42,7 +42,7 @@ def next_permutation(tab):
     return True
 # snip}
 
-
+# icpc-ignore
 # snip{ word_addition
 # pylint: disable=redefined-outer-name
 def convert(word, ass):

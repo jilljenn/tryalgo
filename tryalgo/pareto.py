@@ -7,6 +7,7 @@ jill-jenn vie et christoph durr - 2022
 """
 from tryalgo.fenwick import FenwickMin
 
+#snip{ 
 def pareto2d(points):
     """ Compute the Pareto set of a given set of points in 2 dimensions
 
@@ -22,8 +23,9 @@ def pareto2d(points):
         if pareto == [] or y < pareto[-1][1] or p == pareto[-1]: 
             pareto.append(p)
     return pareto
+#snip}
 
-
+#snip{
 def pareto3d(points):
     """ Compute the Pareto set of a given set of points in 2 dimensions
 
@@ -49,3 +51,4 @@ def pareto3d(points):
             pareto.append(p) 
         R.update(i, z)
     return pareto 
+#snip}

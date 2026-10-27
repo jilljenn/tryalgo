@@ -7,6 +7,7 @@ but only the O(n log^2(n)) implementation, which is enough for most programming 
 christoph dürr 2024
 """
 
+# snip{
 def sort_class(s):
     """ sorts s and returns additional information
 
@@ -19,8 +20,9 @@ def sort_class(s):
     x2c = {x : i for i, x in enumerate(sorted(set(s)))}
     c = [x2c[x] for x in s]
     return p, c
+#snip}
 
-
+#snip{
 def sort_cyclic_shifts(s):
     """ given a string s, sort lexicographically all cyclic shifts of s.
 
@@ -37,7 +39,9 @@ def sort_cyclic_shifts(s):
         p, c = sort_class(L)
         K <<= 1 
     return p
+#snip}
 
+#snip{
 def suffix_array(s):
     """ given a string s, sort lexicographically suffixes of s
     :param s: string
@@ -48,6 +52,8 @@ def suffix_array(s):
     assert special < min(s) 
     L = sort_cyclic_shifts(s + special)
     return L[1:]
+#snip}
+
 
 if __name__ == "__main__":
     # tested at https://www.spoj.com/problems/SARRAY/

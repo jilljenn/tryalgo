@@ -9,6 +9,7 @@ jill-jênn vie et christoph dürr - 2015-2018
 
 __all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
 
+# icpc-ignore
 # snip{ sccp-tarjan-recursif
 def tarjan_recursif(graph) -> list[list[int]]:
     """Strongly connected components by Tarjan, recursive implementation
@@ -52,6 +53,7 @@ def tarjan_recursif(graph) -> list[list[int]]:
 # snip}
 
 
+# icpc-ignore
 # snip{ sccp-tarjan
 # pylint: disable=too-many-locals, redefined-outer-name, too-many-nested-blocks, invalid-name
 def tarjan(graph):
@@ -108,7 +110,10 @@ def tarjan(graph):
 
 
 # snip{ sccp-kosaraju
-def kosaraju_dfs(graph, nodes, order, sccp):
+from typing import Iterable
+
+
+def kosaraju_dfs(graph: list[list[int]], nodes: Iterable[int], order: list[int], sccp: list[list[int]]):
     times_seen = [-1] * len(graph)
     for start in nodes:
         if times_seen[start] == -1:                     # initiate DFS
@@ -130,17 +135,17 @@ def kosaraju_dfs(graph, nodes, order, sccp):
                         sccp[-1].append(child)
 
 
-def reverse(graph):
+def reverse(graph: list[list[int]]) -> list[list[int]]:
     """replace all arcs (u, v) by arcs (v, u) in a graph"""
     V = range(len(graph))
-    rev_graph = [[] for node in V]
+    rev_graph: list[list[int]] = [[] for node in V]
     for node in V:
         for neighbor in graph[node]:
             rev_graph[neighbor].append(node)
     return rev_graph
 
 
-def kosaraju(graph: dict(Any, list(Any))):
+def kosaraju(graph: list[list[int]]):
     """Strongly connected components by Kosaraju
 
     :param graph: directed graph in listlist format, cannot be listdict
@@ -148,8 +153,8 @@ def kosaraju(graph: dict(Any, list(Any))):
     :complexity: linear
     """
     V = range(len(graph))
-    order = []
-    sccp = []
+    order: list[int] = []
+    sccp: list[list[int]] = []
     kosaraju_dfs(graph, V, order, [])
     kosaraju_dfs(reverse(graph), order[::-1], [], sccp)
     return sccp[::-1]  # follow inverse topological order

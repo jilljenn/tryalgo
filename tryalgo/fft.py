@@ -9,6 +9,7 @@ christoph dürr - jill-jênn vie - 2022
 # https://en.wikipedia.org/wiki/Cooley%E2%80%93Tukey_FFT_algorithm
 
 
+# snip{
 import math     # for pi
 import cmath    # for exp
 
@@ -66,3 +67,4 @@ def mul_poly_fft(p, q):
     r = [y[i] * z[i] for i in range(n)]
     R = inv_fft(r)
     return [int(round(ri.real)) for ri in R]
+# snip}
