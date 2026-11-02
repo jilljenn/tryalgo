@@ -23,22 +23,27 @@ TEMPLATE = r'''// Python snippets grouped by source file, excluding pylint direc
 #set page(
   paper: "a4", flipped: true, columns: 2,
   margin: (top: 13mm, bottom: 17mm, left: 13mm, right: 13mm),
-  footer: context {
-    let numero = here().page()
-    let balises = query(<repere-fichier>)
-    let noms = ()
-    for repere in balises {
-      if repere.location().page() == numero {
-        let nom = repere.value.nom
-        if not (nom in noms) { noms.push(nom) }
+  header: context {
+    let current_page = here().page()
+    let titles = ()
+    for marker in query(<repere-fichier>) {
+      if marker.location().page() == current_page {
+        let title = marker.value.nom
+        if not (title in titles) { titles.push(title) }
       }
     }
     block(
-      width: 100%, stroke: (top: 0.5pt + rgb("#CCD5E0")),
-      inset: (top: 5pt),
-      grid(columns: (1fr, auto), gutter: 12pt,
-        [#text(size: 7.3pt, fill: rgb("#52627A"))[#if noms.len() == 0 { [—] } else { noms.map(n => raw(n)).join([ · ]) }]],
-        [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1 / 1", both: true)]]
+      width: 100%,
+      stroke: (bottom: 0.5pt + rgb("#CCD5E0")),
+      inset: (bottom: 5pt),
+      grid(
+        columns: (1fr, auto), gutter: 12pt,
+        [
+          #text(size: 7.3pt, fill: rgb("#52627A"))[
+            *SU* #if titles.len() > 0 { [ · #titles.map(t => raw(t)).join([ · ])] }
+          ]
+        ],
+        [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1")]],
       ),
     )
   },
