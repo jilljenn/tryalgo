@@ -6,10 +6,11 @@ Huffman code
 jill-jenn vie et christoph durr - 2014-2022
 """
 
-from heapq import heappush, heappop
 
 
 # snip{
+from heapq import heappush, heappop
+
 def huffman(freq):
     """Huffman code
 

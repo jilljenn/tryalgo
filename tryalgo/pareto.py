@@ -27,14 +27,14 @@ def pareto2d(points):
 
 #snip{
 def pareto3d(points):
-    """ Compute the Pareto set of a given set of points in 2 dimensions
+    """ Compute the Pareto set of a given set of points in 3 dimensions
 
     :param points: list of tuples with the coordinates of the points. Can be floating point coordinates.
     :modifies: points will be sorted
     :returns: a list of non-dominated points
     :complexity: $O(n\\log n)$
     """
-    # compute the ranks, it is ok to have multple y-values in the list
+    # compute the ranks, it is ok to have multiple y-values in the list
     y_values = [y for x,y,z in points]
     y_values.sort()
     rank = {}

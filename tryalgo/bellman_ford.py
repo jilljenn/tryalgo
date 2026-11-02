@@ -6,6 +6,7 @@ Single source shortest paths by Bellman-Ford
 jill-jenn vie et christoph durr - 2014-2018
 """
 
+# icpc-title Sp Bellman-Ford
 
 # snip{
 # pylint: disable=unused-variable
@@ -15,7 +16,8 @@ def bellman_ford(graph, weight, source=0):
     :param graph: directed graph in listlist or listdict format
     :param weight: can be negative.
                    in matrix format or same listdict graph
-    :returns: distance table, precedence table, bool
+    :returns: distance table, precedence table, bool,
+                None means no predecessor
     :explanation: bool is True if a negative circuit is
                   reachable from the source, circuits
                   can have length 2.
@@ -40,38 +42,22 @@ def bellman_ford(graph, weight, source=0):
 # snip}
 
 
-def bellman_ford2(graph, weight, source):
+#snip{
+def bellman_ford_edges(edges, n, s=0):
     """ Single source shortest paths by Bellman-Ford
+    does not detect negative cycles
 
-    :param graph: directed graph in listlist or listdict format
-    :param weight: can be negative.
-                   in matrix format or same listdict graph
-    :returns: distance table, precedence table, bool
-    :explanation: bool is true if there is a negative cycle 
-                  reachable from the source.
-                  distance[v] is +inf if vertex v is not reachable 
-                  from source and -inf if there are paths from the 
-                  source to v of arbitrary small weight.
+    :param edge: list of arcs (u,v) with their weight
+    :param n: vertices are numbered from 0 to n - 1
+    :returns: list d where d[u][0] is distance from s 
+              and d[u][1] is the predecessor on shortest path, 
+              -1 means no predecessor
     :complexity: `O(|V|*|E|)`
     """
-    n = len(graph)
-    dist = [float('inf')] * n
-    prec = [None] * n
-    dist[source] = 0
-
-    def relax():
-        for nb_iterations in  range(n-1):
-            for node in range(n):
-                for neighbor in graph[node]:
-                    alt = dist[node] + weight[node][neighbor]
-                    if alt < dist[neighbor]:
-                        dist[neighbor] = alt
-                        prec[neighbor] = node
-
-    relax()
-    intermediate = dist[:]  # is fixpoint in absence of neg cycles
-    relax()
-    for node in range(n):
-        if dist[node] < intermediate[node]:
-            dist[node] = float('-inf')
-    return dist, prec, min(dist) == float('-inf')
+    d = [(float('inf'), -1)] * n
+    d[s] = (0, -1)
+    for _ in range(n):
+        for u, v, w in edges:
+            d[v] = min(d[v], (d[u][0] + w, u))
+    return d
+# snip}

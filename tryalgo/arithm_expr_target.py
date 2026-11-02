@@ -6,7 +6,7 @@ Create arithmetic expression approaching target value
 jill-jênn vie, christoph dürr et jean-christophe filliâtre - 2014-2019
 """
 
-
+# icpc-ignore
 # snip{
 # pylint: disable=too-many-locals, too-many-nested-blocks, unnecessary-pass
 # pylint: disable=inconsistent-return-statements, too-many-branches

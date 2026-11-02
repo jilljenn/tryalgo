@@ -71,6 +71,7 @@ class RangeMinQuery:
 
 # pylint: disable=missing-docstring, no-else-return,
 # pylint: disable=anomalous-backslash-in-string
+# snip{
 class LazySegmentTree:
     """maintains a tree to allow quick updates and queries on a table.
 
@@ -233,6 +234,7 @@ class LazySegmentTree:
             a = self._sum(i, j, 2 * node, left, mid)
             b = self._sum(i, j, 2 * node + 1, mid, right)
             return a + b
+    # snip}
 
     def _dump(self):
         f = open("tmp.dot", "w")

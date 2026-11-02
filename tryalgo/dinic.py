@@ -14,6 +14,8 @@ from tryalgo.graph import add_reverse_arcs
 setrecursionlimit(5010)  # necessary for big graphs
 
 
+# icpc-title Flow Dinic
+
 # snip{
 def dinic(graph, capacity, source, target):
     """Maximum flow by Dinic
@@ -31,7 +33,7 @@ def dinic(graph, capacity, source, target):
     total = 0
     n = len(graph)
     flow = [[0] * n for u in range(n)]   # flow initially empty
-    while True:                   # repeat while we can increase
+    while True:                     # repeat while we can increase
         Q.appendleft(source)
         level = [None] * n          # build levels, None = inaccessible
         level[source] = 0           # by BFS

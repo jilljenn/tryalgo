@@ -46,6 +46,16 @@ def knapsack(p, v, cmax):
 # snip}
 
 
+# snip{
+def knapsack_val(p, v, cmax):
+    opt = [0] * (cmax + 1)
+    for pi, vi in zip(p, v):
+        for c in range(cmax, pi - 1, -1):
+            opt[c] = max(opt[c], opt[c - pi] + vi)
+    return opt[cmax]
+# snip}
+
+
 def knapsack2(p, v, cmax):
     """Knapsack problem: select maximum value set of items if total size not
     more than capacity.

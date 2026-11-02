@@ -6,7 +6,7 @@ Union of intervals
 jill-jênn vie et christoph dürr - 2014-2019
 """
 
-
+# icpc-ignore
 # snip{
 def intervals_union(S):
     """Union of intervals

@@ -8,6 +8,8 @@ jill-jenn vie et christoph durr - 2014-2018
 
 from collections import deque
 
+# icpc-title Sp Graph01
+
 
 # snip{
 def dist01(graph, weight, source=0, target=None):

@@ -22,7 +22,7 @@ qui maximise r
 ainsi que p[i] = plus grand rayon d'un palindrome centré en i
 """
 
-
+# icpc-ignore
 # snip{
 def manacher(s):
     """Longest palindrome in a string by Manacher

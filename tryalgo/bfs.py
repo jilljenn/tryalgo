@@ -6,6 +6,8 @@ Breadth-first search (bfs)
 christoph dürr - jill-jênn vie - 2015-2019, 2023
 """
 
+# icpc-title Sp Bfs
+
 # snip{
 from collections import deque
 

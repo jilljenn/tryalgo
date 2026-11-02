@@ -10,10 +10,13 @@ jill-jênn vie et christoph dürr - 2015-2018
 from heapq import heappop, heappush
 from tryalgo.our_heap import OurHeap
 
+# icpc-title Sp Dijkstra
+
+# icpc-ignore
 # snip{
 
 
-def dijkstra(graph, weight, source=0, target=None):
+def dijkstra2(graph, weight, source=0, target=None):
     """single source shortest paths by Dijkstra
 
        :param graph: directed graph in listlist or listdict format
@@ -88,4 +91,21 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
                 prec[neighbor] = node
                 heap.update((old, neighbor), (new, neighbor))
     return dist, prec
+# snip}
+
+# snip{
+def dijkstra(g, w, s, t=-1):
+    d = [float('inf')] * len(g); d[s] = 0   # distance from s
+    p = [None] * len(g)                     # predecessor on shortest path
+    h = [(0, s)]                            # heap
+    while h:
+        du, u = heappop(h)
+        if du > d[u]: continue              # not shortest path to u
+        if u == t: break                    # target reached, done
+        for v in g[u]:
+            if du + w[u][v] < d[v]:         # improves distance
+                d[v] = du + w[u][v]
+                p[v] = u
+                heappush(h, (d[v], v))
+    return d, p
 # snip}

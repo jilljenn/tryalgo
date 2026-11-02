@@ -6,7 +6,7 @@ Closest values
 jill-jênn vie et christoph dürr - 2014-2019
 """
 
-
+# icpc-ignore
 # snip{
 # pylint: disable=unused-variable
 def closest_values(L):

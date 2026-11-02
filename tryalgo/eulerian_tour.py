@@ -9,7 +9,7 @@ jill-jênn vie et christoph dürr - 2015-2023
 import random
 from tryalgo.graph import write_graph
 
-
+# icpc-ignore
 # snip{ eulerian_tour_undirected
 def eulerian_tour_undirected(graph):
     """Eulerian tour on an undirected graph
@@ -41,6 +41,7 @@ def eulerian_tour_undirected(graph):
 # snip}
 
 
+# icpc-ignore
 # snip{ eulerian_tour_directed
 def eulerian_tour_directed(graph):
     """Eulerian tour on a directed graph
@@ -66,6 +67,56 @@ def eulerian_tour_directed(graph):
             Q.append(R.pop())         # add to Q the discovered cycle R
         P.append(start)               # resulting path P is extended
     return P
+# snip}
+
+
+# icpc-title Hierholzer
+# snip{
+def hierholzer_directed(graph):
+    """Eulerian tour of a directed graph.
+
+    :assumes: graph is Eulerian
+    :returns: Eulerian cycle as a vertex list
+    :complexity: O(|V| + |E|)
+    """
+    pos = [0] * len(graph)
+    stack = [0]
+    tour = []
+    while stack:
+        u = stack[-1]
+        if pos[u] < len(graph[u]):
+            v = graph[u][pos[u]]
+            pos[u] += 1
+            stack.append(v)
+        else:
+            tour.append(stack.pop())
+    return tour[::-1]
+# snip}
+
+
+# snip{
+def hierholzer_undirected(graph):
+    """Eulerian tour of an undirected graph.
+
+    :assumes: graph is Eulerian
+    :returns: Eulerian cycle as a vertex list
+    :complexity: O(|V| + |E|)
+    """
+    pos = [0] * len(graph)
+    seen = [set() for _ in graph]
+    stack = [0]
+    tour = []
+    while stack:
+        u = stack[-1]
+        if pos[u] == len(graph[u]):
+            tour.append(stack.pop())
+        else:
+            v = graph[u][pos[u]]
+            pos[u] += 1
+            if v not in seen[u]:
+                seen[v].add(u)
+                stack.append(v)
+    return tour[::-1]
 # snip}
 
 
@@ -132,6 +183,7 @@ def is_eulerian_tour_directed(graph, tour):
             if (u, v) not in arcs:  # check tour visits every arc
                 return False
     return True
+
 
 def is_eulerian_tour_undirected(graph, tour):
     """Test if a given tour is Eulerian for an undirected graph

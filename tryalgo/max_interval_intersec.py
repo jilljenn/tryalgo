@@ -6,7 +6,7 @@ Sweepline algorithm technique
 jill-jênn vie et christoph dürr - 2014-2019
 """
 
-
+# icpc-ignore
 # snip{
 # pylint: disable=bad-whitespace
 def max_interval_intersec(S):

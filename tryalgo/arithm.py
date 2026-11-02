@@ -8,6 +8,7 @@ christoph dürr - jill-jênn vie - 2013-2019
 # pylint: disable=anomalous-backslash-in-string
 
 
+# icpc-ignore
 # snip{ pgcd
 def pgcd(a, b):
     """Greatest common divisor for a and b
@@ -19,6 +20,7 @@ def pgcd(a, b):
 # snip}
 
 
+# icpc-title Bezout
 # snip{ bezout
 def bezout(a, b):
     """Bézout coefficients for a and b
@@ -30,8 +32,11 @@ def bezout(a, b):
         return (1, 0)
     u, v = bezout(b, a % b)
     return (v, u - (a // b) * v)
+# snip}
 
 
+# icpc-ignore
+# snip{
 def inv(a, p):
     """Inverse of a in :math:`{mathbb Z}_p`
 
@@ -42,6 +47,7 @@ def inv(a, p):
 # snip}
 
 
+# icpc-ignore
 # snip{ binom
 def binom(n, k):
     """Binomial coefficients for :math:`n choose k`
@@ -56,6 +62,7 @@ def binom(n, k):
 # snip}
 
 
+# icpc-ignore
 # snip{ binom_modulo
 def binom_modulo(n, k, p):
     """Binomial coefficients for :math:`n choose k`, modulo p
@@ -67,4 +74,14 @@ def binom_modulo(n, k, p):
     for i in range(k):
         prod = (prod * (n - i) * inv(i + 1, p)) % p
     return prod
+# snip}
+
+import math
+a = b = n = k = 10
+q = 19
+# snip{
+pow(a, b, q)        # fast_exponentiation
+pow(a, -1, q)       # inv(a, q), Python >= 3.8
+math.gcd(a, b)      # pgcd
+math.comb(n, k)     # binom
 # snip}

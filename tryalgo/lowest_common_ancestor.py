@@ -25,6 +25,7 @@ def log2ceil(n):
     return log2floor(n - 1) + 1
 
 
+# icpc-ignore
 # snip{ lowest_common_ancestor_by_shortcuts
 # pylint: disable=too-few-public-methods
 class LowestCommonAncestorShortcuts:
@@ -74,6 +75,39 @@ class LowestCommonAncestorShortcuts:
         return self.anc[0][u]
 # snip}
 
+# snip{
+class LCA:
+    def __init__(self, p):
+        """ p[v] is predecessor of v in tree. Assuming p[v] < v, and p[0]=0=root
+        """
+        n = len(p)
+        self.depth = [0] * n
+        for u in range(1, n):
+            self.depth[u] = self.depth[p[u]] + 1
+
+        self.up = [p[:]]
+        for _ in range(n.bit_length() - 1):
+            a = self.up[-1]
+            self.up.append([a[a[u]] for u in range(n)])
+
+    def query(self, u, v):
+        if self.depth[u] < self.depth[v]:
+            u, v = v, u
+
+        d = self.depth[u] - self.depth[v]
+        for k, a in enumerate(self.up):
+            if d & (1 << k):
+                u = a[u]
+
+        if u == v:
+            return u
+
+        for a in reversed(self.up):
+            if a[u] != a[v]:
+                u, v = a[u], a[v]
+
+        return self.up[0][u]
+# snip}
 
 # snip{ lowest_common_ancestor_by_rmq
 class LowestCommonAncestorRMQ:

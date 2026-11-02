@@ -13,7 +13,7 @@ from .anagrams import anagrams
 from .arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from .arithm_expr_target import arithm_expr_target
 from .arithm import pgcd, bezout, inv, binom, binom_modulo
-from .bellman_ford import bellman_ford, bellman_ford2
+from .bellman_ford import bellman_ford, bellman_ford_edges
 from .bfs import bfs, bfs_implicit
 from .biconnected_components import cut_nodes_edges, cut_nodes_edges2
 from .binary_search import (discrete_binary_search, continuous_binary_search,
