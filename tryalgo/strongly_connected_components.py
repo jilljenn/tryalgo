@@ -11,7 +11,7 @@ __all__ = ["tarjan_recursif", "tarjan", "kosaraju", "reverse"]
 
 # icpc-ignore
 # snip{ sccp-tarjan-recursif
-def tarjan_recursif(graph) -> list[list[int]]:
+def tarjan_recursif(graph):
     """Strongly connected components by Tarjan, recursive implementation
 
     :param graph: directed graph in listlist format, cannot be listdict
@@ -22,7 +22,7 @@ def tarjan_recursif(graph) -> list[list[int]]:
     waiting = []
     waits = [False] * len(graph)
     dfs_time = 0
-    dfs_num : list[None|int] = [None] * len(graph)
+    dfs_num = [None] * len(graph)
 
     def dfs(node):
         nonlocal dfs_time
@@ -110,10 +110,9 @@ def tarjan(graph):
 
 
 # snip{ sccp-kosaraju
-from typing import Iterable
 
 
-def kosaraju_dfs(graph: list[list[int]], nodes: Iterable[int], order: list[int], sccp: list[list[int]]):
+def kosaraju_dfs(graph, nodes, order, sccp):
     times_seen = [-1] * len(graph)
     for start in nodes:
         if times_seen[start] == -1:                     # initiate DFS
@@ -135,17 +134,17 @@ def kosaraju_dfs(graph: list[list[int]], nodes: Iterable[int], order: list[int],
                         sccp[-1].append(child)
 
 
-def reverse(graph: list[list[int]]) -> list[list[int]]:
+def reverse(graph):
     """replace all arcs (u, v) by arcs (v, u) in a graph"""
     V = range(len(graph))
-    rev_graph: list[list[int]] = [[] for node in V]
+    rev_graph = [[] for node in V]
     for node in V:
         for neighbor in graph[node]:
             rev_graph[neighbor].append(node)
     return rev_graph
 
 
-def kosaraju(graph: list[list[int]]):
+def kosaraju(graph):
     """Strongly connected components by Kosaraju
 
     :param graph: directed graph in listlist format, cannot be listdict
@@ -153,8 +152,8 @@ def kosaraju(graph: list[list[int]]):
     :complexity: linear
     """
     V = range(len(graph))
-    order: list[int] = []
-    sccp: list[list[int]] = []
+    order = []
+    sccp = []
     kosaraju_dfs(graph, V, order, [])
     kosaraju_dfs(reverse(graph), order[::-1], [], sccp)
     return sccp[::-1]  # follow inverse topological order
