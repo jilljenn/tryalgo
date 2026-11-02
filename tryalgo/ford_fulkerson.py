@@ -9,7 +9,6 @@ jill-jenn vie et christoph durr - 2014-2018
 
 from tryalgo.graph import add_reverse_arcs
 
-# icpc-title Flow Ford-Fulkerson
 
 # snip{
 # pylint: disable=too-many-arguments

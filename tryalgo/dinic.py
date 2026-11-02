@@ -14,8 +14,6 @@ from tryalgo.graph import add_reverse_arcs
 setrecursionlimit(5010)  # necessary for big graphs
 
 
-# icpc-title Flow Dinic
-
 # snip{
 def dinic(graph, capacity, source, target):
     """Maximum flow by Dinic

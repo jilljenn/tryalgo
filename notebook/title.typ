@@ -3,7 +3,7 @@
   columns: (1fr, 8fr),
   align: (left, right),
   image("figures/logo_B.png"),
-  [= Sorbonne Université 2026
+  [= University -- Team
 
     #datetime.today().display()],
 )
@@ -21,6 +21,7 @@ def readints(): return list(map(int, readstr().split()))
 
 print(f"{answer=}", file=sys.stderr)  # debug
 ```
+
 == check_hash.py
 
 ```python

@@ -46,7 +46,7 @@ from tryalgo.dist_grid import dist_grid
 from tryalgo.dyn_prog_tricks import dyn_prog_Monge, decode_root_matrix_to_level, opt_bin_search_tree1, opt_bin_search_tree2
 from tryalgo.edmonds_karp import edmonds_karp
 from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected, hierholzer_directed, hierholzer_undirected
-from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
+from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2, matrix_mul, matrix_fast_exponentiation   
 from tryalgo.fenwick import Fenwick, FenwickMin
 from tryalgo.fft import fft, inv_fft, mul_poly_fft, pad
 from tryalgo.floyd_warshall import floyd_warshall, floyd_warshall2
@@ -1723,6 +1723,50 @@ t##
         self.assertEqual(int2roman(68), "LXVIII")
         self.assertEqual(int2roman(890), "DCCCXC")
 
+    def test_matrix_mul(self):
+        A = [[1, 2], [3, 4]]
+        B = [[5, 6], [7, 8]]
+        self.assertEqual(matrix_mul(A, B, 100),
+                         [[19, 22], [43, 50]])
+        self.assertEqual(matrix_mul(A, B, 7),
+                         [[5, 1], [1, 1]])
+
+    def test_matrix_mul_identity(self):
+        A = [[1, 2], [3, 4]]
+        I = [[1, 0], [0, 1]]
+        self.assertEqual(matrix_mul(A, I, 7), A)
+        self.assertEqual(matrix_mul(I, A, 7), A)
+
+    def test_matrix_mul_zero(self):
+        A = [[1, 2], [3, 4]]
+        Z = [[0, 0], [0, 0]]
+        self.assertEqual(matrix_mul(A, Z, 7), Z)
+        self.assertEqual(matrix_mul(Z, A, 7), Z)
+
+    def test_matrix_mul_negative(self):
+        A = [[-1, 2], [3, -4]]
+        B = [[5, -6], [-7, 8]]
+        self.assertEqual(matrix_mul(A, B, 7),
+                         [[2, 1], [1, 6]])
+
+    def test_matrix_fast_exponentiation(self):
+        A = [[1, 1], [1, 0]]
+        self.assertEqual(matrix_fast_exponentiation(A, 0, 7),
+                         [[1, 0], [0, 1]])
+        self.assertEqual(matrix_fast_exponentiation(A, 1, 7), A)
+        self.assertEqual(matrix_fast_exponentiation(A, 2, 7),
+                         [[2, 1], [1, 1]])
+        self.assertEqual(matrix_fast_exponentiation(A, 5, 7),
+                         [[1, 5], [5, 3]])
+
+    def test_matrix_fast_exponentiation_scalar(self):
+        for a in range(-3, 4):
+            for b in (0, 1, 2, 5, 16, 100):
+                for q in (2, 7, 13):
+                    self.assertEqual(
+                        matrix_fast_exponentiation([[a]], b, q),
+                        [[pow(a, b, q)]])
+                    
     def test_scalar(self):
         n = 10
         x = list(range(n))

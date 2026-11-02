@@ -109,6 +109,7 @@ class LCA:
         return self.up[0][u]
 # snip}
 
+# icpc-ignore
 # snip{ lowest_common_ancestor_by_rmq
 class LowestCommonAncestorRMQ:
     """Lowest common ancestor data structure using a reduction to

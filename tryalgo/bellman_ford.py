@@ -6,8 +6,6 @@ Single source shortest paths by Bellman-Ford
 jill-jenn vie et christoph durr - 2014-2018
 """
 
-# icpc-title Sp Bellman-Ford
-
 # snip{
 # pylint: disable=unused-variable
 def bellman_ford(graph, weight, source=0):

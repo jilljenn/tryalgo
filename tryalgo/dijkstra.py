@@ -10,8 +10,6 @@ jill-jênn vie et christoph dürr - 2015-2018
 from heapq import heappop, heappush
 from tryalgo.our_heap import OurHeap
 
-# icpc-title Sp Dijkstra
-
 # icpc-ignore
 # snip{
 

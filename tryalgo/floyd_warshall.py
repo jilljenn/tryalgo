@@ -6,8 +6,6 @@ All pairs shortest paths by Floyd-Warshall
 jill-jênn vie, christoph dürr et pascal ortiz - 2014-2019
 """
 
-# icpc-title Sp Floyd-Warshall
-
 # snip{
 def floyd_warshall(weight):
     """All pairs shortest paths by Floyd-Warshall
