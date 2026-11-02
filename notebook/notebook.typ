@@ -74,42 +74,6 @@ def anagrams2(S):                   # S is a set of strings
 ```
 ])
 
-#fichier("Arithm")
-
-#extrait("b1b675", [
-```python
-def bezout(a, b):
-    """Bézout coefficients for a and b
-
-    :param a,b: non-negative integers
-    :complexity: O(log a + log b)
-    """
-    if b == 0:
-        return (1, 0)
-    u, v = bezout(b, a % b)
-    return (v, u - (a // b) * v)
-
-
-# icpc-ignore
-def inv(a, p):
-    """Inverse of a in :math:`{mathbb Z}_p`
-
-    :param a,p: non-negative integers
-    :complexity: O(log a + log p)
-    """
-    return bezout(a, p)[0] % p
-```
-])
-
-#extrait("977741", [
-```python
-pow(a, b, q)        # fast_exponentiation
-pow(a, -1, q)       # inv(a, q), Python >= 3.8
-math.gcd(a, b)      # pgcd
-math.comb(n, k)     # binom
-```
-])
-
 #fichier("Arithm Expr Eval")
 
 #extrait("fa6cab", [
@@ -175,6 +139,32 @@ def arithm_expr_parse(line_tokens):
         else:                # tok is an identifier
             vals.append(tok)
     return vals.pop()
+```
+])
+
+#fichier("Bezout")
+
+#extrait("a984a7", [
+```python
+def bezout(a, b):
+    """Bézout coefficients for a and b
+
+    :param a,b: non-negative integers
+    :complexity: O(log a + log b)
+    """
+    if b == 0:
+        return (1, 0)
+    u, v = bezout(b, a % b)
+    return (v, u - (a // b) * v)
+```
+])
+
+#extrait("977741", [
+```python
+pow(a, b, q)        # fast_exponentiation
+pow(a, -1, q)       # inv(a, q), Python >= 3.8
+math.gcd(a, b)      # pgcd
+math.comb(n, k)     # binom
 ```
 ])
 
@@ -2633,12 +2623,9 @@ def dist01(graph, weight, source=0, target=None):
 
 #fichier("Strongly Connected Components")
 
-#extrait("696cdf", [
+#extrait("94e274", [
 ```python
-from typing import Iterable
-
-
-def kosaraju_dfs(graph: list[list[int]], nodes: Iterable[int], order: list[int], sccp: list[list[int]]):
+def kosaraju_dfs(graph, nodes, order, sccp):
     times_seen = [-1] * len(graph)
     for start in nodes:
         if times_seen[start] == -1:                     # initiate DFS
@@ -2660,17 +2647,17 @@ def kosaraju_dfs(graph: list[list[int]], nodes: Iterable[int], order: list[int],
                         sccp[-1].append(child)
 
 
-def reverse(graph: list[list[int]]) -> list[list[int]]:
+def reverse(graph):
     """replace all arcs (u, v) by arcs (v, u) in a graph"""
     V = range(len(graph))
-    rev_graph: list[list[int]] = [[] for node in V]
+    rev_graph = [[] for node in V]
     for node in V:
         for neighbor in graph[node]:
             rev_graph[neighbor].append(node)
     return rev_graph
 
 
-def kosaraju(graph: list[list[int]]):
+def kosaraju(graph):
     """Strongly connected components by Kosaraju
 
     :param graph: directed graph in listlist format, cannot be listdict
@@ -2678,8 +2665,8 @@ def kosaraju(graph: list[list[int]]):
     :complexity: linear
     """
     V = range(len(graph))
-    order: list[int] = []
-    sccp: list[list[int]] = []
+    order = []
+    sccp = []
     kosaraju_dfs(graph, V, order, [])
     kosaraju_dfs(reverse(graph), order[::-1], [], sccp)
     return sccp[::-1]  # follow inverse topological order
