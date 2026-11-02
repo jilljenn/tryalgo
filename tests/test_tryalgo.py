@@ -27,7 +27,7 @@ from tryalgo.a_star import a_star
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
-from tryalgo.bellman_ford import bellman_ford, bellman_ford2
+from tryalgo.bellman_ford import bellman_ford, bellman_ford_edges
 from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.bfs import bfs, bfs_implicit
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
@@ -39,13 +39,13 @@ from tryalgo.closest_values import closest_values
 from tryalgo.convex_hull import left_turn, andrew
 from tryalgo.dancing_links import dancing_links
 from tryalgo.dfs import find_cycle, dfs_recursive, dfs_iterative, dfs_grid, dfs_grid_recursive, dfs_tree, is_bipartite
-from tryalgo.dijkstra import dijkstra_update_heap, dijkstra
+from tryalgo.dijkstra import dijkstra_update_heap, dijkstra, dijkstra2
 from tryalgo.dilworth import dilworth
 from tryalgo.dinic import dinic
 from tryalgo.dist_grid import dist_grid
 from tryalgo.dyn_prog_tricks import dyn_prog_Monge, decode_root_matrix_to_level, opt_bin_search_tree1, opt_bin_search_tree2
 from tryalgo.edmonds_karp import edmonds_karp
-from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected
+from tryalgo.eulerian_tour import eulerian_tour_undirected, eulerian_tour_directed, random_eulerien_graph, is_eulerian_tour_directed, is_eulerian_tour_undirected, hierholzer_directed, hierholzer_undirected
 from tryalgo.fast_exponentiation import fast_exponentiation, fast_exponentiation2
 from tryalgo.fenwick import Fenwick, FenwickMin
 from tryalgo.fft import fft, inv_fft, mul_poly_fft, pad
@@ -73,7 +73,7 @@ from tryalgo.left_right_inversions import left_right_inversions
 from tryalgo.levenshtein import levenshtein
 from tryalgo.longest_common_subsequence import longest_common_subsequence
 from tryalgo.longest_increasing_subsequence import longest_increasing_subsequence
-from tryalgo.lowest_common_ancestor import LowestCommonAncestorShortcuts, LowestCommonAncestorRMQ
+from tryalgo.lowest_common_ancestor import LowestCommonAncestorShortcuts, LowestCommonAncestorRMQ, LCA
 from tryalgo.majority import majority
 from tryalgo.manacher import manacher
 from tryalgo.matrix_chain_mult import matrix_mult_opt_order, matrix_chain_mult
@@ -273,16 +273,22 @@ class TestTryalgo(unittest.TestCase):
         for title, graph, weight, has_circuit, shortest_path in self.L_dir:
             sparse = listlist_and_matrix_to_listdict(graph, weight)
             for g, w in [(graph, weight), (sparse, sparse)]:
-                for algo in [bellman_ford, bellman_ford2]:
-                    dist, prec, detect = algo(g, w, 0)
-                    self.assertEqual(has_circuit, detect)
-                    if not has_circuit:
-                        target = len(graph) - 1
-                        if shortest_path is not None:
-                            path = extract_path(prec, target)
-                            self.assertEqual(path, shortest_path)
-                        else:
-                            self.assertEqual(dist[target], float('inf'))
+                dist, prec, detect = bellman_ford(g, w, 0)
+                n = len(graph)
+                V = range(n)
+                d = bellman_ford_edges([(u, v, weight[u][v]) for u in V for v in graph[u]], n, 0)
+                for v in V:
+                    self.assertEqual(d[v][0], dist[v])
+                    p = None if prec[v] == -1 else prec[v]
+                    self.assertEqual(p, prec[v])
+                self.assertEqual(has_circuit, detect)
+                if not has_circuit:
+                    target = len(graph) - 1
+                    if shortest_path is not None:
+                        path = extract_path(prec, target)
+                        self.assertEqual(path, shortest_path)
+                    else:
+                        self.assertEqual(dist[target], float('inf'))
 
     def test_bfs(self):
         # graphe complet plus un sommet isolé
@@ -634,7 +640,7 @@ XXXXX#...#
                   [[_, _],
                    [_, _]], None),
                  ]
-        for f in [dijkstra, dijkstra_update_heap]:
+        for f in [dijkstra, dijkstra_update_heap, dijkstra2]:
             for title, graph, weight, shortest_path in L_dir:
                 sparse = listlist_and_matrix_to_listdict(graph, weight)
                 for g, w in [(graph, weight), (sparse, sparse)]:
@@ -766,24 +772,26 @@ t##
 ###""")
 
     def test_eulerian_tour_directed(self):
-        graphs = [random_eulerien_graph(50),
-                  [[1, 2], [0, 2, 3, 4], [0, 1, 3, 4], [1, 2], [1, 2]],
+        graphs = [[[1, 2], [0, 2, 3, 4], [0, 1, 3, 4], [1, 2], [1, 2]],
                   [[1, 2], [0, 2, 3, 4], [0, 1, 3, 4], [1, 2], [1, 2]],
                   [[1, 3, 4], [0, 2], [1, 4], [0, 4], [0, 2, 3]],
                   [[1, 2], [0, 2, 3, 4], [0, 1], [1, 4],
                    [1, 3, 5, 6], [4, 6], [4, 5]],
                   [[1], [0]],
-                  [[1, 2], [0, 2], [0, 1]]]
+                  [[1, 2], [0, 2], [0, 1]],
+                  random_eulerien_graph(50)]
         directed_graphs = [
             [[1, 2], [0, 3], [0, 3], [1, 2, 4], [3]],
             [[1], [2], [3], [4, 5], [3, 6], [4], [0]]
         ]
         for g in graphs:
-            # for g in [graph, listlist_and_matrix_to_listdict(graph)]:
-            self.assertTrue(is_eulerian_tour_directed(g, eulerian_tour_directed(g)))
-            self.assertTrue(is_eulerian_tour_undirected(g, eulerian_tour_undirected(g)))
+            for f in [eulerian_tour_directed, hierholzer_directed]:
+                self.assertTrue(is_eulerian_tour_directed(g, f(g)), f"{g=}, tour={f(g)}")
+            for f in [eulerian_tour_undirected, hierholzer_undirected]:
+                self.assertTrue(is_eulerian_tour_undirected(g, f(g)))
         for g in directed_graphs:
-            self.assertTrue(is_eulerian_tour_directed(g, eulerian_tour_directed(g)))
+            for f in [eulerian_tour_directed, hierholzer_directed]:
+                self.assertTrue(is_eulerian_tour_directed(g, f(g)))
 
     def test_is_eulerian_tour_undirected(self):
         G = [[2,3],[2,3],[0,1,3,4],[0,1,2,4],[2,3]]
@@ -1213,29 +1221,30 @@ t##
     def test_LCA_shortcuts(self):
         nodes = list(range(16))
         prec = [u // 2 for u in nodes]
-        prec[0] = 0
-        LCA = LowestCommonAncestorShortcuts(prec)
-        self.assertEqual(LCA.query(9, 9), 9)
-        self.assertEqual(LCA.query(9, 0), 0)
-        self.assertEqual(LCA.query(0, 0), 0)
-        self.assertEqual(LCA.query(0, 1), 0)
-        self.assertEqual(LCA.query(1, 1), 1)
-        self.assertEqual(LCA.query(4, 11), 2)
+        # prec[0] = 0
+        for S in [LowestCommonAncestorShortcuts, LCA]:
+            L = S(prec)
+            self.assertEqual(L.query(9, 9), 9)
+            self.assertEqual(L.query(9, 0), 0)
+            self.assertEqual(L.query(0, 0), 0)
+            self.assertEqual(L.query(0, 1), 0)
+            self.assertEqual(L.query(1, 1), 1)
+            self.assertEqual(L.query(4, 11), 2)
 
     def test_LCA_RMQ(self):
         graph = [[1], [0, 2, 9], [1, 3, 5], [2, 4], [3],
                  [2, 6, 7, 8], [5], [5], [5], [1]]
-        LCA = LowestCommonAncestorRMQ(graph)
-        self.assertEqual(LCA.query(3, 7), 2)
-        self.assertEqual(LCA.query(3, 2), 2)
-        self.assertEqual(LCA.query(3, 7), 2)
-        self.assertEqual(LCA.query(9, 4), 1)
-        self.assertEqual(LCA.query(4, 9), 1)
-        self.assertEqual(LCA.query(4, 4), 4)
-        self.assertEqual(LCA.query(3, 4), 3)
-        self.assertEqual(LCA.query(4, 3), 3)
-        self.assertEqual(LCA.query(5, 7), 5)
-        self.assertEqual(LCA.query(7, 5), 5)
+        L = LowestCommonAncestorRMQ(graph)
+        self.assertEqual(L.query(3, 7), 2)
+        self.assertEqual(L.query(3, 2), 2)
+        self.assertEqual(L.query(3, 7), 2)
+        self.assertEqual(L.query(9, 4), 1)
+        self.assertEqual(L.query(4, 9), 1)
+        self.assertEqual(L.query(4, 4), 4)
+        self.assertEqual(L.query(3, 4), 3)
+        self.assertEqual(L.query(4, 3), 3)
+        self.assertEqual(L.query(5, 7), 5)
+        self.assertEqual(L.query(7, 5), 5)
 
     def test_majority(self):
         L = ['d', 'd', 'r', 'r', 'x', 'boo']
