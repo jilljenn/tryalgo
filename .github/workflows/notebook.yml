@@ -1,0 +1,31 @@
+
+name: Build notebook
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notebook:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.13"
+
+      - name: Install Typst
+        uses: typst-community/setup-typst@v5
+
+      - name: Build notebook and verify page count
+        working-directory: notebook
+        run: make notebook
