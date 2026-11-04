@@ -2,8 +2,7 @@ from heapq import heappush, heappop
 
 
 def huffman(freq):
-    forest = []     
-    trees = []      # asd
+    forest = [] ;    trees = []      # asd
     for item in freq:
         heappush(forest, (freq[item], len(trees)))
         trees.append(item)  

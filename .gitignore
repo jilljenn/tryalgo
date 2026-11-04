@@ -10,3 +10,5 @@ venv
 *.bak
 docs/_static
 docs/auto_examples
+notebook/notebook_*.*
+notebook/notebook.typ

@@ -93,6 +93,19 @@ def dijkstra_update_heap(graph, weight, source=0, target=None):
 
 # snip{
 def dijkstra(g, w, s, t=-1):
+    """single source shortest paths by Dijkstra
+
+       :param g: directed graph in list[list[int]] format
+       :param w: w[u][v] is weight of arc (u,v)
+       :assumes: weights are non-negative
+       :param source: source vertex
+       :type source: int
+       :param target: if given, stops once distance to target found
+       :type target: int
+
+       :returns: distance table, precedence table
+       :complexity: `O(|V| + |E|log|V|)`
+    """
     d = [float('inf')] * len(g); d[s] = 0   # distance from s
     p = [None] * len(g)                     # predecessor on shortest path
     h = [(0, s)]                            # heap

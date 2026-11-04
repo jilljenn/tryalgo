@@ -37,9 +37,9 @@ TEMPLATE = r'''// Python snippets grouped by source file, excluding pylint direc
       stroke: (bottom: 0.5pt + rgb("#CCD5E0")),
       inset: (bottom: 5pt),
       grid(
-        columns: (1fr, 5fr, 1fr), gutter: 8pt,
+        columns: (2fr, 5fr, 1cm), gutter: 8pt,
         align: (left, center, right),
-        [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[SU]],
+        [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[#team]],
         [#text(size: 7.3pt, fill: rgb("#52627A"))[#titles.map(t => raw(t)).join([ · ])]],
         [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1")]],
       ),
@@ -223,7 +223,10 @@ def main() -> int:
     parser.add_argument('--cleaned-dir', type=Path, default=None,
                         help='export the exact normalized snippet bytes used for hashing')
     parser.add_argument('--title-file', type=Path, default=Path('title.typ'), help='Typst file included at the start (default: title.typ)')
-    parser.add_argument('-o', '--output', type=Path, default=Path('notebook.typ'))
+    parser.add_argument('--team', default='University -- Team name',
+                        help='team name for the cover and header (default: University -- Team name)')
+    parser.add_argument('-o', '--output', type=Path, default=Path('notebook.typ'),
+                        help='output file (default: notebook.typ)')
     args = parser.parse_args()
     if not args.source_dir.is_dir():
         parser.error(f'source directory not found : {args.source_dir}')
@@ -235,7 +238,7 @@ def main() -> int:
         parser.error(f'title file not found : {args.title_file}')
 
     title_ref = image_reference(args.title_file, args.output)
-    bodies = [f'#include {typst_string(title_ref)}']
+    bodies = [f'#import {typst_string(title_ref)}: title-page', '#title-page(team)']
     count = 0
     if args.cleaned_dir is not None:
         args.cleaned_dir.mkdir(parents=True, exist_ok=True)
@@ -281,7 +284,10 @@ def main() -> int:
     # Catch accidental regressions in the ordering of generated headings.
     assert rendered_titles == sorted(rendered_titles, key=str.casefold), 'Section headings are not sorted'
     args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_text(TEMPLATE.replace('__BODY__', '\n\n'.join(bodies)), encoding='utf-8')
+    document = TEMPLATE.replace('__BODY__', '\n\n'.join(bodies))
+    # Pass the team explicitly to the imported cover function.
+    document = f'#let team = {typst_string(args.team)}\n' + document
+    args.output.write_text(document, encoding='utf-8')
     print(f'{args.output} : {count} snippets from {len(sections)} sections ({len(files)} Python files examined, sorted by heading)')
     return 0
 

@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import ast, hashlib, sys
 with open(sys.argv[1], encoding="utf-8") as f:
     code = f.read()
