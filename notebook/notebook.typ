@@ -1,3 +1,4 @@
+#let team = "University -- Team name"
 // Python snippets grouped by source file, excluding pylint directives.
 #set page(
   paper: "a4", flipped: true, columns: 2,
@@ -18,7 +19,7 @@
       grid(
         columns: (1fr, 5fr, 1fr), gutter: 8pt,
         align: (left, center, right),
-        [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[SU]],
+        [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[#team]],
         [#text(size: 7.3pt, fill: rgb("#52627A"))[#titles.map(t => raw(t)).join([ · ])]],
         [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1")]],
       ),
