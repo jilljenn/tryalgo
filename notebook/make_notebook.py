@@ -37,12 +37,10 @@ TEMPLATE = r'''// Python snippets grouped by source file, excluding pylint direc
       stroke: (bottom: 0.5pt + rgb("#CCD5E0")),
       inset: (bottom: 5pt),
       grid(
-        columns: (1fr, auto), gutter: 12pt,
-        [
-          #text(size: 7.3pt, fill: rgb("#52627A"))[
-            *SU* #if titles.len() > 0 { [ · #titles.map(t => raw(t)).join([ · ])] }
-          ]
-        ],
+        columns: (1fr, 5fr, 1fr), gutter: 8pt,
+        align: (left, center, right),
+        [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[SU]],
+        [#text(size: 7.3pt, fill: rgb("#52627A"))[#titles.map(t => raw(t)).join([ · ])]],
         [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1")]],
       ),
     )

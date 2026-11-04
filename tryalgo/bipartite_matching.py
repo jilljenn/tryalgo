@@ -8,7 +8,7 @@ jill-jenn vie et christoph durr - 2014-2018
 
 __all__ = ["max_bipartite_matching"]
 
-
+# icpc-title Kuhn
 
 # snip{
 def augment(u, bigraph, visit, timestamp, match):
@@ -25,6 +25,7 @@ def augment(u, bigraph, visit, timestamp, match):
 
 def max_bipartite_matching(bigraph):
     """Bipartie maximum matching
+    Kuhn's algorithm
 
     :param bigraph: adjacency list, index = vertex in U,
                                     value = neighbor list in V

@@ -32,3 +32,23 @@ normalized = ast.unparse(ast.parse(code))  + "\n"
 hashcode = hashlib.md5(normalized.encode("utf-8")).hexdigest()
 print(hashcode[:6])
 ```
+
+=== Some graph algorithms
+
+vertices $V$, edges/arcs $E$, maximal capacity $C$
+
+#table(
+  columns: (auto, auto, auto, auto),
+  // column-gutter: 7pt,
+  // row-gutter: 7pt,
+  [BFS], $O(V+E)$, [unweighted], [single source],
+  [Dijkstra], $O(V+E log(V)$, [non-negative weight], [single source],
+  [Bellman-Ford], $O(V E)$, [arbitrary weight], [single source],
+  [Floyd-Warshal], $O(V^3)$, [arbitrary weight], [all source target pairs],
+  [Gale-Shapley], $O(V^2)$, [stable matching], "",
+  [Kuhn], $O(V E)$, [bipartite matching], [max cardinality],
+  [Kunh-Munkres], $O(V^3)$, [bipartite matching], [max weight],
+  [Ford-Fulkerson], $O(V E C)$, [flow], [constant capacities],
+  [Edmonds-Karp], $O(V E^2)$, [max flow], [arbitrary capacities],
+  [Dinic], $O(V^2 E)$, [max flow], [arbitrary capacities],
+)

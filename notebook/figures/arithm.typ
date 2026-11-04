@@ -1,61 +1,62 @@
-/ Triangle de Pascal (Yang Hui):
+/ Pascal's triangle (Yang Hui):
   $
     binom(n, k) = binom(n - 1, k - 1) + binom(n - 1, k)
-    quad "pour" 1 <= k < n.
+    quad "for" 1 <= k < n.
   $
   $
     binom(n, 0) = binom(n, n) = 1
-    quad "pour" n >= 0.
+    quad "for" n >= 0.
   $
 
-/ Équation diophantienne linéaire:
-  Soit $a x + b y = c$ une ED, et $d = op("gcd")(a, b)$.
-  L'équation a au moins une solution ssi $d divides c$, et cette
-  solution est $(x, y) = (x_0 + t b / d, y_0 + t a / d)$,
-  où $t$ est entier. Pour trouver $x_0, y_0$, il suffit d'utiliser
-  l'algorithme d'Euclide étendu, pour obtenir $a x_0 + b y_0 = d$
-  et multiplier les deux valeurs obtenues par $c / d$.
+/ Linear Diophantine equation:
+  Let $a x + b y = c$ be a Diophantine equation, and let
+  $d = op("gcd")(a, b)$.
+  The equation has at least one solution if and only if
+  $d divides c$, and its solutions are
+  $(x, y) = (x_0 + t b / d, y_0 + t a / d)$,
+  where $t$ is an integer. To find $x_0, y_0$, use the
+  extended Euclidean algorithm to obtain $a x_0 + b y_0 = d$,
+  then multiply both resulting values by $c / d$.
 
-/ Théorème des restes chinois:
-  Le système $x equiv a_i quad (mod m_i)$ où
-  $i in {1, dots, n}$ et les $m_i$ sont premiers entre eux
-  a une seule solution modulo $M = m_1 m_2 dots m_n$.
-  Si $b_i$ est l'inverse de $M / m_n quad (mod M)$,
-  alors la solution est
+/ Chinese remainder theorem:
+  The system $x equiv a_i quad (mod m_i)$, where
+  $i in {1, dots, n}$ and the $m_i$ are pairwise coprime,
+  has a unique solution modulo $M = m_1 m_2 dots m_n$.
+  If $b_i$ is the multiplicative inverse of
+  $M / m_n quad (mod M)$, then the solution is
   $x equiv a_1 b_1 M / m_1 + dots + a_n b_n M / m_n quad (mod M)$.
 
-/ Somme et nombre de(s) diviseurs:
-  Si $x = p_1^(alpha_1) dots p_k^(alpha_k)$, alors la somme
-  des diviseurs est
+/ Sum and number of divisors:
+  If $x = p_1^(alpha_1) dots p_k^(alpha_k)$, then the sum
+  of its divisors is
   $S = (1 + p_1 + dots + p_1^(alpha_1)) dots.c
   (1 + p_k + dots + p_k^(alpha_k))$
-  et le nombre de diviseurs est
+  and the number of its divisors is
   $C = (1 + alpha_1) dots (1 + alpha_k)$.
 
-/ Fonction $phi$ de Euler:
-  La fonction $phi(n)$ donne le nombre de nombres entiers
-  plus petits que $n$ qui admettent des inverses multiplicatifs
-  modulo $n$. Formule :
+/ Euler's totient function $phi$:
+  The function $phi(n)$ counts the positive integers
+  less than $n$ that have multiplicative inverses modulo $n$.
+  Formula:
   $phi(p_1^(alpha_1) p_2^(alpha_2) dots p_k^(alpha_k)) =
   (p_1 - 1) p_1^(alpha_1 - 1)
   (p_2 - 1) p_2^(alpha_2 - 1) dots
   (p_k - 1) p_k^(alpha_k - 1)$.
-  Elle a la propriété suivante : si $a, n$ sont premiers entre eux,
+  It has the following property: if $a, n$ are coprime,
   $a^(phi(n)) equiv 1 quad (mod n)$.
 
-/ Majoration des nombres premiers (PNT):
+/ Bounds on the prime-counting function (PNT):
   $n / ln(n) < op("prim")(n) < 1.26 dot n / ln(n)$,
-  où $op("prim")(n)$ est le nombre de nombres premiers
-  plus petits que $n$.
+  where $op("prim")(n)$ is the number of primes less than $n$.
 
-/ Formule d'Euler (graphes dans le plan):
+/ Euler's formula (plane graphs):
   $
     v - e + f_1 = 2;
     quad v - e + f_2 - k = 1
   $
-  où :
-  - $v = "nombre de sommets"$
-  - $e = "nombre d'arêtes"$
-  - $f_1 = "nombre de faces internes"$
-  - $f_2 = 1 + f_1 quad ("faces internes + fond")$
-  - $k = "nombre de composantes connexes"$
+  where:
+  - $v = "number of vertices"$
+  - $e = "number of edges"$
+  - $f_1 = "number of internal faces"$
+  - $f_2 = 1 + f_1 quad ("internal faces + outer face")$
+  - $k = "number of connected components"$

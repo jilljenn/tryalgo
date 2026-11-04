@@ -2,22 +2,25 @@
 #set page(
   paper: "a4", flipped: true, columns: 2,
   margin: (top: 13mm, bottom: 17mm, left: 13mm, right: 13mm),
-  footer: context {
-    let numero = here().page()
-    let balises = query(<repere-fichier>)
-    let noms = ()
-    for repere in balises {
-      if repere.location().page() == numero {
-        let nom = repere.value.nom
-        if not (nom in noms) { noms.push(nom) }
+  header: context {
+    let current_page = here().page()
+    let titles = ()
+    for marker in query(<repere-fichier>) {
+      if marker.location().page() == current_page {
+        let title = marker.value.nom
+        if not (title in titles) { titles.push(title) }
       }
     }
     block(
-      width: 100%, stroke: (top: 0.5pt + rgb("#CCD5E0")),
-      inset: (top: 5pt),
-      grid(columns: (1fr, auto), gutter: 12pt,
-        [#text(size: 7.3pt, fill: rgb("#52627A"))[#if noms.len() == 0 { [—] } else { noms.map(n => raw(n)).join([ · ]) }]],
-        [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1 / 1", both: true)]]
+      width: 100%,
+      stroke: (bottom: 0.5pt + rgb("#CCD5E0")),
+      inset: (bottom: 5pt),
+      grid(
+        columns: (1fr, 5fr, 1fr), gutter: 8pt,
+        align: (left, center, right),
+        [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[SU]],
+        [#text(size: 7.3pt, fill: rgb("#52627A"))[#titles.map(t => raw(t)).join([ · ])]],
+        [#text(size: 7.3pt, weight: "bold", fill: rgb("#28486A"))[#counter(page).display("1")]],
       ),
     )
   },
@@ -142,7 +145,67 @@ def arithm_expr_parse(line_tokens):
 ```
 ])
 
+#fichier("Bellman Ford")
+
+#extrait("48fabd", [
+```python
+def bellman_ford(graph, weight, source=0):
+    """ Single source shortest paths by Bellman-Ford
+
+    :param graph: directed graph in listlist or listdict format
+    :param weight: can be negative.
+                   in matrix format or same listdict graph
+    :returns: distance table, precedence table, bool,
+                None means no predecessor
+    :explanation: bool is True if a negative circuit is
+                  reachable from the source, circuits
+                  can have length 2.
+    :complexity: `O(|V|*|E|)`
+    """
+    n = len(graph)
+    dist = [float('inf')] * n
+    prec = [None] * n
+    dist[source] = 0
+    for nb_iterations in range(n):
+        changed = False
+        for node in range(n):
+            for neighbor in graph[node]:
+                alt = dist[node] + weight[node][neighbor]
+                if alt < dist[neighbor]:
+                    dist[neighbor] = alt
+                    prec[neighbor] = node
+                    changed = True
+        if not changed:                   # fixed point
+            return dist, prec, False
+    return dist, prec, True
+```
+])
+
+#extrait("e1da31", [
+```python
+def bellman_ford_edges(edges, n, s=0):
+    """ Single source shortest paths by Bellman-Ford
+    does not detect negative cycles
+
+    :param edge: list of arcs (u,v) with their weight
+    :param n: vertices are numbered from 0 to n - 1
+    :returns: list d where d[u][0] is distance from s 
+              and d[u][1] is the predecessor on shortest path, 
+              -1 means no predecessor
+    :complexity: `O(|V|*|E|)`
+    """
+    d = [(float('inf'), -1)] * n
+    d[s] = (0, -1)
+    for _ in range(n):
+        for u, v, w in edges:
+            d[v] = min(d[v], (d[u][0] + w, u))
+    return d
+```
+])
+
 #fichier("Bezout")
+
+#include "figures/arithm.typ"
 
 #extrait("a984a7", [
 ```python
@@ -165,6 +228,37 @@ pow(a, b, q)        # fast_exponentiation
 pow(a, -1, q)       # inv(a, q), Python >= 3.8
 math.gcd(a, b)      # pgcd
 math.comb(n, k)     # binom
+```
+])
+
+#fichier("Bfs")
+
+#extrait("fecba9", [
+```python
+from collections import deque
+
+
+def bfs(graph, start=0):
+    """Shortest path in unweighted graph by BFS
+
+       :param graph: directed graph in listlist or listdict format
+       :param int start: source vertex
+       :returns: distance table, precedence table
+       :complexity: `O(|V|+|E|)`
+       """
+    to_visit = deque()
+    dist = [float('inf')] * len(graph)
+    prec = [None] * len(graph)
+    dist[start] = 0
+    to_visit.appendleft(start)
+    while to_visit:              # an empty queue is considered False
+        node = to_visit.pop()
+        for neighbor in graph[node]:
+            if dist[neighbor] == float('inf'):
+                dist[neighbor] = dist[node] + 1
+                prec[neighbor] = node
+                to_visit.appendleft(neighbor)
+    return dist, prec
 ```
 ])
 
@@ -298,43 +392,6 @@ def optimized_binary_search(tab, logsize):
 ```
 ])
 
-#fichier("Bipartite Matching")
-
-#illustration("figures/bipartite_matching.pdf", 15mm)
-
-#extrait("07a5f4", [
-```python
-def augment(u, bigraph, visit, timestamp, match):
-    """ find augmenting path starting from u, by recursive DFS """
-    for v in bigraph[u]:
-        if visit[v] < timestamp:
-            visit[v] = timestamp
-            if match[v] is None or augment(match[v], bigraph,
-                                            visit, timestamp, match):
-                match[v] = u       # found an augmenting path
-                return True
-    return False
-
-
-def max_bipartite_matching(bigraph):
-    """Bipartie maximum matching
-
-    :param bigraph: adjacency list, index = vertex in U,
-                                    value = neighbor list in V
-    :comment: U and V can have different cardinalities
-    :returns: matching list, match[v] == u iff (u, v) in matching
-    :complexity: `O(|V|*|E|)`
-    """
-    nU = len(bigraph)   # nU = cardinality of U, nV = card. of V
-    nV = max(max(adjlist, default=-1) for adjlist in bigraph) + 1
-    match = [None] * nV
-    visit = [-1] * nV   # timestamp of last visit
-    for u in range(nU):
-        augment(u, bigraph, visit, u, match)
-    return match
-```
-])
-
 #fichier("Convex Hull")
 
 #illustration("figures/convex_hull.png", 15mm)
@@ -460,6 +517,27 @@ def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
 ```
 ])
 
+#fichier("Dijkstra")
+
+#extrait("028907", [
+```python
+def dijkstra(g, w, s, t=-1):
+    d = [float('inf')] * len(g); d[s] = 0   # distance from s
+    p = [None] * len(g)                     # predecessor on shortest path
+    h = [(0, s)]                            # heap
+    while h:
+        du, u = heappop(h)
+        if du > d[u]: continue              # not shortest path to u
+        if u == t: break                    # target reached, done
+        for v in g[u]:
+            if du + w[u][v] < d[v]:         # improves distance
+                d[v] = du + w[u][v]
+                p[v] = u
+                heappush(h, (d[v], v))
+    return d, p
+```
+])
+
 #fichier("Dilworth")
 
 #extrait("9d3de9", [
@@ -484,6 +562,67 @@ def dilworth(graph):
                 u = match[u]
             nb_chains += 1
     return part
+```
+])
+
+#fichier("Dinic")
+
+#extrait("959d1b", [
+```python
+def dinic(graph, capacity, source, target):
+    """Maximum flow by Dinic
+
+    :param graph: directed graph in listlist or listdict format
+    :param capacity: in matrix format or same listdict graph
+    :param int source: vertex
+    :param int target: vertex
+    :returns: skew symmetric flow matrix, flow value
+    :complexity: :math:`O(|V|^2 |E|)`
+    """
+    assert source != target
+    add_reverse_arcs(graph, capacity)
+    Q = deque()
+    total = 0
+    n = len(graph)
+    flow = [[0] * n for u in range(n)]   # flow initially empty
+    while True:                     # repeat while we can increase
+        Q.appendleft(source)
+        level = [None] * n          # build levels, None = inaccessible
+        level[source] = 0           # by BFS
+        while Q:
+            u = Q.pop()
+            for v in graph[u]:
+                if level[v] is None and capacity[u][v] > flow[u][v]:
+                    level[v] = level[u] + 1
+                    Q.appendleft(v)
+
+        if level[target] is None:   # stop if sink is not reachable
+            return flow, total
+        up_bound = sum(capacity[source][v] for v in graph[source]) - total
+        total += _dinic_step(graph, capacity, level, flow, source, target,
+                             up_bound)
+
+
+def _dinic_step(graph, capacity, level, flow, u, target, limit):
+    """ tenter de pousser le plus de flot de u à target, sans dépasser limit
+    """
+    if limit <= 0:
+        return 0
+    if u == target:
+        return limit
+    val = 0
+    for v in graph[u]:
+        residual = capacity[u][v] - flow[u][v]
+        if level[v] == level[u] + 1 and residual > 0:
+            z = min(limit, residual)
+            aug = _dinic_step(graph, capacity, level, flow, v, target, z)
+            flow[u][v] += aug
+            flow[v][u] -= aug
+            val += aug
+            limit -= aug
+    if val == 0:
+        level[u] = None         # remove unreachable node
+    return val
 ```
 ])
 
@@ -709,68 +848,32 @@ def mul_poly_fft(p, q):
 ```
 ])
 
-#fichier("Flow Dinic")
+#fichier("Floyd Warshall")
 
-#extrait("959d1b", [
+#extrait("64b20a", [
 ```python
-def dinic(graph, capacity, source, target):
-    """Maximum flow by Dinic
+def floyd_warshall(weight):
+    """All pairs shortest paths by Floyd-Warshall
 
-    :param graph: directed graph in listlist or listdict format
-    :param capacity: in matrix format or same listdict graph
-    :param int source: vertex
-    :param int target: vertex
-    :returns: skew symmetric flow matrix, flow value
-    :complexity: :math:`O(|V|^2 |E|)`
+    :param weight: edge weight matrix
+    :modifies: weight matrix to contain distances in graph
+    :returns: True if there are negative cycles
+    :complexity: :math:`O(|V|^3)`
     """
-    assert source != target
-    add_reverse_arcs(graph, capacity)
-    Q = deque()
-    total = 0
-    n = len(graph)
-    flow = [[0] * n for u in range(n)]   # flow initially empty
-    while True:                     # repeat while we can increase
-        Q.appendleft(source)
-        level = [None] * n          # build levels, None = inaccessible
-        level[source] = 0           # by BFS
-        while Q:
-            u = Q.pop()
-            for v in graph[u]:
-                if level[v] is None and capacity[u][v] > flow[u][v]:
-                    level[v] = level[u] + 1
-                    Q.appendleft(v)
-
-        if level[target] is None:   # stop if sink is not reachable
-            return flow, total
-        up_bound = sum(capacity[source][v] for v in graph[source]) - total
-        total += _dinic_step(graph, capacity, level, flow, source, target,
-                             up_bound)
-
-
-def _dinic_step(graph, capacity, level, flow, u, target, limit):
-    """ tenter de pousser le plus de flot de u à target, sans dépasser limit
-    """
-    if limit <= 0:
-        return 0
-    if u == target:
-        return limit
-    val = 0
-    for v in graph[u]:
-        residual = capacity[u][v] - flow[u][v]
-        if level[v] == level[u] + 1 and residual > 0:
-            z = min(limit, residual)
-            aug = _dinic_step(graph, capacity, level, flow, v, target, z)
-            flow[u][v] += aug
-            flow[v][u] -= aug
-            val += aug
-            limit -= aug
-    if val == 0:
-        level[u] = None         # remove unreachable node
-    return val
+    V = range(len(weight))
+    for k in V:
+        for u in V:
+            for v in V:
+                weight[u][v] = min(weight[u][v],
+                                   weight[u][k] + weight[k][v])
+    for v in V:
+        if weight[v][v] < 0:      # negative cycle found
+            return True
+    return False
 ```
 ])
 
-#fichier("Flow Ford-Fulkerson")
+#fichier("Ford Fulkerson")
 
 #extrait("22f315", [
 ```python
@@ -924,6 +1027,47 @@ def diagonalize(S, n, m):
                 for j in range(k, n + 1):
                     S[i][j] -= fact * S[k][j]
     return min(n, m)
+```
+])
+
+#fichier("Graph01")
+
+#extrait("00a690", [
+```python
+def dist01(graph, weight, source=0, target=None):
+    """Shortest path in a 0,1 weighted graph
+
+    :param graph: directed graph in listlist or listdict format
+    :param weight: matrix or adjacency dictionary
+    :param int source: vertex
+    :param target: exploration stops once distance to target is found
+    :returns: distance table, predecessor table
+    :complexity: `O(|V|+|E|)`
+    """
+    n = len(graph)
+    dist = [float('inf')] * n
+    prec = [None] * n
+    black = [False] * n
+    dist[source] = 0
+    gray = deque([source])
+    while gray:
+        node = gray.pop()
+        if black[node]:
+            continue
+        black[node] = True
+        if node == target:
+            break
+        for neighbor in graph[node]:
+            ell = dist[node] + weight[node][neighbor]
+            if black[neighbor] or dist[neighbor] <= ell:
+                continue
+            dist[neighbor] = ell
+            prec[neighbor] = node
+            if weight[node][neighbor] == 0:
+                gray.append(neighbor)
+            else:
+                gray.appendleft(neighbor)
+    return dist, prec
 ```
 ])
 
@@ -1404,6 +1548,44 @@ def kruskal(graph, weight):
 ```
 ])
 
+#fichier("Kuhn")
+
+#illustration("figures/bipartite_matching.pdf", 15mm)
+
+#extrait("07a5f4", [
+```python
+def augment(u, bigraph, visit, timestamp, match):
+    """ find augmenting path starting from u, by recursive DFS """
+    for v in bigraph[u]:
+        if visit[v] < timestamp:
+            visit[v] = timestamp
+            if match[v] is None or augment(match[v], bigraph,
+                                            visit, timestamp, match):
+                match[v] = u       # found an augmenting path
+                return True
+    return False
+
+
+def max_bipartite_matching(bigraph):
+    """Bipartie maximum matching
+    Kuhn's algorithm
+
+    :param bigraph: adjacency list, index = vertex in U,
+                                    value = neighbor list in V
+    :comment: U and V can have different cardinalities
+    :returns: matching list, match[v] == u iff (u, v) in matching
+    :complexity: `O(|V|*|E|)`
+    """
+    nU = len(bigraph)   # nU = cardinality of U, nV = card. of V
+    nV = max(max(adjlist, default=-1) for adjlist in bigraph) + 1
+    match = [None] * nV
+    visit = [-1] * nV   # timestamp of last visit
+    for u in range(nU):
+        augment(u, bigraph, visit, u, match)
+    return match
+```
+])
+
 #fichier("Kuhn Munkres")
 
 #extrait("6cc556", [
@@ -1667,50 +1849,6 @@ class LCA:
                 u, v = a[u], a[v]
 
         return self.up[0][u]
-```
-])
-
-#extrait("8d36b9", [
-```python
-class LowestCommonAncestorRMQ:
-    """Lowest common ancestor data structure using a reduction to
-       range minimum query
-    """
-    def __init__(self, graph):
-        """builds the structure from a given tree
-
-        :param graph: adjacency matrix of a tree
-        :complexity: O(n log n), with n = len(graph)
-        """
-        n = len(graph)
-        dfs_trace = []
-        self.last = [None] * n
-        to_visit = [(0, 0, None)]            # node 0 is root
-        succ = [0] * n
-        while to_visit:
-            level, node, father = to_visit[-1]
-            self.last[node] = len(dfs_trace)
-            dfs_trace.append((level, node))
-            if succ[node] < len(graph[node]) and \
-               graph[node][succ[node]] == father:
-                succ[node] += 1
-            if succ[node] == len(graph[node]):
-                to_visit.pop()
-            else:
-                neighbor = graph[node][succ[node]]
-                succ[node] += 1
-                to_visit.append((level + 1, neighbor, node))
-        self.rmq = RangeMinQuery(dfs_trace, (float('inf'), None))
-
-    def query(self, u, v):
-        """:returns: the lowest common ancestor of u and v
-        :complexity: O(log n)
-        """
-        lu = self.last[u]
-        lv = self.last[v]
-        if lu > lv:
-            lu, lv = lv, lu
-        return self.rmq.range_min(lu, lv + 1)[1]
 ```
 ])
 
@@ -2442,182 +2580,6 @@ def rectangles_from_histogram(H):
                 best = rect
         S.append((left, x))
     return best
-```
-])
-
-#fichier("Sp Bellman-Ford")
-
-#extrait("48fabd", [
-```python
-def bellman_ford(graph, weight, source=0):
-    """ Single source shortest paths by Bellman-Ford
-
-    :param graph: directed graph in listlist or listdict format
-    :param weight: can be negative.
-                   in matrix format or same listdict graph
-    :returns: distance table, precedence table, bool,
-                None means no predecessor
-    :explanation: bool is True if a negative circuit is
-                  reachable from the source, circuits
-                  can have length 2.
-    :complexity: `O(|V|*|E|)`
-    """
-    n = len(graph)
-    dist = [float('inf')] * n
-    prec = [None] * n
-    dist[source] = 0
-    for nb_iterations in range(n):
-        changed = False
-        for node in range(n):
-            for neighbor in graph[node]:
-                alt = dist[node] + weight[node][neighbor]
-                if alt < dist[neighbor]:
-                    dist[neighbor] = alt
-                    prec[neighbor] = node
-                    changed = True
-        if not changed:                   # fixed point
-            return dist, prec, False
-    return dist, prec, True
-```
-])
-
-#extrait("e1da31", [
-```python
-def bellman_ford_edges(edges, n, s=0):
-    """ Single source shortest paths by Bellman-Ford
-    does not detect negative cycles
-
-    :param edge: list of arcs (u,v) with their weight
-    :param n: vertices are numbered from 0 to n - 1
-    :returns: list d where d[u][0] is distance from s 
-              and d[u][1] is the predecessor on shortest path, 
-              -1 means no predecessor
-    :complexity: `O(|V|*|E|)`
-    """
-    d = [(float('inf'), -1)] * n
-    d[s] = (0, -1)
-    for _ in range(n):
-        for u, v, w in edges:
-            d[v] = min(d[v], (d[u][0] + w, u))
-    return d
-```
-])
-
-#fichier("Sp Bfs")
-
-#extrait("fecba9", [
-```python
-from collections import deque
-
-
-def bfs(graph, start=0):
-    """Shortest path in unweighted graph by BFS
-
-       :param graph: directed graph in listlist or listdict format
-       :param int start: source vertex
-       :returns: distance table, precedence table
-       :complexity: `O(|V|+|E|)`
-       """
-    to_visit = deque()
-    dist = [float('inf')] * len(graph)
-    prec = [None] * len(graph)
-    dist[start] = 0
-    to_visit.appendleft(start)
-    while to_visit:              # an empty queue is considered False
-        node = to_visit.pop()
-        for neighbor in graph[node]:
-            if dist[neighbor] == float('inf'):
-                dist[neighbor] = dist[node] + 1
-                prec[neighbor] = node
-                to_visit.appendleft(neighbor)
-    return dist, prec
-```
-])
-
-#fichier("Sp Dijkstra")
-
-#extrait("028907", [
-```python
-def dijkstra(g, w, s, t=-1):
-    d = [float('inf')] * len(g); d[s] = 0   # distance from s
-    p = [None] * len(g)                     # predecessor on shortest path
-    h = [(0, s)]                            # heap
-    while h:
-        du, u = heappop(h)
-        if du > d[u]: continue              # not shortest path to u
-        if u == t: break                    # target reached, done
-        for v in g[u]:
-            if du + w[u][v] < d[v]:         # improves distance
-                d[v] = du + w[u][v]
-                p[v] = u
-                heappush(h, (d[v], v))
-    return d, p
-```
-])
-
-#fichier("Sp Floyd-Warshall")
-
-#extrait("64b20a", [
-```python
-def floyd_warshall(weight):
-    """All pairs shortest paths by Floyd-Warshall
-
-    :param weight: edge weight matrix
-    :modifies: weight matrix to contain distances in graph
-    :returns: True if there are negative cycles
-    :complexity: :math:`O(|V|^3)`
-    """
-    V = range(len(weight))
-    for k in V:
-        for u in V:
-            for v in V:
-                weight[u][v] = min(weight[u][v],
-                                   weight[u][k] + weight[k][v])
-    for v in V:
-        if weight[v][v] < 0:      # negative cycle found
-            return True
-    return False
-```
-])
-
-#fichier("Sp Graph01")
-
-#extrait("00a690", [
-```python
-def dist01(graph, weight, source=0, target=None):
-    """Shortest path in a 0,1 weighted graph
-
-    :param graph: directed graph in listlist or listdict format
-    :param weight: matrix or adjacency dictionary
-    :param int source: vertex
-    :param target: exploration stops once distance to target is found
-    :returns: distance table, predecessor table
-    :complexity: `O(|V|+|E|)`
-    """
-    n = len(graph)
-    dist = [float('inf')] * n
-    prec = [None] * n
-    black = [False] * n
-    dist[source] = 0
-    gray = deque([source])
-    while gray:
-        node = gray.pop()
-        if black[node]:
-            continue
-        black[node] = True
-        if node == target:
-            break
-        for neighbor in graph[node]:
-            ell = dist[node] + weight[node][neighbor]
-            if black[neighbor] or dist[neighbor] <= ell:
-                continue
-            dist[neighbor] = ell
-            prec[neighbor] = node
-            if weight[node][neighbor] == 0:
-                gray.append(neighbor)
-            else:
-                gray.appendleft(neighbor)
-    return dist, prec
 ```
 ])
 
