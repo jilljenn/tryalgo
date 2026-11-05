@@ -12,6 +12,7 @@ jill-jenn vie et christoph durr - 2014-2019
 from __future__ import print_function
 
 
+# icpc-ignore
 # snip{
 # pylint: disable=consider-using-enumerate
 class RangeMinQuery:
@@ -68,11 +69,56 @@ class RangeMinQuery:
         return min(left, right)
 # snip}
 
+# icpc-title SegmentTree
+
+# snip{
+class SegmentTree:
+    """Segment tree for range queries.
+
+    :complexity: O(n) construction, O(log n) update and query.
+    """
+
+    def __init__(self, n, default=float('-inf'), op=max):
+        """use any associative operator op with neutral element default.
+        Beware: If op is non-commutative, i.e. op(x,y) != op(y,x), 
+        then n needs to be a power of 2.
+        """
+        self.n = n      # op non-commutative? use 1 << (n - 1).bit_length()
+        self.default = default
+        self.op = op
+        self.s = [default] * (2 * n)
+
+    def update(self, pos, val):
+        """Set element at pos to val."""
+        pos += self.n
+        self.s[pos] = val
+        while pos > 1:
+            pos //= 2
+            self.s[pos] = self.op(self.s[2 * pos], self.s[2 * pos + 1])
+
+    def query(self, b, e):
+        """Return the maximum on the half-open interval [b, e)."""
+        b += self.n
+        e += self.n
+        ra = rb = self.default
+
+        while b < e:
+            if b & 1:
+                ra = self.op(ra, self.s[b])
+                b += 1
+            if e & 1:
+                e -= 1
+                rb = self.op(self.s[e], rb)
+            b //= 2
+            e //= 2
+
+        return self.op(ra, rb)
+# snip}
 
 # pylint: disable=missing-docstring, no-else-return,
 # pylint: disable=anomalous-backslash-in-string
 # snip{
-class LazySegmentTree:
+class LazySegmentTree2:
     """maintains a tree to allow quick updates and queries on a table.
 
     This is more general than a Fenwick tree or a tree for MinRangeQuery. Here
@@ -236,6 +282,7 @@ class LazySegmentTree:
             return a + b
     # snip}
 
+
     def _dump(self):
         f = open("tmp.dot", "w")
         print("digraph G{", file=f)
@@ -252,11 +299,102 @@ class LazySegmentTree:
         f.close()
 
 
+
+
+# snip{ 
+from math import inf
+
+class LazySegmentTree:
+    """Lazy segment tree
+
+    intialized with n zeros. n does not need to be a power of two.
+
+    Supports range assignment, addition, min, max and sum on [i, j).
+    :complexity: O(log n) per operation, O(n) space
+    """
+
+    def __init__(self, n):
+        self.n = n
+        self.tree = [(0, 0, 0)] * (4 * n)  # (min, max, sum)
+        self.assign = [None] * (4 * n)
+        self.delta = [0] * (4 * n)
+
+    def _pull(self, k):
+        a, b = self.tree[2*k], self.tree[2*k+1]
+        self.tree[k] = (min(a[0], b[0]), max(a[1], b[1]), a[2] + b[2])
+
+    def _apply(self, k, length, value=None, add=0):
+        if value is not None:
+            self.tree[k] = (value, value, value * length)
+            self.assign[k], self.delta[k] = value, 0
+        if add:
+            lo, hi, total = self.tree[k]
+            self.tree[k] = (lo + add, hi + add, total + add * length)
+            if self.assign[k] is not None:
+                self.assign[k] += add
+            else:
+                self.delta[k] += add
+
+    def _push(self, k, l, r):
+        if self.assign[k] is not None or self.delta[k]:
+            m = (l + r) // 2
+            self._apply(2*k,   m-l, self.assign[k], self.delta[k])
+            self._apply(2*k+1, r-m, self.assign[k], self.delta[k])
+            self.assign[k], self.delta[k] = None, 0
+
+    def _update(self, i, j, value, assign, k, l, r):
+        if j <= l or r <= i:
+            return
+        if i <= l and r <= j:
+            self._apply(k, r-l, value if assign else None,
+                        0 if assign else value)
+            return
+        self._push(k, l, r)
+        m = (l + r) // 2
+        self._update(i, j, value, assign, 2*k,   l, m)
+        self._update(i, j, value, assign, 2*k+1, m, r)
+        self._pull(k)
+
+    def set(self, i, j, value):
+        """sets T to the given value in the range i:j (j excluded)"""
+        self._update(i, j, value, True, 1, 0, self.n)
+
+    def add(self, i, j, value):
+        """adds the given value to T in the range i:j (j excluded)"""
+        self._update(i, j, value, False, 1, 0, self.n)
+
+    def _query(self, i, j, k, l, r):
+        if j <= l or r <= i:
+            return inf, -inf, 0
+        if i <= l and r <= j:
+            return self.tree[k]
+        self._push(k, l, r)
+        m = (l + r) // 2
+        a = self._query(i, j, 2*k,   l, m)
+        b = self._query(i, j, 2*k+1, m, r)
+        return min(a[0], b[0]), max(a[1], b[1]), a[2] + b[2]
+
+    def query(self, i, j):
+        """Return (min, max, sum) over [i, j)."""
+        return self._query(i, j, 1, 0, self.n)
+    # snip}
+
+    def min(self, i, j):
+        return self.query(i, j)[0]
+
+    def max(self, i, j):
+        return self.query(i, j)[1]
+
+    def sum(self, i, j):
+        return self.query(i, j)[2]
+
+
+
 # pylint: disable=protected-access
 if __name__ == '__main__':
     # execute with: rlwrap python3 range_minimum_query.py
     import sys
-    tree = LazySegmentTree([0]*8)
+    tree = LazySegmentTree2([0]*8)
     print("open tmp.dot with graphviz")
     print("help: ")
     print("      2 7 ?      queries range[2, 7]")
