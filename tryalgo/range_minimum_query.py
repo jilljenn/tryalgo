@@ -117,6 +117,7 @@ class SegmentTree:
 
 # pylint: disable=missing-docstring, no-else-return,
 # pylint: disable=anomalous-backslash-in-string
+# icpc-ignore
 # snip{
 class LazySegmentTree2:
     """maintains a tree to allow quick updates and queries on a table.
