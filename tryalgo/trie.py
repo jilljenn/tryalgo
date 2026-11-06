@@ -15,7 +15,7 @@ from collections import defaultdict
 # pylint: disable=missing-docstring, too-few-public-methods
 class TrieNode:
     def __init__(self):                            
-        self.is_word = False                       # path from root to here is a word stored in the trie
+        self.is_word = False # path from root to here is a word stored in the trie
         self.s = defaultdict(lambda: None)
 
 
