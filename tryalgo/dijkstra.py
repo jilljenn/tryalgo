@@ -106,7 +106,8 @@ def dijkstra(g, w, s, t=-1):
        :returns: distance table, precedence table
        :complexity: `O(|V| + |E|log|V|)`
     """
-    d = [float('inf')] * len(g); d[s] = 0   # distance from s
+    d = [float('inf')] * len(g)             # distance from s
+    d[s] = 0   
     p = [None] * len(g)                     # predecessor on shortest path
     h = [(0, s)]                            # heap
     while h:

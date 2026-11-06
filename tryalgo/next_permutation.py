@@ -22,23 +22,30 @@ def next_permutation(tab):
     :returns: False if permutation is already lexicographical maximal
     :complexity: O(n)
     """
-    n = len(tab)
-    pivot = None                         # find pivot
-    for i in range(n - 1):
-        if tab[i] < tab[i + 1]:
-            pivot = i
-    if pivot is None:                    # tab is already the last perm.
+    i = len(tab) - 2                    # find pivot
+    while i >= 0 and tab[i] >= tab[i + 1]:
+        i -= 1
+
+    if i < 0:           # tab is already the last permutation
         return False
-    for i in range(pivot + 1, n):        # find the element to swap
-        if tab[i] > tab[pivot]:
-            swap = i
-    tab[swap], tab[pivot] = tab[pivot], tab[swap]
-    i = pivot + 1
-    j = n - 1                            # invert suffix
-    while i < j:
-        tab[i], tab[j] = tab[j], tab[i]
-        i += 1
+
+    j = len(tab) - 1                    # find element to swap
+    while tab[j] <= tab[i]:
         j -= 1
+    tab[i], tab[j] = tab[j], tab[i]     # swap
+    tab[i + 1:] = reversed(tab[i + 1:]) # inverse suffix
+    # n = len(tab)
+    # pivot = None                         # find pivot
+    # for i in range(n - 1):
+    #     if tab[i] < tab[i + 1]:
+    #         pivot = i
+    # if pivot is None:                    # tab is already the last perm.
+    #     return False
+    # for i in range(pivot + 1, n):        # find the element to swap
+    #     if tab[i] > tab[pivot]:
+    #         swap = i
+    # tab[swap], tab[pivot] = tab[pivot], tab[swap]
+    # tab[swap + 1:] = reversed(tab[swap + 1:])    # invert suffix
     return True
 # snip}
 

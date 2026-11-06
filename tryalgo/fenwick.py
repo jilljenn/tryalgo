@@ -15,6 +15,7 @@ class Fenwick:
         """stores a table t and allows updates and queries
         of prefix sums in logarithmic time.
 
+        Complexity O(n log n), can be made O(n) with longer code.
         :param array t: with numerical values
         """
         self.s = [0] * (len(t) + 1)  # create internal storage

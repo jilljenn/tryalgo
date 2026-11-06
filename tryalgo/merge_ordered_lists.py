@@ -10,9 +10,11 @@ jill-jênn vie et christoph dürr - 2014-2019
 # snip{
 def merge(x, y):
     """Merge two ordered lists
+    Only to illustrate the technique, as for this
+    particular problem there is heap.heap_merge.
 
     :param x:
-    :param y: x, y are nondecreasing ordered lists
+    :param y: x, y are non-decreasing ordered lists
     :returns: union of x and y in order
     :complexity: linear
     """

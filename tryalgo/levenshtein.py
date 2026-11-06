@@ -14,7 +14,7 @@ def levenshtein(x, y):
     :param x:
     :param y: strings
     :returns: distance
-    :complexity: `O(|x|*|y|)`
+    :complexity: `O(|x|*|y|)`, space complexity can be made linear
     """
     n = len(x)
     m = len(y)

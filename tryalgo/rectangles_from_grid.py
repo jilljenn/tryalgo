@@ -18,7 +18,7 @@ def rectangles_from_grid(P, black=1):
     :param black: search for rectangles filled with value black
     :returns: area, left, top, right, bottom of optimal rectangle
              consisting of all (i,j) with
-             left <= j < right and top <= i <= bottom
+             left <= j <= right and top <= i <= bottom
     :complexity: linear
     """
     rows = len(P)
@@ -32,7 +32,7 @@ def rectangles_from_grid(P, black=1):
             else:
                 t[j] = 0
         (area, left, height, right) = rectangles_from_histogram(t)
-        alt = (area, left, i, right, i-height)
+        alt = (area, left, i - height + 1, right - 1, i)
         if best is None or alt > best:
             best = alt
     return best

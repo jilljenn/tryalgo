@@ -14,7 +14,7 @@ from heapq import heappush, heappop
 def huffman(freq):
     """Huffman code
 
-    :param freq: dictionary with frequencies for each item
+    :param freq: dictionary with frequencies for each item, cannot be empty
     :returns: dictionary with binary code string for each item
     :complexity: O(n log n), where n = len(freq)
     """

@@ -18,6 +18,7 @@ __all__ = ["discrete_binary_search", "continuous_binary_search",
 # http://www.spoj.com/problems/CISTFILL/
 # [!] python3 is too slow for this problem
 
+# icpc-ignore
 # snip{ discrete_binary_search
 
 
@@ -33,6 +34,27 @@ def discrete_binary_search(tab, lo, hi):
     while lo < hi:
         mid = lo + (hi - lo) // 2
         if tab[mid]:
+            hi = mid
+        else:
+            lo = mid + 1
+    return lo
+# snip}
+
+
+# snip{
+def binary_search(f, lo, hi):
+    """Binary search for a boolean function
+    For a boolean table use bisect.bisect_left(tab, True, lo, hi + 1)
+
+
+    :param f: function with tab[hi] = True
+    :param int lo, hi: integers with hi >= lo
+    :returns: first integer i in [lo,hi] such that f(i) holds
+    :complexity: `O(log(hi-lo))`
+    """
+    while lo < hi:
+        mid = lo + (hi - lo) // 2
+        if f(mid):
             hi = mid
         else:
             lo = mid + 1
@@ -81,6 +103,7 @@ def optimized_binary_search_lower(tab, logsize):
     return lo
 
 
+# icpc-ignore
 # snip{ optimized_binary_search
 def optimized_binary_search(tab, logsize):
     """Binary search in a table using bit operations
@@ -101,7 +124,7 @@ def optimized_binary_search(tab, logsize):
     return hi
 # snip}
 
-
+# snip{
 def ternary_search(f, lo, hi, gap=1e-10):
     """Ternary maximum search for a bitonic function
 
@@ -120,7 +143,7 @@ def ternary_search(f, lo, hi, gap=1e-10):
         else:
             hi -= step
     return lo
-
+# snip}
 
 # pylint: disable=cell-var-from-loop
 if __name__ == "__main__":

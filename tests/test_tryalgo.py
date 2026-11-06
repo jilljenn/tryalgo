@@ -6,6 +6,7 @@ import unittest
 import random
 import time
 from collections import deque
+from math import inf 
 
 random.seed(42)
 
@@ -27,7 +28,7 @@ from tryalgo.a_star import a_star
 from tryalgo.anagrams import anagrams
 from tryalgo.arithm_expr_eval import arithm_expr_eval, arithm_expr_parse
 from tryalgo.arithm_expr_target import arithm_expr_target
-from tryalgo.bellman_ford import bellman_ford, bellman_ford_edges
+from tryalgo.bellman_ford import bellman_ford, bellman_ford_edges, bellman_ford_neg_cycles
 from tryalgo.knapsack import knapsack, knapsack2
 from tryalgo.bfs import bfs, bfs_implicit
 from tryalgo.biconnected_components import cut_nodes_edges, cut_nodes_edges2
@@ -289,6 +290,71 @@ class TestTryalgo(unittest.TestCase):
                         self.assertEqual(path, shortest_path)
                     else:
                         self.assertEqual(dist[target], float('inf'))
+
+class TestBellmanFordNegCycles(unittest.TestCase):
+
+    def test_shortest_paths(self):
+        graph = [[1, 2], [2, 3], [3], []]
+        weight = [
+            [0, 4, 5, 0],
+            [0, 0, -2, 6],
+            [0, 0, 0, 3],
+            [0, 0, 0, 0]
+        ]
+        dist, prec = bellman_ford_neg_cycles(graph, weight)
+        self.assertEqual(dist, [0, 4, 2, 5])
+        self.assertEqual(prec, [None, 0, 1, 2])
+
+    def test_unreachable(self):
+        graph = [[1], [], [3], []]
+        weight = [
+            [0, 2, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, -1],
+            [0, 0, 0, 0]
+        ]
+        dist, prec = bellman_ford_neg_cycles(graph, weight)
+        self.assertEqual(dist, [0, 2, inf, inf])
+        self.assertEqual(prec, [None, 0, None, None])
+
+    def test_negative_cycle(self):
+        graph = [[1], [2], [1, 3], []]
+        weight = [
+            [0, 1, 0, 0],
+            [0, 0, -3, 0],
+            [0, 1, 0, 2],
+            [0, 0, 0, 0]
+        ]
+        dist, _ = bellman_ford_neg_cycles(graph, weight)
+        self.assertEqual(dist, [0, -inf, -inf, -inf])
+
+    def test_unreachable_negative_cycle(self):
+        graph = [[1], [], [3], [2]]
+        weight = [
+            [0, 2, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, -2],
+            [0, 0, 1, 0]
+        ]
+        dist, _ = bellman_ford_neg_cycles(graph, weight)
+        self.assertEqual(dist, [0, 2, inf, inf])
+
+    def test_negative_self_loop(self):
+        graph = [[0]]
+        weight = [[-1]]
+        dist, _ = bellman_ford_neg_cycles(graph, weight)
+        self.assertEqual(dist, [-inf])
+
+    def test_different_source(self):
+        graph = [[], [0, 2], [0]]
+        weight = [
+            [0, 0, 0],
+            [5, 0, 1],
+            [2, 0, 0]
+        ]
+        dist, prec = bellman_ford_neg_cycles(graph, weight, source=1)
+        self.assertEqual(dist, [3, 0, 1])
+        self.assertEqual(prec, [2, None, 1])
 
     def test_bfs(self):
         # graphe complet plus un sommet isolé
@@ -1699,7 +1765,10 @@ t##
              "00111010",
              "11011101",
              "01000101"]
-        self.assertEqual(rectangles_from_grid(R, black='1'), (6, 3, 4, 5, 1))
+        self.assertEqual(rectangles_from_grid(R, black='1'), (6, 3, 2,4, 4))
+        R = ["11",
+             "11"]
+        self.assertEqual(rectangles_from_grid(R, black='1'), (4, 0, 0, 1, 1))
 
     def test_rectangles_from_histogram(self):
         for L in range(100):

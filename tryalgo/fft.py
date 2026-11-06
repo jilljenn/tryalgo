@@ -56,15 +56,12 @@ def mul_poly_fft(p, q):
     """Multiply two polynomials in integer coefficient representation
     :complexity: O(n log n)
     """
-    n = (len(p) + len(q))   # make them of same and enough large size
-    p += [0] * (n - len(p))
-    q += [0] * (n - len(q))
-    pad(p)
-    y = fft(p)
-    pad(q)
-    z = fft(q)
-    n = len(y)  # the padding might have increased the size n
-    r = [y[i] * z[i] for i in range(n)]
-    R = inv_fft(r)
-    return [int(round(ri.real)) for ri in R]
+    if not p or not q:
+        return []
+    m = len(p) + len(q) - 1         # make p, q of same length ...
+    n = 1 << (m - 1).bit_length()
+    a = fft(p + [0] * (n - len(p))) # ... by padding with zeros
+    b = fft(q + [0] * (n - len(q)))
+    c = inv_fft([x * y for x, y in zip(a, b)])
+    return [int(round(z.real)) for z in c[:m]]
 # snip}
