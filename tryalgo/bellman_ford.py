@@ -51,22 +51,25 @@ def bellman_ford_neg_cycles(graph, weight, source=0):
         vertices not reachable have distance inf and predecessor None
         negative cycles reachable from source have have distance -inf
     :complexity: `O(|V|*|E|)`
-    """        for node in range(n):
-
+    """        
     n = len(graph)
     dist = [float('inf')] * n
-    prec = [None] * n
     dist[source] = 0
-    for i in range(2 * n):
+    prec = [None] * n
+    changed = True
+    for i in range(2 * n):              # reach fix point
+        changed = False
         for node in range(n):
             for neighbor in graph[node]:
                 alt = dist[node] + weight[node][neighbor]
                 if alt < dist[neighbor]:
-                    if i == n - 1:
+                    if i >= n - 1:      # negative cycle detected
                         dist[neighbor] = float('-inf')
                     else:
                         dist[neighbor] = alt
                     prec[neighbor] = node
+                    changed = True
+        if not changed: break
     return dist, prec
 # snip}
 

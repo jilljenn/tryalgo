@@ -11,7 +11,7 @@ christoph dürr 2024
 def sort_class(s):
     """ sorts s and returns additional information
 
-    :param s: string or list
+    :param s: string or list. 
     :returns p, c: p[j]=i if s[i] has rank j in sorted(s) and c[i] is rank of s[i] in sorted(set(s))
     :complexity: O(n log n) or better if sort makes use of specific values in s
     """
@@ -44,7 +44,8 @@ def sort_cyclic_shifts(s):
 #snip{
 def suffix_array(s):
     """ given a string s, sort lexicographically suffixes of s
-    :param s: string
+
+    :param s: string. Has to be non empty. Should not contain chr(0).
     :returns: R with R[i] is j such that s[j:] has rank i
     :complexity: O(n log^2 n)
     """

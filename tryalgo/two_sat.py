@@ -6,7 +6,7 @@ Solving 2-SAT boolean formulas
 jill-jenn vie et christoph durr - 2015-2019
 """
 
-from tryalgo.strongly_connected_components import tarjan
+from tryalgo.strongly_connected_components import kosaraju
 
 
 # snip{
@@ -32,7 +32,7 @@ def two_sat(formula):
     for x_idx, y_idx in formula:                           # x_idx or y_idx
         graph[_vertex(-x_idx)].append(_vertex(y_idx))     # -x_idx => y_idx
         graph[_vertex(-y_idx)].append(_vertex(x_idx))     # -y_idx => x_idx
-    sccp = tarjan(graph)
+    sccp = kosaraju(graph)
     comp_id = [None] * (2 * num_variables)  # each node's component ID
     assignment = [None] * (2 * num_variables)
     for component in sccp:

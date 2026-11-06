@@ -51,11 +51,12 @@ def dfs_tree(graph: Graph, start: int=0) -> List[Optional[int]]:
 
        :param graph: directed graph in listlist or listdict format
        :param int start: source vertex
-       :returns: precedence table
+       :returns: precedence table. maps start to start.
        :complexity: `O(|V|+|E|)`
        """
     to_visit = [start]
     prec: List[Optional[int]] = [None] * len(graph)
+    prec[start] = start
     while to_visit:              # an empty queue equals False
         node = to_visit.pop()
         for neighbor in graph[node]:

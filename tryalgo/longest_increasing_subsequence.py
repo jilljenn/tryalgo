@@ -13,7 +13,7 @@ from bisect import bisect_left
 def longest_increasing_subsequence(x):
     """Longest increasing subsequence
 
-    :param x: sequence
+    :param x: sequence, cannot contain -inf
     :returns: longest strictly increasing subsequence y
     :complexity: `O(|x|*log(|y|))`
     """

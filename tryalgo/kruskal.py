@@ -63,7 +63,8 @@ def kruskal(graph, weight):
     edges = []
     for u, _ in enumerate(graph):
         for v in graph[u]:
-            edges.append((weight[u][v], u, v))
+            if u < v:   # don't insert edges twice
+                edges.append((weight[u][v], u, v))
     edges.sort()
     min_span_tree = []
     for w_idx, u_idx, v_idx in edges:

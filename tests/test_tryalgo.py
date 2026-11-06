@@ -660,7 +660,7 @@ XXXXX#...#
         # this is interesting : since DFS stores newly discovered neighbors 
         # of a vertex on the stack, it visits the neighbors in inverse order
         # as given in the adjacency list.
-        self.assertEqual(dfs_tree(G, 1),  [None, None, 8, 8, 3, 3, None, 1, 1])
+        self.assertEqual(dfs_tree(G, 1),  [None, 1, 8, 8, 3, 3, None, 1, 1])
 
     def test_find_cycle(self):
         L = [([], None),

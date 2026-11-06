@@ -69,7 +69,7 @@ def matrix_fast_exponentiation(A, b, q):
 
     :param A: n by n matrix
     :param int b, q: positive integer
-    :complexity: O(log b)
+    :complexity: O(n^3 log b)
     """
     dim = range(len(A))
     result = [[int(i == j) for j in dim] for i in dim]

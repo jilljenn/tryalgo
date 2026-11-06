@@ -10,13 +10,13 @@ jill-jênn vie et christoph dürr - 2014-2019
 
 # snip{
 from string import ascii_letters    # in Python 2 one would import letters
-
+from collections import defaultdict
 
 # pylint: disable=missing-docstring, too-few-public-methods
 class TrieNode:
-    def __init__(self):                            # each node will have
-        self.is_word = False                       # 52 children -
-        self.s = {c: None for c in ascii_letters}  # most will remain empty
+    def __init__(self):                            
+        self.is_word = False                       # path from root to here is a word stored in the trie
+        self.s = defaultdict(lambda: None)
 
 
 def add(T, w, i=0):  # Add a word to the trie

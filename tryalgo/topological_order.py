@@ -44,6 +44,7 @@ def topological_order(graph):
     """Topological sorting by maintaining indegree
 
     :param graph: directed graph in listlist format, cannot be listdict
+    :behavior undefined: if graph has cycles
     :returns: list of vertices in order
     :complexity: `O(|V|+|E|)`
     """
