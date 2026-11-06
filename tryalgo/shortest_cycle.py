@@ -27,84 +27,53 @@ def readint(): return int(stdin.readline())
 __all__ = ["shortest_cycle", "powergraph"]
 
 
-def bfs(graph, root, prune_level):
-    """make a pruned BFS search of the graph starting at root.
-    returns the BFS tree, and possibly a traversal edge (u,v)
-    that with the tree forms a cycle of some length.
+# snip{ shortest_cycle
+def shortest_cycle(graph):
+    """Find a shortest cycle in an undirected unweighted graph.
 
     :param graph: undirected graph in listlist or listdict format
-    :param root:  vertex where BFS exploration starts
-    :param prune_level: exploration is done only up to
-    the prune_level (included)
-    :complexity: O(V + E)
+    :returns: None or a list of vertices describing a shortest cycle
+    :complexity: O(|V| * (|V| + |E|))
     """
     n = len(graph)
-    level = [-1] * n                      # -1 == not seen
-    tree = [None] * n                     # pointers to predecessors
-    to_visit = deque([root])              # queue for BFS
-    level[root] = 0
-    tree[root] = root
-    best_cycle = float('inf')             # start with infinity
-    best_u = None
-    best_v = None
-    while to_visit:
-        u = to_visit.popleft()
-        if level[u] > prune_level:
-            break
-        for v in graph[u]:
-            if tree[u] == v:              # ignore the tree edge
-                continue
-            if level[v] == -1:            # new vertex - tree edge
-                level[v] = level[u] + 1
-                to_visit.append(v)
-                tree[v] = u
-            else:                         # vertex already seen - traversal edge
-                prune_level = level[v] - 1
-                cycle_len = level[u] + 1 + level[v]
-                if cycle_len < best_cycle:  # footnote (1)
-                    best_cycle = cycle_len
-                    best_u = u
-                    best_v = v
-    return tree, best_cycle, best_u, best_v
+    best = n + 1
+    answer = None
 
+    for root in range(n):
+        dist = [-1] * n
+        parent = [-1] * n
+        dist[root] = 0
+        queue = deque([root])
 
-def path(tree, v):
-    """returns the path in the tree from v to the root
-    Complexity: O(V)
-    """
-    P = []
-    while not P or P[-1] != v:
-        P.append(v)
-        v = tree[v]
-    return P
+        while queue:
+            u = queue.popleft()
+            for v in graph[u]:
+                if dist[v] == -1:
+                    dist[v] = dist[u] + 1
+                    parent[v] = u
+                    queue.append(v)
+                elif parent[u] != v and dist[u] + dist[v] + 1 < best:
+                    best = dist[u] + dist[v] + 1
+                    answer = (parent[:], u, v)
 
+    if answer is None:
+        return None
 
-def shortest_cycle(graph):
-    """ Finding a shortest cycle in an undirected unweighted graph
+    # Reconstruct the cycle by removing the common tree path.
+    parent, u, v = answer
+    a, b = [], []
+    while u != -1:
+        a.append(u)
+        u = parent[u]
+    while v != -1:
+        b.append(v)
+        v = parent[v]
+    while a and b and a[-1] == b[-1]:
+        common = a.pop()
+        b.pop()
 
-    :param graph: undirected graph in listlist or listdict format
-    :returns: None or a list C describing a shortest cycle
-    :complexity: `O(|V|*|E|)`
-    """
-    best_cycle = float('inf')
-    best_u = None
-    best_v = None
-    best_tree = None
-    V = list(range(len(graph)))
-    for root in V:
-        tree, cycle_len, u, v = bfs(graph, root, best_cycle // 2)
-        if cycle_len < best_cycle:
-            best_cycle = cycle_len
-            best_u = u
-            best_v = v
-            best_tree = tree
-    if best_cycle == float('inf'):
-        return None                   # no cycle found
-    Pu = path(best_tree, best_u)      # combine path to make a cycle
-    Pv = path(best_tree, best_v)
-    cycle = Pu[::-1] + Pv   # last vertex equals first vertex
-    return cycle[1:]        # remove duplicate vertex
-
+    return a + [common] + b[::-1]
+# snip}
 
 def powergraph(graph, k):
     """Compute the k-th
