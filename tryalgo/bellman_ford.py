@@ -42,7 +42,6 @@ def bellman_ford(graph, weight, source=0):
 
 
 # snip{
-# pylint: disable=unused-variable
 def bellman_ford_neg_cycles(graph, weight, source=0):
     """ Single source shortest paths by Bellman-Ford
 
@@ -52,7 +51,8 @@ def bellman_ford_neg_cycles(graph, weight, source=0):
         vertices not reachable have distance inf and predecessor None
         negative cycles reachable from source have have distance -inf
     :complexity: `O(|V|*|E|)`
-    """
+    """        for node in range(n):
+
     n = len(graph)
     dist = [float('inf')] * n
     prec = [None] * n

@@ -34,18 +34,6 @@ def next_permutation(tab):
         j -= 1
     tab[i], tab[j] = tab[j], tab[i]     # swap
     tab[i + 1:] = reversed(tab[i + 1:]) # inverse suffix
-    # n = len(tab)
-    # pivot = None                         # find pivot
-    # for i in range(n - 1):
-    #     if tab[i] < tab[i + 1]:
-    #         pivot = i
-    # if pivot is None:                    # tab is already the last perm.
-    #     return False
-    # for i in range(pivot + 1, n):        # find the element to swap
-    #     if tab[i] > tab[pivot]:
-    #         swap = i
-    # tab[swap], tab[pivot] = tab[pivot], tab[swap]
-    # tab[swap + 1:] = reversed(tab[swap + 1:])    # invert suffix
     return True
 # snip}
 
