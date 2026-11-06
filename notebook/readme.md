@@ -12,6 +12,6 @@ The script `make_notebook.py` generates a notebook from the tryalgo library to b
 ## How to use it for your team
 
 - you can change those `# snip` comments to select the implementations you want to see in your notebook.
-- you can personalize your university and team name in the `title.typ` file, or directly in the `notebook.pdf` using a PDF editor.
+- you can personalize your university and team name using the `--team` command line argument of `make_notebook.py`.
 
 Good luck, and don't panic.
