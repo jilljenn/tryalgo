@@ -22,7 +22,7 @@ All the codes have undergone some unit tests. When you push modifications in thi
 
 Essentially you can work with two graph representations. Consider the following example graph.
 
-![]{figures/example-graph.png}
+![](figures/example-graph.png)
 
 ### list[list[int]]
 
