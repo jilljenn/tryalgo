@@ -20,7 +20,8 @@ All the codes have undergone some unit tests. When you push modifications in thi
 
 ## Graphs
 
-Essentially you can work with two graph representations. Consider the following example graph.
+Essentially you can work with two graph representations. Consider the following example graph,
+were we choose to use integer arc weights, but they could be floating point numbers for example.
 
 ![](figures/example-graph.png)
 
@@ -38,7 +39,7 @@ weights = [[None, 17,   None, None],
            [None, 8,    19,   None]]
 ``` 
 
-### list[defaultdict(int)]
+### list[defaultdict(int)] or list[dict[int, int]]
 
 Here we store the adjacency list together with the arc weights in a single dictionary.
 
