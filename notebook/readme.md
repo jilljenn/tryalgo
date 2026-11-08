@@ -39,7 +39,7 @@ weights = [[None, 17,   None, None],
            [None, 8,    19,   None]]
 ``` 
 
-### list[defaultdict(int)] or list[dict[int, int]]
+### list[dict[int, int]]
 
 Here we store the adjacency list together with the arc weights in a single dictionary.
 
