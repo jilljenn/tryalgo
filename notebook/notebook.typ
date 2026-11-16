@@ -1,4 +1,4 @@
-#let team = "University -- Team name"
+#let team = "Sorbonne University    s||good"
 // Python snippets grouped by source file, excluding pylint directives.
 #set page(
   paper: "a4", flipped: true, columns: 2,
@@ -17,7 +17,7 @@
       stroke: (bottom: 0.5pt + rgb("#CCD5E0")),
       inset: (bottom: 5pt),
       grid(
-        columns: (1fr, 5fr, 1fr), gutter: 8pt,
+        columns: (2fr, 5fr, 1cm), gutter: 8pt,
         align: (left, center, right),
         [#text(size: 7.3pt, weight: "bold", fill: rgb("#52627A"))[#team]],
         [#text(size: 7.3pt, fill: rgb("#52627A"))[#titles.map(t => raw(t)).join([ · ])]],
@@ -52,7 +52,9 @@
   #image(chemin, height: hauteur)
 ]
 
-#include "title.typ"
+#import "title.typ": title-page
+
+#title-page(team)
 
 #fichier("Anagrams")
 
@@ -148,37 +150,37 @@ def arithm_expr_parse(line_tokens):
 
 #fichier("Bellman Ford")
 
-#extrait("48fabd", [
+#extrait("f0a4c3", [
 ```python
-def bellman_ford(graph, weight, source=0):
+def bellman_ford_neg_cycles(graph, weight, source=0):
     """ Single source shortest paths by Bellman-Ford
 
-    :param graph: directed graph in listlist or listdict format
-    :param weight: can be negative.
-                   in matrix format or same listdict graph
-    :returns: distance table, precedence table, bool,
-                None means no predecessor
-    :explanation: bool is True if a negative circuit is
-                  reachable from the source, circuits
-                  can have length 2.
+    :param graph: directed graph in list[list[int]] format
+    :param weight: matrix. can be negative. 
+    :returns: distance table, precedence table,
+        vertices not reachable have distance inf and predecessor None
+        negative cycles reachable from source have have distance -inf
     :complexity: `O(|V|*|E|)`
-    """
+    """        
     n = len(graph)
     dist = [float('inf')] * n
-    prec = [None] * n
     dist[source] = 0
-    for nb_iterations in range(n):
+    prec = [None] * n
+    changed = True
+    for i in range(2 * n):              # reach fix point
         changed = False
         for node in range(n):
             for neighbor in graph[node]:
                 alt = dist[node] + weight[node][neighbor]
                 if alt < dist[neighbor]:
-                    dist[neighbor] = alt
+                    if i >= n - 1:      # negative cycle detected
+                        dist[neighbor] = float('-inf')
+                    else:
+                        dist[neighbor] = alt
                     prec[neighbor] = node
                     changed = True
-        if not changed:                   # fixed point
-            return dist, prec, False
-    return dist, prec, True
+        if not changed: break
+    return dist, prec
 ```
 ])
 
@@ -234,7 +236,7 @@ math.comb(n, k)     # binom
 
 #fichier("Bfs")
 
-#extrait("fecba9", [
+#extrait("2fc007", [
 ```python
 from collections import deque
 
@@ -247,18 +249,17 @@ def bfs(graph, start=0):
        :returns: distance table, precedence table
        :complexity: `O(|V|+|E|)`
        """
-    to_visit = deque()
     dist = [float('inf')] * len(graph)
     prec = [None] * len(graph)
     dist[start] = 0
-    to_visit.appendleft(start)
+    to_visit = deque([start])
     while to_visit:              # an empty queue is considered False
-        node = to_visit.pop()
+        node = to_visit.popleft()
         for neighbor in graph[node]:
             if dist[neighbor] == float('inf'):
                 dist[neighbor] = dist[node] + 1
                 prec[neighbor] = node
-                to_visit.appendleft(neighbor)
+                to_visit.append(neighbor)
     return dist, prec
 ```
 ])
@@ -327,20 +328,21 @@ def cut_nodes_edges(graph):
 
 #fichier("Binary Search")
 
-#extrait("6c8d91", [
+#extrait("eb701e", [
 ```python
-def discrete_binary_search(tab, lo, hi):
-    """Binary search in a table
+def binary_search(f, lo, hi):
+    """Binary search for a boolean function
+    For a boolean table use bisect.bisect_left(tab, True, lo, hi + 1)
 
-    :param tab: boolean monotone table with tab[hi] = True
-    :param int lo:
-    :param int hi: with hi >= lo
-    :returns: first index i in [lo,hi] such that tab[i]
+
+    :param f: function with tab[hi] = True
+    :param int lo, hi: integers with hi >= lo
+    :returns: first integer i in [lo,hi] such that f(i) holds
     :complexity: `O(log(hi-lo))`
     """
     while lo < hi:
         mid = lo + (hi - lo) // 2
-        if tab[mid]:
+        if f(mid):
             hi = mid
         else:
             lo = mid + 1
@@ -371,25 +373,26 @@ def continuous_binary_search(f, lo, hi, gap=1e-4):
 ```
 ])
 
-#extrait("39d263", [
+#extrait("a0e190", [
 ```python
-def optimized_binary_search(tab, logsize):
-    """Binary search in a table using bit operations
+def ternary_search(f, lo, hi, gap=1e-10):
+    """Ternary maximum search for a bitonic function
 
-    :param tab: boolean monotone table
-       of size :math:`2^\\textrm{logsize}`
-       with tab[hi] = True
-    :param int logsize:
-    :returns: first i such that tab[i]
-    :complexity: O(logsize)
+    :param f: boolean bitonic function (increasing then decreasing, not necessarily strictly)
+    :param int lo:
+    :param int hi: with hi >= lo
+    :param float gap:
+    :returns: value x in [lo,hi] maximizing f(x),
+             x is computed up to some precision
+    :complexity: `O(log((hi-lo)/gap))`
     """
-    hi = (1 << logsize) - 1
-    intervalsize = (1 << logsize) >> 1
-    while intervalsize > 0:
-        if tab[hi ^ intervalsize]:
-            hi ^= intervalsize
-        intervalsize >>= 1
-    return hi
+    while hi - lo > gap:
+        step = (hi - lo) / 3.
+        if f(lo + step) < f(lo + 2 * step):
+            lo += step
+        else:
+            hi -= step
+    return lo
 ```
 ])
 
@@ -470,18 +473,19 @@ def dfs_iterative(graph: Graph, start: int, seen: List[bool]) -> None:
 ```
 ])
 
-#extrait("3aeadf", [
+#extrait("32ffca", [
 ```python
 def dfs_tree(graph: Graph, start: int=0) -> List[Optional[int]]:
     """DFS, build DFS tree in unweighted graph
 
        :param graph: directed graph in listlist or listdict format
        :param int start: source vertex
-       :returns: precedence table
+       :returns: precedence table. maps start to start.
        :complexity: `O(|V|+|E|)`
        """
     to_visit = [start]
     prec: List[Optional[int]] = [None] * len(graph)
+    prec[start] = start
     while to_visit:              # an empty queue equals False
         node = to_visit.pop()
         for neighbor in graph[node]:
@@ -523,7 +527,21 @@ def dfs_grid(grid, i, j, mark='X', free: str='.') -> None:
 #extrait("028907", [
 ```python
 def dijkstra(g, w, s, t=-1):
-    d = [float('inf')] * len(g); d[s] = 0   # distance from s
+    """single source shortest paths by Dijkstra
+
+       :param g: directed graph in list[list[int]] format
+       :param w: w[u][v] is weight of arc (u,v)
+       :assumes: weights are non-negative
+       :param source: source vertex
+       :type source: int
+       :param target: if given, stops once distance to target found
+       :type target: int
+
+       :returns: distance table, precedence table
+       :complexity: `O(|V| + |E|log|V|)`
+    """
+    d = [float('inf')] * len(g)             # distance from s
+    d[s] = 0   
     p = [None] * len(g)                     # predecessor on shortest path
     h = [(0, s)]                            # heap
     while h:
@@ -706,7 +724,7 @@ def matrix_fast_exponentiation(A, b, q):
 
     :param A: n by n matrix
     :param int b, q: positive integer
-    :complexity: O(log b)
+    :complexity: O(n^3 log b)
     """
     dim = range(len(A))
     result = [[int(i == j) for j in dim] for i in dim]
@@ -732,6 +750,7 @@ class Fenwick:
         """stores a table t and allows updates and queries
         of prefix sums in logarithmic time.
 
+        Complexity O(n log n), can be made O(n) with longer code.
         :param array t: with numerical values
         """
         self.s = [0] * (len(t) + 1)  # create internal storage
@@ -787,7 +806,7 @@ class Fenwick:
 
 #fichier("Fft")
 
-#extrait("24d447", [
+#extrait("25884b", [
 ```python
 import math     # for pi
 import cmath    # for exp
@@ -835,17 +854,14 @@ def mul_poly_fft(p, q):
     """Multiply two polynomials in integer coefficient representation
     :complexity: O(n log n)
     """
-    n = (len(p) + len(q))   # make them of same and enough large size
-    p += [0] * (n - len(p))
-    q += [0] * (n - len(q))
-    pad(p)
-    y = fft(p)
-    pad(q)
-    z = fft(q)
-    n = len(y)  # the padding might have increased the size n
-    r = [y[i] * z[i] for i in range(n)]
-    R = inv_fft(r)
-    return [int(round(ri.real)) for ri in R]
+    if not p or not q:
+        return []
+    m = len(p) + len(q) - 1         # make p, q of same length ...
+    n = 1 << (m - 1).bit_length()
+    a = fft(p + [0] * (n - len(p))) # ... by padding with zeros
+    b = fft(q + [0] * (n - len(q)))
+    c = inv_fft([x * y for x, y in zip(a, b)])
+    return [int(round(z.real)) for z in c[:m]]
 ```
 ])
 
@@ -1220,7 +1236,7 @@ from heapq import heappush, heappop
 def huffman(freq):
     """Huffman code
 
-    :param freq: dictionary with frequencies for each item
+    :param freq: dictionary with frequencies for each item, cannot be empty
     :returns: dictionary with binary code string for each item
     :complexity: O(n log n), where n = len(freq)
     """
@@ -1525,7 +1541,7 @@ class UnionFind:
 ```
 ])
 
-#extrait("fd1634", [
+#extrait("678542", [
 ```python
 def kruskal(graph, weight):
     """Minimum spanning tree by Kruskal
@@ -1539,7 +1555,8 @@ def kruskal(graph, weight):
     edges = []
     for u, _ in enumerate(graph):
         for v in graph[u]:
-            edges.append((weight[u][v], u, v))
+            if u < v:   # don't insert edges twice
+                edges.append((weight[u][v], u, v))
     edges.sort()
     min_span_tree = []
     for w_idx, u_idx, v_idx in edges:
@@ -1717,7 +1734,7 @@ def levenshtein(x, y):
     :param x:
     :param y: strings
     :returns: distance
-    :complexity: `O(|x|*|y|)`
+    :complexity: `O(|x|*|y|)`, space complexity can be made linear
     """
     n = len(x)
     m = len(y)
@@ -1786,7 +1803,7 @@ from bisect import bisect_left
 def longest_increasing_subsequence(x):
     """Longest increasing subsequence
 
-    :param x: sequence
+    :param x: sequence, cannot contain -inf
     :returns: longest strictly increasing subsequence y
     :complexity: `O(|x|*log(|y|))`
     """
@@ -1915,9 +1932,11 @@ def _apply_order(M, arg, i, j):
 ```python
 def merge(x, y):
     """Merge two ordered lists
+    Only to illustrate the technique, as this
+    particular problem is solved by list(heap_merge(x, y)).
 
     :param x:
-    :param y: x, y are nondecreasing ordered lists
+    :param y: x, y are non-decreasing ordered lists
     :returns: union of x and y in order
     :complexity: linear
     """
@@ -1992,7 +2011,7 @@ def min_mean_cycle(graph, weight, start=0):
 
 #fichier("Next Permutation")
 
-#extrait("409758", [
+#extrait("6a6e16", [
 ```python
 def next_permutation(tab):
     """find the next permutation of tab in the lexicographical order
@@ -2002,23 +2021,18 @@ def next_permutation(tab):
     :returns: False if permutation is already lexicographical maximal
     :complexity: O(n)
     """
-    n = len(tab)
-    pivot = None                         # find pivot
-    for i in range(n - 1):
-        if tab[i] < tab[i + 1]:
-            pivot = i
-    if pivot is None:                    # tab is already the last perm.
+    i = len(tab) - 2                    # find pivot
+    while i >= 0 and tab[i] >= tab[i + 1]:
+        i -= 1
+
+    if i < 0:           # tab is already the last permutation
         return False
-    for i in range(pivot + 1, n):        # find the element to swap
-        if tab[i] > tab[pivot]:
-            swap = i
-    tab[swap], tab[pivot] = tab[pivot], tab[swap]
-    i = pivot + 1
-    j = n - 1                            # invert suffix
-    while i < j:
-        tab[i], tab[j] = tab[j], tab[i]
-        i += 1
+
+    j = len(tab) - 1                    # find element to swap
+    while tab[j] <= tab[i]:
         j -= 1
+    tab[i], tab[j] = tab[j], tab[i]     # swap
+    tab[i + 1:] = reversed(tab[i + 1:]) # inverse suffix
     return True
 ```
 ])
@@ -2296,237 +2310,9 @@ def rabin_karp_factor(s, t, k):
 ```
 ])
 
-#fichier("Range Minimum Query")
-
-#illustration("figures/range_minimum_query.png", 15mm)
-
-#extrait("9426b0", [
-```python
-class RangeMinQuery:
-    """Range minimum query
-
-    maintains a table t, can read/write items t[i],
-    and query range_min(i,k) = min{ t[i], t[i + 1], ..., t[k - 1]}
-    :complexity: all operations in O(log n), for n = len(t)
-    """
-    def __init__(self, t, INF=float('inf')):
-        self.INF = INF
-        self.N = 1
-        while self.N < len(t):                     # find size N
-            self.N *= 2
-        self.s = [self.INF] * (2 * self.N)
-        for i in range(len(t)):                    # store values of t
-            self.s[self.N + i] = t[i]              # in the leaf nodes
-        for p in range(self.N - 1, 0, -1):         # fill inner nodes
-            self.s[p] = min(self.s[2 * p], self.s[2 * p + 1])
-
-    def __getitem__(self, i):
-        return self.s[self.N + i]
-
-    def __setitem__(self, i, v):
-        """ sets t[i] to v.
-            :complexity: O(log len(t))
-        """
-        p = self.N + i
-        self.s[p] = v
-        p //= 2                                    # climb up the tree
-        while p > 0:                               # update node
-            self.s[p] = min(self.s[2 * p], self.s[2 * p + 1])
-            p //= 2
-
-    def range_min(self, i, k):
-        """:returns:  min{ t[i], t[i + 1], ..., t[k - 1]}
-        :complexity: O(log len(t))
-        """
-        return self._range_min(1, 0, self.N, i, k)
-
-    def _range_min(self, p, start, span, i, k):
-        """returns the minimum in t in the indexes [i, k) intersected
-           with [start, start + span).
-           p is the node associated to the later interval.
-        """
-        if start + span <= i or k <= start:        # disjoint intervals
-            return self.INF
-        if i <= start and start + span <= k:       # contained intervals
-            return self.s[p]
-        left = self._range_min(2 * p, start, span // 2,
-                               i, k)
-        right = self._range_min(2 * p + 1, start + span // 2, span // 2,
-                                i, k)
-        return min(left, right)
-```
-])
-
-#extrait("bf34ce", [
-```python
-class LazySegmentTree:
-    """maintains a tree to allow quick updates and queries on a table.
-
-    This is more general than a Fenwick tree or a tree for MinRangeQuery. Here
-    queries and updates act on index ranges. Updates can be set a range to a
-    value or add a value to a range. Queries can be max, min and sum over an
-    index range. All operations run in time O(log n) for a the table size n.
-    The given ranges are in the form [i,j] where i is included and j excluded.
-    In the recursive calls, node is the index of a node in the tree, and left,
-    right its range. Values can be any numerical values allowing max, min, and
-    sum, such as integers, floating point numbers or fractions (from the class
-    Fraction). Updates over an empty range is valid and does nothing. Queries
-    over an empty range is valid and returns the neutral value -inf, +inf or
-    0.
-
-    If the node is cleared, then maxval, minval, sumval represent for each
-    node the query responses over the corresponding index ranges.  If the node
-    is not clean, it means that lazyset and/or lazyadd contain suspendet
-    update instructions for that node. Clearing a node means propagating these
-    values to the descents in the subtrees, and updating maxval,minval and
-    sumval for that node.
-    """
-    def __init__(self, tab):
-        """stores an integer table tab.
-        will be padded to get a table with a size of a power of 2.
-
-        :param array tab: of positive length
-        """
-        self.N = 1
-        while self.N < len(tab):
-            self.N *= 2
-        self.maxval = [float('-inf')] * 2 * self.N  # init with neutral values
-        self.minval = [float('+inf')] * 2 * self.N
-        self.sumval = [0] * 2 * self.N
-        self.lazyset = [None] * 2 * self.N
-        self.lazyadd = [0] * 2 * self.N
-        for i, tabi in enumerate(tab):            # initialize with given table
-            j = self.N + i
-            self.maxval[j] = self.minval[j] = self.sumval[j] = tabi
-        for node in range(self.N - 1, 0, -1):
-            self._maintain(node)                    # maintain invariant
-
-    def _maintain(self, node):
-        """maintains the invariant for the given node
-        :promize: the lazy values are None/0 for this node
-        """
-        # requires node and its direct descends to be clean
-        ll = 2 * node
-        r = 2 * node + 1
-        assert self.lazyset[node] is None
-        assert self.lazyadd[node] == 0
-        assert self.lazyset[ll] is None
-        assert self.lazyadd[ll] == 0
-        assert self.lazyset[r] is None
-        assert self.lazyadd[r] == 0
-        self.maxval[node] = max(self.maxval[ll], self.maxval[r])
-        self.minval[node] = min(self.minval[ll], self.minval[r])
-        self.sumval[node] = self.sumval[ll] + self.sumval[r]
-
-    def _clear(self, node, left, right):
-        """propagates the lazy updates for this node to the subtrees.
-        as a result the maxval, minval, sumval values for the node
-        are up to date.
-        """
-        if self.lazyset[node] is not None:  # first do the pending set
-            val = self.lazyset[node]
-            self.minval[node] = val
-            self.maxval[node] = val
-            self.sumval[node] = val * (right - left)
-            self.lazyset[node] = None
-            if left < right - 1:            # not a leaf
-                self.lazyset[2 * node] = val  # propagate to direct childs
-                self.lazyadd[2 * node] = 0
-                self.lazyset[2 * node + 1] = val
-                self.lazyadd[2 * node + 1] = 0
-        if self.lazyadd[node] != 0:        # then do the pending add
-            val = self.lazyadd[node]
-            self.minval[node] += val
-            self.maxval[node] += val
-            self.sumval[node] += val * (right - left)
-            self.lazyadd[node] = 0
-            if left < right - 1:            # not at a leaf
-                self.lazyadd[2 * node] += val  # propagate to direct childs
-                self.lazyadd[2 * node + 1] += val
-
-    def add(self, i, j, val):
-        self._add(i, j, val, 1, 0, self.N)
-
-    def set(self, i, j, val):
-        self._set(i, j, val, 1, 0, self.N)
-
-    def max(self, i, j):
-        return self._max(i, j, 1, 0, self.N)
-
-    def min(self, i, j):
-        return self._min(i, j, 1, 0, self.N)
-
-    def sum(self, i, j):
-        return self._sum(i, j, 1, 0, self.N)
-
-    def _add(self, i, j, val, node, left, right):
-        self._clear(node, left, right)
-        if j <= left or right <= i:
-            return   # disjoint intervals, nothing to do
-        if i <= left and right <= j:
-            self.lazyadd[node] += val
-            self._clear(node, left, right)
-        else:
-            mid = (right + left) // 2
-            self._add(i, j, val, 2 * node, left, mid)
-            self._add(i, j, val, 2 * node + 1, mid, right)
-            self._maintain(node)
-
-    def _set(self, i, j, val, node, left, right):
-        self._clear(node, left, right)
-        if j <= left or right <= i:
-            return   # disjoint intervals, nothing to do
-        if i <= left and right <= j:
-            self.lazyset[node] = val
-            self.lazyadd[node] = 0
-            self._clear(node, left, right)
-        else:
-            mid = (right + left) // 2
-            self._set(i, j, val, 2 * node, left, mid)
-            self._set(i, j, val, 2 * node + 1, mid, right)
-            self._maintain(node)
-
-    def _max(self, i, j, node, left, right):
-        if j <= left or right <= i:
-            return float('-inf')   # neutral value for max
-        self._clear(node, left, right)
-        if i <= left and right <= j:
-            return self.maxval[node]
-        else:
-            mid = (right + left) // 2
-            a = self._max(i, j, 2 * node, left, mid)
-            b = self._max(i, j, 2 * node + 1, mid, right)
-            return max(a, b)
-
-    def _min(self, i, j, node, left, right):
-        if j <= left or right <= i:
-            return float('+inf')   # neutral value for min
-        self._clear(node, left, right)
-        if i <= left and right <= j:
-            return self.minval[node]
-        else:
-            mid = (right + left) // 2
-            a = self._min(i, j, 2 * node, left, mid)
-            b = self._min(i, j, 2 * node + 1, mid, right)
-            return min(a, b)
-
-    def _sum(self, i, j, node, left, right):
-        if j <= left or right <= i:
-            return 0               # neutral value for sum
-        self._clear(node, left, right)
-        if i <= left and right <= j:
-            return self.sumval[node]
-        else:
-            mid = (right + left) // 2
-            a = self._sum(i, j, 2 * node, left, mid)
-            b = self._sum(i, j, 2 * node + 1, mid, right)
-            return a + b
-```
-])
-
 #fichier("Rectangles From Grid")
 
-#extrait("1c204b", [
+#extrait("8e9601", [
 ```python
 def rectangles_from_grid(P, black=1):
     """Largest area rectangle in a binary matrix
@@ -2535,7 +2321,7 @@ def rectangles_from_grid(P, black=1):
     :param black: search for rectangles filled with value black
     :returns: area, left, top, right, bottom of optimal rectangle
              consisting of all (i,j) with
-             left <= j < right and top <= i <= bottom
+             left <= j <= right and top <= i <= bottom
     :complexity: linear
     """
     rows = len(P)
@@ -2549,7 +2335,7 @@ def rectangles_from_grid(P, black=1):
             else:
                 t[j] = 0
         (area, left, height, right) = rectangles_from_histogram(t)
-        alt = (area, left, i, right, i-height)
+        alt = (area, left, i - height + 1, right - 1, i)
         if best is None or alt > best:
             best = alt
     return best
@@ -2581,6 +2367,188 @@ def rectangles_from_histogram(H):
                 best = rect
         S.append((left, x))
     return best
+```
+])
+
+#fichier("SegmentTree")
+
+#illustration("figures/range_minimum_query.png", 15mm)
+
+#extrait("f72c6a", [
+```python
+class SegmentTree:
+    """Segment tree for range queries.
+
+    :complexity: O(n) construction, O(log n) update and query.
+    """
+
+    def __init__(self, n, default=float('-inf'), op=max):
+        """use any associative operator op with neutral element default.
+        Beware: If op is non-commutative, i.e. op(x,y) != op(y,x), 
+        then n needs to be a power of 2.
+        """
+        self.n = n      # op non-commutative? use 1 << (n - 1).bit_length()
+        self.default = default
+        self.op = op
+        self.s = [default] * (2 * n)
+
+    def update(self, pos, val):
+        """Set element at pos to val."""
+        pos += self.n
+        self.s[pos] = val
+        while pos > 1:
+            pos //= 2
+            self.s[pos] = self.op(self.s[2 * pos], self.s[2 * pos + 1])
+
+    def query(self, b, e):
+        """Return the maximum on the half-open interval [b, e)."""
+        b += self.n
+        e += self.n
+        ra = rb = self.default
+
+        while b < e:
+            if b & 1:
+                ra = self.op(ra, self.s[b])
+                b += 1
+            if e & 1:
+                e -= 1
+                rb = self.op(self.s[e], rb)
+            b //= 2
+            e //= 2
+
+        return self.op(ra, rb)
+```
+])
+
+#extrait("b08910", [
+```python
+from math import inf
+
+class LazySegmentTree:
+    """Lazy segment tree
+
+    intialized with n zeros. n does not need to be a power of two.
+
+    Supports range assignment, addition, min, max and sum on [i, j).
+    :complexity: O(log n) per operation, O(n) space
+    """
+
+    def __init__(self, n):
+        self.n = n
+        self.tree = [(0, 0, 0)] * (4 * n)  # (min, max, sum)
+        self.assign = [None] * (4 * n)
+        self.delta = [0] * (4 * n)
+
+    def _pull(self, k):
+        a, b = self.tree[2*k], self.tree[2*k+1]
+        self.tree[k] = (min(a[0], b[0]), max(a[1], b[1]), a[2] + b[2])
+
+    def _apply(self, k, length, value=None, add=0):
+        if value is not None:
+            self.tree[k] = (value, value, value * length)
+            self.assign[k], self.delta[k] = value, 0
+        if add:
+            lo, hi, total = self.tree[k]
+            self.tree[k] = (lo + add, hi + add, total + add * length)
+            if self.assign[k] is not None:
+                self.assign[k] += add
+            else:
+                self.delta[k] += add
+
+    def _push(self, k, l, r):
+        if self.assign[k] is not None or self.delta[k]:
+            m = (l + r) // 2
+            self._apply(2*k,   m-l, self.assign[k], self.delta[k])
+            self._apply(2*k+1, r-m, self.assign[k], self.delta[k])
+            self.assign[k], self.delta[k] = None, 0
+
+    def _update(self, i, j, value, assign, k, l, r):
+        if j <= l or r <= i:
+            return
+        if i <= l and r <= j:
+            self._apply(k, r-l, value if assign else None,
+                        0 if assign else value)
+            return
+        self._push(k, l, r)
+        m = (l + r) // 2
+        self._update(i, j, value, assign, 2*k,   l, m)
+        self._update(i, j, value, assign, 2*k+1, m, r)
+        self._pull(k)
+
+    def set(self, i, j, value):
+        """sets T to the given value in the range i:j (j excluded)"""
+        self._update(i, j, value, True, 1, 0, self.n)
+
+    def add(self, i, j, value):
+        """adds the given value to T in the range i:j (j excluded)"""
+        self._update(i, j, value, False, 1, 0, self.n)
+
+    def _query(self, i, j, k, l, r):
+        if j <= l or r <= i:
+            return inf, -inf, 0
+        if i <= l and r <= j:
+            return self.tree[k]
+        self._push(k, l, r)
+        m = (l + r) // 2
+        a = self._query(i, j, 2*k,   l, m)
+        b = self._query(i, j, 2*k+1, m, r)
+        return min(a[0], b[0]), max(a[1], b[1]), a[2] + b[2]
+
+    def query(self, i, j):
+        """Return (min, max, sum) over [i, j)."""
+        return self._query(i, j, 1, 0, self.n)
+```
+])
+
+#fichier("Shortest Cycle")
+
+#extrait("d27002", [
+```python
+def shortest_cycle(graph):
+    """Find a shortest cycle in an undirected unweighted graph.
+
+    :param graph: undirected graph in listlist or listdict format
+    :returns: None or a list of vertices describing a shortest cycle
+    :complexity: O(|V| * (|V| + |E|))
+    """
+    n = len(graph)
+    best = n + 1
+    answer = None
+
+    for root in range(n):
+        dist = [-1] * n
+        parent = [-1] * n
+        dist[root] = 0
+        queue = deque([root])
+
+        while queue:
+            u = queue.popleft()
+            for v in graph[u]:
+                if dist[v] == -1:
+                    dist[v] = dist[u] + 1
+                    parent[v] = u
+                    queue.append(v)
+                elif parent[u] != v and dist[u] + dist[v] + 1 < best:
+                    best = dist[u] + dist[v] + 1
+                    answer = (parent[:], u, v)
+
+    if answer is None:
+        return None
+
+    # Reconstruct the cycle by removing the common tree path.
+    parent, u, v = answer
+    a, b = [], []
+    while u != -1:
+        a.append(u)
+        u = parent[u]
+    while v != -1:
+        b.append(v)
+        v = parent[v]
+    while a and b and a[-1] == b[-1]:
+        common = a.pop()
+        b.pop()
+
+    return a + [common] + b[::-1]
 ```
 ])
 
@@ -2686,7 +2654,7 @@ def coin_change(x, R):
 def sort_class(s):
     """ sorts s and returns additional information
 
-    :param s: string or list
+    :param s: string or list. 
     :returns p, c: p[j]=i if s[i] has rank j in sorted(s) and c[i] is rank of s[i] in sorted(set(s))
     :complexity: O(n log n) or better if sort makes use of specific values in s
     """
@@ -2723,7 +2691,8 @@ def sort_cyclic_shifts(s):
 ```python
 def suffix_array(s):
     """ given a string s, sort lexicographically suffixes of s
-    :param s: string
+
+    :param s: string. Has to be non empty. Should not contain chr(0).
     :returns: R with R[i] is j such that s[j:] has rank i
     :complexity: O(n log^2 n)
     """
@@ -2742,6 +2711,7 @@ def topological_order(graph):
     """Topological sorting by maintaining indegree
 
     :param graph: directed graph in listlist format, cannot be listdict
+    :behavior undefined: if graph has cycles
     :returns: list of vertices in order
     :complexity: `O(|V|+|E|)`
     """
@@ -2806,15 +2776,15 @@ def tortoise_hare(f, source=0):
 
 #fichier("Trie")
 
-#extrait("ae9843", [
+#extrait("3f15d4", [
 ```python
 from string import ascii_letters    # in Python 2 one would import letters
-
+from collections import defaultdict
 
 class TrieNode:
-    def __init__(self):                            # each node will have
-        self.is_word = False                       # 52 children -
-        self.s = {c: None for c in ascii_letters}  # most will remain empty
+    def __init__(self):                            
+        self.is_word = False # path from root to here is a word stored in the trie
+        self.s = defaultdict(lambda: None)
 
 
 def add(T, w, i=0):  # Add a word to the trie
@@ -2888,9 +2858,13 @@ def search(T, dist, w, i=0):
 ```
 ])
 
+#fichier("Two Player Game")
+
+#include "figures/two_player_game.typ"
+
 #fichier("Two Sat")
 
-#extrait("e18d40", [
+#extrait("90c3f1", [
 ```python
 def _vertex(lit):  # integer encoding of a litteral
     if lit > 0:
@@ -2914,7 +2888,7 @@ def two_sat(formula):
     for x_idx, y_idx in formula:                           # x_idx or y_idx
         graph[_vertex(-x_idx)].append(_vertex(y_idx))     # -x_idx => y_idx
         graph[_vertex(-y_idx)].append(_vertex(x_idx))     # -y_idx => x_idx
-    sccp = tarjan(graph)
+    sccp = kosaraju(graph)
     comp_id = [None] * (2 * num_variables)  # each node's component ID
     assignment = [None] * (2 * num_variables)
     for component in sccp:

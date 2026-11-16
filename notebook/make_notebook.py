@@ -182,16 +182,27 @@ def snippets(path: Path) -> list[tuple[str, str]]:
 IMAGE_EXTENSIONS = ('.png', '.jpg', '.jpeg', '.webp', '.svg', '.pdf')
 
 
-def image_for(path: Path, image_dir: Path) -> Path | None:
-    """Return the first matching image (case-insensitive extension)."""
-    choices = {p.name.lower(): p for p in image_dir.iterdir() if p.is_file()}
-    for extension in IMAGE_EXTENSIONS:
-        result = choices.get(f'{path.stem}{extension}'.lower())
-        if result is not None:
-            return result
-    return None
+def companion_for(path: Path, image_dir: Path | None) -> tuple[Path | None, bool]:
+    """Find a same-stem companion in the figures or Python directory.
 
+    Search the figures directory first, then the source directory.
+    A .typ file takes precedence over images in each directory.
+    """
+    directories = [image_dir] if image_dir is not None else []
+    if path.parent not in directories:
+        directories.append(path.parent)
 
+    for directory in directories:
+        choices = {item.name.casefold(): item for item in directory.iterdir()
+                   if item.is_file()}
+        match = choices.get((path.stem + '.typ').casefold())
+        if match is not None:
+            return match, False
+        for extension in IMAGE_EXTENSIONS:
+            match = choices.get((path.stem + extension).casefold())
+            if match is not None:
+                return match, True
+    return None, False
 
 
 def source_title(path: Path) -> str:
@@ -203,13 +214,6 @@ def source_title(path: Path) -> str:
     return path.stem.replace('_', ' ').title()
 
 
-def typst_for(path: Path, image_dir: Path) -> Path | None:
-    """Find a Typst companion file with the same basename."""
-    for candidate in image_dir.iterdir():
-        if candidate.is_file() and candidate.suffix.lower() == '.typ' and candidate.stem.lower() == path.stem.lower():
-            return candidate
-    return None
-
 def image_reference(image_path: Path, typst_path: Path) -> str:
     """Make images accessible relative to the generated .typ file."""
     return Path(os.path.relpath(image_path.resolve(), typst_path.parent.resolve())).as_posix()
@@ -218,7 +222,7 @@ def image_reference(image_path: Path, typst_path: Path) -> str:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('source_dir', type=Path, help='directory containing *.py files')
-    parser.add_argument('--images', type=Path, default=None, help='directory containing optional matching images or .typ files')
+    parser.add_argument('--images', type=Path, default=None, help='preferred directory for matching figures or .typ files (also searches source directory)')
     parser.add_argument('--image-height', default='1cm', help='image height, e.g. 1cm or 15mm (default: 1cm)')
     parser.add_argument('--cleaned-dir', type=Path, default=None,
                         help='export the exact normalized snippet bytes used for hashing')
@@ -249,25 +253,32 @@ def main() -> int:
             items = snippets(path)
         except (ValueError, UnicodeError) as exc:
             parser.error(str(exc))
-        if items:
-            sections.append((source_title(path), path, items))
+        companion, is_figure = companion_for(path, args.images)
+        if items or companion is not None:
+            sections.append((source_title(path), path, items, companion, is_figure))
+
+    # Include standalone Typst documents from the figures directory.
+    # A matching Python source already owns its companion section.
+    if args.images is not None:
+        python_stems = {path.stem.casefold() for path in files}
+        for typ_path in args.images.iterdir():
+            if (typ_path.is_file() and typ_path.suffix.casefold() == '.typ'
+                    and typ_path.stem.casefold() not in python_stems):
+                title = typ_path.stem.replace('_', ' ').title()
+                sections.append((title, typ_path, [], typ_path, False))
 
     # Sort by the actual heading rendered in Typst, not by source filename.
     sections.sort(key=lambda section: (section[0].casefold(), section[1].name.casefold()))
     rendered_titles = []
-    for title, path, items in sections:
+    for title, path, items, companion, is_figure in sections:
         rendered_titles.append(title)
         bodies.append(f'#fichier({typst_string(title)})')
-        if args.images is not None:
-            image = image_for(path, args.images)
-            if image is not None:
-                reference = image_reference(image, args.output)
+        if companion is not None:
+            reference = image_reference(companion, args.output)
+            if is_figure:
                 bodies.append(f'#illustration({typst_string(reference)}, {args.image_height})')
             else:
-                companion = typst_for(path, args.images)
-                if companion is not None:
-                    reference = image_reference(companion, args.output)
-                    bodies.append(f'#include {typst_string(reference)}')
+                bodies.append(f'#include {typst_string(reference)}')
         for snippet_idx, (name, code) in enumerate(items, 1):
             try:
                 digest = md5sum(code)
@@ -279,8 +290,8 @@ def main() -> int:
                 clean_path.write_bytes(cleaned_code(code).encode('utf-8'))
             bodies.append(f'#extrait({typst_string(digest[:6])}, [\n{raw_fence(code)}\n])')
             count += 1
-    if not count:
-        parser.error('no included # snip{ ... # snip} blocks found')
+    if not sections:
+        parser.error('no snippets, matching companions, or standalone Typst files found')
     # Catch accidental regressions in the ordering of generated headings.
     assert rendered_titles == sorted(rendered_titles, key=str.casefold), 'Section headings are not sorted'
     args.output.parent.mkdir(parents=True, exist_ok=True)
@@ -288,7 +299,7 @@ def main() -> int:
     # Pass the team explicitly to the imported cover function.
     document = f'#let team = {typst_string(args.team)}\n' + document
     args.output.write_text(document, encoding='utf-8')
-    print(f'{args.output} : {count} snippets from {len(sections)} sections ({len(files)} Python files examined, sorted by heading)')
+    print(f'{args.output} : {count} snippets in {len(sections)} sections ({len(files)} Python files examined, sorted by heading)')
     return 0
 
 

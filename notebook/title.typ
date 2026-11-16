@@ -21,6 +21,7 @@
   def readints(): return list(map(int, readstr().split()))
 
   print(f"{answer=}", file=sys.stderr)  # debug
+  print(query, flush=True)              # interactif
   ```
 
   == check_hash.py
